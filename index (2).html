@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PrimeChain Solutions builds operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa.">
+<title>PrimeChain Solutions | Clarity. Control. Growth.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --navy: #0A1F44;
+  --teal: #008080;
+  --teal-dk: #006666;
+  --teal-lt: #f0fafa;
+  --gold: #D4AF37;
+  --white: #ffffff;
+  --off: #F9F9F7;
+  --text: #111827;
+  --muted: #6B7280;
+  --light: #E5E7EB;
+  --border: #E5E7EB;
+  --ease: 0.3s ease;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* SCROLL BAR */
+.sp { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--teal); z-index: 3000; transition: width .1s linear; }
+
+/* ── NAV ── */
+#nav {
+  position: fixed; top: 0; left: 0; width: 100%;
+  z-index: 2000;
+  padding: 0 2rem;
+  transition: background var(--ease), box-shadow var(--ease);
+}
+#nav.scrolled {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 80px;
+}
+.logo { text-decoration: none; display: flex; align-items: center; }
+.logo img { height: 42px; width: auto; }
+.logo-text { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.3rem; color: var(--navy); display: none; letter-spacing: .01em; }
+.nav-links { display: flex; list-style: none; gap: 2.25rem; align-items: center; }
+.nav-links a {
+  text-decoration: none; font-size: .9rem; font-weight: 500;
+  color: rgba(255,255,255,0.8); transition: color var(--ease);
+}
+#nav.scrolled .nav-links a { color: var(--muted); }
+.nav-links a:hover { color: white; }
+#nav.scrolled .nav-links a:hover { color: var(--teal); }
+.nav-cta {
+  padding: .5rem 1.4rem !important;
+  border: 1.5px solid rgba(255,255,255,0.5) !important;
+  border-radius: 2px !important;
+  color: white !important;
+  font-weight: 500 !important;
+  transition: all var(--ease) !important;
+}
+.nav-cta:hover { background: white !important; color: var(--navy) !important; }
+#nav.scrolled .nav-cta { border-color: var(--navy) !important; color: var(--navy) !important; }
+#nav.scrolled .nav-cta:hover { background: var(--navy) !important; color: white !important; }
+.mob-btn { display: none; background: none; border: none; cursor: pointer; font-size: 1.4rem; color: white; }
+#nav.scrolled .mob-btn { color: var(--text); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 10rem 2rem 6rem;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+}
+.hero-bg-line {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 45%; border-left: 1px solid rgba(255,255,255,.06);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; max-width: 1140px; margin: 0 auto; width: 100%; }
+.hero-label {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .78rem; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 2rem;
+}
+.hero-label::before { content: ''; width: 32px; height: 1px; background: var(--teal); }
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  color: white; font-weight: 600;
+  margin-bottom: 2rem; max-width: 820px;
+  letter-spacing: -.01em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-sub {
+  font-size: 1.1rem; color: rgba(255,255,255,.6);
+  line-height: 1.8; max-width: 560px;
+  font-weight: 300; margin-bottom: 3rem;
+}
+.hero-actions { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+.btn-outline-white {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .8rem 2rem; border: 1px solid rgba(255,255,255,.4);
+  color: white; text-decoration: none; font-size: .9rem; font-weight: 500;
+  letter-spacing: .02em; transition: all var(--ease); border-radius: 2px;
+}
+.btn-outline-white:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.7); }
+.btn-teal {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .8rem 2rem; background: var(--teal);
+  color: white; text-decoration: none; font-size: .9rem; font-weight: 500;
+  letter-spacing: .02em; transition: all var(--ease); border-radius: 2px;
+}
+.btn-teal:hover { background: var(--teal-dk); }
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,.3); font-size: .75rem; letter-spacing: .1em;
+  text-transform: uppercase; display: flex; flex-direction: column;
+  align-items: center; gap: .5rem;
+  animation: bob 2s ease-in-out infinite;
+}
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+/* ── SHARED SECTION STYLES ── */
+.section-label {
+  font-size: .75rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--teal);
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: 1.5rem;
+}
+.section-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--teal); }
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15; letter-spacing: -.01em;
+  margin-bottom: 1.25rem;
+}
+.section-sub {
+  font-size: 1rem; color: var(--muted);
+  line-height: 1.8; max-width: 540px;
+  font-weight: 300;
+}
+
+/* ── PROBLEM ── */
+.problem { padding: 7rem 0; background: var(--white); }
+.problem-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.problem-left {}
+.problem-right { padding-top: 1rem; }
+.problem-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  line-height: 1.6; color: var(--text); font-weight: 500;
+  margin-bottom: 2.5rem;
+}
+.pain-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.pain-item {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 1.5rem; border: 1px solid var(--border);
+  transition: border-color var(--ease), box-shadow var(--ease);
+  cursor: default;
+}
+.pain-item:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(0,128,128,.07); }
+.pain-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 700; color: var(--light);
+  line-height: 1; flex-shrink: 0; width: 36px;
+  transition: color var(--ease);
+}
+.pain-item:hover .pain-num { color: var(--teal); }
+.pain-text h4 { font-family: 'DM Sans', sans-serif; font-size: .95rem; font-weight: 600; margin-bottom: .4rem; }
+.pain-text p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+
+/* ── STATS ── */
+.stats { background: var(--navy); padding: 5rem 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+.stat { padding: 2rem 1.5rem; text-align: center; border-right: 1px solid rgba(255,255,255,.08); }
+.stat:last-child { border-right: none; }
+.stat-n {
+  display: block; font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem; font-weight: 700; color: white;
+  line-height: 1; margin-bottom: .4rem;
+}
+.stat-l { font-size: .8rem; color: rgba(255,255,255,.45); letter-spacing: .04em; }
+
+/* ── SERVICES ── */
+.services { padding: 7rem 0; background: var(--off); }
+.services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 4rem; align-items: end; }
+.services-link { font-size: .9rem; font-weight: 500; color: var(--teal); text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; transition: gap var(--ease); }
+.services-link:hover { gap: .7rem; }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.svc-card {
+  background: white; padding: 2.5rem;
+  transition: background var(--ease);
+}
+.svc-card:hover { background: var(--teal-lt); }
+.svc-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem; font-weight: 700; color: var(--light);
+  line-height: 1; margin-bottom: 1.5rem;
+  display: block; transition: color var(--ease);
+}
+.svc-card:hover .svc-num { color: var(--teal); }
+.svc-card h3 { font-size: 1.3rem; margin-bottom: .85rem; }
+.svc-card p { font-size: .88rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; }
+.svc-arrow { color: var(--teal); font-size: .8rem; }
+
+/* ── CASE STUDIES ── */
+.cases { padding: 7rem 0; background: var(--white); }
+.cases-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4rem; flex-wrap: wrap; gap: 1.5rem; }
+.case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.case-card {
+  background: white; padding: 2.5rem 2rem;
+  display: flex; flex-direction: column; gap: 1.25rem;
+  transition: background var(--ease);
+}
+.case-card:hover { background: var(--off); }
+.case-industry {
+  font-size: .72rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--teal);
+}
+.case-card h3 { font-size: 1.25rem; line-height: 1.3; }
+.case-problem { font-size: .87rem; color: var(--muted); line-height: 1.7; }
+.case-outcome {
+  margin-top: auto; padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  font-size: .87rem; color: var(--text);
+  font-weight: 500; line-height: 1.55;
+  display: flex; gap: .5rem; align-items: flex-start;
+}
+.case-outcome::before { content: '→'; color: var(--teal); flex-shrink: 0; }
+
+/* ── HOW WE WORK ── */
+.how { padding: 7rem 0; background: var(--off); }
+.how-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; }
+.how-left { position: sticky; top: 100px; }
+.how-steps { display: flex; flex-direction: column; gap: 0; }
+.how-step {
+  display: grid; grid-template-columns: 60px 1fr;
+  gap: 1.5rem; padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.how-step:first-child { border-top: 1px solid var(--border); }
+.step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 700; color: var(--light);
+  line-height: 1; padding-top: .2rem;
+  transition: color var(--ease);
+}
+.how-step:hover .step-num { color: var(--teal); }
+.step-body h4 { font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
+.step-body p { font-size: .87rem; color: var(--muted); line-height: 1.7; }
+
+/* ── ABOUT STRIP ── */
+.about { padding: 7rem 0; background: var(--white); }
+.about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.about-quote-large {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600; line-height: 1.45;
+  color: var(--navy); margin-bottom: 2rem;
+}
+.about-quote-large em { font-style: italic; color: var(--teal); }
+.about-body { font-size: .95rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.5rem; }
+.about-link { display: inline-flex; align-items: center; gap: .5rem; font-size: .88rem; font-weight: 500; color: var(--teal); text-decoration: none; letter-spacing: .02em; transition: gap var(--ease); }
+.about-link:hover { gap: .75rem; }
+.creds { display: flex; flex-direction: column; gap: .85rem; }
+.cred {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1.1rem 1.25rem; border-left: 2px solid var(--light);
+  transition: border-color var(--ease);
+}
+.cred:hover { border-color: var(--teal); }
+.cred i { color: var(--teal); margin-top: .2rem; flex-shrink: 0; font-size: .85rem; }
+.cred-text strong { display: block; font-size: .88rem; font-weight: 600; color: var(--text); margin-bottom: .15rem; }
+.cred-text span { font-size: .8rem; color: var(--muted); }
+
+/* ── TESTIMONIAL ── */
+.testimonial { padding: 7rem 0; background: var(--navy); }
+.testimonial-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+.testimonial blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 500; color: white; line-height: 1.6;
+  font-style: italic; margin-bottom: 2rem;
+}
+.testimonial cite {
+  font-style: normal; font-size: .85rem;
+  color: rgba(255,255,255,.45); letter-spacing: .06em; text-transform: uppercase;
+}
+
+/* ── CONTACT ── */
+.contact { padding: 7rem 0; background: var(--off); }
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.contact-left {}
+.contact-info { display: flex; flex-direction: column; gap: 1rem; margin-top: 2.5rem; }
+.contact-info a {
+  display: flex; align-items: center; gap: .85rem;
+  text-decoration: none; font-size: .9rem; color: var(--muted);
+  transition: color var(--ease);
+}
+.contact-info a:hover { color: var(--teal); }
+.contact-info i { color: var(--teal); width: 16px; flex-shrink: 0; }
+.contact-note { font-size: .8rem; color: var(--muted); margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); line-height: 1.7; }
+.contact-form {}
+.form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group label { font-size: .75rem; font-weight: 600; color: var(--text); letter-spacing: .06em; text-transform: uppercase; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: .8rem 1rem; border: 1px solid var(--border);
+  font-size: .9rem; font-family: 'DM Sans', sans-serif;
+  color: var(--text); background: white; outline: none;
+  transition: border-color var(--ease); border-radius: 2px; width: 100%;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--teal); }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: #9CA3AF; }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-submit {
+  width: 100%; padding: .85rem; background: var(--navy);
+  color: white; border: none; font-size: .9rem; font-weight: 600;
+  font-family: 'DM Sans', sans-serif; cursor: pointer; letter-spacing: .03em;
+  transition: background var(--ease); border-radius: 2px;
+}
+.form-submit:hover { background: var(--teal); }
+
+/* ── FOOTER ── */
+footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand img { height: 36px; margin-bottom: 1rem; }
+.footer-brand p { font-size: .83rem; color: var(--muted); line-height: 1.75; max-width: 260px; }
+.footer-col h5 { font-family: 'DM Sans', sans-serif; font-size: .72rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.footer-col a { text-decoration: none; font-size: .85rem; color: var(--muted); transition: color var(--ease); }
+.footer-col a:hover { color: var(--teal); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+.footer-bottom p { font-size: .8rem; color: var(--muted); }
+.social a { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: .8rem; transition: all var(--ease); }
+.social a:hover { border-color: var(--teal); color: var(--teal); }
+
+/* ── RESPONSIVE ── */
+@media(max-width: 1024px) {
+  .problem-layout, .about-layout, .contact-layout { grid-template-columns: 1fr; gap: 3.5rem; }
+  .services-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .how-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .how-left { position: static; }
+  .svc-grid, .case-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .cases-header { flex-direction: column; align-items: flex-start; }
+}
+@media(max-width: 768px) {
+  .mob-btn { display: block; }
+  .nav-links {
+    display: none; position: fixed; top: 80px; right: 0;
+    width: 280px; height: calc(100vh - 80px);
+    background: white; flex-direction: column; align-items: flex-start;
+    padding: 2rem 1.5rem; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,.1);
+    overflow-y: auto;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { color: var(--muted) !important; display: block; padding: .85rem .75rem; }
+  .nav-links a:hover { color: var(--teal) !important; }
+  .svc-grid, .case-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; }
+.d4 { transition-delay: .4s; }
+</style>
+</head>
+<body>
+
+<div class="sp" id="sp"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="logo-text">PrimeChain Solutions</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="#contact" class="nav-cta">Talk to us</a></li>
+    </ul>
+    <button class="mob-btn" id="mobBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-line"></div>
+  <div class="hero-content">
+    <div class="hero-label">Johannesburg, South Africa</div>
+    <h1>Operational chaos isn't<br>your problem.<br><em>Lack of visibility is.</em></h1>
+    <p class="hero-sub">We build operational visibility systems and automation tools that give you real-time control over your supply chain, your fleet, and your costs.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-teal">Talk to us</a>
+      <a href="case-studies.html" class="btn-outline-white">See our work</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="problem-layout">
+      <div class="problem-left reveal">
+        <div class="section-label">Sound familiar?</div>
+        <h2 class="section-title">If you're still finding problems at month end, you're already too late.</h2>
+        <p class="problem-intro">The businesses we work with aren't struggling because they're badly run. They're struggling because they can't see what's happening inside their own operation until the damage is done.</p>
+        <a href="#contact" class="btn-teal" style="margin-top:2rem;display:inline-flex;">Talk to us</a>
+      </div>
+      <div class="problem-right">
+        <div class="pain-list">
+          <div class="pain-item reveal d1">
+            <span class="pain-num">01</span>
+            <div class="pain-text">
+              <h4>You only discover variances at month end</h4>
+              <p>Stock losses, fuel discrepancies, and operational gaps surface on the last day of the month. By then the damage is done and nothing is traceable.</p>
+            </div>
+          </div>
+          <div class="pain-item reveal d2">
+            <span class="pain-num">02</span>
+            <div class="pain-text">
+              <h4>Your field teams report days after the work is done</h4>
+              <p>You're always managing on yesterday's information. By the time you know what happened, the moment to act has already passed.</p>
+            </div>
+          </div>
+          <div class="pain-item reveal d3">
+            <span class="pain-num">03</span>
+            <div class="pain-text">
+              <h4>You don't know which vehicles or partners cost you most</h4>
+              <p>Fuel spend is opaque. Transport partner performance is based on gut feel. There's no way to challenge a number you can't see.</p>
+            </div>
+          </div>
+          <div class="pain-item reveal d4">
+            <span class="pain-num">04</span>
+            <div class="pain-text">
+              <h4>Your team spends hours on paperwork that could take seconds</h4>
+              <p>Information that already exists somewhere gets copied by hand, printed, attached and filed. Five hundred times a month.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat"><span class="stat-n">5</span><span class="stat-l">Systems delivered</span></div>
+      <div class="stat"><span class="stat-n">4</span><span class="stat-l">Industries served</span></div>
+      <div class="stat"><span class="stat-n">R50k+</span><span class="stat-l">Losses identified</span></div>
+      <div class="stat"><span class="stat-n">58hrs</span><span class="stat-l">Admin saved monthly</span></div>
+      <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Custom built</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div>
+        <div class="section-label">What we build</div>
+        <h2 class="section-title">Three ways we solve<br>operational problems.</h2>
+      </div>
+      <div>
+        <p class="section-sub" style="max-width:380px;">Every system is custom — designed for your specific environment, your specific problem, your specific team.</p>
+        <a href="services.html" class="services-link" style="margin-top:1.25rem;display:inline-flex;">Explore services <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc-card">
+        <span class="svc-num">01</span>
+        <h3>Operational Visibility</h3>
+        <p>Real-time dashboards for fleets, field teams, and supply chains. See what's happening across your operation as it happens — not after the fact.</p>
+        <a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">02</span>
+        <h3>Process Automation</h3>
+        <p>Custom tools that eliminate repetitive manual workflows. If your team fills in the same form hundreds of times a month, we automate it completely.</p>
+        <a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">03</span>
+        <h3>Supply Chain Systems</h3>
+        <p>End-to-end visibility and control across your operation. Built for businesses that have outgrown spreadsheets but don't need SAP.</p>
+        <a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="cases">
+  <div class="container">
+    <div class="cases-header reveal">
+      <div>
+        <div class="section-label">Proof, not promises</div>
+        <h2 class="section-title">We have solved<br>this before.</h2>
+      </div>
+      <a href="case-studies.html" class="services-link">View all case studies <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="case-grid reveal">
+      <div class="case-card">
+        <span class="case-industry">Commodity Transport</span>
+        <h3>Fuel Detection &amp; Usage Monitoring</h3>
+        <p class="case-problem">A commodity trader managing 10–20 vehicles had no way to track fuel consumption across subcontracted partners. Losses were accumulating undetected every month.</p>
+        <div class="case-outcome">Fuel leakage detected within weeks of go-live — for the first time in the operation's history</div>
+      </div>
+      <div class="case-card">
+        <span class="case-industry">Municipal Contracting</span>
+        <h3>Job Card Automation System</h3>
+        <p class="case-problem">500 job cards produced by hand every month. Each one requiring 7 minutes of copy-paste admin, printing and physical assembly of three pages.</p>
+        <div class="case-outcome">58 hours of admin eliminated monthly. R36,000 per year in printing costs removed entirely</div>
+      </div>
+      <div class="case-card">
+        <span class="case-industry">Logistics &amp; Transport</span>
+        <h3>Logistics Operations Dashboard</h3>
+        <p class="case-problem">A fleet of 20 vehicles with no centralised performance view. Operational decisions only possible after month-end data was compiled.</p>
+        <div class="case-outcome">20 vehicles tracked across 6 live KPIs. Decisions shifted from month-end to real time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="how">
+  <div class="container">
+    <div class="how-layout">
+      <div class="how-left reveal">
+        <div class="section-label">How it works</div>
+        <h2 class="section-title">From problem to solution in four steps.</h2>
+        <p class="section-sub" style="margin-top:1.25rem;">We don't arrive with a solution already in mind. We start by understanding your operation — then we build.</p>
+      </div>
+      <div class="how-steps reveal">
+        <div class="how-step">
+          <span class="step-num">01</span>
+          <div class="step-body">
+            <h4>We diagnose.</h4>
+            <p>We map your current operation and identify exactly where visibility and admin gaps are costing you money and time. No assumptions.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <span class="step-num">02</span>
+          <div class="step-body">
+            <h4>We design.</h4>
+            <p>We design a solution built specifically for your environment. No off-the-shelf software, no unnecessary complexity, no features you'll never use.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <span class="step-num">03</span>
+          <div class="step-body">
+            <h4>We build.</h4>
+            <p>We handle all technical work from start to finish. You don't need to understand how it's built — you need to see it work.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <span class="step-num">04</span>
+          <div class="step-body">
+            <h4>We measure.</h4>
+            <p>We track outcomes against the problem we set out to solve — so you can see exactly what changed, and what it's worth to your operation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-layout">
+      <div class="about-left reveal">
+        <div class="section-label">Who's behind this</div>
+        <p class="about-quote-large">"Built for businesses that are <em>too complex for spreadsheets</em> but not ready for enterprise software."</p>
+        <p class="about-body">PrimeChain Solutions was founded after six years working inside the supply chain and operations roles it now serves — from intern to Supply Chain Manager. The same pattern appeared in every environment: operations generating data nobody could see, and teams drowning in admin that should never have been manual.</p>
+        <p class="about-body">We exist for the business owner who knows something is broken but doesn't know how to fix it. The operator whose team is spending Friday afternoon hand-writing the same job card it wrote on Monday.</p>
+        <a href="our-story.html" class="about-link">Read our story <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="about-right reveal d2">
+        <div class="creds">
+          <div class="cred">
+            <i class="fas fa-graduation-cap"></i>
+            <div class="cred-text">
+              <strong>BCom Hons — Logistics &amp; Supply Chain</strong>
+              <span>The academic foundation for every operational engagement</span>
+            </div>
+          </div>
+          <div class="cred">
+            <i class="fas fa-chart-bar"></i>
+            <div class="cred-text">
+              <strong>Business Intelligence &amp; Data Science</strong>
+              <span>Turning operational data into decisions, not just reports</span>
+            </div>
+          </div>
+          <div class="cred">
+            <i class="fas fa-cogs"></i>
+            <div class="cred-text">
+              <strong>Six Sigma &amp; Business Analysis</strong>
+              <span>Structured problem diagnosis before a single tool is built</span>
+            </div>
+          </div>
+          <div class="cred">
+            <i class="fas fa-briefcase"></i>
+            <div class="cred-text">
+              <strong>6 years in operational roles</strong>
+              <span>Intern → Receiving Supervisor → Inventory Manager → Supply Chain Analyst → Supply Chain Manager</span>
+            </div>
+          </div>
+          <div class="cred">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="cred-text">
+              <strong>Based in Johannesburg</strong>
+              <span>Serving clients virtually across South Africa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="container">
+    <div class="testimonial-inner reveal">
+      <blockquote>"The system didn't just save us time — it showed us problems we didn't know we had. Within weeks of go-live, we had identified fuel losses that had been running undetected for months."</blockquote>
+      <cite>Operations Director — Commodity Transport Client</cite>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="contact-left reveal">
+        <div class="section-label">Get in touch</div>
+        <h2 class="section-title">Recognise any of these problems?<br>Let's talk.</h2>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.8;margin-top:1.25rem;">The first consultation is free and carries no obligation. We'll tell you honestly whether we can help — and if we can, exactly what that would look like.</p>
+        <div class="contact-info">
+          <a href="mailto:info@primechainsolutions.co.za"><i class="fas fa-envelope"></i> info@primechainsolutions.co.za</a>
+          <a href="https://linkedin.com"><i class="fab fa-linkedin"></i> LinkedIn — PrimeChain Solutions</a>
+          <a href="#"><i class="fas fa-map-marker-alt"></i> Johannesburg, South Africa (virtual)</a>
+        </div>
+        <p class="contact-note">We typically respond within one business day. The first conversation is about understanding your operation — nothing will be sold on that call.</p>
+      </div>
+      <div class="contact-right reveal d2">
+        <div class="form-row">
+          <div class="form-group"><label>Name</label><input type="text" placeholder="Your full name"></div>
+          <div class="form-group"><label>Company</label><input type="text" placeholder="Company name"></div>
+        </div>
+        <div class="form-group">
+          <label>Industry</label>
+          <select>
+            <option value="">Select your industry</option>
+            <option>Logistics &amp; Transport</option>
+            <option>Field Services &amp; Contracting</option>
+            <option>Food &amp; Beverage</option>
+            <option>Municipal Contracting</option>
+            <option>Commodity Trading</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>What's the problem?</label>
+          <textarea placeholder="Briefly describe the operational challenge you're dealing with"></textarea>
+        </div>
+        <button class="form-submit">Send message &nbsp;→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions"
+             onerror="this.style.display='none'">
+        <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="our-story.html">Our Story</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <ul>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="cost-calculator.html">Cost Calculator</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="mailto:info@primechainsolutions.co.za">Email Us</a></li>
+          <li><a href="#">Johannesburg, SA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
+      <div class="social">
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:info@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const sp=document.getElementById('sp'),nav=document.getElementById('nav'),mobBtn=document.getElementById('mobBtn'),navLinks=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>60);
+  const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  sp.style.width=(h>0?(window.scrollY/h)*100:0)+'%';
+});
+mobBtn.addEventListener('click',()=>{
+  const o=navLinks.classList.toggle('open');
+  mobBtn.innerHTML=o?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';
+});
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');mobBtn.innerHTML='<i class="fas fa-bars"></i>';}));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
