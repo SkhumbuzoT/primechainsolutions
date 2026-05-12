@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story | PrimeChain Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --navy:#0A1F44;--teal:#008080;--teal-dk:#006666;--teal-lt:#f0fafa;
+  --gold:#D4AF37;--white:#fff;--off:#F9F9F7;
+  --text:#111827;--muted:#6B7280;--border:#E5E7EB;--ease:.3s ease;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.1;}
+.container{width:100%;max-width:1140px;margin:0 auto;padding:0 2rem;}
+.sp{position:fixed;top:0;left:0;height:2px;width:0;background:var(--teal);z-index:3000;transition:width .1s linear;}
+
+#nav{position:fixed;top:0;left:0;width:100%;z-index:2000;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:80px;padding:0 2rem;}
+.logo{text-decoration:none;display:flex;align-items:center;}
+.logo img{height:42px;width:auto;}
+.logo-text{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.3rem;color:var(--navy);display:none;}
+.nav-links{display:flex;list-style:none;gap:2.25rem;align-items:center;}
+.nav-links a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--muted);transition:color var(--ease);position:relative;padding:.3rem 0;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--teal);transition:width var(--ease);}
+.nav-links a:hover,.nav-links a.on{color:var(--teal);}
+.nav-links a:hover::after,.nav-links a.on::after{width:100%;}
+.nav-cta{padding:.5rem 1.4rem!important;border:1.5px solid var(--navy)!important;border-radius:2px!important;color:var(--navy)!important;font-weight:500!important;transition:all var(--ease)!important;}
+.nav-cta:hover{background:var(--navy)!important;color:white!important;}
+.nav-cta::after{display:none!important;}
+.mob-btn{display:none;background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--text);}
+
+/* PAGE HERO */
+.page-hero{background:var(--navy);padding:10rem 2rem 6rem;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 50%,rgba(0,128,128,.12) 0%,transparent 60%);}
+.page-hero-inner{max-width:1140px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:end;}
+.hero-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;}
+.hero-label::after{content:'';width:32px;height:1px;background:var(--teal);}
+.page-hero h1{font-size:clamp(2.8rem,5.5vw,4.5rem);color:white;letter-spacing:-.01em;margin-bottom:1.5rem;}
+.page-hero h1 em{font-style:italic;color:var(--gold);}
+.page-hero p{font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.8;font-weight:300;}
+.hero-right{padding-bottom:.5rem;}
+.hero-quote-block{border-left:2px solid var(--teal);padding:1.5rem 0 1.5rem 2rem;}
+.hero-quote-block p{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:white;line-height:1.5;font-style:italic;}
+.hero-quote-block cite{display:block;margin-top:.85rem;font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase;font-style:normal;}
+
+/* SECTION LABEL */
+.section-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;}
+.section-label::after{content:'';width:32px;height:1px;background:var(--teal);}
+.section-title{font-size:clamp(2rem,4vw,3rem);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.25rem;}
+
+/* THE GAP */
+.the-gap{padding:7rem 0;background:var(--white);}
+.gap-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.gap-body p{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem;font-weight:300;}
+.gap-body p strong{color:var(--text);font-weight:600;}
+.gap-highlight{margin-top:2.5rem;padding:2rem;background:var(--navy);color:white;}
+.gap-highlight p{font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.6;font-weight:500;}
+.gap-highlight p em{font-style:italic;color:var(--gold);}
+.gap-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem;}
+.pill{padding:.35rem .9rem;border:1px solid var(--border);font-size:.78rem;color:var(--muted);font-weight:500;transition:all var(--ease);}
+.pill:hover{border-color:var(--teal);color:var(--teal);}
+
+/* TIMELINE */
+.journey{padding:7rem 0;background:var(--off);}
+.timeline{margin-top:3.5rem;display:flex;flex-direction:column;gap:0;}
+.tl-row{display:grid;grid-template-columns:120px 1px 1fr;gap:0 2.5rem;position:relative;}
+.tl-year{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--border);text-align:right;padding-top:.2rem;transition:color var(--ease);}
+.tl-row:hover .tl-year{color:var(--teal);}
+.tl-line{background:var(--border);position:relative;}
+.tl-dot{position:absolute;top:.35rem;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:white;border:2px solid var(--border);transition:border-color var(--ease);}
+.tl-row:hover .tl-dot{border-color:var(--teal);background:var(--teal);}
+.tl-content{padding:0 0 3rem 0;}
+.tl-content h4{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;margin-bottom:.5rem;}
+.tl-content p{font-size:.88rem;color:var(--muted);line-height:1.7;}
+
+/* VALUES */
+.values{padding:7rem 0;background:var(--white);}
+.values-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.values-list{display:flex;flex-direction:column;gap:0;}
+.value-item{padding:2rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:40px 1fr;gap:1.5rem;align-items:start;}
+.value-item:first-child{border-top:1px solid var(--border);}
+.val-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--border);line-height:1;transition:color var(--ease);}
+.value-item:hover .val-num{color:var(--teal);}
+.val-body h4{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;margin-bottom:.45rem;}
+.val-body p{font-size:.88rem;color:var(--muted);line-height:1.7;}
+
+/* CREDENTIALS */
+.credentials{padding:7rem 0;background:var(--off);}
+.cred-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3.5rem;}
+.cred-card{background:white;padding:2.5rem 2rem;transition:background var(--ease);}
+.cred-card:hover{background:var(--teal-lt);}
+.cred-icon{font-size:1.1rem;color:var(--teal);margin-bottom:1.25rem;display:block;}
+.cred-card h4{font-size:1.1rem;margin-bottom:.65rem;line-height:1.3;}
+.cred-card p{font-size:.85rem;color:var(--muted);line-height:1.7;}
+
+/* CTA */
+.story-cta{background:var(--navy);padding:7rem 0;text-align:center;}
+.story-cta h2{font-size:clamp(2rem,4vw,3rem);color:white;margin-bottom:1.25rem;}
+.story-cta p{font-size:1rem;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 2.5rem;line-height:1.8;font-weight:300;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-outline-white{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;border:1px solid rgba(255,255,255,.4);color:white;text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.02em;transition:all var(--ease);border-radius:2px;}
+.btn-outline-white:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.7);}
+.btn-teal{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;background:var(--teal);color:white;text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.02em;transition:all var(--ease);border-radius:2px;}
+.btn-teal:hover{background:var(--teal-dk);}
+
+/* FOOTER */
+footer{background:var(--white);border-top:1px solid var(--border);padding:3rem 0 2rem;}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-bottom p{font-size:.8rem;color:var(--muted);}
+.foot-links{display:flex;gap:1.5rem;}
+.foot-links a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color var(--ease);}
+.foot-links a:hover{color:var(--teal);}
+
+@media(max-width:1024px){
+  .page-hero-inner,.gap-layout,.values-layout{grid-template-columns:1fr;gap:3rem;}
+  .cred-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .mob-btn{display:block;}
+  .nav-links{display:none;position:fixed;top:80px;right:0;width:280px;height:calc(100vh - 80px);background:white;flex-direction:column;align-items:flex-start;padding:2rem 1.5rem;gap:0;box-shadow:-4px 0 24px rgba(0,0,0,.1);overflow-y:auto;}
+  .nav-links.open{display:flex;}
+  .nav-links li{width:100%;}
+  .nav-links a{display:block;padding:.85rem .75rem;}
+  .cred-grid{grid-template-columns:1fr;}
+  .tl-row{grid-template-columns:80px 1px 1fr;gap:0 1.5rem;}
+}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+<div class="sp" id="sp"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="logo-text">PrimeChain Solutions</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="our-story.html" class="on">Our Story</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Talk to us</a></li>
+    </ul>
+    <button class="mob-btn" id="mobBtn"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-left">
+      <div class="hero-label">Our Story</div>
+      <h1>Built from<br>the inside.<br><em>By someone<br>who's been there.</em></h1>
+    </div>
+    <div class="hero-right">
+      <p style="font-size:1rem;color:rgba(255,255,255,.6);line-height:1.8;font-weight:300;margin-bottom:2.5rem;">PrimeChain Solutions wasn't started in a boardroom. It was built after six years inside the operations it now serves — watching the same visibility problems create the same chaos, in every industry, at every scale.</p>
+      <div class="hero-quote-block">
+        <p>"Operational chaos isn't your problem. Lack of visibility is."</p>
+        <cite>Founder, PrimeChain Solutions</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE GAP -->
+<section class="the-gap">
+  <div class="container">
+    <div class="gap-layout">
+      <div class="gap-left reveal">
+        <div class="section-label">Why we exist</div>
+        <h2 class="section-title">The gap nobody<br>was filling.</h2>
+      </div>
+      <div class="gap-body reveal d1">
+        <p>Enterprise systems like SAP are powerful. But they're built for large corporations with large IT budgets and large implementation teams. Spreadsheets are flexible — but they break under operational pressure, create version control chaos, and tell you what happened last week, not what's happening right now.</p>
+        <p>Between those two extremes sits the majority of South African operations businesses. <strong>Too complex for spreadsheets. Too lean for SAP.</strong> Every role held before PrimeChain Solutions was founded confirmed this. The problem wasn't that businesses didn't have data — it was that the data was invisible, delayed, or locked inside paper that nobody could act on in time.</p>
+        <div class="gap-highlight">
+          <p>We build for the business owner who knows something is broken but <em>doesn't know how to fix it.</em> The operator whose team is spending Friday afternoon hand-writing the same job card it wrote on Monday.</p>
+        </div>
+        <div class="gap-pills">
+          <span class="pill">Logistics operators</span>
+          <span class="pill">Field service contractors</span>
+          <span class="pill">Municipal maintenance firms</span>
+          <span class="pill">Food &amp; beverage operations</span>
+          <span class="pill">Commodity traders</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section class="journey">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">The journey</div>
+      <h2 class="section-title">Six years. Every role<br>shaped by solving problems.</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-row">
+        <span class="tl-year">2017</span>
+        <div class="tl-line"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <h4>Intern</h4>
+          <p>First exposure to operational reality — the gap between how processes were designed and how they actually ran on the floor. Built informal tracking tools to solve problems the operation had no official solution for.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year" style="font-size:1.1rem;padding-top:.5rem;">Rising</span>
+        <div class="tl-line"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <h4>Receiving Supervisor → Inventory Manager</h4>
+          <p>Managing stock at volume revealed how quickly manual processes break down. Built systems to track what the operation couldn't see. The pattern of diagnosing before building began here.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year" style="font-size:1.1rem;padding-top:.5rem;">Analyst</span>
+        <div class="tl-line"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <h4>Supply Chain Analyst</h4>
+          <p>Moved from managing operations to analysing them. Translating raw operational data into insights that changed how decisions were made. Quantitative Management, Business Intelligence, and Data Science applied in practice.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year" style="font-size:1.1rem;padding-top:.5rem;">Senior</span>
+        <div class="tl-line"><div class="tl-dot"></div></div>
+        <div class="tl-content">
+          <h4>Supply Chain Manager</h4>
+          <p>The full picture from the top of the chain. Responsible for the decisions that the earlier roles fed into. Confirmed what every previous role had shown: visibility is the difference between managing reactively and managing well.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">2023</span>
+        <div class="tl-line"><div class="tl-dot" style="border-color:var(--teal);background:var(--teal);"></div></div>
+        <div class="tl-content">
+          <h4>PrimeChain Solutions — Founded</h4>
+          <p>After six years and a clear, consistent pattern identified across multiple industries, PrimeChain Solutions was founded to solve the visibility and automation problems that no off-the-shelf system was addressing for mid-size South African operations businesses.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="container">
+    <div class="values-layout">
+      <div class="values-left reveal">
+        <div class="section-label">How we think</div>
+        <h2 class="section-title">The mindset<br>behind the work.</h2>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.85;margin-top:1.25rem;font-weight:300;">Every engagement starts with curiosity and ends with a measurable outcome. The academic background in logistics, data science, and Six Sigma exists to serve one purpose — structured problem diagnosis before solution design.</p>
+      </div>
+      <div class="values-right reveal d2">
+        <div class="values-list">
+          <div class="value-item">
+            <span class="val-num">01</span>
+            <div class="val-body">
+              <h4>Systems Thinking</h4>
+              <p>Every problem exists inside a larger system. We don't fix symptoms — we find where the system is breaking down and build solutions that address the root cause, not the surface noise.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="val-num">02</span>
+            <div class="val-body">
+              <h4>Analytical by Default</h4>
+              <p>Decisions should be driven by data, not gut feel. We're wired to find the number, prove the point, and build the tool that makes the right information visible at the right time.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="val-num">03</span>
+            <div class="val-body">
+              <h4>Relentlessly Curious</h4>
+              <p>Every operational environment is different and every one has something to teach. Curiosity is what turns a client's messy, manual process into a clean, working system that the team actually uses.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="credentials">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Qualifications</div>
+      <h2 class="section-title">The academic foundation<br>behind the work.</h2>
+    </div>
+    <div class="cred-grid reveal">
+      <div class="cred-card">
+        <i class="fas fa-graduation-cap cred-icon"></i>
+        <h4>BCom Hons — Logistics &amp; Supply Chain</h4>
+        <p>The core discipline that underpins every operational engagement. Not a developer who learned supply chain — a supply chain specialist who learned to build systems.</p>
+      </div>
+      <div class="cred-card">
+        <i class="fas fa-chart-bar cred-icon"></i>
+        <h4>Business Intelligence &amp; Data Science</h4>
+        <p>Turning operational data into decisions. Understanding how to structure, visualise, and act on information from messy, real-world operational environments.</p>
+      </div>
+      <div class="cred-card">
+        <i class="fas fa-calculator cred-icon"></i>
+        <h4>Quantitative Management &amp; Statistics</h4>
+        <p>The rigour behind operational analysis. Numbers are only useful when the methodology behind them is sound.</p>
+      </div>
+      <div class="cred-card">
+        <i class="fas fa-search cred-icon"></i>
+        <h4>Business Analysis</h4>
+        <p>Structured requirements gathering and process mapping before a single tool is built. The discipline of understanding the problem completely before proposing a solution.</p>
+      </div>
+      <div class="cred-card">
+        <i class="fas fa-cogs cred-icon"></i>
+        <h4>Six Sigma</h4>
+        <p>Process improvement methodology applied to operational problem-solving. Define, measure, analyse, improve, control — applied to every engagement.</p>
+      </div>
+      <div class="cred-card">
+        <i class="fas fa-briefcase cred-icon"></i>
+        <h4>6 Years in Operational Roles</h4>
+        <p>Intern → Receiving Supervisor → Inventory Manager → Supply Chain Analyst → Supply Chain Manager. Every role defined by building solutions to challenges faced.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="story-cta">
+  <div class="container">
+    <div class="reveal">
+      <h2>Ready to see what your operation<br>could look like with visibility?</h2>
+      <p>Book a free, no-obligation consultation. We'll listen to the problem, tell you honestly what's possible, and show you what we've built for operations like yours.</p>
+      <div class="cta-btns">
+        <a href="index.html#contact" class="btn-teal">Talk to us</a>
+        <a href="case-studies.html" class="btn-outline-white">See our work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
+      <div class="foot-links">
+        <a href="index.html">Home</a>
+        <a href="case-studies.html">Case Studies</a>
+        <a href="articles.html">Articles</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const sp=document.getElementById('sp'),mobBtn=document.getElementById('mobBtn'),navLinks=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;sp.style.width=(h>0?(window.scrollY/h)*100:0)+'%';});
+mobBtn.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');mobBtn.innerHTML=o?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';});
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');mobBtn.innerHTML='<i class="fas fa-bars"></i>';}));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

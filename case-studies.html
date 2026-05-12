@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Studies | PrimeChain Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+  --navy:#0A1F44;--teal:#008080;--teal-dk:#006666;--teal-lt:#f0fafa;
+  --gold:#D4AF37;--white:#fff;--off:#F9F9F7;
+  --text:#111827;--muted:#6B7280;--border:#E5E7EB;--ease:.3s ease;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.1;}
+.container{width:100%;max-width:1140px;margin:0 auto;padding:0 2rem;}
+.sp{position:fixed;top:0;left:0;height:2px;width:0;background:var(--teal);z-index:3000;transition:width .1s linear;}
+
+#nav{position:fixed;top:0;left:0;width:100%;z-index:2000;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:80px;padding:0 2rem;}
+.logo{text-decoration:none;display:flex;align-items:center;}
+.logo img{height:42px;width:auto;}
+.logo-text{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.3rem;color:var(--navy);display:none;}
+.nav-links{display:flex;list-style:none;gap:2.25rem;align-items:center;}
+.nav-links a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--muted);transition:color var(--ease);position:relative;padding:.3rem 0;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--teal);transition:width var(--ease);}
+.nav-links a:hover,.nav-links a.on{color:var(--teal);}
+.nav-links a:hover::after,.nav-links a.on::after{width:100%;}
+.nav-cta{padding:.5rem 1.4rem!important;border:1.5px solid var(--navy)!important;border-radius:2px!important;color:var(--navy)!important;font-weight:500!important;transition:all var(--ease)!important;}
+.nav-cta:hover{background:var(--navy)!important;color:white!important;}
+.nav-cta::after{display:none!important;}
+.mob-btn{display:none;background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--text);}
+
+/* HERO */
+.page-hero{background:var(--navy);padding:10rem 2rem 6rem;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 50%,rgba(0,128,128,.1) 0%,transparent 60%);}
+.page-hero-inner{max-width:1140px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:end;}
+.hero-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;}
+.hero-label::after{content:'';width:32px;height:1px;background:var(--teal);}
+.page-hero h1{font-size:clamp(2.8rem,5.5vw,4.5rem);color:white;letter-spacing:-.01em;margin-bottom:1.25rem;}
+.page-hero h1 em{font-style:italic;color:var(--gold);}
+.page-hero p{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.8;font-weight:300;}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);}
+.hs{padding:1.75rem;background:rgba(255,255,255,.03);}
+.hs-n{display:block;font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:white;line-height:1;margin-bottom:.3rem;}
+.hs-l{font-size:.75rem;color:rgba(255,255,255,.4);letter-spacing:.06em;}
+
+/* SECTION LABEL */
+.section-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;}
+.section-label::after{content:'';width:32px;height:1px;background:var(--teal);}
+
+/* FEATURED CASE */
+.featured-cs{padding:7rem 0;background:var(--white);}
+.cs-featured{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);}
+.cs-feat-left{background:var(--navy);padding:3.5rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+.cs-feat-left::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 80%,rgba(0,128,128,.18) 0%,transparent 60%);}
+.cs-feat-left-inner{position:relative;z-index:1;}
+.cs-tag{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:1.5rem;display:block;}
+.cs-feat-left h2{font-size:clamp(1.6rem,3vw,2.4rem);color:white;line-height:1.25;margin-bottom:1.25rem;}
+.cs-feat-left p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.75;font-weight:300;}
+.cs-nums{display:flex;gap:2.5rem;margin-top:2.5rem;position:relative;z-index:1;}
+.cs-num{}.cs-num-v{display:block;font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--gold);line-height:1;}.cs-num-l{display:block;font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.25rem;letter-spacing:.05em;}
+.cs-feat-right{padding:3.5rem;background:var(--off);display:flex;flex-direction:column;gap:2rem;}
+.cs-block h4{font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.75rem;}
+.cs-block p{font-size:.9rem;color:var(--text);line-height:1.8;}
+.cs-divider{border:none;border-top:1px solid var(--border);}
+.cs-outcomes{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+.cs-outcomes li{display:flex;gap:.6rem;font-size:.9rem;color:var(--text);line-height:1.55;}
+.cs-outcomes li::before{content:'→';color:var(--teal);flex-shrink:0;font-weight:500;}
+.cs-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem;}
+.cs-chip{padding:.25rem .7rem;background:white;border:1px solid var(--border);font-size:.75rem;color:var(--muted);}
+.cs-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;}
+.cs-rel{font-size:.8rem;color:var(--muted);font-style:italic;}
+.btn-navy{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;background:var(--navy);color:white;text-decoration:none;font-size:.85rem;font-weight:500;border-radius:2px;transition:background var(--ease);}
+.btn-navy:hover{background:var(--teal);}
+
+/* CASE GRID */
+.cs-grid-section{padding:0 0 7rem;background:var(--white);}
+.cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.cs-card{background:white;padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.1rem;transition:background var(--ease);cursor:default;}
+.cs-card:hover{background:var(--off);}
+.cs-card-industry{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);}
+.cs-card h3{font-size:1.2rem;line-height:1.3;}
+.cs-card-problem{font-size:.87rem;color:var(--muted);line-height:1.7;}
+.cs-card-outcomes{list-style:none;display:flex;flex-direction:column;gap:.55rem;padding-top:1rem;border-top:1px solid var(--border);margin-top:auto;}
+.cs-card-outcomes li{display:flex;gap:.5rem;font-size:.85rem;color:var(--text);line-height:1.5;font-weight:500;}
+.cs-card-outcomes li::before{content:'→';color:var(--teal);flex-shrink:0;}
+.cs-card-foot{padding-top:.85rem;display:flex;justify-content:flex-end;}
+.cs-card-link{font-size:.82rem;font-weight:500;color:var(--teal);text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;transition:gap var(--ease);}
+.cs-card-link:hover{gap:.6rem;}
+
+/* CTA */
+.cs-cta{background:var(--navy);padding:7rem 0;text-align:center;}
+.cs-cta h2{font-size:clamp(2rem,4vw,3rem);color:white;margin-bottom:1.25rem;}
+.cs-cta p{font-size:1rem;color:rgba(255,255,255,.6);max-width:480px;margin:0 auto 2.5rem;line-height:1.8;font-weight:300;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-teal{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;background:var(--teal);color:white;text-decoration:none;font-size:.9rem;font-weight:500;border-radius:2px;transition:background var(--ease);}
+.btn-teal:hover{background:var(--teal-dk);}
+.btn-outline-white{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;border:1px solid rgba(255,255,255,.35);color:white;text-decoration:none;font-size:.9rem;font-weight:500;border-radius:2px;transition:all var(--ease);}
+.btn-outline-white:hover{border-color:rgba(255,255,255,.7);}
+
+footer{background:var(--white);border-top:1px solid var(--border);padding:2.5rem 0;}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-bottom p{font-size:.8rem;color:var(--muted);}
+.foot-links{display:flex;gap:1.5rem;}
+.foot-links a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color var(--ease);}
+.foot-links a:hover{color:var(--teal);}
+
+@media(max-width:1024px){
+  .page-hero-inner{grid-template-columns:1fr;gap:3rem;}
+  .cs-featured{grid-template-columns:1fr;}
+  .cs-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .mob-btn{display:block;}
+  .nav-links{display:none;position:fixed;top:80px;right:0;width:280px;height:calc(100vh - 80px);background:white;flex-direction:column;align-items:flex-start;padding:2rem 1.5rem;gap:0;box-shadow:-4px 0 24px rgba(0,0,0,.1);overflow-y:auto;}
+  .nav-links.open{display:flex;}
+  .nav-links li{width:100%;}
+  .nav-links a{display:block;padding:.85rem .75rem;}
+  .cs-grid{grid-template-columns:1fr;}
+  .hero-stats{grid-template-columns:1fr 1fr;}
+}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+<div class="sp" id="sp"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="logo-text">PrimeChain Solutions</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="case-studies.html" class="on">Case Studies</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Talk to us</a></li>
+    </ul>
+    <button class="mob-btn" id="mobBtn"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div>
+      <div class="hero-label">Case Studies</div>
+      <h1>Real problems.<br><em>Real results.</em></h1>
+      <p>Four operational challenges across commodity transport, field services, food operations, and municipal contracting — each solved with a purpose-built system.</p>
+    </div>
+    <div>
+      <div class="hero-stats">
+        <div class="hs"><span class="hs-n">4</span><span class="hs-l">Systems delivered</span></div>
+        <div class="hs"><span class="hs-n">R50k+</span><span class="hs-l">Losses identified</span></div>
+        <div class="hs"><span class="hs-n">58hrs</span><span class="hs-l">Admin saved monthly</span></div>
+        <div class="hs"><span class="hs-n">100%</span><span class="hs-l">Custom built</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured-cs">
+  <div class="container">
+    <div class="section-label reveal">Featured project</div>
+    <div class="cs-featured reveal">
+      <div class="cs-feat-left">
+        <div class="cs-feat-left-inner">
+          <span class="cs-tag">Commodity Transport</span>
+          <h2>Fuel Detection &amp; Usage Monitoring System</h2>
+          <p>A commodity trading company managing 10–20 vehicles across multiple subcontracted transport partners had no reliable way to monitor fuel consumption. Losses were accumulating undetected every month — with no way to identify where, when, or with which partner.</p>
+        </div>
+        <div class="cs-nums">
+          <div class="cs-num"><span class="cs-num-v">20+</span><span class="cs-num-l">Vehicles tracked</span></div>
+          <div class="cs-num"><span class="cs-num-v">Wks</span><span class="cs-num-l">To first detection</span></div>
+          <div class="cs-num"><span class="cs-num-v">3–5</span><span class="cs-num-l">Partners monitored</span></div>
+        </div>
+      </div>
+      <div class="cs-feat-right">
+        <div class="cs-block">
+          <h4>What was built</h4>
+          <p>A Python-based fuel monitoring API connected to a real-time web dashboard. Fuel issued vs consumed, distance vs usage, time-based trip analysis, and automated exception alerts — all running across every vehicle and every partner without manual input.</p>
+          <div class="cs-chips">
+            <span class="cs-chip">Fuel issued vs consumed</span>
+            <span class="cs-chip">Distance vs usage</span>
+            <span class="cs-chip">Trip time analysis</span>
+            <span class="cs-chip">Exception alerts</span>
+            <span class="cs-chip">Multi-partner reporting</span>
+          </div>
+        </div>
+        <hr class="cs-divider">
+        <div class="cs-block">
+          <h4>Outcomes delivered</h4>
+          <ul class="cs-outcomes">
+            <li>Fuel leakage detected within weeks of go-live — for the first time in the operation's history</li>
+            <li>Full cost visibility across every vehicle and every transport partner simultaneously</li>
+            <li>Partners held accountable against objective, real-time data — not estimates</li>
+            <li>Ongoing exception reporting flags anomalies before losses compound</li>
+          </ul>
+        </div>
+        <div class="cs-foot">
+          <span class="cs-rel">For fleet operators, commodity traders &amp; logistics managers</span>
+          <a href="index.html#contact" class="btn-navy">Discuss a similar problem →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRID -->
+<section class="cs-grid-section">
+  <div class="container">
+    <div class="cs-grid reveal">
+
+      <!-- Job Card -->
+      <div class="cs-card">
+        <span class="cs-card-industry">Municipal Contracting</span>
+        <h3>Job Card Automation System</h3>
+        <p class="cs-card-problem">500 job cards produced by hand every month. Each card: extract data from source, copy by hand across 10 fields, print old meter image, print new meter image, attach all three pages. 7 minutes per card. Every single time.</p>
+        <div class="cs-chips" style="margin-top:.25rem;">
+          <span class="cs-chip">Auto-population</span>
+          <span class="cs-chip">Instant PDF output</span>
+          <span class="cs-chip">Zero manual entry</span>
+        </div>
+        <ul class="cs-card-outcomes">
+          <li>58 hours of manual admin eliminated every month</li>
+          <li>R36,000 per year in printing costs removed</li>
+          <li>Up to 500 cards produced instantly with zero errors</li>
+        </ul>
+        <div class="cs-card-foot">
+          <a href="index.html#contact" class="cs-card-link">Enquire <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Logistics Dashboard -->
+      <div class="cs-card">
+        <span class="cs-card-industry">Logistics &amp; Transport</span>
+        <h3>Logistics Operations Dashboard</h3>
+        <p class="cs-card-problem">A fleet of 20 vehicles with no centralised performance view. Operational decisions only possible after month-end data was compiled. By the time the picture was clear, the moment to act had passed.</p>
+        <div class="cs-chips" style="margin-top:.25rem;">
+          <span class="cs-chip">Fleet KPIs</span>
+          <span class="cs-chip">Load tracking</span>
+          <span class="cs-chip">Turnaround analysis</span>
+        </div>
+        <ul class="cs-card-outcomes">
+          <li>20 vehicles tracked across 6 live KPIs</li>
+          <li>Decisions shifted from month-end to real time</li>
+          <li>Fleet accountability improved across all teams</li>
+        </ul>
+        <div class="cs-card-foot">
+          <a href="index.html#contact" class="cs-card-link">Enquire <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Operational Visibility -->
+      <div class="cs-card">
+        <span class="cs-card-industry">Field Services</span>
+        <h3>Operational Visibility Platform</h3>
+        <p class="cs-card-problem">An electrical contractor with 6 field technicians across 4 sites had no live view of what teams were doing. Work was logged manually. Reports were delayed. Proving completion to clients relied on paperwork that was often late.</p>
+        <div class="cs-chips" style="margin-top:.25rem;">
+          <span class="cs-chip">Mobile capture</span>
+          <span class="cs-chip">Live dashboard</span>
+          <span class="cs-chip">Daily reporting</span>
+        </div>
+        <ul class="cs-card-outcomes">
+          <li>Every action timestamped and visible in real time</li>
+          <li>Reporting shifted from delayed to structured daily cadence</li>
+          <li>Client disputes resolved with verifiable records</li>
+        </ul>
+        <div class="cs-card-foot">
+          <a href="index.html#contact" class="cs-card-link">Enquire <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cs-cta">
+  <div class="container">
+    <div class="reveal">
+      <h2>Recognise any of these problems?</h2>
+      <p>If your operation is dealing with poor visibility, manual workflows, or disconnected data — there is a good chance we have solved something similar.</p>
+      <div class="cta-btns">
+        <a href="index.html#contact" class="btn-teal">Talk to us</a>
+        <a href="our-story.html" class="btn-outline-white">Our story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
+      <div class="foot-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Articles</a>
+        <a href="our-story.html">Our Story</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const sp=document.getElementById('sp'),mobBtn=document.getElementById('mobBtn'),navLinks=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;sp.style.width=(h>0?(window.scrollY/h)*100:0)+'%';});
+mobBtn.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');mobBtn.innerHTML=o?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';});
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');mobBtn.innerHTML='<i class="fas fa-bars"></i>';}));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
