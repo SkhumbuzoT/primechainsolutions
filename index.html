@@ -114,7 +114,7 @@ h1, h2, h3, h4 {
   width: 52%; pointer-events: none; overflow: hidden;
   display: flex; align-items: center; justify-content: flex-end;
 }
-.hero-abstract svg { width: 100%; height: 100%; opacity: 0.9; }
+.hero-abstract svg { width: 80%; height: 80%; opacity: 0.9; }
 @media(max-width: 900px) { .hero-abstract { display: none; } }
 
 /* ── TESTIMONIAL WITH ABSTRACT BG ── */
@@ -145,7 +145,10 @@ h1, h2, h3, h4 {
 }
 .hero h1 em {
   font-style: italic;
+  font-weight: 300;           /* M1 style often uses a lighter weight for italics */
   color: var(--gold);
+  letter-spacing: -0.02em;    /* Tighter tracking typical of Apple typography */
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
 }
 .hero-sub {
   font-size: 1.1rem; color: rgba(255,255,255,.6);
@@ -610,7 +613,7 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
   <div class="hero-content">
     <div class="hero-label">Johannesburg, South Africa</div>
     <h1>Operational chaos isn't<br>your problem.<br><em>Lack of visibility is.</em></h1>
-    <p class="hero-sub">We build operational visibility systems and automation tools that give you real-time control over your supply chain, your fleet, and your costs.</p>
+    <p class="hero-sub">We build systems that give you control over operations.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-teal">Talk to us</a>
       <a href="case-studies.html" class="btn-outline-white">See our work</a>
@@ -670,8 +673,8 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
   <div class="container">
     <div class="stats-grid">
       <div class="stat"><span class="stat-n">4</span><span class="stat-l">Industries served</span></div>
-      <div class="stat"><span class="stat-n">R50k+</span><span class="stat-l">Losses identified</span></div>
-      <div class="stat"><span class="stat-n">58hrs</span><span class="stat-l">Admin saved monthly</span></div>
+      <div class="stat"><span class="stat-n">R100k+</span><span class="stat-l">Losses identified</span></div>
+      <div class="stat"><span class="stat-n">80+hrs</span><span class="stat-l">Admin saved monthly</span></div>
       <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Custom built</span></div>
     </div>
   </div>
@@ -726,7 +729,7 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
     <div class="case-grid reveal">
       <div class="case-card">
         <span class="case-industry">Commodity Transport</span>
-        <h3>Fuel Detection &amp; Usage Monitoring</h3>
+        <h3>Fuel Monitoring System</h3>
         <p class="case-problem">A commodity trader managing 10–20 vehicles had no way to track fuel consumption across subcontracted partners. Losses were accumulating undetected every month.</p>
         <div class="case-outcome">Fuel leakage detected within weeks of go-live — for the first time in the operation's history</div>
       </div>
@@ -738,7 +741,7 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
       </div>
       <div class="case-card">
         <span class="case-industry">Logistics &amp; Transport</span>
-        <h3>Logistics Operations Dashboard</h3>
+        <h3>Logistics Control Tower</h3>
         <p class="case-problem">A fleet of 20 vehicles with no centralised performance view. Operational decisions only possible after month-end data was compiled.</p>
         <div class="case-outcome">20 vehicles tracked across 6 live KPIs. Decisions shifted from month-end to real time</div>
       </div>
@@ -796,7 +799,7 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
       <div class="about-left reveal">
         <div class="section-label">Who's behind this</div>
         <p class="about-quote-large">"Built for businesses that are <em>too complex for spreadsheets</em> but not ready for enterprise software."</p>
-        <p class="about-body">PrimeChain Solutions was founded after six years working inside the supply chain and operations roles it now serves — from intern to Supply Chain Manager. The same pattern appeared in every environment: operations generating data nobody could see, and teams drowning in admin that should never have been manual.</p>
+        <p class="about-body">PrimeChain Solutions was founded after almost a decade of working inside the supply chain and operations roles it now serves. The same pattern appeared in every environment: operations generating data nobody could see, and teams drowning in admin that should never have been manual.</p>
         <p class="about-body">We exist for the business owner who knows something is broken but doesn't know how to fix it. The operator whose team is spending Friday afternoon hand-writing the same job card it wrote on Monday.</p>
         <a href="our-story.html" class="about-link">Read our story <i class="fas fa-arrow-right"></i></a>
       </div>
@@ -826,8 +829,8 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
           <div class="cred">
             <i class="fas fa-briefcase"></i>
             <div class="cred-text">
-              <strong>6 years in operational roles</strong>
-              <span>Intern → Receiving Supervisor → Inventory Manager → Supply Chain Analyst → Supply Chain Manager</span>
+              <strong>7 years in operational roles</strong>
+              <span>Every role shaped by solving problems.</span>
             </div>
           </div>
           <div class="cred">
@@ -912,7 +915,7 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
   <div class="container">
     <div class="testimonial-inner reveal">
       <blockquote>"The system didn't just save us time — it showed us problems we didn't know we had. Within weeks of go-live, we had identified fuel losses that had been running undetected for months."</blockquote>
-      <cite>Operations Director — Commodity Transport Client</cite>
+      <cite>Operations Director — Commodity Trader</cite>
     </div>
   </div>
 </section>
@@ -926,9 +929,8 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
         <h2 class="section-title">Recognise any of these problems?<br>Let's talk.</h2>
         <p style="font-size:.95rem;color:var(--muted);line-height:1.8;margin-top:1.25rem;">The first consultation is free and carries no obligation. We'll tell you honestly whether we can help — and if we can, exactly what that would look like.</p>
         <div class="contact-info">
-          <a href="mailto:info@primechainsolutions.co.za"><i class="fas fa-envelope"></i> info@primechainsolutions.co.za</a>
+          <a href="mailto:info@primechainsolutions.co.za"><i class="fas fa-envelope"></i> hello@primechainsolutions.co.za</a>
           <a href="https://linkedin.com"><i class="fab fa-linkedin"></i> LinkedIn — PrimeChain Solutions</a>
-          <a href="#"><i class="fas fa-map-marker-alt"></i> Johannesburg, South Africa (virtual)</a>
         </div>
         <p class="contact-note">We typically respond within one business day. The first conversation is about understanding your operation — nothing will be sold on that call.</p>
       </div>
@@ -942,10 +944,9 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
           <select>
             <option value="">Select your industry</option>
             <option>Logistics &amp; Transport</option>
-            <option>Field Services &amp; Contracting</option>
             <option>Food &amp; Beverage</option>
             <option>Municipal Contracting</option>
-            <option>Commodity Trading</option>
+            <option>Commodity Trade</option>
             <option>Other</option>
           </select>
         </div>
@@ -989,7 +990,7 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
         <h5>Connect</h5>
         <ul>
           <li><a href="#">LinkedIn</a></li>
-          <li><a href="mailto:info@primechainsolutions.co.za">Email Us</a></li>
+          <li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li>
           <li><a href="#">Johannesburg, SA</a></li>
         </ul>
       </div>
@@ -998,7 +999,7 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
       <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
       <div class="social">
         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:info@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
   </div>
