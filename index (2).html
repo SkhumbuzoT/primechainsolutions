@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PrimeChain Solutions builds operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa.">
+<title>PrimeChain Solutions | Clarity. Control. Growth.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --navy: #0A1F44;
+  --teal: #008080;
+  --teal-dk: #006666;
+  --teal-lt: #f0fafa;
+  --gold: #D4AF37;
+  --white: #ffffff;
+  --off: #F9F9F7;
+  --text: #111827;
+  --muted: #6B7280;
+  --light: #E5E7EB;
+  --border: #E5E7EB;
+  --ease: 0.3s ease;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* SCROLL BAR */
+.sp { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--teal); z-index: 3000; transition: width .1s linear; }
+
+/* ── NAV ── */
+#nav {
+  position: fixed; top: 0; left: 0; width: 100%;
+  z-index: 2000;
+  padding: 0 2rem;
+  transition: background var(--ease), box-shadow var(--ease);
+}
+#nav.scrolled {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 80px;
+}
+.logo { text-decoration: none; display: flex; align-items: center; }
+.logo img { height: 42px; width: auto; }
+.logo-text { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.3rem; color: var(--navy); display: none; letter-spacing: .01em; }
+.nav-links { display: flex; list-style: none; gap: 2.25rem; align-items: center; }
+.nav-links a {
+  text-decoration: none; font-size: .9rem; font-weight: 500;
+  color: rgba(255,255,255,0.8); transition: color var(--ease);
+}
+#nav.scrolled .nav-links a { color: var(--muted); }
+.nav-links a:hover { color: white; }
+#nav.scrolled .nav-links a:hover { color: var(--teal); }
+.nav-cta {
+  padding: .5rem 1.4rem !important;
+  border: 1.5px solid rgba(255,255,255,0.5) !important;
+  border-radius: 2px !important;
+  color: white !important;
+  font-weight: 500 !important;
+  transition: all var(--ease) !important;
+}
+.nav-cta:hover { background: white !important; color: var(--navy) !important; }
+#nav.scrolled .nav-cta { border-color: var(--navy) !important; color: var(--navy) !important; }
+#nav.scrolled .nav-cta:hover { background: var(--navy) !important; color: white !important; }
+.mob-btn { display: none; background: none; border: none; cursor: pointer; font-size: 1.4rem; color: white; }
+#nav.scrolled .mob-btn { color: var(--text); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 10rem 2rem 6rem;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+}
+
+/* ── HERO ABSTRACT VISUAL ── */
+.hero-abstract {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 52%; pointer-events: none; overflow: hidden;
+  display: flex; align-items: center; justify-content: flex-end;
+}
+.hero-abstract svg { width: 100%; height: 100%; opacity: 0.9; }
+@media(max-width: 900px) { .hero-abstract { display: none; } }
+
+/* ── TESTIMONIAL WITH ABSTRACT BG ── */
+.testimonial { padding: 7rem 0; background: var(--navy); position: relative; overflow: hidden; }
+.testimonial-bg {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.18;
+}
+.testimonial-bg svg { width: 100%; height: 100%; }
+.testimonial-inner { max-width: 760px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+.hero-bg-line {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: 45%; border-left: 1px solid rgba(255,255,255,.06);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; max-width: 1140px; margin: 0 auto; width: 100%; }
+.hero-label {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .78rem; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 2rem;
+}
+.hero-label::before { content: ''; width: 32px; height: 1px; background: var(--teal); }
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  color: white; font-weight: 600;
+  margin-bottom: 2rem; max-width: 820px;
+  letter-spacing: -.01em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-sub {
+  font-size: 1.1rem; color: rgba(255,255,255,.6);
+  line-height: 1.8; max-width: 560px;
+  font-weight: 300; margin-bottom: 3rem;
+}
+.hero-actions { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+.btn-outline-white {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .8rem 2rem; border: 1px solid rgba(255,255,255,.4);
+  color: white; text-decoration: none; font-size: .9rem; font-weight: 500;
+  letter-spacing: .02em; transition: all var(--ease); border-radius: 2px;
+}
+.btn-outline-white:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.7); }
+.btn-teal {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .8rem 2rem; background: var(--teal);
+  color: white; text-decoration: none; font-size: .9rem; font-weight: 500;
+  letter-spacing: .02em; transition: all var(--ease); border-radius: 2px;
+}
+.btn-teal:hover { background: var(--teal-dk); }
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,.3); font-size: .75rem; letter-spacing: .1em;
+  text-transform: uppercase; display: flex; flex-direction: column;
+  align-items: center; gap: .5rem;
+  animation: bob 2s ease-in-out infinite;
+}
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+/* ── SHARED SECTION STYLES ── */
+.section-label {
+  font-size: .75rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--teal);
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: 1.5rem;
+}
+.section-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--teal); }
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15; letter-spacing: -.01em;
+  margin-bottom: 1.25rem;
+}
+.section-sub {
+  font-size: 1rem; color: var(--muted);
+  line-height: 1.8; max-width: 540px;
+  font-weight: 300;
+}
+
+/* ── PROBLEM ── */
+.problem { padding: 7rem 0; background: var(--white); }
+.problem-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.problem-left {}
+.problem-right { padding-top: 1rem; }
+.problem-intro {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  line-height: 1.6; color: var(--text); font-weight: 500;
+  margin-bottom: 2.5rem;
+}
+.pain-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.pain-item {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  padding: 1.5rem; border: 1px solid var(--border);
+  transition: border-color var(--ease), box-shadow var(--ease);
+  cursor: default;
+}
+.pain-item:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(0,128,128,.07); }
+.pain-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 700; color: var(--light);
+  line-height: 1; flex-shrink: 0; width: 36px;
+  transition: color var(--ease);
+}
+.pain-item:hover .pain-num { color: var(--teal); }
+.pain-text h4 { font-family: 'Inter', sans-serif; font-size: .95rem; font-weight: 600; margin-bottom: .4rem; }
+.pain-text p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+
+/* ── STATS ── */
+.stats { background: var(--navy); padding: 5rem 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.stat { padding: 2rem 1.5rem; text-align: center; border-right: 1px solid rgba(255,255,255,.08); }
+.stat:last-child { border-right: none; }
+.stat-n {
+  display: block; font-family: 'Playfair Display', serif;
+  font-size: 2.8rem; font-weight: 700; color: white;
+  line-height: 1; margin-bottom: .4rem;
+}
+.stat-l { font-size: .8rem; color: rgba(255,255,255,.45); letter-spacing: .04em; }
+
+/* ── SERVICES ── */
+.services { padding: 7rem 0; background: var(--off); }
+.services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 4rem; align-items: end; }
+.services-link { font-size: .9rem; font-weight: 500; color: var(--teal); text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; transition: gap var(--ease); }
+.services-link:hover { gap: .7rem; }
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.svc-card {
+  background: white; padding: 2.5rem;
+  transition: background var(--ease);
+}
+.svc-card:hover { background: var(--teal-lt); }
+.svc-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem; font-weight: 700; color: var(--light);
+  line-height: 1; margin-bottom: 1.5rem;
+  display: block; transition: color var(--ease);
+}
+.svc-card:hover .svc-num { color: var(--teal); }
+.svc-card h3 { font-size: 1.3rem; margin-bottom: .85rem; }
+.svc-card p { font-size: .88rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; }
+.svc-arrow { color: var(--teal); font-size: .8rem; }
+
+/* ── CASE STUDIES ── */
+.cases { padding: 7rem 0; background: var(--white); }
+.cases-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4rem; flex-wrap: wrap; gap: 1.5rem; }
+.case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.case-card {
+  background: white; padding: 2.5rem 2rem;
+  display: flex; flex-direction: column; gap: 1.25rem;
+  transition: background var(--ease);
+}
+.case-card:hover { background: var(--off); }
+.case-industry {
+  font-size: .72rem; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--teal);
+}
+.case-card h3 { font-size: 1.25rem; line-height: 1.3; }
+.case-problem { font-size: .87rem; color: var(--muted); line-height: 1.7; }
+.case-outcome {
+  margin-top: auto; padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  font-size: .87rem; color: var(--text);
+  font-weight: 500; line-height: 1.55;
+  display: flex; gap: .5rem; align-items: flex-start;
+}
+.case-outcome::before { content: '→'; color: var(--teal); flex-shrink: 0; }
+
+/* ── HOW WE WORK ── */
+.how { padding: 7rem 0; background: var(--off); }
+.how-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; }
+.how-left { position: sticky; top: 100px; }
+.how-steps { display: flex; flex-direction: column; gap: 0; }
+.how-step {
+  display: grid; grid-template-columns: 60px 1fr;
+  gap: 1.5rem; padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.how-step:first-child { border-top: 1px solid var(--border); }
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; font-weight: 700; color: var(--light);
+  line-height: 1; padding-top: .2rem;
+  transition: color var(--ease);
+}
+.how-step:hover .step-num { color: var(--teal); }
+.step-body h4 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
+.step-body p { font-size: .87rem; color: var(--muted); line-height: 1.7; }
+
+/* ── ABOUT STRIP ── */
+.about { padding: 7rem 0; background: var(--white); }
+.about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.about-quote-large {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 600; line-height: 1.45;
+  color: var(--navy); margin-bottom: 2rem;
+}
+.about-quote-large em { font-style: italic; color: var(--teal); }
+.about-body { font-size: .95rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.5rem; }
+.about-link { display: inline-flex; align-items: center; gap: .5rem; font-size: .88rem; font-weight: 500; color: var(--teal); text-decoration: none; letter-spacing: .02em; transition: gap var(--ease); }
+.about-link:hover { gap: .75rem; }
+.creds { display: flex; flex-direction: column; gap: .85rem; }
+.cred {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1.1rem 1.25rem; border-left: 2px solid var(--light);
+  transition: border-color var(--ease);
+}
+.cred:hover { border-color: var(--teal); }
+.cred i { color: var(--teal); margin-top: .2rem; flex-shrink: 0; font-size: .85rem; }
+.cred-text strong { display: block; font-size: .88rem; font-weight: 600; color: var(--text); margin-bottom: .15rem; }
+.cred-text span { font-size: .8rem; color: var(--muted); }
+
+/* ── TESTIMONIAL BLOCKQUOTE ── */
+.testimonial blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 500; color: white; line-height: 1.6;
+  font-style: italic; margin-bottom: 2rem;
+}
+.testimonial cite {
+  font-style: normal; font-size: .85rem;
+  color: rgba(255,255,255,.45); letter-spacing: .06em; text-transform: uppercase;
+}
+
+/* ── CONTACT ── */
+.contact { padding: 7rem 0; background: var(--off); }
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.contact-left {}
+.contact-info { display: flex; flex-direction: column; gap: 1rem; margin-top: 2.5rem; }
+.contact-info a {
+  display: flex; align-items: center; gap: .85rem;
+  text-decoration: none; font-size: .9rem; color: var(--muted);
+  transition: color var(--ease);
+}
+.contact-info a:hover { color: var(--teal); }
+.contact-info i { color: var(--teal); width: 16px; flex-shrink: 0; }
+.contact-note { font-size: .8rem; color: var(--muted); margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); line-height: 1.7; }
+.contact-form {}
+.form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group label { font-size: .75rem; font-weight: 600; color: var(--text); letter-spacing: .06em; text-transform: uppercase; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: .8rem 1rem; border: 1px solid var(--border);
+  font-size: .9rem; font-family: 'Inter', sans-serif;
+  color: var(--text); background: white; outline: none;
+  transition: border-color var(--ease); border-radius: 2px; width: 100%;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--teal); }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: #9CA3AF; }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-submit {
+  width: 100%; padding: .85rem; background: var(--navy);
+  color: white; border: none; font-size: .9rem; font-weight: 600;
+  font-family: 'Inter', sans-serif; cursor: pointer; letter-spacing: .03em;
+  transition: background var(--ease); border-radius: 2px;
+}
+.form-submit:hover { background: var(--teal); }
+
+/* ── FOOTER ── */
+footer { background: var(--white); border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand img { height: 36px; margin-bottom: 1rem; }
+.footer-brand p { font-size: .83rem; color: var(--muted); line-height: 1.75; max-width: 260px; }
+.footer-col h5 { font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.footer-col a { text-decoration: none; font-size: .85rem; color: var(--muted); transition: color var(--ease); }
+.footer-col a:hover { color: var(--teal); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+.footer-bottom p { font-size: .8rem; color: var(--muted); }
+.social a { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: .8rem; transition: all var(--ease); }
+.social a:hover { border-color: var(--teal); color: var(--teal); }
+
+/* ── RESPONSIVE ── */
+@media(max-width: 1024px) {
+  .problem-layout, .about-layout, .contact-layout { grid-template-columns: 1fr; gap: 3.5rem; }
+  .services-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .how-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .how-left { position: static; }
+  .svc-grid, .case-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .cases-header { flex-direction: column; align-items: flex-start; }
+}
+@media(max-width: 768px) {
+  .mob-btn { display: block; }
+  .nav-links {
+    display: none; position: fixed; top: 80px; right: 0;
+    width: 280px; height: calc(100vh - 80px);
+    background: white; flex-direction: column; align-items: flex-start;
+    padding: 2rem 1.5rem; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,.1);
+    overflow-y: auto;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { color: var(--muted) !important; display: block; padding: .85rem .75rem; }
+  .nav-links a:hover { color: var(--teal) !important; }
+  .svc-grid, .case-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; }
+.d4 { transition-delay: .4s; }
+</style>
+</head>
+<body>
+
+<div class="sp" id="sp"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="logo-text">PrimeChain Solutions</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="articles.html">Articles</a></li>
+      <li><a href="our-story.html">Our Story</a></li>
+      <li><a href="#contact" class="nav-cta">Talk to us</a></li>
+    </ul>
+    <button class="mob-btn" id="mobBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-line"></div>
+
+  <!-- Abstract visibility infographic - right side -->
+  <div class="hero-abstract">
+    <svg viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="hg1" cx="60%" cy="40%" r="55%">
+          <stop offset="0%" stop-color="#008080" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#0A1F44" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="hg2" cx="30%" cy="70%" r="45%">
+          <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#0A1F44" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2.5" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- Ambient glow layers -->
+      <rect width="600" height="700" fill="url(#hg1)"/>
+      <rect width="600" height="700" fill="url(#hg2)"/>
+
+      <!-- ── GRID: faint coordinate grid ── -->
+      <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
+        <line x1="0" y1="100" x2="600" y2="100"/>
+        <line x1="0" y1="200" x2="600" y2="200"/>
+        <line x1="0" y1="300" x2="600" y2="300"/>
+        <line x1="0" y1="400" x2="600" y2="400"/>
+        <line x1="0" y1="500" x2="600" y2="500"/>
+        <line x1="0" y1="600" x2="600" y2="600"/>
+        <line x1="100" y1="0" x2="100" y2="700"/>
+        <line x1="200" y1="0" x2="200" y2="700"/>
+        <line x1="300" y1="0" x2="300" y2="700"/>
+        <line x1="400" y1="0" x2="400" y2="700"/>
+        <line x1="500" y1="0" x2="500" y2="700"/>
+      </g>
+
+      <!-- ── MAIN CHART: area chart simulating live operational data ── -->
+      <!-- Chart frame -->
+      <rect x="60" y="80" width="480" height="260" rx="2" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+      <!-- Area fill (teal) -->
+      <path d="M60,320 L60,260 C100,250 130,200 170,190 C210,180 230,220 270,200 C310,180 340,140 390,130 C430,122 460,150 500,140 L540,130 L540,320 Z"
+            fill="rgba(0,128,128,0.15)" stroke="none"/>
+      <!-- Line on top -->
+      <path d="M60,260 C100,250 130,200 170,190 C210,180 230,220 270,200 C310,180 340,140 390,130 C430,122 460,150 500,140 L540,130"
+            fill="none" stroke="#008080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+
+      <!-- Gold highlight: secondary line -->
+      <path d="M60,290 C100,285 130,270 170,265 C210,258 230,275 270,268 C310,260 340,240 390,235 C430,232 460,248 500,242 L540,238"
+            fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+
+      <!-- Data point dots on teal line -->
+      <g fill="#008080" filter="url(#glow)">
+        <circle cx="170" cy="190" r="4"/>
+        <circle cx="270" cy="200" r="4"/>
+        <circle cx="390" cy="130" r="5"/>
+        <circle cx="540" cy="130" r="4"/>
+      </g>
+      <!-- White rings around dots -->
+      <g fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5">
+        <circle cx="170" cy="190" r="7"/>
+        <circle cx="270" cy="200" r="7"/>
+        <circle cx="390" cy="130" r="8"/>
+        <circle cx="540" cy="130" r="7"/>
+      </g>
+
+      <!-- ── CALLOUT CARD: hovers over peak ── -->
+      <g transform="translate(350,70)">
+        <rect width="130" height="52" rx="3" fill="rgba(10,31,68,0.85)" stroke="rgba(0,128,128,0.5)" stroke-width="1"/>
+        <text x="12" y="20" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.5)" letter-spacing="1.5">VISIBILITY SCORE</text>
+        <text x="12" y="38" font-family="Inter,sans-serif" font-size="20" font-weight="700" fill="white">94<tspan font-size="11" fill="#008080">%</tspan></text>
+        <text x="90" y="38" font-family="Inter,sans-serif" font-size="9" fill="#008080">↑ 12%</text>
+      </g>
+
+      <!-- ── KPI ROW: three metric cards below chart ── -->
+      <!-- Card 1 -->
+      <g transform="translate(60,365)">
+        <rect width="140" height="80" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text x="14" y="24" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)" letter-spacing="1.5">FLEET STATUS</text>
+        <text x="14" y="48" font-family="Inter,sans-serif" font-size="26" font-weight="700" fill="white">18<tspan font-size="12" fill="rgba(255,255,255,0.4)">/20</tspan></text>
+        <rect x="14" y="60" width="60" height="3" rx="1.5" fill="rgba(255,255,255,0.1)"/>
+        <rect x="14" y="60" width="54" height="3" rx="1.5" fill="#008080"/>
+      </g>
+      <!-- Card 2 -->
+      <g transform="translate(220,365)">
+        <rect width="140" height="80" rx="2" fill="rgba(0,128,128,0.12)" stroke="rgba(0,128,128,0.3)" stroke-width="1"/>
+        <text x="14" y="24" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)" letter-spacing="1.5">COST VARIANCE</text>
+        <text x="14" y="48" font-family="Inter,sans-serif" font-size="26" font-weight="700" fill="#D4AF37">−R12k</text>
+        <text x="14" y="66" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.35)">saved this month</text>
+      </g>
+      <!-- Card 3 -->
+      <g transform="translate(380,365)">
+        <rect width="140" height="80" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text x="14" y="24" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)" letter-spacing="1.5">JOBS COMPLETED</text>
+        <text x="14" y="48" font-family="Inter,sans-serif" font-size="26" font-weight="700" fill="white">492</text>
+        <text x="14" y="66" font-family="Inter,sans-serif" font-size="9" fill="#008080">↑ automated</text>
+      </g>
+
+      <!-- ── PIPELINE / FLOW DIAGRAM below KPIs ── -->
+      <!-- Nodes -->
+      <g transform="translate(0,480)">
+        <!-- Connector lines first -->
+        <line x1="130" y1="30" x2="200" y2="30" stroke="rgba(0,128,128,0.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="280" y1="30" x2="350" y2="30" stroke="rgba(0,128,128,0.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <line x1="430" y1="30" x2="500" y2="30" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <!-- Node 1 -->
+        <rect x="60" y="12" width="70" height="36" rx="2" fill="rgba(0,128,128,0.25)" stroke="#008080" stroke-width="1"/>
+        <text x="95" y="27" font-family="Inter,sans-serif" font-size="7.5" fill="white" text-anchor="middle" letter-spacing="0.5">FIELD</text>
+        <text x="95" y="38" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.5)" text-anchor="middle">INPUT</text>
+        <!-- Node 2 -->
+        <rect x="200" y="12" width="80" height="36" rx="2" fill="rgba(0,128,128,0.4)" stroke="#008080" stroke-width="1.5"/>
+        <text x="240" y="27" font-family="Inter,sans-serif" font-size="7.5" fill="white" text-anchor="middle" letter-spacing="0.5">SYSTEM</text>
+        <text x="240" y="38" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.6)" text-anchor="middle">PROCESSES</text>
+        <!-- Node 3 -->
+        <rect x="350" y="12" width="80" height="36" rx="2" fill="rgba(212,175,55,0.2)" stroke="#D4AF37" stroke-width="1"/>
+        <text x="390" y="27" font-family="Inter,sans-serif" font-size="7.5" fill="white" text-anchor="middle" letter-spacing="0.5">LIVE</text>
+        <text x="390" y="38" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.5)" text-anchor="middle">DASHBOARD</text>
+        <!-- Node 4 -->
+        <rect x="500" y="12" width="70" height="36" rx="2" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <text x="535" y="27" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="0.5">YOU</text>
+        <text x="535" y="38" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(255,255,255,0.35)" text-anchor="middle">DECIDE</text>
+      </g>
+
+      <!-- ── AXIS LABELS on chart ── -->
+      <g font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.25)" letter-spacing="0.5">
+        <text x="65" y="350">JAN</text>
+        <text x="155" y="350">FEB</text>
+        <text x="245" y="350">MAR</text>
+        <text x="355" y="350">APR</text>
+        <text x="455" y="350">MAY</text>
+      </g>
+
+      <!-- ── LIVE INDICATOR dot ── -->
+      <circle cx="540" cy="130" r="10" fill="rgba(0,128,128,0.15)">
+        <animate attributeName="r" values="10;16;10" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="540" cy="130" r="4" fill="#008080"/>
+
+      <!-- ── LABEL "LIVE" ── -->
+      <text x="548" y="122" font-family="Inter,sans-serif" font-size="8" fill="#008080" font-weight="600" letter-spacing="1">LIVE</text>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-label">Johannesburg, South Africa</div>
+    <h1>Operational chaos isn't<br>your problem.<br><em>Lack of visibility is.</em></h1>
+    <p class="hero-sub">We build operational visibility systems and automation tools that give you real-time control over your supply chain, your fleet, and your costs.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-teal">Talk to us</a>
+      <a href="case-studies.html" class="btn-outline-white">See our work</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="problem-layout">
+      <div class="problem-left reveal">
+        <div class="section-label">Sound familiar?</div>
+        <h2 class="section-title">If you're still finding problems at month end, you're already too late.</h2>
+        <p class="problem-intro">The businesses we work with aren't struggling because they're badly run. They're struggling because they can't see what's happening inside their own operation until the damage is done.</p>
+        <a href="#contact" class="btn-teal" style="margin-top:2rem;display:inline-flex;">Talk to us</a>
+      </div>
+      <div class="problem-right">
+        <div class="pain-list">
+          <div class="pain-item reveal d1">
+            <span class="pain-num">01</span>
+            <div class="pain-text">
+              <h4>You only discover variances at month end</h4>
+              <p>Stock losses, fuel discrepancies, and operational gaps surface on the last day of the month. By then the damage is done and nothing is traceable.</p>
+            </div>
+          </div>
+          <div class="pain-item reveal d2">
+            <span class="pain-num">02</span>
+            <div class="pain-text">
+              <h4>Your field teams report days after the work is done</h4>
+              <p>You're always managing on yesterday's information. By the time you know what happened, the moment to act has already passed.</p>
+            </div>
+          </div>
+          <div class="pain-item reveal d3">
+            <span class="pain-num">03</span>
+            <div class="pain-text">
+              <h4>You don't know which vehicles or partners cost you most</h4>
+              <p>Fuel spend is opaque. Transport partner performance is based on gut feel. There's no way to challenge a number you can't see.</p>
+            </div>
+          </div>
+          <div class="pain-item reveal d4">
+            <span class="pain-num">04</span>
+            <div class="pain-text">
+              <h4>Your team spends hours on paperwork that could take seconds</h4>
+              <p>Information that already exists somewhere gets copied by hand, printed, attached and filed. Five hundred times a month.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat"><span class="stat-n">4</span><span class="stat-l">Industries served</span></div>
+      <div class="stat"><span class="stat-n">R50k+</span><span class="stat-l">Losses identified</span></div>
+      <div class="stat"><span class="stat-n">58hrs</span><span class="stat-l">Admin saved monthly</span></div>
+      <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Custom built</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div>
+        <div class="section-label">What we build</div>
+        <h2 class="section-title">Three ways we solve<br>operational problems.</h2>
+      </div>
+      <div>
+        <p class="section-sub" style="max-width:380px;">Every system is custom — designed for your specific environment, your specific problem, your specific team.</p>
+        <a href="services.html" class="services-link" style="margin-top:1.25rem;display:inline-flex;">Explore services <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc-card">
+        <span class="svc-num">01</span>
+        <h3>Operational Visibility</h3>
+        <p>Real-time dashboards for fleets, field teams, and supply chains. See what's happening across your operation as it happens — not after the fact.</p>
+        <a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">02</span>
+        <h3>Process Automation</h3>
+        <p>Custom tools that eliminate repetitive manual workflows. If your team fills in the same form hundreds of times a month, we automate it completely.</p>
+        <a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="svc-card">
+        <span class="svc-num">03</span>
+        <h3>Supply Chain Systems</h3>
+        <p>End-to-end visibility and control across your operation. Built for businesses that have outgrown spreadsheets but don't need SAP.</p>
+        <a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="cases">
+  <div class="container">
+    <div class="cases-header reveal">
+      <div>
+        <div class="section-label">Proof, not promises</div>
+        <h2 class="section-title">We have solved<br>this before.</h2>
+      </div>
+      <a href="case-studies.html" class="services-link">View all case studies <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="case-grid reveal">
+      <div class="case-card">
+        <span class="case-industry">Commodity Transport</span>
+        <h3>Fuel Detection &amp; Usage Monitoring</h3>
+        <p class="case-problem">A commodity trader managing 10–20 vehicles had no way to track fuel consumption across subcontracted partners. Losses were accumulating undetected every month.</p>
+        <div class="case-outcome">Fuel leakage detected within weeks of go-live — for the first time in the operation's history</div>
+      </div>
+      <div class="case-card">
+        <span class="case-industry">Municipal Contracting</span>
+        <h3>Job Card Automation System</h3>
+        <p class="case-problem">500 job cards produced by hand every month. Each one requiring 7 minutes of copy-paste admin, printing and physical assembly of three pages.</p>
+        <div class="case-outcome">58 hours of admin eliminated monthly. R36,000 per year in printing costs removed entirely</div>
+      </div>
+      <div class="case-card">
+        <span class="case-industry">Logistics &amp; Transport</span>
+        <h3>Logistics Operations Dashboard</h3>
+        <p class="case-problem">A fleet of 20 vehicles with no centralised performance view. Operational decisions only possible after month-end data was compiled.</p>
+        <div class="case-outcome">20 vehicles tracked across 6 live KPIs. Decisions shifted from month-end to real time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="how">
+  <div class="container">
+    <div class="how-layout">
+      <div class="how-left reveal">
+        <div class="section-label">How it works</div>
+        <h2 class="section-title">From problem to solution in four steps.</h2>
+        <p class="section-sub" style="margin-top:1.25rem;">We don't arrive with a solution already in mind. We start by understanding your operation — then we build.</p>
+      </div>
+      <div class="how-steps reveal">
+        <div class="how-step">
+          <span class="step-num">01</span>
+          <div class="step-body">
+            <h4>We diagnose.</h4>
+            <p>We map your current operation and identify exactly where visibility and admin gaps are costing you money and time. No assumptions.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <span class="step-num">02</span>
+          <div class="step-body">
+            <h4>We design.</h4>
+            <p>We design a solution built specifically for your environment. No off-the-shelf software, no unnecessary complexity, no features you'll never use.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <span class="step-num">03</span>
+          <div class="step-body">
+            <h4>We build.</h4>
+            <p>We handle all technical work from start to finish. You don't need to understand how it's built — you need to see it work.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <span class="step-num">04</span>
+          <div class="step-body">
+            <h4>We measure.</h4>
+            <p>We track outcomes against the problem we set out to solve — so you can see exactly what changed, and what it's worth to your operation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-layout">
+      <div class="about-left reveal">
+        <div class="section-label">Who's behind this</div>
+        <p class="about-quote-large">"Built for businesses that are <em>too complex for spreadsheets</em> but not ready for enterprise software."</p>
+        <p class="about-body">PrimeChain Solutions was founded after six years working inside the supply chain and operations roles it now serves — from intern to Supply Chain Manager. The same pattern appeared in every environment: operations generating data nobody could see, and teams drowning in admin that should never have been manual.</p>
+        <p class="about-body">We exist for the business owner who knows something is broken but doesn't know how to fix it. The operator whose team is spending Friday afternoon hand-writing the same job card it wrote on Monday.</p>
+        <a href="our-story.html" class="about-link">Read our story <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="about-right reveal d2">
+        <div class="creds">
+          <div class="cred">
+            <i class="fas fa-graduation-cap"></i>
+            <div class="cred-text">
+              <strong>BCom Hons — Logistics &amp; Supply Chain</strong>
+              <span>The academic foundation for every operational engagement</span>
+            </div>
+          </div>
+          <div class="cred">
+            <i class="fas fa-chart-bar"></i>
+            <div class="cred-text">
+              <strong>Business Intelligence &amp; Data Science</strong>
+              <span>Turning operational data into decisions, not just reports</span>
+            </div>
+          </div>
+          <div class="cred">
+            <i class="fas fa-cogs"></i>
+            <div class="cred-text">
+              <strong>Six Sigma &amp; Business Analysis</strong>
+              <span>Structured problem diagnosis before a single tool is built</span>
+            </div>
+          </div>
+          <div class="cred">
+            <i class="fas fa-briefcase"></i>
+            <div class="cred-text">
+              <strong>6 years in operational roles</strong>
+              <span>Intern → Receiving Supervisor → Inventory Manager → Supply Chain Analyst → Supply Chain Manager</span>
+            </div>
+          </div>
+          <div class="cred">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="cred-text">
+              <strong>Based in Johannesburg</strong>
+              <span>Serving clients virtually across South Africa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <!-- Abstract infographic background -->
+  <div class="testimonial-bg">
+    <svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="tg1" cx="20%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <radialGradient id="tg2" cx="80%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#008080" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="400" fill="url(#tg1)"/>
+      <rect width="1200" height="400" fill="url(#tg2)"/>
+
+      <!-- Concentric rings — left side -->
+      <g transform="translate(160,200)" fill="none" stroke="rgba(212,175,55,0.35)" stroke-width="1">
+        <circle r="40"/><circle r="80"/><circle r="120"/><circle r="160"/><circle r="200"/>
+      </g>
+      <!-- Concentric rings — right side -->
+      <g transform="translate(1040,200)" fill="none" stroke="rgba(0,128,128,0.3)" stroke-width="1">
+        <circle r="40"/><circle r="80"/><circle r="120"/><circle r="160"/>
+      </g>
+
+      <!-- Central horizontal axis line -->
+      <line x1="0" y1="200" x2="1200" y2="200" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+      <!-- Bar chart columns — abstract -->
+      <g fill="rgba(0,128,128,0.2)" stroke="rgba(0,128,128,0.3)" stroke-width="1">
+        <rect x="400" y="270" width="30" height="90" rx="2"/>
+        <rect x="445" y="240" width="30" height="120" rx="2"/>
+        <rect x="490" y="210" width="30" height="150" rx="2"/>
+        <rect x="535" y="180" width="30" height="180" rx="2" fill="rgba(0,128,128,0.35)" stroke="#008080"/>
+        <rect x="580" y="200" width="30" height="160" rx="2"/>
+        <rect x="625" y="230" width="30" height="130" rx="2"/>
+        <rect x="670" y="260" width="30" height="100" rx="2"/>
+        <rect x="715" y="280" width="30" height="80" rx="2"/>
+      </g>
+
+      <!-- Gold data-line above bars -->
+      <path d="M415,265 L460,235 L505,205 L550,175 L595,195 L640,225 L685,255 L730,275"
+            fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+      <!-- Scattered data points -->
+      <g fill="rgba(255,255,255,0.15)">
+        <circle cx="300" cy="150" r="3"/>
+        <circle cx="350" cy="250" r="2"/>
+        <circle cx="900" cy="120" r="3"/>
+        <circle cx="950" cy="270" r="2"/>
+        <circle cx="850" cy="190" r="2"/>
+        <circle cx="820" cy="300" r="3"/>
+      </g>
+
+      <!-- Thin grid lines -->
+      <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
+        <line x1="0" y1="100" x2="1200" y2="100"/>
+        <line x1="0" y1="300" x2="1200" y2="300"/>
+        <line x1="200" y1="0" x2="200" y2="400"/>
+        <line x1="600" y1="0" x2="600" y2="400"/>
+        <line x1="1000" y1="0" x2="1000" y2="400"/>
+      </g>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="testimonial-inner reveal">
+      <blockquote>"The system didn't just save us time — it showed us problems we didn't know we had. Within weeks of go-live, we had identified fuel losses that had been running undetected for months."</blockquote>
+      <cite>Operations Director — Commodity Transport Client</cite>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="contact-left reveal">
+        <div class="section-label">Get in touch</div>
+        <h2 class="section-title">Recognise any of these problems?<br>Let's talk.</h2>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.8;margin-top:1.25rem;">The first consultation is free and carries no obligation. We'll tell you honestly whether we can help — and if we can, exactly what that would look like.</p>
+        <div class="contact-info">
+          <a href="mailto:info@primechainsolutions.co.za"><i class="fas fa-envelope"></i> info@primechainsolutions.co.za</a>
+          <a href="https://linkedin.com"><i class="fab fa-linkedin"></i> LinkedIn — PrimeChain Solutions</a>
+          <a href="#"><i class="fas fa-map-marker-alt"></i> Johannesburg, South Africa (virtual)</a>
+        </div>
+        <p class="contact-note">We typically respond within one business day. The first conversation is about understanding your operation — nothing will be sold on that call.</p>
+      </div>
+      <div class="contact-right reveal d2">
+        <div class="form-row">
+          <div class="form-group"><label>Name</label><input type="text" placeholder="Your full name"></div>
+          <div class="form-group"><label>Company</label><input type="text" placeholder="Company name"></div>
+        </div>
+        <div class="form-group">
+          <label>Industry</label>
+          <select>
+            <option value="">Select your industry</option>
+            <option>Logistics &amp; Transport</option>
+            <option>Field Services &amp; Contracting</option>
+            <option>Food &amp; Beverage</option>
+            <option>Municipal Contracting</option>
+            <option>Commodity Trading</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>What's the problem?</label>
+          <textarea placeholder="Briefly describe the operational challenge you're dealing with"></textarea>
+        </div>
+        <button class="form-submit">Send message &nbsp;→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions"
+             onerror="this.style.display='none'">
+        <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="our-story.html">Our Story</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <ul>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="cost-calculator.html">Cost Calculator</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="mailto:info@primechainsolutions.co.za">Email Us</a></li>
+          <li><a href="#">Johannesburg, SA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
+      <div class="social">
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:info@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const sp=document.getElementById('sp'),nav=document.getElementById('nav'),mobBtn=document.getElementById('mobBtn'),navLinks=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>60);
+  const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  sp.style.width=(h>0?(window.scrollY/h)*100:0)+'%';
+});
+mobBtn.addEventListener('click',()=>{
+  const o=navLinks.classList.toggle('open');
+  mobBtn.innerHTML=o?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';
+});
+document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');mobBtn.innerHTML='<i class="fas fa-bars"></i>';}));
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
