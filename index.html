@@ -116,36 +116,29 @@ h1, h2, h3, h4 {
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 6rem;
   align-items: center;
 }
 
 /* left side text */
 .hero-left {
   z-index: 2;
+  max-width: 560px;
 }
-
 .hero h1 {
-  font-size: clamp(3rem, 6vw, 5rem);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  font-size: clamp(3.8rem, 7vw, 6.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
   color: white;
   font-weight: 500;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
     "SF Pro Display",
     Inter,
     sans-serif;
-}
-
-.hero h1 em {
-  display: block;
-  font-style: italic;
-  font-weight: 300;
-  color: #C8A95B;
-  margin-top: 0.3rem;
 }
 
 .hero-sub {
@@ -207,21 +200,33 @@ h1, h2, h3, h4 {
 }
 
 .hero-image-wrap {
-  width: 100%;
-  position: relative;
-  border-radius: 24px;
+  width: 88%;
+  margin-left: auto;
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 25px 45px -12px rgba(0,0,0,0.45);
+  position: relative;
 }
 
 .hero-image-wrap img {
   width: 100%;
-  height: auto;
-  min-height: 380px;
+  height: 620px;
   object-fit: cover;
+  object-position: center;
   display: block;
-  transition: transform 0.6s ease;
-  filter: contrast(1.02) saturate(0.98);
+}
+.hero-image-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(7,26,54,0.02),
+      rgba(7,26,54,0.10)
+    );
 }
 
 .hero-image-wrap::after {
@@ -235,6 +240,12 @@ h1, h2, h3, h4 {
     rgba(7,26,54,0.02)
   );
   pointer-events: none;
+}
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px;
 }
 
 /* ── SHARED SECTION STYLES ── */
@@ -583,8 +594,11 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
     <div class="hero-grid">
       <div class="hero-left reveal">
         <h1>
-          Operational chaos isn't your problem. Lack of visibility is.
-        </h1>
+        Operational chaos
+        isn't your problem.
+        <br>
+        Lack of visibility is.
+      </h1>
         <p class="hero-sub">
           We design operational systems that eliminate administration,
           improve visibility, and create control across supply chain
