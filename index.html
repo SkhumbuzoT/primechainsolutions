@@ -94,43 +94,66 @@ h1, h2, h3, h4 {
 .mob-btn { display: none; background: none; border: none; cursor: pointer; font-size: 1.4rem; color: white; }
 #nav.scrolled .mob-btn { color: var(--text); }
 
-/* ── HERO (REFINED LAYOUT) ── */
+/* HERO */
+
 .hero {
+  position: relative;
   min-height: 100vh;
-  background: #071A36;
+
   display: flex;
   align-items: center;
-  position: relative;
+
+  background:
+    linear-gradient(
+      rgba(4, 12, 28, 0.72),
+      rgba(4, 12, 28, 0.82)
+    ),
+    url('/assets/empower.jpeg');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   overflow: hidden;
-  padding: 10rem 0 8rem;
 }
 
-/* hero container + grid */
+/* subtle cinematic fade */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(255,255,255,0.04),
+      transparent 40%
+    );
+
+  pointer-events: none;
+}
+
 .hero-container {
   width: 100%;
-  max-width: 1140px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: center;
-}
-
-/* left side text */
-.hero-left {
+  padding: 0 6%;
+  position: relative;
   z-index: 2;
-  max-width: 560px;
 }
+
+.hero-content {
+  max-width: 760px;
+}
+
 .hero h1 {
-  font-size: clamp(3.8rem, 7vw, 6.2rem);
-  line-height: 0.96;
-  letter-spacing: -0.055em;
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+
   color: white;
   font-weight: 500;
+
   margin-bottom: 2rem;
 
   font-family:
@@ -142,34 +165,45 @@ h1, h2, h3, h4 {
 }
 
 .hero-sub {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.7;
-  max-width: 520px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+
+  color: rgba(255,255,255,0.72);
+
+  max-width: 560px;
+
+  margin-bottom: 2.5rem;
+
   font-weight: 300;
-  margin-bottom: 2rem;
 }
 
 .hero-actions {
   display: flex;
   gap: 1rem;
-  align-items: center;
   flex-wrap: wrap;
 }
+
+/* BUTTONS */
 
 .btn-teal {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: .9rem 2rem;
+
+  padding: 1rem 2rem;
+
   background: #2D6F6D;
   color: white;
+
   text-decoration: none;
-  font-size: .88rem;
+  font-size: .9rem;
   font-weight: 500;
+
   border-radius: 2px;
+
   transition: 0.3s ease;
 }
+
 .btn-teal:hover {
   background: #245957;
 }
@@ -178,74 +212,44 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: .9rem 2rem;
+
+  padding: 1rem 2rem;
+
   border: 1px solid rgba(255,255,255,0.2);
+
   color: white;
   text-decoration: none;
-  font-size: .88rem;
+
+  font-size: .9rem;
   font-weight: 500;
+
   border-radius: 2px;
+
   transition: 0.3s ease;
 }
+
 .btn-outline-white:hover {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.06);
 }
 
-/* right side image styling */
-.hero-right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* MOBILE */
 
-.hero-image-wrap {
-  width: 88%;
-  margin-left: auto;
-  border-radius: 28px;
-  overflow: hidden;
-  position: relative;
-}
+@media(max-width: 768px) {
 
-.hero-image-wrap img {
-  width: 100%;
-  height: 620px;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-.hero-image-wrap::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
+  .hero {
+    padding: 8rem 0 5rem;
+    align-items: flex-end;
+  }
 
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(7,26,54,0.02),
-      rgba(7,26,54,0.10)
-    );
-}
+  .hero h1 {
+    font-size: clamp(3rem, 12vw, 4.8rem);
+    line-height: 0.95;
+  }
 
-.hero-image-wrap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  background: linear-gradient(
-    to top,
-    rgba(7,26,54,0.25),
-    rgba(7,26,54,0.02)
-  );
-  pointer-events: none;
-}
-.hero-right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 60px;
+  .hero-sub {
+    font-size: 1rem;
+  }
+
 }
 
 /* ── SHARED SECTION STYLES ── */
@@ -588,34 +592,39 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
   </div>
 </nav>
 
-<!-- HERO (REFINED TWO-COLUMN LAYOUT) -->
+<!-- HERO -->
 <section class="hero">
+
+  <div class="hero-overlay"></div>
+
   <div class="hero-container">
-    <div class="hero-grid">
-      <div class="hero-left reveal">
-        <h1>
-        Operational chaos
-        isn't your problem.
-        <br>
+    <div class="hero-content reveal">
+
+      <h1>
+        Operational chaos<br>
+        isn't your problem.<br>
         Lack of visibility is.
       </h1>
-        <p class="hero-sub">
-          We design operational systems that eliminate administration,
-          improve visibility, and create control across supply chain
-          and field operations.
-        </p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn-teal">Talk to us</a>
-          <a href="case-studies.html" class="btn-outline-white">View our work</a>
-        </div>
+
+      <p class="hero-sub">
+        We design operational systems that eliminate administration,
+        improve visibility, and create control across supply chain
+        and field operations.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn-teal">
+          Talk to us
+        </a>
+
+        <a href="case-studies.html" class="btn-outline-white">
+          View our work
+        </a>
       </div>
-      <div class="hero-right reveal d2">
-        <div class="hero-image-wrap">
-          <img src="/assets/empower.jpeg" alt="Field Operations">
-        </div>
-      </div>
+
     </div>
   </div>
+
 </section>
 
 <!-- PROBLEM -->
