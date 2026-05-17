@@ -60,9 +60,9 @@ h1, h2, h3, h4 {
   transition: background var(--ease), box-shadow var(--ease);
 }
 #nav.scrolled {
-  background: rgba(255,255,255,0.97);
+  background: rgba(7,26,54,0.92);
   backdrop-filter: blur(16px);
-  box-shadow: 0 1px 0 var(--border);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .nav-inner {
   max-width: 1140px; margin: 0 auto;
@@ -74,27 +74,27 @@ h1, h2, h3, h4 {
 .logo-text { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.3rem; color: var(--navy); display: none; letter-spacing: .01em; }
 .nav-links { display: flex; list-style: none; gap: 2.25rem; align-items: center; }
 .nav-links a {
-  text-decoration: none; font-size: .9rem; font-weight: 500;
-  color: rgba(255,255,255,0.8); transition: color var(--ease);
+  text-decoration: none; font-size: .88rem; font-weight: 400;
+  color: rgba(255,255,255,0.7); transition: color var(--ease);
 }
 #nav.scrolled .nav-links a { color: var(--muted); }
 .nav-links a:hover { color: white; }
 #nav.scrolled .nav-links a:hover { color: var(--teal); }
 .nav-cta {
-  padding: .5rem 1.4rem !important;
-  border: 1.5px solid rgba(255,255,255,0.5) !important;
+  padding: .75rem 1.4rem !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
   border-radius: 2px !important;
   color: white !important;
   font-weight: 500 !important;
   transition: all var(--ease) !important;
 }
-.nav-cta:hover { background: white !important; color: var(--navy) !important; }
+.nav-cta:hover { background: rgba(255,255,255,0.04) !important; }
 #nav.scrolled .nav-cta { border-color: var(--navy) !important; color: var(--navy) !important; }
 #nav.scrolled .nav-cta:hover { background: var(--navy) !important; color: white !important; }
 .mob-btn { display: none; background: none; border: none; cursor: pointer; font-size: 1.4rem; color: white; }
 #nav.scrolled .mob-btn { color: var(--text); }
 
-/* ── HERO ── */
+/* ── HERO (REFINED LAYOUT) ── */
 .hero {
   min-height: 100vh;
   background: #071A36;
@@ -102,45 +102,36 @@ h1, h2, h3, h4 {
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 13rem 2rem 8rem;
+  padding: 10rem 0 8rem;
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(255,255,255,0.06);
-}
-
-/* HERO CONTENT */
-
-.hero-content {
-  position: relative;
-  z-index: 2;
+/* hero container + grid */
+.hero-container {
+  width: 100%;
   max-width: 1140px;
   margin: 0 auto;
-  width: 100%;
+  padding: 0 2rem;
 }
 
-.hero-label::before {
-  content: '';
-  width: 36px;
-  height: 1px;
-  background: rgba(255,255,255,0.2);
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* left side text */
+.hero-left {
+  z-index: 2;
 }
 
 .hero h1 {
-  font-size: clamp(3.5rem, 7vw, 5.5rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   color: white;
   font-weight: 500;
-  max-width: 760px;
-  margin-bottom: 2rem;
-
+  margin-bottom: 1.75rem;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -154,19 +145,17 @@ h1, h2, h3, h4 {
   font-style: italic;
   font-weight: 300;
   color: #C8A95B;
-  margin-top: .4rem;
+  margin-top: 0.3rem;
 }
 
 .hero-sub {
-  font-size: 1.05rem;
-  color: rgba(255,255,255,0.58);
-  line-height: 1.9;
-  max-width: 560px;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  max-width: 520px;
   font-weight: 300;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
-
-/* BUTTONS */
 
 .hero-actions {
   display: flex;
@@ -179,7 +168,7 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: .95rem 2rem;
+  padding: .9rem 2rem;
   background: #2D6F6D;
   color: white;
   text-decoration: none;
@@ -188,7 +177,6 @@ h1, h2, h3, h4 {
   border-radius: 2px;
   transition: 0.3s ease;
 }
-
 .btn-teal:hover {
   background: #245957;
 }
@@ -197,8 +185,8 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: .95rem 2rem;
-  border: 1px solid rgba(255,255,255,0.18);
+  padding: .9rem 2rem;
+  border: 1px solid rgba(255,255,255,0.2);
   color: white;
   text-decoration: none;
   font-size: .88rem;
@@ -206,166 +194,47 @@ h1, h2, h3, h4 {
   border-radius: 2px;
   transition: 0.3s ease;
 }
-
 .btn-outline-white:hover {
-  background: rgba(255,255,255,0.04);
-  border-color: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.35);
 }
 
-/* MINIMAL RIGHT SIDE VISUAL */
-
-.hero-abstract-minimal {
-  position: absolute;
-  right: 8%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 34%;
-  height: 440px;
-  pointer-events: none;
+/* right side image styling */
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.system-line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 1px;
-  height: 100%;
-  background: rgba(255,255,255,0.08);
-}
-
-.floating-note {
-  position: absolute;
-  padding: 1rem 1.4rem;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.02);
-  backdrop-filter: blur(10px);
-
-  color: rgba(255,255,255,0.75);
-  font-size: 0.82rem;
-  letter-spacing: 0.03em;
-  font-weight: 400;
-
-  border-radius: 2px;
-}
-
-.note-1 {
-  top: 40px;
-  left: 0;
-}
-
-.note-2 {
-  top: 180px;
-  right: 0;
-}
-
-.note-3 {
-  bottom: 40px;
-  left: 10%;
-}
-/* HERO IMAGE */
 
 .hero-image-wrap {
-  margin-top: 70px;
-  position: relative;
   width: 100%;
-  max-width: 1100px;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 45px -12px rgba(0,0,0,0.45);
 }
 
 .hero-image-wrap img {
   width: 100%;
-  height: 420px;
+  height: auto;
+  min-height: 380px;
   object-fit: cover;
-  border-radius: 28px;
-
-  border: 1px solid rgba(255,255,255,0.08);
-
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.45);
-
-  filter: contrast(1.02) saturate(0.95);
+  display: block;
+  transition: transform 0.6s ease;
+  filter: contrast(1.02) saturate(0.98);
 }
-
-/* OPTIONAL PREMIUM OVERLAY */
 
 .hero-image-wrap::after {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 28px;
-
-  background:
-    linear-gradient(
-      to top,
-      rgba(11,15,20,0.55),
-      rgba(11,15,20,0.05)
-    );
-
+  border-radius: 24px;
+  background: linear-gradient(
+    to top,
+    rgba(7,26,54,0.25),
+    rgba(7,26,54,0.02)
+  );
   pointer-events: none;
-}
-
-/* NAV IMPROVEMENTS */
-
-#nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 2000;
-  padding: 0 2rem;
-  transition:
-    background 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-#nav.scrolled {
-  background: rgba(7,26,54,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.nav-links a {
-  text-decoration: none;
-  font-size: .88rem;
-  font-weight: 400;
-  color: rgba(255,255,255,0.7);
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: white;
-}
-
-.nav-cta {
-  padding: .75rem 1.4rem !important;
-  border: 1px solid rgba(255,255,255,0.18) !important;
-  border-radius: 2px !important;
-  color: white !important;
-}
-
-.nav-cta:hover {
-  background: rgba(255,255,255,0.04) !important;
-}
-
-/* RESPONSIVE */
-
-@media(max-width: 900px) {
-
-  .hero {
-    padding: 10rem 2rem 6rem;
-  }
-
-  .hero-abstract-minimal {
-    display: none;
-  }
-
-  .hero h1 {
-    font-size: clamp(3rem, 11vw, 4.5rem);
-  }
-
-  .hero-sub {
-    font-size: 1rem;
-  }
-
 }
 
 /* ── SHARED SECTION STYLES ── */
@@ -522,15 +391,45 @@ h1, h2, h3, h4 {
 .cred-text span { font-size: .8rem; color: var(--muted); }
 
 /* ── TESTIMONIAL BLOCKQUOTE ── */
+.testimonial {
+  position: relative;
+  background: #071A36;
+  padding: 5rem 0;
+  overflow: hidden;
+}
+.testimonial-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.5;
+}
+.testimonial-bg svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.testimonial-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
 .testimonial blockquote {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
-  font-weight: 500; color: white; line-height: 1.6;
-  font-style: italic; margin-bottom: 2rem;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 500;
+  color: white;
+  line-height: 1.5;
+  font-style: italic;
+  margin-bottom: 2rem;
 }
 .testimonial cite {
-  font-style: normal; font-size: .85rem;
-  color: rgba(255,255,255,.45); letter-spacing: .06em; text-transform: uppercase;
+  font-style: normal;
+  font-size: .85rem;
+  color: rgba(255,255,255,.55);
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 
 /* ── CONTACT ── */
@@ -588,6 +487,7 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
 
 /* ── RESPONSIVE ── */
 @media(max-width: 1024px) {
+  .hero-grid { gap: 2rem; }
   .problem-layout, .about-layout, .contact-layout { grid-template-columns: 1fr; gap: 3.5rem; }
   .services-header { grid-template-columns: 1fr; gap: 1.5rem; }
   .how-layout { grid-template-columns: 1fr; gap: 3rem; }
@@ -596,6 +496,29 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .cases-header { flex-direction: column; align-items: flex-start; }
+}
+@media(max-width: 900px) {
+  .hero {
+    padding: 8rem 0 5rem;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 2.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.7rem, 10vw, 4rem);
+  }
+  .hero-sub {
+    max-width: 100%;
+  }
+  .hero-actions {
+    justify-content: flex-start;
+  }
+  .hero-image-wrap img {
+    min-height: 280px;
+    height: auto;
+  }
 }
 @media(max-width: 768px) {
   .mob-btn { display: block; }
@@ -615,9 +538,13 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
   .form-row { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
+  .hero-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
-/* REVEAL */
+/* ── REVEAL ── */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .d1 { transition-delay: .1s; }
@@ -650,32 +577,31 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO (REFINED TWO-COLUMN LAYOUT) -->
 <section class="hero">
-  <div class="hero-bg-line"></div>
-    <h1>
-      Operational chaos isn't your problem.
-      <em>Lack of visibility is.</em>
-    </h1>
-
-    <p class="hero-sub">
-      We design operational systems that eliminate administration,
-      improve visibility, and create control across supply chain
-      and field operations.
-    </p>
-
-    <div class="hero-actions">
-      <a href="#contact" class="btn-teal">Talk to us</a>
-
-      <a href="case-studies.html" class="btn-outline-white">
-        View our work
-      </a>
+  <div class="hero-container">
+    <div class="hero-grid">
+      <div class="hero-left reveal">
+        <h1>
+          Operational chaos isn't your problem.
+          <em>Lack of visibility is.</em>
+        </h1>
+        <p class="hero-sub">
+          We design operational systems that eliminate administration,
+          improve visibility, and create control across supply chain
+          and field operations.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-teal">Talk to us</a>
+          <a href="case-studies.html" class="btn-outline-white">View our work</a>
+        </div>
+      </div>
+      <div class="hero-right reveal d2">
+        <div class="hero-image-wrap">
+          <img src="/assets/empower.jpg" alt="Field Operations">
+        </div>
+      </div>
     </div>
-   <!-- HERO IMAGE -->
-    <div class="hero-image-wrap">
-      <img src="/assets/empower.jpg" alt="Field Operations">
-    </div>
-  <div class="hero-content">
   </div>
 </section>
 
@@ -738,7 +664,7 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
 </div>
 
 <!-- SERVICES -->
-<section class="services">
+<section class="services" id="services">
   <div class="container">
     <div class="services-header reveal">
       <div>
@@ -862,41 +788,11 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
       </div>
       <div class="about-right reveal d2">
         <div class="creds">
-          <div class="cred">
-            <i class="fas fa-graduation-cap"></i>
-            <div class="cred-text">
-              <strong>BCom Hons — Logistics &amp; Supply Chain</strong>
-              <span>The academic foundation for every operational engagement</span>
-            </div>
-          </div>
-          <div class="cred">
-            <i class="fas fa-chart-bar"></i>
-            <div class="cred-text">
-              <strong>Business Intelligence &amp; Data Science</strong>
-              <span>Turning operational data into decisions, not just reports</span>
-            </div>
-          </div>
-          <div class="cred">
-            <i class="fas fa-cogs"></i>
-            <div class="cred-text">
-              <strong>Six Sigma &amp; Business Analysis</strong>
-              <span>Structured problem diagnosis before a single tool is built</span>
-            </div>
-          </div>
-          <div class="cred">
-            <i class="fas fa-briefcase"></i>
-            <div class="cred-text">
-              <strong>7 years in operational roles</strong>
-              <span>Every role shaped by solving problems.</span>
-            </div>
-          </div>
-          <div class="cred">
-            <i class="fas fa-map-marker-alt"></i>
-            <div class="cred-text">
-              <strong>Based in Johannesburg</strong>
-              <span>Serving clients virtually across South Africa</span>
-            </div>
-          </div>
+          <div class="cred"><i class="fas fa-graduation-cap"></i><div class="cred-text"><strong>BCom Hons — Logistics &amp; Supply Chain</strong><span>The academic foundation for every operational engagement</span></div></div>
+          <div class="cred"><i class="fas fa-chart-bar"></i><div class="cred-text"><strong>Business Intelligence &amp; Data Science</strong><span>Turning operational data into decisions, not just reports</span></div></div>
+          <div class="cred"><i class="fas fa-cogs"></i><div class="cred-text"><strong>Six Sigma &amp; Business Analysis</strong><span>Structured problem diagnosis before a single tool is built</span></div></div>
+          <div class="cred"><i class="fas fa-briefcase"></i><div class="cred-text"><strong>7 years in operational roles</strong><span>Every role shaped by solving problems.</span></div></div>
+          <div class="cred"><i class="fas fa-map-marker-alt"></i><div class="cred-text"><strong>Based in Johannesburg</strong><span>Serving clients virtually across South Africa</span></div></div>
         </div>
       </div>
     </div>
@@ -905,68 +801,21 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
 
 <!-- TESTIMONIAL -->
 <section class="testimonial">
-  <!-- Abstract infographic background -->
   <div class="testimonial-bg">
     <svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <radialGradient id="tg1" cx="20%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="transparent"/>
-        </radialGradient>
-        <radialGradient id="tg2" cx="80%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#008080" stop-opacity="0.5"/>
-          <stop offset="100%" stop-color="transparent"/>
-        </radialGradient>
-      </defs>
-      <rect width="1200" height="400" fill="url(#tg1)"/>
-      <rect width="1200" height="400" fill="url(#tg2)"/>
-
-      <!-- Concentric rings — left side -->
-      <g transform="translate(160,200)" fill="none" stroke="rgba(212,175,55,0.35)" stroke-width="1">
-        <circle r="40"/><circle r="80"/><circle r="120"/><circle r="160"/><circle r="200"/>
-      </g>
-      <!-- Concentric rings — right side -->
-      <g transform="translate(1040,200)" fill="none" stroke="rgba(0,128,128,0.3)" stroke-width="1">
-        <circle r="40"/><circle r="80"/><circle r="120"/><circle r="160"/>
-      </g>
-
-      <!-- Central horizontal axis line -->
+      <defs><radialGradient id="tg1" cx="20%" cy="50%" r="50%"><stop offset="0%" stop-color="#D4AF37" stop-opacity="0.6"/><stop offset="100%" stop-color="transparent"/></radialGradient><radialGradient id="tg2" cx="80%" cy="50%" r="50%"><stop offset="0%" stop-color="#008080" stop-opacity="0.5"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs>
+      <rect width="1200" height="400" fill="url(#tg1)"/><rect width="1200" height="400" fill="url(#tg2)"/>
+      <g transform="translate(160,200)" fill="none" stroke="rgba(212,175,55,0.35)" stroke-width="1"><circle r="40"/><circle r="80"/><circle r="120"/><circle r="160"/><circle r="200"/></g>
+      <g transform="translate(1040,200)" fill="none" stroke="rgba(0,128,128,0.3)" stroke-width="1"><circle r="40"/><circle r="80"/><circle r="120"/><circle r="160"/></g>
       <line x1="0" y1="200" x2="1200" y2="200" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-
-      <!-- Bar chart columns — abstract -->
       <g fill="rgba(0,128,128,0.2)" stroke="rgba(0,128,128,0.3)" stroke-width="1">
-        <rect x="400" y="270" width="30" height="90" rx="2"/>
-        <rect x="445" y="240" width="30" height="120" rx="2"/>
-        <rect x="490" y="210" width="30" height="150" rx="2"/>
-        <rect x="535" y="180" width="30" height="180" rx="2" fill="rgba(0,128,128,0.35)" stroke="#008080"/>
-        <rect x="580" y="200" width="30" height="160" rx="2"/>
-        <rect x="625" y="230" width="30" height="130" rx="2"/>
-        <rect x="670" y="260" width="30" height="100" rx="2"/>
-        <rect x="715" y="280" width="30" height="80" rx="2"/>
+        <rect x="400" y="270" width="30" height="90" rx="2"/><rect x="445" y="240" width="30" height="120" rx="2"/><rect x="490" y="210" width="30" height="150" rx="2"/>
+        <rect x="535" y="180" width="30" height="180" rx="2" fill="rgba(0,128,128,0.35)" stroke="#008080"/><rect x="580" y="200" width="30" height="160" rx="2"/><rect x="625" y="230" width="30" height="130" rx="2"/>
+        <rect x="670" y="260" width="30" height="100" rx="2"/><rect x="715" y="280" width="30" height="80" rx="2"/>
       </g>
-
-      <!-- Gold data-line above bars -->
-      <path d="M415,265 L460,235 L505,205 L550,175 L595,195 L640,225 L685,255 L730,275"
-            fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-
-      <!-- Scattered data points -->
-      <g fill="rgba(255,255,255,0.15)">
-        <circle cx="300" cy="150" r="3"/>
-        <circle cx="350" cy="250" r="2"/>
-        <circle cx="900" cy="120" r="3"/>
-        <circle cx="950" cy="270" r="2"/>
-        <circle cx="850" cy="190" r="2"/>
-        <circle cx="820" cy="300" r="3"/>
-      </g>
-
-      <!-- Thin grid lines -->
-      <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
-        <line x1="0" y1="100" x2="1200" y2="100"/>
-        <line x1="0" y1="300" x2="1200" y2="300"/>
-        <line x1="200" y1="0" x2="200" y2="400"/>
-        <line x1="600" y1="0" x2="600" y2="400"/>
-        <line x1="1000" y1="0" x2="1000" y2="400"/>
-      </g>
+      <path d="M415,265 L460,235 L505,205 L550,175 L595,195 L640,225 L685,255 L730,275" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      <g fill="rgba(255,255,255,0.15)"><circle cx="300" cy="150" r="3"/><circle cx="350" cy="250" r="2"/><circle cx="900" cy="120" r="3"/><circle cx="950" cy="270" r="2"/><circle cx="850" cy="190" r="2"/><circle cx="820" cy="300" r="3"/></g>
+      <g stroke="rgba(255,255,255,0.04)" stroke-width="1"><line x1="0" y1="100" x2="1200" y2="100"/><line x1="0" y1="300" x2="1200" y2="300"/><line x1="200" y1="0" x2="200" y2="400"/><line x1="600" y1="0" x2="600" y2="400"/><line x1="1000" y1="0" x2="1000" y2="400"/></g>
     </svg>
   </div>
   <div class="container">
@@ -992,25 +841,9 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
         <p class="contact-note">We typically respond within one business day. The first conversation is about understanding your operation — nothing will be sold on that call.</p>
       </div>
       <div class="contact-right reveal d2">
-        <div class="form-row">
-          <div class="form-group"><label>Name</label><input type="text" placeholder="Your full name"></div>
-          <div class="form-group"><label>Company</label><input type="text" placeholder="Company name"></div>
-        </div>
-        <div class="form-group">
-          <label>Industry</label>
-          <select>
-            <option value="">Select your industry</option>
-            <option>Logistics &amp; Transport</option>
-            <option>Food &amp; Beverage</option>
-            <option>Municipal Contracting</option>
-            <option>Commodity Trade</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>What's the problem?</label>
-          <textarea placeholder="Briefly describe the operational challenge you're dealing with"></textarea>
-        </div>
+        <div class="form-row"><div class="form-group"><label>Name</label><input type="text" placeholder="Your full name"></div><div class="form-group"><label>Company</label><input type="text" placeholder="Company name"></div></div>
+        <div class="form-group"><label>Industry</label><select><option value="">Select your industry</option><option>Logistics &amp; Transport</option><option>Food &amp; Beverage</option><option>Municipal Contracting</option><option>Commodity Trade</option><option>Other</option></select></div>
+        <div class="form-group"><label>What's the problem?</label><textarea placeholder="Briefly describe the operational challenge you're dealing with"></textarea></div>
         <button class="form-submit">Send message &nbsp;→</button>
       </div>
     </div>
@@ -1021,44 +854,12 @@ footer { background: var(--white); border-top: 1px solid var(--border); padding:
 <footer>
   <div class="container">
     <div class="footer-top">
-      <div class="footer-brand">
-        <img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions"
-             onerror="this.style.display='none'">
-        <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="our-story.html">Our Story</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Work</h5>
-        <ul>
-          <li><a href="case-studies.html">Case Studies</a></li>
-          <li><a href="articles.html">Articles</a></li>
-          <li><a href="cost-calculator.html">Cost Calculator</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Connect</h5>
-        <ul>
-          <li><a href="#">LinkedIn</a></li>
-          <li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li>
-          <li><a href="#">Johannesburg, SA</a></li>
-        </ul>
-      </div>
+      <div class="footer-brand"><img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions" onerror="this.style.display='none'"><p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="our-story.html">Our Story</a></li><li><a href="services.html">Services</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Work</h5><ul><li><a href="case-studies.html">Case Studies</a></li><li><a href="articles.html">Articles</a></li><li><a href="cost-calculator.html">Cost Calculator</a></li></ul></div>
+      <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">LinkedIn</a></li><li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li><li><a href="#">Johannesburg, SA</a></li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
-      <div class="social">
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      </div>
-    </div>
+    <div class="footer-bottom"><p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p><div class="social"><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a></div></div>
   </div>
 </footer>
 
