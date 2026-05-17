@@ -273,7 +273,12 @@ h1, h2, h3, h4 {
 
 /* ── PROBLEM ── */
 .problem { padding: 7rem 0; background: var(--white); }
-.problem-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.problem-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 4rem;
+  align-items: start;
+}
 .problem-left {}
 .problem-right { padding-top: 1rem; }
 .problem-intro {
@@ -282,23 +287,92 @@ h1, h2, h3, h4 {
   line-height: 1.6; color: var(--text); font-weight: 500;
   margin-bottom: 2.5rem;
 }
-.pain-list { display: flex; flex-direction: column; gap: 1.25rem; }
-.pain-item {
-  display: flex; gap: 1.25rem; align-items: flex-start;
-  padding: 1.5rem; border: 1px solid var(--border);
-  transition: border-color var(--ease), box-shadow var(--ease);
-  cursor: default;
+/* PROBLEM GRID */
+
+.pain-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
 }
-.pain-item:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(0,128,128,.07); }
+
+.pain-item {
+  position: relative;
+
+  padding: 2rem;
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  min-height: 240px;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.pain-item:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(0,128,128,0.25);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.04);
+}
+
 .pain-num {
   font-family: 'Playfair Display', serif;
-  font-size: 2rem; font-weight: 700; color: var(--light);
-  line-height: 1; flex-shrink: 0; width: 36px;
-  transition: color var(--ease);
+
+  font-size: 3rem;
+  font-weight: 700;
+
+  color: rgba(10,31,68,0.08);
+
+  line-height: 1;
+
+  margin-bottom: 1.25rem;
+
+  display: block;
 }
-.pain-item:hover .pain-num { color: var(--teal); }
-.pain-text h4 { font-family: 'Inter', sans-serif; font-size: .95rem; font-weight: 600; margin-bottom: .4rem; }
-.pain-text p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+
+.pain-text h4 {
+  font-family: 'Inter', sans-serif;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  line-height: 1.4;
+
+  margin-bottom: 0.9rem;
+
+  color: var(--text);
+}
+
+.pain-text p {
+  font-size: 0.88rem;
+
+  color: var(--muted);
+
+  line-height: 1.75;
+}
+
+/* MOBILE */
+
+@media(max-width: 768px) {
+
+  .pain-list {
+    grid-template-columns: 1fr;
+  }
+
+  .pain-item {
+    min-height: auto;
+  }
+
+}
 
 /* ── STATS ── */
 .stats { background: var(--navy); padding: 5rem 0; }
