@@ -3,86 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Story | PrimeChain Solutions</title>
+<meta name="description" content="PrimeChain Solutions builds operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa.">
+<title>PrimeChain Solutions | Our Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root {
-  --navy:#0A1F44;--teal:#008080;--teal-dk:#006666;--teal-lt:#f0fafa;
-  --gold:#D4AF37;--white:#fff;--off:#F9F9F7;
-  --text:#111827;--muted:#6B7280;--border:#E5E7EB;--ease:.3s ease;
+  --navy:     #0A1F44;
+  --navy-dk:  #071534;
+  --teal:     #008080;
+  --teal-dk:  #006666;
+  --teal-lt:  #f0fafa;
+  --gold:     #C9A84C;
+  --white:    #ffffff;
+  --off:      #F7F7F5;
+  --text:     #0F1923;
+  --muted:    #6B7280;
+  --light:    #E8E9EB;
+  --border:   #E3E4E6;
+  --ease:     0.3s ease;
+  --section-y:   8rem;
+  --section-y-sm: 5rem;
+  --gap-xl: 6rem;
+  --gap-lg: 4rem;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;font-size:16px;}
 body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.1;}
-.container{width:100%;max-width:1140px;margin:0 auto;padding:0 2rem;}
-.sp{position:fixed;top:0;left:0;height:2px;width:0;background:var(--teal);z-index:3000;transition:width .1s linear;}
+h1,h2,h3,h4,blockquote{font-family:'Cormorant Garamond',serif;line-height:1.1;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.container{width:100%;max-width:1160px;margin:0 auto;padding:0 2.5rem;}
+.sp{position:fixed;top:0;left:0;height:1.5px;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:3000;transition:width .08s linear;}
 
-#nav{position:fixed;top:0;left:0;width:100%;z-index:2000;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
-.nav-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:80px;padding:0 2rem;}
-.logo{text-decoration:none;display:flex;align-items:center;}
-.logo img{height:42px;width:auto;}
-.logo-text{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.3rem;color:var(--navy);display:none;}
-.nav-links{display:flex;list-style:none;gap:2.25rem;align-items:center;}
-.nav-links a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--muted);transition:color var(--ease);position:relative;padding:.3rem 0;}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--teal);transition:width var(--ease);}
-.nav-links a:hover,.nav-links a.on{color:var(--teal);}
-.nav-links a:hover::after,.nav-links a.on::after{width:100%;}
-.nav-cta{padding:.5rem 1.4rem!important;border:1.5px solid var(--navy)!important;border-radius:2px!important;color:var(--navy)!important;font-weight:500!important;transition:all var(--ease)!important;}
-.nav-cta:hover{background:var(--navy)!important;color:white!important;}
-.nav-cta::after{display:none!important;}
-.mob-btn{display:none;background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--text);}
+/* NAV (same as index) */
+#nav{position:fixed;top:0;left:0;width:100%;z-index:2000;padding:0 2.5rem;transition:background var(--ease),box-shadow var(--ease);}
+#nav.scrolled{background:rgba(7,21,52,0.96);backdrop-filter:blur(20px) saturate(160%);border-bottom:1px solid rgba(255,255,255,0.05);box-shadow:0 2px 40px rgba(0,0,0,0.18);}
+.nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:78px;}
+.logo{display:flex;align-items:center;gap:.75rem;}
+.logo img{height:38px;width:auto;}
+.logo-text{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.2rem;color:var(--navy);display:none;}
+.nav-links{display:flex;list-style:none;gap:2.5rem;align-items:center;}
+.nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,0.58);transition:color var(--ease);}
+#nav.scrolled .nav-links a{color:rgba(255,255,255,0.5);}
+.nav-links a:hover{color:white;}
+.nav-cta{padding:.65rem 1.5rem !important;border:1px solid rgba(255,255,255,0.22) !important;color:white !important;font-weight:500 !important;transition:all var(--ease) !important;}
+.nav-cta:hover{background:rgba(255,255,255,0.06) !important;border-color:rgba(255,255,255,0.4) !important;}
+.mob-btn{display:none;background:none;border:none;cursor:pointer;font-size:1.2rem;color:white;}
 
 /* PAGE HERO */
-.page-hero{background:var(--navy);padding:10rem 2rem 6rem;position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 50%,rgba(0,128,128,.12) 0%,transparent 60%);}
-.page-hero-inner{max-width:1140px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:end;}
-.hero-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;}
-.hero-label::after{content:'';width:32px;height:1px;background:var(--teal);}
+.page-hero{background:var(--navy-dk);padding:10rem 2rem 6rem;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 50%,rgba(0,128,128,.15) 0%,transparent 70%);}
+.page-hero-inner{max-width:1160px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;}
+.hero-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem;}
+.hero-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold);}
 .page-hero h1{font-size:clamp(2.8rem,5.5vw,4.5rem);color:white;letter-spacing:-.01em;margin-bottom:1.5rem;}
 .page-hero h1 em{font-style:italic;color:var(--gold);}
-.page-hero p{font-size:1.05rem;color:rgba(255,255,255,.65);line-height:1.8;font-weight:300;}
-.hero-right{padding-bottom:.5rem;}
+.hero-right p{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.8;font-weight:300;margin-bottom:2rem;}
 .hero-quote-block{border-left:2px solid var(--teal);padding:1.5rem 0 1.5rem 2rem;}
-.hero-quote-block p{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:white;line-height:1.5;font-style:italic;}
+.hero-quote-block p{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:white;line-height:1.5;font-style:italic;}
 .hero-quote-block cite{display:block;margin-top:.85rem;font-size:.78rem;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase;font-style:normal;}
 
-/* SECTION LABEL */
-.section-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;}
-.section-label::after{content:'';width:32px;height:1px;background:var(--teal);}
-.section-title{font-size:clamp(2rem,4vw,3rem);line-height:1.15;letter-spacing:-.01em;margin-bottom:1.25rem;}
+/* SECTION LABELS */
+.section-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem;}
+.section-label::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.12;letter-spacing:-.015em;font-weight:600;color:var(--text);margin-bottom:1.25rem;}
 
 /* THE GAP */
 .the-gap{padding:7rem 0;background:var(--white);}
-.gap-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.gap-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:2rem;}
 .gap-body p{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem;font-weight:300;}
-.gap-body p strong{color:var(--text);font-weight:600;}
-.gap-highlight{margin-top:2.5rem;padding:2rem;background:var(--navy);color:white;}
+.gap-highlight{padding:2.5rem;background:var(--navy);color:white;}
 .gap-highlight p{font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.6;font-weight:500;}
 .gap-highlight p em{font-style:italic;color:var(--gold);}
-.gap-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem;}
-.pill{padding:.35rem .9rem;border:1px solid var(--border);font-size:.78rem;color:var(--muted);font-weight:500;transition:all var(--ease);}
-.pill:hover{border-color:var(--teal);color:var(--teal);}
-
-/* TIMELINE */
-.journey{padding:7rem 0;background:var(--off);}
-.timeline{margin-top:3.5rem;display:flex;flex-direction:column;gap:0;}
-.tl-row{display:grid;grid-template-columns:120px 1px 1fr;gap:0 2.5rem;position:relative;}
-.tl-year{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--border);text-align:right;padding-top:.2rem;transition:color var(--ease);}
-.tl-row:hover .tl-year{color:var(--teal);}
-.tl-line{background:var(--border);position:relative;}
-.tl-dot{position:absolute;top:.35rem;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:white;border:2px solid var(--border);transition:border-color var(--ease);}
-.tl-row:hover .tl-dot{border-color:var(--teal);background:var(--teal);}
-.tl-content{padding:0 0 3rem 0;}
-.tl-content h4{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;margin-bottom:.5rem;}
-.tl-content p{font-size:.88rem;color:var(--muted);line-height:1.7;}
 
 /* VALUES */
 .values{padding:7rem 0;background:var(--white);}
-.values-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.values-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
 .values-list{display:flex;flex-direction:column;gap:0;}
 .value-item{padding:2rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:40px 1fr;gap:1.5rem;align-items:start;}
 .value-item:first-child{border-top:1px solid var(--border);}
@@ -93,57 +92,71 @@ h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1
 
 /* CREDENTIALS */
 .credentials{padding:7rem 0;background:var(--off);}
-.cred-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3.5rem;}
+.cred-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3rem;}
 .cred-card{background:white;padding:2.5rem 2rem;transition:background var(--ease);}
 .cred-card:hover{background:var(--teal-lt);}
 .cred-icon{font-size:1.1rem;color:var(--teal);margin-bottom:1.25rem;display:block;}
 .cred-card h4{font-size:1.1rem;margin-bottom:.65rem;line-height:1.3;}
 .cred-card p{font-size:.85rem;color:var(--muted);line-height:1.7;}
 
-/* CTA */
+/* CTA SECTION */
 .story-cta{background:var(--navy);padding:7rem 0;text-align:center;}
-.story-cta h2{font-size:clamp(2rem,4vw,3rem);color:white;margin-bottom:1.25rem;}
+.story-cta h2{font-size:clamp(2rem,4vw,2.8rem);color:white;margin-bottom:1.25rem;}
 .story-cta p{font-size:1rem;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 2.5rem;line-height:1.8;font-weight:300;}
+.btn-teal{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;background:var(--teal);color:white;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:background var(--ease),box-shadow var(--ease);}
+.btn-teal:hover{background:var(--teal-dk);box-shadow:0 8px 28px rgba(0,128,128,0.28);}
+.btn-outline-white{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.78);font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:all var(--ease);}
+.btn-outline-white:hover{border-color:rgba(255,255,255,0.45);color:white;background:rgba(255,255,255,0.04);}
 .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-.btn-outline-white{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;border:1px solid rgba(255,255,255,.4);color:white;text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.02em;transition:all var(--ease);border-radius:2px;}
-.btn-outline-white:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.7);}
-.btn-teal{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;background:var(--teal);color:white;text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.02em;transition:all var(--ease);border-radius:2px;}
-.btn-teal:hover{background:var(--teal-dk);}
 
-/* FOOTER */
-footer{background:var(--white);border-top:1px solid var(--border);padding:3rem 0 2rem;}
+/* FOOTER (unified) */
+footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3.5rem;margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,0.06);}
+.footer-brand img{height:34px;margin-bottom:1.25rem;filter:brightness(0) invert(1) opacity(.8);}
+.footer-brand p{font-size:.82rem;color:rgba(255,255,255,0.35);line-height:1.8;max-width:250px;font-weight:300;}
+.footer-col h5{font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:.14em;margin-bottom:1.25rem;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+.footer-col a{font-size:.83rem;color:rgba(255,255,255,0.45);transition:color var(--ease);font-weight:300;}
+.footer-col a:hover{color:white;}
 .footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-.footer-bottom p{font-size:.8rem;color:var(--muted);}
-.foot-links{display:flex;gap:1.5rem;}
-.foot-links a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color var(--ease);}
-.foot-links a:hover{color:var(--teal);}
+.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,0.25);}
+.social{display:flex;gap:.5rem;}
+.social a{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.35);font-size:.75rem;transition:all var(--ease);}
+.social a:hover{border-color:var(--teal);color:var(--teal);}
 
+/* RESPONSIVE */
 @media(max-width:1024px){
-  .page-hero-inner,.gap-layout,.values-layout{grid-template-columns:1fr;gap:3rem;}
+  .page-hero-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .gap-layout,.values-layout{grid-template-columns:1fr;gap:2.5rem;}
   .cred-grid{grid-template-columns:1fr 1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem;}
 }
 @media(max-width:768px){
+  :root{--section-y:5rem;}
   .mob-btn{display:block;}
-  .nav-links{display:none;position:fixed;top:80px;right:0;width:280px;height:calc(100vh - 80px);background:white;flex-direction:column;align-items:flex-start;padding:2rem 1.5rem;gap:0;box-shadow:-4px 0 24px rgba(0,0,0,.1);overflow-y:auto;}
+  .nav-links{display:none;position:fixed;top:78px;right:0;width:280px;height:calc(100vh - 78px);background:var(--navy-dk);flex-direction:column;align-items:flex-start;padding:2.5rem 2rem;gap:0;box-shadow:-4px 0 40px rgba(0,0,0,.3);overflow-y:auto;}
   .nav-links.open{display:flex;}
   .nav-links li{width:100%;}
-  .nav-links a{display:block;padding:.85rem .75rem;}
+  .nav-links a{color:rgba(255,255,255,0.55) !important;display:block;padding:1rem .75rem;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .nav-links a:hover{color:white !important;}
   .cred-grid{grid-template-columns:1fr;}
-  .tl-row{grid-template-columns:80px 1px 1fr;gap:0 1.5rem;}
+  .container{padding:0 1.5rem;}
+  .page-hero{padding:8rem 1.5rem 4rem;}
+  .gap-highlight{padding:1.75rem;}
+  .hero-quote-block{padding-left:1.25rem;}
+  .hero-quote-block p{font-size:1.2rem;}
 }
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(0.16,1,0.3,1),transform .8s cubic-bezier(0.16,1,0.3,1);}
 .reveal.visible{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}
 </style>
 </head>
 <body>
 <div class="sp" id="sp"></div>
-
 <nav id="nav">
   <div class="nav-inner">
     <a href="index.html" class="logo">
-      <img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
       <span class="logo-text">PrimeChain Solutions</span>
     </a>
     <ul class="nav-links" id="navLinks">
@@ -165,7 +178,7 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:3rem 0
       <h1>Built from<br>the inside.<br><em>By someone<br>who's been there.</em></h1>
     </div>
     <div class="hero-right">
-      <p style="font-size:1rem;color:rgba(255,255,255,.6);line-height:1.8;font-weight:300;margin-bottom:2.5rem;">PrimeChain Solutions wasn't started in a boardroom. It was built after a decade inside the operations it now serves — watching the same visibility problems create the same chaos, in every industry, at every scale.</p>
+      <p>PrimeChain Solutions wasn't started in a boardroom. It was built after a decade inside the operations it now serves — watching the same visibility problems create the same chaos, in every industry, at every scale.</p>
       <div class="hero-quote-block">
         <p>"Operational chaos isn't your problem. Lack of visibility is."</p>
         <cite>Founder, PrimeChain Solutions</cite>
@@ -174,40 +187,26 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:3rem 0
   </div>
 </section>
 
-<!-- THE GAP -->
 <section class="the-gap">
   <div class="container">
-    
-    <!-- Title and label stay on top -->
-    <div class="section-label">Why we exist</div>
-    <h2 class="section-title">The gap nobody<br>was filling.</h2>
-
-    <!-- The layout wrapper that splits into two columns -->
+    <div class="section-label reveal">Why we exist</div>
+    <h2 class="section-title reveal">The gap nobody<br>was filling.</h2>
     <div class="gap-layout">
-      
-      <!-- Left Column: Main Paragraphs -->
-      <div class="gap-left reveal">
-        <div class="gap-body reveal d1">
+      <div class="gap-left reveal d1">
+        <div class="gap-body">
           <p>Enterprise systems like SAP are powerful. But they're built for large corporations with large IT budgets and large implementation teams. Spreadsheets are flexible — but they break under operational pressure, create version control chaos, and tell you what happened last week, not what's happening right now.</p>
           <p>Between those two extremes sits the majority of South African operations businesses. <strong>Too complex for spreadsheets. Too lean for SAP.</strong> Every role held before PrimeChain Solutions was founded confirmed this. The problem wasn't that businesses didn't have data — it was that the data was invisible, delayed, or locked inside paper that nobody could act on in time.</p>
         </div>
       </div>
-
-      <!-- Right Column: The Highlight Box -->
-      <div class="gap-right reveal">
+      <div class="gap-right reveal d2">
         <div class="gap-highlight">
           <p>We build for the business owner who knows something is broken but <em>doesn't know how to fix it.</em> The operator whose team is spending Friday afternoon hand-writing the same job card it wrote on Monday.</p>
         </div>
       </div>
-
     </div>
-
   </div>
 </section>
 
-
-
-<!-- VALUES -->
 <section class="values">
   <div class="container">
     <div class="values-layout">
@@ -245,7 +244,6 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:3rem 0
   </div>
 </section>
 
-<!-- CREDENTIALS -->
 <section class="credentials">
   <div class="container">
     <div class="reveal">
@@ -287,7 +285,6 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:3rem 0
   </div>
 </section>
 
-<!-- CTA -->
 <section class="story-cta">
   <div class="container">
     <div class="reveal">
@@ -303,24 +300,31 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:3rem 0
 
 <footer>
   <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="/assets/Primary on Transparent.png" alt="PrimeChain Solutions" onerror="this.style.display='none'">
+        <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p>
+      </div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="our-story.html">Our Story</a></li><li><a href="services.html">Services</a></li><li><a href="index.html#contact">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Work</h5><ul><li><a href="case-studies.html">Case Studies</a></li><li><a href="articles.html">Articles</a></li><li><a href="cost-calculator.html">Cost Calculator</a></li></ul></div>
+      <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">LinkedIn</a></li><li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li><li><a href="#">Johannesburg, SA</a></li></ul></div>
+    </div>
     <div class="footer-bottom">
       <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
-      <div class="foot-links">
-        <a href="index.html">Home</a>
-        <a href="case-studies.html">Case Studies</a>
-        <a href="articles.html">Articles</a>
-        <a href="index.html#contact">Contact</a>
+      <div class="social">
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-const sp=document.getElementById('sp'),mobBtn=document.getElementById('mobBtn'),navLinks=document.getElementById('navLinks');
-window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;sp.style.width=(h>0?(window.scrollY/h)*100:0)+'%';});
+const sp=document.getElementById('sp'),nav=document.getElementById('nav'),mobBtn=document.getElementById('mobBtn'),navLinks=document.getElementById('navLinks');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60);const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;sp.style.width=(h>0?(window.scrollY/h)*100:0)+'%';});
 mobBtn.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');mobBtn.innerHTML=o?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';});
 document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');mobBtn.innerHTML='<i class="fas fa-bars"></i>';}));
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
