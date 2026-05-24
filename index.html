@@ -368,32 +368,16 @@ a {
 }
 
 /* ----- STATS (lightweight grid) ----- */
-.stats {
-  background: #071534;
-  padding: 4rem 0;
+.stats { background: var(--navy); padding: 5rem 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.stat { padding: 2rem 1.5rem; text-align: center; border-right: 1px solid rgba(255,255,255,.08); }
+.stat:last-child { border-right: none; }
+.stat-n {
+  display: block; font-family: 'Playfair Display', serif;
+  font-size: 2.8rem; font-weight: 700; color: white;
+  line-height: 1; margin-bottom: .4rem;
 }
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-}
-
-.stat {
-  padding: 2rem 1.5rem;
-  text-align: center;
-  border-right: 1px solid rgba(255,255,255,0.06);
-}
-
-.stat-l {
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.5;
-  display: block;
-}
+.stat-l { font-size: .8rem; color: rgba(255,255,255,.45); letter-spacing: .04em; }
 
 /* ----- SERVICES SECTION ----- */
 .services {
@@ -1091,10 +1075,10 @@ footer {
 <div class="stats reveal">
   <div class="container">
     <div class="stats-grid">
-      <div class="stat"><span class="stat-l">Built for operations too complex for spreadsheets</span></div>
-      <div class="stat"><span class="stat-l">Designed around your existing workflows</span></div>
-      <div class="stat"><span class="stat-l">Real-time visibility across your operation</span></div>
-      <div class="stat"><span class="stat-l">Automation that eliminates repetitive admin</span></div>
+      <div class="stat"><span class="stat-n">Real-Time</span><span class="stat-l">Visibility</span></div>
+      <div class="stat"><span class="stat-n">30-40%</span><span class="stat-l">Cost Reduction</span></div>
+      <div class="stat"><span class="stat-n">50%</span><span class="stat-l">Faster Decisions</span></div>
+      <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Monitoring</span></div>
     </div>
   </div>
 </div>
