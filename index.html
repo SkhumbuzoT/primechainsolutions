@@ -387,61 +387,47 @@ a { text-decoration: none; }
 }
 
 /* ── STATS ── */
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:24px;
+.stats { background: var(--navy-dk); padding: var(--section-y-sm) 0; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
 }
+.stat {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+}
+.stat:last-child { border-right: none; }
 
-.stat{
-  background:rgba(255,255,255,0.03);
-  border:1px solid rgba(255,255,255,0.08);
-  padding:32px 24px;
-  border-radius:20px;
-  backdrop-filter:blur(10px);
-  transition:all .3s ease;
+/* Gold top rule on hover */
+.stat::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width .4s ease;
 }
+.stat:hover::before { width: 40px; }
 
-.stat:hover{
-  transform:translateY(-4px);
-  border-color:rgba(0,128,128,.35);
+.stat-n {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+  margin-bottom: .5rem;
+  letter-spacing: -0.02em;
 }
-
-.stat-icon{
-  width:64px;
-  height:64px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:20px;
-  border-radius:16px;
-  background:rgba(0,128,128,.08);
-  border:1px solid rgba(0,128,128,.2);
-}
-
-.stat-icon i{
-  font-size:32px;
-  color:var(--teal);
-}
-
-.stat-l{
-  display:block;
-  color:#fff;
-  font-size:1rem;
-  line-height:1.7;
-  max-width:240px;
-}
-.stat-icon{
-  animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float{
-  0%,100%{
-    transform:translateY(0);
-  }
-  50%{
-    transform:translateY(-4px);
-  }
+.stat-l {
+  font-size: .72rem;
+  color: rgba(255,255,255,0.38);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 /* ── SERVICES ── */
@@ -1114,43 +1100,10 @@ footer {
 <div class="stats reveal">
   <div class="container">
     <div class="stats-grid">
-
-      <div class="stat">
-        <div class="stat-icon">
-          <i class="ph ph-circles-three"></i>
-        </div>
-        <span class="stat-l">
-          Built for operations too complex for spreadsheets
-        </span>
-      </div>
-
-      <div class="stat">
-        <div class="stat-icon">
-          <i class="ph ph-flow-arrow"></i>
-        </div>
-        <span class="stat-l">
-          Designed around your existing workflows
-        </span>
-      </div>
-
-      <div class="stat">
-        <div class="stat-icon">
-          <i class="ph ph-chart-line-up"></i>
-        </div>
-        <span class="stat-l">
-          Real-time visibility across your operation
-        </span>
-      </div>
-
-      <div class="stat">
-        <div class="stat-icon">
-          <i class="ph ph-gear-six"></i>
-        </div>
-        <span class="stat-l">
-          Automation that eliminates repetitive admin
-        </span>
-      </div>
-
+      <div class="stat"><span class="stat-l">Built for operations too complex for spreadsheets</span></div>
+      <div class="stat"><span class="stat-l">Designed around your existing workflows</span></div>
+      <div class="stat"><span class="stat-l">Real-time visibility across your operation</span></div>
+      <div class="stat"><span class="stat-l">Automation that eliminates repetitive admin</span></div>
     </div>
   </div>
 </div>
