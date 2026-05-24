@@ -384,72 +384,99 @@ a {
 }
 
 /* ----- SERVICES SECTION ----- */
-.services {
-  padding: 7rem 0;
-  background: #F7F7F5;
-}
-
+.services { padding: var(--section-y) 0; background: var(--off); }
 .services-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 4rem;
-  flex-wrap: wrap;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-lg);
+  margin-bottom: 4.5rem;
+  align-items: end;
 }
+.services-link {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: gap var(--ease), opacity var(--ease);
+  margin-top: 1.5rem;
+}
+.services-link:hover { gap: .85rem; opacity: .8; }
 
 .svc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: #E3E4E6;
+  background: var(--border);
 }
-
 .svc-card {
   background: white;
-  padding: 3rem 2rem;
-  transition: all 0.2s;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: background var(--ease);
+  overflow: hidden;
 }
-
-.svc-card:hover {
-  background: #f0fafa;
+/* Teal accent bar on top */
+.svc-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s ease;
 }
+.svc-card:hover::before { transform: scaleX(1); }
+.svc-card:hover { background: var(--teal-lt); }
 
 .svc-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem;
+  font-size: 3.8rem;
   font-weight: 700;
-  color: #e5e7eb;
-  margin-bottom: 1.5rem;
+  color: rgba(229,231,235,0.8);
+  line-height: 1;
+  margin-bottom: 1.75rem;
   display: block;
+  transition: color .4s ease;
+  letter-spacing: -0.02em;
 }
+.svc-card:hover .svc-num { color: rgba(0,128,128,0.15); }
 
 .svc-card h3 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
+  font-weight: 600;
   margin-bottom: 1rem;
-  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
-
 .svc-card p {
-  font-size: 0.85rem;
-  color: #6B7280;
-  line-height: 1.75;
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.82;
   margin-bottom: 2rem;
+  flex: 1;
+  font-weight: 300;
 }
-
 .svc-arrow {
-  color: #008080;
-  font-size: 0.8rem;
-  font-weight: 600;
+  color: var(--teal);
+  font-size: .75rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: .4rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-family: 'DM Sans', sans-serif;
+  transition: gap var(--ease);
 }
-
-.svc-arrow:hover {
-  gap: 0.7rem;
-}
+.svc-arrow:hover { gap: .65rem; }
 
 /* ----- CASE STUDIES ----- */
 .cases {
