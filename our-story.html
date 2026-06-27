@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- SVG favicon for modern browsers -->
 <link rel="icon" type="image/svg+xml" href="/assets/primechain.svg">
 <style>
 :root {
@@ -111,7 +110,7 @@ a{text-decoration:none;}
 .btn-outline-white:hover{border-color:rgba(255,255,255,0.45);color:white;background:rgba(255,255,255,0.04);}
 .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
 
-/* FOOTER (unified) */
+/* FOOTER */
 footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3.5rem;margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,0.06);}
 .footer-brand img{height:34px;margin-bottom:1.25rem;filter:brightness(0) invert(1) opacity(.8);}
@@ -180,7 +179,7 @@ footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
       <h1>Built from<br>the inside.<br><em>By someone<br>who's been there.</em></h1>
     </div>
     <div class="hero-right">
-      <p>PrimeChain Solutions wasn't started in a boardroom. It was built after a decade inside the operations it now serves — watching the same visibility problems create the same chaos, in every industry, at every scale.</p>
+      <p>PrimeChain Solutions wasn't built because I wanted to create software. It was built because, throughout my career, I kept asking the same question: <strong style="color:white;">Why do well-run businesses still struggle with problems they should be able to see?</strong></p>
       <div class="hero-quote-block">
         <p>"Operational chaos isn't your problem. Lack of visibility is."</p>
         <cite>Founder, PrimeChain Solutions</cite>
@@ -191,18 +190,33 @@ footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
 
 <section class="the-gap">
   <div class="container">
-    <div class="section-label reveal">Why we exist</div>
-    <h2 class="section-title reveal">The gap nobody<br>was filling.</h2>
+    <div class="section-label reveal">The root cause</div>
+    <h2 class="section-title reveal">The same problem.<br>Different industries.</h2>
     <div class="gap-layout">
       <div class="gap-left reveal d1">
         <div class="gap-body">
-          <p>Enterprise systems like SAP are powerful. But they're built for large corporations with large IT budgets and large implementation teams. Spreadsheets are flexible — but they break under operational pressure, create version control chaos, and tell you what happened last week, not what's happening right now.</p>
-          <p>Between those two extremes sits the majority of South African operations businesses. <strong>Too complex for spreadsheets. Too lean for SAP.</strong> Every role held before PrimeChain Solutions was founded confirmed this. The problem wasn't that businesses didn't have data — it was that the data was invisible, delayed, or locked inside paper that nobody could act on in time.</p>
+          <p>Working in logistics introduced me to the complexity of operations. Trucks, people, inventory, suppliers and customers all depend on hundreds of decisions being made every day. I quickly realised that running an operation wasn't just about moving things from one place to another — it was about managing an interconnected system.</p>
+          <p>That curiosity led me deeper. Business Analysis taught me to understand processes before proposing solutions. Lean Six Sigma taught me that every recurring problem is the output of a process, and that lasting improvement comes from fixing the system rather than treating the symptoms.</p>
+          <p>Data Science and Business Intelligence changed the way I viewed information. Data isn't valuable because it exists; it's valuable because it allows better decisions to be made. If the right information isn't being captured, measured and presented, businesses are forced to rely on assumptions instead of evidence.</p>
         </div>
       </div>
       <div class="gap-right reveal d2">
         <div class="gap-highlight">
-          <p>We build for the business owner who knows something is broken but <em>doesn't know how to fix it.</em> The operator whose team is spending Friday afternoon hand-writing the same job card it wrote on Monday.</p>
+          <p>As I began building solutions across different industries, I noticed something unexpected. <em>The problems looked completely different on the surface, but they all shared the same root cause.</em></p>
+        </div>
+        <div style="margin-top:2rem;display:flex;flex-direction:column;gap:1.2rem;">
+          <div style="padding:1.2rem 1.5rem;background:var(--teal-lt);border-left:3px solid var(--teal);">
+            <h4 style="font-size:.9rem;font-weight:600;margin-bottom:.3rem;">Transport Business</h4>
+            <p style="font-size:.85rem;color:var(--muted);line-height:1.6;">Couldn't explain why fuel costs kept increasing. Fuel slips weren't being collected consistently, exceptions weren't measured, and no meaningful metrics existed to identify where losses were occurring.</p>
+          </div>
+          <div style="padding:1.2rem 1.5rem;background:var(--teal-lt);border-left:3px solid var(--teal);">
+            <h4 style="font-size:.9rem;font-weight:600;margin-bottom:.3rem;">Field Service Business</h4>
+            <p style="font-size:.85rem;color:var(--muted);line-height:1.6;">Overwhelmed by paperwork and administration. Work was being recorded on paper instead of through a structured digital process that captured information once and made it immediately available to everyone who needed it.</p>
+          </div>
+          <div style="padding:1.2rem 1.5rem;background:var(--teal-lt);border-left:3px solid var(--teal);">
+            <h4 style="font-size:.9rem;font-weight:600;margin-bottom:.3rem;">Fleet Operation</h4>
+            <p style="font-size:.85rem;color:var(--muted);line-height:1.6;">Appeared profitable but couldn't explain why margins kept shrinking. There was no vehicle costing model, no benchmark to measure performance against, and no operational data to compare expected costs with actual results.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -213,31 +227,35 @@ footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
   <div class="container">
     <div class="values-layout">
       <div class="values-left reveal">
-        <div class="section-label">How we think</div>
-        <h2 class="section-title">The mindset<br>behind the work.</h2>
-        <p style="font-size:.95rem;color:var(--muted);line-height:1.85;margin-top:1.25rem;font-weight:300;">Every engagement starts with curiosity and ends with a measurable outcome. The academic background in logistics, data science, and Six Sigma exists to serve one purpose — structured problem diagnosis before solution design.</p>
+        <div class="section-label">The insight</div>
+        <h2 class="section-title">Every project<br>reinforced the same lesson.</h2>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.85;margin-top:1.25rem;font-weight:300;">Operational problems are usually by-products of something much deeper. Processes haven't been digitised. Critical information isn't being captured. The right performance measures don't exist.</p>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.85;margin-top:.75rem;font-weight:300;">Without that foundation, visibility becomes impossible, and without visibility, good decisions become difficult.</p>
+        <div style="margin-top:2rem;padding:1.5rem 2rem;background:var(--navy);color:white;">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;line-height:1.5;font-weight:500;">That realisation became the foundation of PrimeChain Solutions.</p>
+        </div>
       </div>
       <div class="values-right reveal d2">
         <div class="values-list">
           <div class="value-item">
             <span class="val-num">01</span>
             <div class="val-body">
-              <h4>Systems Thinking</h4>
-              <p>Every problem exists inside a larger system. We don't fix symptoms — we find where the system is breaking down and build solutions that address the root cause, not the surface noise.</p>
+              <h4>Understand the operation first</h4>
+              <p>We don't start with software. We start by understanding how a business operates, identifying where information is lost, delayed or never captured at all.</p>
             </div>
           </div>
           <div class="value-item">
             <span class="val-num">02</span>
             <div class="val-body">
-              <h4>Analytical by Default</h4>
-              <p>Decisions should be driven by data, not gut feel. We're wired to find the number, prove the point, and build the tool that makes the right information visible at the right time.</p>
+              <h4>Digitise the process</h4>
+              <p>Only then do we design systems that digitise processes, collect meaningful operational data and transform it into visibility that leaders can use to make better decisions.</p>
             </div>
           </div>
           <div class="value-item">
             <span class="val-num">03</span>
             <div class="val-body">
-              <h4>Relentlessly Curious</h4>
-              <p>Every operational environment is different and every one has something to teach. Curiosity is what turns a client's messy, manual process into a clean, working system that the team actually uses.</p>
+              <h4>Better systems, better decisions</h4>
+              <p>Because better systems create better information. Better information creates better decisions. And better decisions build better businesses.</p>
             </div>
           </div>
         </div>
@@ -249,8 +267,8 @@ footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
 <section class="credentials">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Thnking Hats</div>
-      <h2 class="section-title">The foundation<br>behind the work.</h2>
+      <div class="section-label">The foundation</div>
+      <h2 class="section-title">What we bring<br>to every engagement.</h2>
     </div>
     <div class="cred-grid reveal">
       <div class="cred-card">
@@ -281,7 +299,7 @@ footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
       <div class="cred-card">
         <i class="fas fa-briefcase cred-icon"></i>
         <h4>Experience</h4>
-        <p>Every role defined by building solutions to challenges faced.</p>
+        <p>Every role defined by building solutions to challenges faced across transport, field service, and fleet operations.</p>
       </div>
     </div>
   </div>
