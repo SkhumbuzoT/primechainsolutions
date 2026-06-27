@@ -26,7 +26,7 @@
       --border: #E3E4E6;
       --light: #E8E9EB;
       --ease: 0.3s ease;
-      --section-y: 7rem;
+      --section-y: 6rem;
       --radius: 4px;
     }
     html { scroll-behavior: smooth; font-size: 16px; }
@@ -59,7 +59,7 @@
       z-index: 3000;
       transition: width .08s linear;
     }
-    /* ----- navigation (elevated, subtle) ----- */
+    /* ----- navigation ----- */
     #nav {
       position: fixed;
       top: 0;
@@ -148,10 +148,10 @@
       font-size: 1.2rem;
       color: white;
     }
-    /* ----- hero (refined) ----- */
+    /* ----- hero ----- */
     .page-hero {
       background: var(--navy-dk);
-      padding: 11rem 2rem 6rem;
+      padding: 11rem 2rem 5rem;
       position: relative;
       overflow: hidden;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
@@ -207,7 +207,7 @@
       font-weight: 300;
       max-width: 580px;
     }
-    /* ----- section label (consistent) ----- */
+    /* ----- section label ----- */
     .section-label {
       font-size: 0.68rem;
       font-weight: 700;
@@ -227,11 +227,17 @@
       background: var(--gold);
       flex-shrink: 0;
     }
-    /* ----- featured article (card) ----- */
-    .featured-section {
+    /* ----- TWO-UP FEATURED (article + case side by side) ----- */
+    .featured-two-up {
       padding: var(--section-y) 0;
       background: var(--white);
     }
+    .two-up-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    /* article card (left) */
     .featured-article {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -239,6 +245,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
+      background: white;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
       transition: box-shadow var(--ease);
     }
@@ -247,7 +254,7 @@
     }
     .fa-left {
       background: var(--navy);
-      padding: 3.5rem;
+      padding: 2.5rem 2rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -263,41 +270,41 @@
     }
     .fa-left-inner { position: relative; z-index: 1; }
     .fa-tag {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--teal);
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.8rem;
       display: block;
     }
     .fa-left h2 {
-      font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+      font-size: clamp(1.2rem, 1.8vw, 1.6rem);
       color: white;
       line-height: 1.2;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.8rem;
       font-weight: 600;
     }
     .fa-left p {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.6);
-      line-height: 1.8;
+      line-height: 1.7;
       font-weight: 300;
     }
     .fa-meta {
       display: flex;
       gap: 1.5rem;
-      margin-top: 2.5rem;
+      margin-top: 1.5rem;
     }
     .fa-meta span {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: rgba(255, 255, 255, 0.3);
       display: flex;
       align-items: center;
       gap: 0.4rem;
     }
     .fa-right {
-      padding: 3.5rem;
+      padding: 2.5rem 2rem;
       background: var(--off);
       display: flex;
       flex-direction: column;
@@ -305,27 +312,27 @@
     }
     .fa-right h4 {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--muted);
-      margin-bottom: 1.4rem;
+      margin-bottom: 1rem;
     }
     .key-points {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
-      margin-bottom: 2rem;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
     }
     .key-points li {
       display: flex;
-      gap: 0.75rem;
+      gap: 0.6rem;
       align-items: flex-start;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.5;
     }
     .key-points li::before {
       content: '→';
@@ -337,19 +344,13 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.88rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--teal);
       transition: gap var(--ease);
     }
     .read-link:hover { gap: 0.8rem; }
-    /* ----- featured case (card) ----- */
-    .featured-cs {
-      padding: var(--section-y) 0;
-      background: var(--off);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
+    /* case card (right) */
     .cs-featured {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -366,7 +367,7 @@
     }
     .cs-feat-left {
       background: var(--navy);
-      padding: 3.5rem;
+      padding: 2.5rem 2rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -381,68 +382,68 @@
       pointer-events: none;
     }
     .cs-tag {
-      font-size: 0.68rem;
+      font-size: 0.6rem;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--teal);
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.8rem;
       display: block;
     }
     .cs-feat-left h2 {
-      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      font-size: clamp(1.2rem, 1.8vw, 1.6rem);
       color: white;
       line-height: 1.2;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.8rem;
       font-weight: 600;
     }
     .cs-feat-left p {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.55);
-      line-height: 1.8;
+      line-height: 1.7;
       font-weight: 300;
     }
     .cs-nums {
       display: flex;
-      gap: 2.5rem;
-      margin-top: 2.5rem;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
     }
     .cs-num-v {
       display: block;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--gold);
       line-height: 1;
     }
     .cs-num-l {
       display: block;
-      font-size: 0.68rem;
+      font-size: 0.6rem;
       color: rgba(255, 255, 255, 0.3);
-      margin-top: 0.2rem;
+      margin-top: 0.1rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
     .cs-feat-right {
-      padding: 3.5rem;
+      padding: 2.5rem 2rem;
       background: white;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.2rem;
     }
     .cs-block h4 {
       font-family: 'DM Sans', sans-serif;
-      font-size: 0.67rem;
+      font-size: 0.6rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: var(--muted);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.4rem;
     }
     .cs-block p {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: var(--text);
-      line-height: 1.85;
+      line-height: 1.7;
       font-weight: 300;
     }
     .cs-divider {
@@ -453,14 +454,14 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
+      gap: 0.5rem;
     }
     .cs-outcomes li {
       display: flex;
-      gap: 0.7rem;
-      font-size: 0.88rem;
+      gap: 0.6rem;
+      font-size: 0.8rem;
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.5;
       font-weight: 300;
     }
     .cs-outcomes li::before {
@@ -473,15 +474,16 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.7rem 1.6rem;
+      padding: 0.5rem 1.2rem;
       background: var(--navy);
       color: white;
-      font-size: 0.78rem;
+      font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       border-radius: var(--radius);
       transition: background var(--ease), transform var(--ease);
+      align-self: flex-start;
     }
     .btn-navy:hover {
       background: var(--teal);
@@ -491,6 +493,7 @@
     .thinking-grid-section {
       padding: var(--section-y) 0;
       background: var(--white);
+      border-top: 1px solid var(--border);
     }
     .thinking-grid {
       display: grid;
@@ -556,7 +559,7 @@
       font-size: 0.75rem;
       color: var(--muted);
     }
-    /* ----- cta band (refined) ----- */
+    /* ----- cta band ----- */
     .cs-cta {
       background: var(--navy-dk);
       padding: 5rem 0;
@@ -622,7 +625,7 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-    /* ----- footer (clean) ----- */
+    /* ----- footer ----- */
     footer {
       background: var(--navy-dk);
       padding: 2.5rem 0 2rem;
@@ -655,10 +658,14 @@
     .foot-links a:hover { color: white; }
     /* ----- responsive ----- */
     @media (max-width: 1024px) {
-      :root { --section-y: 5rem; }
+      :root { --section-y: 4rem; }
+      .two-up-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
       .featured-article,
       .cs-featured {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
       }
       .thinking-grid {
         grid-template-columns: 1fr 1fr;
@@ -694,6 +701,10 @@
       .nav-cta {
         border-color: rgba(255, 255, 255, 0.15) !important;
       }
+      .featured-article,
+      .cs-featured {
+        grid-template-columns: 1fr;
+      }
       .thinking-grid {
         grid-template-columns: 1fr;
       }
@@ -701,7 +712,7 @@
       .fa-right,
       .cs-feat-left,
       .cs-feat-right {
-        padding: 2.5rem 1.8rem;
+        padding: 2rem 1.5rem;
       }
       .cs-nums {
         gap: 1.5rem;
@@ -712,7 +723,7 @@
       }
       .cs-cta { padding: 3.5rem 0; }
     }
-    /* ----- reveal animation (polished) ----- */
+    /* ----- reveal animation ----- */
     .reveal {
       opacity: 0;
       transform: translateY(28px);
@@ -758,69 +769,67 @@
   </div>
 </section>
 
-<!-- featured article -->
-<section class="featured-section">
+<!-- TWO-UP: Featured article + Featured case side by side -->
+<section class="featured-two-up">
   <div class="container">
-    <div class="section-label reveal">Featured article</div>
-    <div class="featured-article reveal">
-      <div class="fa-left">
-        <div class="fa-left-inner">
-          <span class="fa-tag">Operations &amp; Admin</span>
-          <h2>Manual Work Is Costing You More Than You Think</h2>
-          <p>Every hour your team spends on repetitive manual work is an hour not spent on things that move your business forward. But the real cost isn't just time — it's the decisions that never get made because the right information never surfaces.</p>
+    <div class="section-label reveal">Featured</div>
+    <div class="two-up-grid reveal">
+      <!-- LEFT: Featured Article -->
+      <div class="featured-article">
+        <div class="fa-left">
+          <div class="fa-left-inner">
+            <span class="fa-tag">Operations &amp; Admin</span>
+            <h2>Manual Work Is Costing You More Than You Think</h2>
+            <p>Every hour your team spends on repetitive manual work is an hour not spent on things that move your business forward. But the real cost isn't just time — it's the decisions that never get made because the right information never surfaces.</p>
+          </div>
+          <div class="fa-meta">
+            <span><i class="fas fa-clock"></i> 5 min read</span>
+          </div>
         </div>
-        <div class="fa-meta">
-          <span><i class="fas fa-clock"></i> 5 min read</span>
+        <div class="fa-right">
+          <div>
+            <h4>What this article covers</h4>
+            <ul class="key-points">
+              <li>How to calculate the true cost of manual admin in your operation</li>
+              <li>The hidden cost nobody counts — decision delays caused by slow information</li>
+              <li>Three signs your operation is ready for automation</li>
+              <li>What automating admin actually looks like in a real operational environment</li>
+            </ul>
+          </div>
+          <a href="article-manual-work.html" class="read-link">Read article <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-      <div class="fa-right">
-        <div>
-          <h4>What this article covers</h4>
-          <ul class="key-points">
-            <li>How to calculate the true cost of manual admin in your operation</li>
-            <li>The hidden cost nobody counts — decision delays caused by slow information</li>
-            <li>Three signs your operation is ready for automation</li>
-            <li>What automating admin actually looks like in a real operational environment</li>
-          </ul>
-        </div>
-        <a href="article-manual-work.html" class="read-link">Read article <i class="fas fa-arrow-right"></i></a>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- featured case study -->
-<section class="featured-cs">
-  <div class="container">
-    <div class="section-label reveal">Featured case study</div>
-    <div class="cs-featured reveal">
-      <div class="cs-feat-left">
-        <div>
-          <span class="cs-tag">Commodity Trader</span>
-          <h2>How We Stopped a Commodity Trader’s Undetected Fuel Leakage</h2>
-          <p>38 vehicles across multiple subcontractors. No reliable fuel monitoring. Losses accumulated undetected until we built a live exception-driven dashboard.</p>
+      <!-- RIGHT: Featured Case Study -->
+      <div class="cs-featured">
+        <div class="cs-feat-left">
+          <div>
+            <span class="cs-tag">Commodity Trader</span>
+            <h2>How We Stopped a Commodity Trader’s Undetected Fuel Leakage</h2>
+            <p>38 vehicles across multiple subcontractors. No reliable fuel monitoring. Losses accumulated undetected until we built a live exception-driven dashboard.</p>
+          </div>
+          <div class="cs-nums">
+            <div><span class="cs-num-v">38+</span><span class="cs-num-l">Vehicles</span></div>
+            <div><span class="cs-num-v">R200k+</span><span class="cs-num-l">Waste identified</span></div>
+            <div><span class="cs-num-v">Wks</span><span class="cs-num-l">To first detection</span></div>
+          </div>
         </div>
-        <div class="cs-nums">
-          <div><span class="cs-num-v">38+</span><span class="cs-num-l">Vehicles</span></div>
-          <div><span class="cs-num-v">R200k+</span><span class="cs-num-l">Waste identified</span></div>
-          <div><span class="cs-num-v">Wks</span><span class="cs-num-l">To first detection</span></div>
+        <div class="cs-feat-right">
+          <div class="cs-block">
+            <h4>What was built</h4>
+            <p>A Python-based fuel monitoring API connected to a real-time web dashboard. Fuel issued vs consumed, distance vs usage, time-based trip analysis, and automated exception alerts — all running without manual input.</p>
+          </div>
+          <hr class="cs-divider" />
+          <div class="cs-block">
+            <h4>Outcomes</h4>
+            <ul class="cs-outcomes">
+              <li>Fuel leakage detected within weeks of go-live</li>
+              <li>Full cost visibility across every vehicle &amp; partner</li>
+              <li>Partners held accountable against objective data</li>
+            </ul>
+          </div>
+          <a href="index.html#contact" class="btn-navy">Discuss a similar problem →</a>
         </div>
-      </div>
-      <div class="cs-feat-right">
-        <div class="cs-block">
-          <h4>What was built</h4>
-          <p>A Python-based fuel monitoring API connected to a real-time web dashboard. Fuel issued vs consumed, distance vs usage, time-based trip analysis, and automated exception alerts — all running without manual input.</p>
-        </div>
-        <hr class="cs-divider" />
-        <div class="cs-block">
-          <h4>Outcomes</h4>
-          <ul class="cs-outcomes">
-            <li>Fuel leakage detected within weeks of go-live</li>
-            <li>Full cost visibility across every vehicle &amp; partner</li>
-            <li>Partners held accountable against objective data</li>
-          </ul>
-        </div>
-        <a href="index.html#contact" class="btn-navy" style="align-self:flex-start;">Discuss a similar problem →</a>
       </div>
     </div>
   </div>
