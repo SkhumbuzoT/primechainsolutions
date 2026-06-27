@@ -1,1196 +1,1447 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="PrimeChain Solutions builds operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa.">
-<title>PrimeChain Solutions | Clarity. Control. Growth.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- SVG favicon placeholder (kept as original reference) -->
-<link rel="icon" type="image/svg+xml" href="/assets/primechain.svg">
-<style>
-/* ----- RESET & GLOBAL ----- */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  color: #0F1923;
-  background: #ffffff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
-}
-
-h1, h2, h3, h4, blockquote {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-a {
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.container {
-  max-width: 1200px;
-  width: 90%;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* ----- CSS CUSTOM PROPERTIES ----- */
-:root {
-  --section-y: 7rem;
-  --gap-lg: 5rem;
-  --off: #F7F7F5;
-  --teal: #008080;
-  --teal-lt: #f0fafa;
-  --border: #E3E4E6;
-  --muted: #6B7280;
-  --ease: 0.25s ease;
-}
-
-/* ----- SCROLL PROGRESS (lightweight) ----- */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background: linear-gradient(90deg, #008080, #C9A84C);
-  z-index: 3000;
-  pointer-events: none;
-}
-
-/* ----- NAVIGATION ----- */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 2000;
-  padding: 0 1.5rem;
-  transition: all 0.25s ease;
-}
-
-.navbar.scrolled {
-  background: rgba(7, 21, 52, 0.96);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
-}
-
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 80px;
-}
-
-.logo img {
-  height: 38px;
-  width: auto;
-  filter: brightness(0) invert(1);
-}
-
-.nav-links {
-  display: flex;
-  gap: 2.2rem;
-  list-style: none;
-  align-items: center;
-}
-
-.nav-links a {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
-  transition: color 0.2s;
-}
-
-.nav-links a:hover {
-  color: white;
-}
-
-.nav-cta {
-  padding: 0.6rem 1.6rem !important;
-  border: 1px solid rgba(255,255,255,0.25) !important;
-  color: white !important;
-  font-weight: 600 !important;
-  border-radius: 0px;
-}
-
-.nav-cta:hover {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(255,255,255,0.5) !important;
-}
-
-.mobile-btn {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.3rem;
-  color: white;
-  cursor: pointer;
-}
-
-/* ----- HERO SECTION (refined spacing) ----- */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  background: linear-gradient(135deg, rgba(4,12,30,0.82) 0%, rgba(0,40,40,0.78) 100%), url('/assets/empower.jpeg');
-  background-size: cover;
-  background-position: center 30%;
-}
-
-.hero-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-content {
-  max-width: 780px;
-  padding: 6rem 0 4rem;
-}
-
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
-  margin-bottom: 1.8rem;
-}
-
-.hero-eyebrow::before {
-  content: '';
-  width: 32px;
-  height: 1px;
-  background: #C9A84C;
-}
-
-.hero h1 {
-  font-size: clamp(3rem, 8vw, 5.2rem);
-  line-height: 1.05;
-  color: white;
-  margin-bottom: 2rem;
-  font-weight: 600;
-}
-
-.hero h1 em {
-  font-style: italic;
-  color: rgba(255,255,255,0.7);
-}
-
-.hero-sub {
-  font-size: 1rem;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.65);
-  max-width: 540px;
-  margin-bottom: 2.8rem;
-  font-weight: 300;
-}
-
-.btn-teal, .btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.9rem 2.2rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: all 0.25s;
-}
-
-.btn-teal {
-  background: #008080;
-  color: white;
-}
-
-.btn-teal:hover {
-  background: #006666;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px -8px rgba(0,128,128,0.4);
-}
-
-.btn-outline {
-  border: 1px solid rgba(255,255,255,0.3);
-  color: rgba(255,255,255,0.85);
-}
-
-.btn-outline:hover {
-  border-color: white;
-  color: white;
-  background: rgba(255,255,255,0.05);
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-/* ----- SECTION LABELS & TITLES (modern premium spacing) ----- */
-.section-label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #008080;
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.section-label::before {
-  content: '';
-  width: 28px;
-  height: 1px;
-  background: #C9A84C;
-}
-
-.section-title {
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 1.2;
-  font-weight: 600;
-  color: #0A1F44;
-  margin-bottom: 1rem;
-}
-
-.section-sub {
-  font-size: 0.95rem;
-  color: #6B7280;
-  line-height: 1.7;
-  max-width: 520px;
-}
-
-/* ----- PROBLEM SECTION ----- */
-.problem {
-  padding: 7rem 0;
-  background: white;
-}
-
-.problem-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 5rem;
-  align-items: start;
-}
-
-.problem-intro {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  line-height: 1.5;
-  color: #0F1923;
-  margin-bottom: 2rem;
-  font-weight: 500;
-}
-
-.about-body {
-  font-size: 0.95rem;
-  color: #6B7280;
-  line-height: 1.8;
-  margin-bottom: 1.8rem;
-}
-
-.pain-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: #E3E4E6;
-}
-
-.pain-item {
-  background: white;
-  padding: 2rem 1.8rem;
-  transition: all 0.2s;
-}
-
-.pain-item:hover {
-  background: #f0fafa;
-}
-
-.pain-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: rgba(10,31,68,0.08);
-  margin-bottom: 1.2rem;
-  display: block;
-}
-
-.pain-text h4 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-  margin-bottom: 0.65rem;
-}
-
-.pain-text p {
-  font-size: 0.85rem;
-  color: #6B7280;
-  line-height: 1.65;
-}
-
-/* ----- STATS (lightweight grid) ----- */
-.stats {
-  background: #071534;
-  padding: 5rem 0;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.stat {
-  padding: 2rem 1.5rem;
-  text-align: center;
-  border-right: 1px solid rgba(255,255,255,.08);
-}
-
-.stat:last-child {
-  border-right: none;
-}
-
-.stat-n {
-  display: block;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  font-weight: 600;
-  color: #fff;
-  line-height: 1.1;
-  margin-bottom: .5rem;
-}
-
-.stat-l {
-  display: block;
-  font-size: .9rem;
-  color: rgba(255,255,255,.72);
-  letter-spacing: .04em;
-}
-
-/* ----- SERVICES SECTION ----- */
-.services {
-  padding: 7rem 0;
-  background: #F7F7F5;
-}
-
-.services-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 4rem;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.svc-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: #E3E4E6;
-}
-
-.svc-card {
-  background: white;
-  padding: 3rem 2rem;
-  transition: all 0.2s;
-}
-
-.svc-card:hover {
-  background: #f0fafa;
-}
-
-.svc-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem;
-  font-weight: 700;
-  color: #e5e7eb;
-  margin-bottom: 1.5rem;
-  display: block;
-}
-
-.svc-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.svc-card p {
-  font-size: 0.85rem;
-  color: #6B7280;
-  line-height: 1.75;
-  margin-bottom: 2rem;
-}
-
-.svc-arrow {
-  color: #008080;
-  font-size: 0.8rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.svc-arrow:hover {
-  gap: 0.7rem;
-}
-
-/* ----- CASE STUDIES ----- */
-.cases {
-  padding: 7rem 0;
-  background: white;
-}
-
-.cases-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 4rem;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-.case-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: #E3E4E6;
-}
-
-.case-card {
-  background: white;
-  padding: 2.5rem 2rem;
-  transition: background 0.2s;
-}
-
-.case-card:hover {
-  background: #F7F7F5;
-}
-
-.case-industry {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #008080;
-  text-transform: uppercase;
-}
-
-.case-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.35rem;
-  margin: 0.8rem 0 1rem;
-  font-weight: 600;
-}
-
-.case-problem {
-  font-size: 0.85rem;
-  color: #6B7280;
-  line-height: 1.7;
-  margin-bottom: 1.2rem;
-}
-
-.case-outcome {
-  font-size: 0.85rem;
-  font-weight: 500;
-  padding-top: 1.2rem;
-  border-top: 1px solid #E3E4E6;
-  display: flex;
-  gap: 0.6rem;
-  align-items: flex-start;
-}
-
-.case-outcome::before {
-  content: "→";
-  color: #C9A84C;
-}
-
-/* ----- HOW WE WORK ----- */
-.how {
-  padding: 7rem 0;
-  background: #F7F7F5;
-}
-
-.how-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 4rem;
-  align-items: start;
-}
-
-.how-step {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 1.5rem;
-  padding: 2rem 0;
-  border-bottom: 1px solid #E3E4E6;
-}
-
-.how-step:first-child {
-  border-top: 1px solid #E3E4E6;
-}
-
-.step-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #D1D5DB;
-  transition: color 0.2s;
-}
-
-.how-step:hover .step-num {
-  color: #008080;
-}
-
-.step-body h4 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.step-body p {
-  font-size: 0.85rem;
-  color: #6B7280;
-  line-height: 1.7;
-}
-
-/* ----- ABOUT (creds) ----- */
-.about {
-  padding: 7rem 0;
-  background: white;
-}
-
-.about-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
-}
-
-.about-quote-large {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #0A1F44;
-  margin-bottom: 1.5rem;
-}
-
-.about-quote-large em {
-  color: #008080;
-  font-style: italic;
-}
-
-.cred {
-  display: flex;
-  gap: 1rem;
-  padding: 1.2rem 1.5rem;
-  border-left: 2px solid #E3E4E6;
-  border-bottom: 1px solid #E3E4E6;
-  transition: all 0.2s;
-}
-
-.cred:hover {
-  border-left-color: #008080;
-  background: #f0fafa;
-}
-
-.cred i {
-  color: #008080;
-  font-size: 0.8rem;
-  margin-top: 0.2rem;
-}
-
-.cred-text strong {
-  font-size: 0.9rem;
-  font-weight: 600;
-  display: block;
-  margin-bottom: 0.2rem;
-}
-
-.cred-text span {
-  font-size: 0.8rem;
-  color: #6B7280;
-}
-
-/* ----- TESTIMONIAL (lightweight CSS pattern, replaced heavy SVG) ----- */
-.testimonial {
-  position: relative;
-  background: #071A36;
-  padding: 6rem 0;
-  overflow: hidden;
-}
-
-.testimonial-bg {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 20% 30%, rgba(212,175,55,0.12) 2px, transparent 2px),
-                    radial-gradient(circle at 80% 70%, rgba(0,128,128,0.1) 2px, transparent 2px);
-  background-size: 48px 48px, 36px 36px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.testimonial-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 780px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 1.5rem;
-}
-
-.testimonial-inner::before {
-  content: """;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 7rem;
-  line-height: 1;
-  color: rgba(212,175,55,0.18);
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.testimonial blockquote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
-  font-weight: 500;
-  font-style: italic;
-  color: white;
-  line-height: 1.45;
-  margin-bottom: 2rem;
-}
-
-.testimonial cite {
-  font-style: normal;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-}
-
-.testimonial cite::before,
-.testimonial cite::after {
-  content: "";
-  width: 28px;
-  height: 1px;
-  background: rgba(255,255,255,0.2);
-}
-
-/* ----- CONTACT SECTION ----- */
-.contact {
-  padding: 7rem 0;
-  background: #F7F7F5;
-}
-
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 4rem;
-}
-
-.contact-info {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.contact-info a {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 0.9rem;
-  color: #6B7280;
-}
-
-.contact-info a:hover {
-  color: #008080;
-}
-
-.contact-note {
-  font-size: 0.8rem;
-  color: #6B7280;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #E3E4E6;
-}
-
-.contact-right {
-  background: white;
-  padding: 2.5rem;
-  border: 1px solid #E3E4E6;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-  margin-bottom: 1.2rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 1.2rem;
-}
-
-.form-group label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #0F1923;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid #E3E4E6;
-  border-bottom-width: 2px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.85rem;
-  transition: all 0.2s;
-  background: white;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #008080;
-  outline: none;
-}
-
-.form-submit {
-  width: 100%;
-  padding: 1rem;
-  background: #0A1F44;
-  color: white;
-  border: none;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 0.5rem;
-}
-
-.form-submit:hover {
-  background: #008080;
-}
-
-/* ----- FOOTER (clean, minimal) ----- */
-footer {
-  background: #071534;
-  padding: 5rem 0 2rem;
-}
-
-.footer-top {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  padding-bottom: 3rem;
-}
-
-.footer-brand img {
-  height: 36px;
-  filter: brightness(0) invert(1);
-  margin-bottom: 1rem;
-}
-
-.footer-brand p {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.7;
-  max-width: 260px;
-}
-
-.footer-col h5 {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 1.2rem;
-}
-
-.footer-col ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-}
-
-.footer-col a {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.45);
-  transition: color 0.2s;
-}
-
-.footer-col a:hover {
-  color: white;
-}
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-bottom p {
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.3);
-}
-
-.social {
-  display: flex;
-  gap: 0.8rem;
-}
-
-.social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.45);
-  font-size: 0.75rem;
-  transition: all 0.2s;
-}
-
-.social a:hover {
-  border-color: #008080;
-  color: #008080;
-}
-
-/* ----- REVEAL ANIMATIONS ----- */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ----- RESPONSIVE (mobile & tablet) ----- */
-@media (max-width: 1024px) {
-  .problem-layout,
-  .about-layout,
-  .contact-layout,
-  .how-layout {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .svc-grid,
-  .case-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .footer-top {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0 1rem;
-  }
-
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 80px;
-    right: 0;
-    width: 260px;
-    height: calc(100vh - 80px);
-    background: #071534;
-    flex-direction: column;
-    padding: 2rem;
-    gap: 1rem;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.3);
-    z-index: 1999;
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .nav-links li {
-    width: 100%;
-  }
-
-  .nav-links a {
-    display: block;
-    padding: 0.7rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-
-  .mobile-btn {
-    display: block;
-  }
-
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  .problem-layout,
-  .contact-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .pain-list {
-    grid-template-columns: 1fr;
-  }
-
-  .svc-grid,
-  .case-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .stats-grid .stat {
-    border-right: none;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-
-  .footer-top {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .services-header,
-  .cases-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="PrimeChain Solutions builds operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa." />
+  <title>PrimeChain Solutions | Clarity. Control. Growth.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="icon" type="image/svg+xml" href="/assets/primechain.svg" />
+  <style>
+    /* ----- RESET & GLOBAL ----- */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: #0F1923;
+      background: #ffffff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* ----- CSS CUSTOM PROPERTIES ----- */
+    :root {
+      --section-y: 7rem;
+      --gap-lg: 5rem;
+      --off: #F7F7F5;
+      --teal: #008080;
+      --teal-lt: #f0fafa;
+      --border: #E3E4E6;
+      --muted: #6B7280;
+      --ease: 0.25s ease;
+    }
+
+    /* ----- SCROLL PROGRESS ----- */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, #008080, #C9A84C);
+      z-index: 3000;
+      pointer-events: none;
+    }
+
+    /* ----- NAVIGATION ----- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2000;
+      padding: 0 1.5rem;
+      transition: all 0.25s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(7, 21, 52, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo img {
+      height: 38px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-cta {
+      padding: 0.6rem 1.6rem !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      color: white !important;
+      font-weight: 600 !important;
+      border-radius: 0px;
+    }
+
+    .nav-cta:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    .mobile-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* ----- HERO SECTION ----- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(4, 12, 30, 0.82) 0%, rgba(0, 40, 40, 0.78) 100%), url('/assets/empower.jpeg');
+      background-size: cover;
+      background-position: center 30%;
+    }
+
+    .hero-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {
+      max-width: 780px;
+      padding: 6rem 0 4rem;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: #C9A84C;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5.2rem);
+      line-height: 1.05;
+      color: white;
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 540px;
+      margin-bottom: 2.8rem;
+      font-weight: 300;
+    }
+
+    .btn-teal,
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2.2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+    }
+
+    .btn-teal {
+      background: #008080;
+      color: white;
+    }
+
+    .btn-teal:hover {
+      background: #006666;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -8px rgba(0, 128, 128, 0.4);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .btn-outline:hover {
+      border-color: white;
+      color: white;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ----- SECTION LABELS & TITLES ----- */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #008080;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: #C9A84C;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.2;
+      font-weight: 600;
+      color: #0A1F44;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 0.95rem;
+      color: #6B7280;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .section-intro {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #6B7280;
+      max-width: 680px;
+    }
+
+    /* ----- PROBLEM SECTION ----- */
+    .problem {
+      padding: 7rem 0;
+      background: white;
+    }
+
+    .problem-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .problem-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      line-height: 1.5;
+      color: #0F1923;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .about-body {
+      font-size: 0.95rem;
+      color: #6B7280;
+      line-height: 1.8;
+      margin-bottom: 1.8rem;
+    }
+
+    .pain-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: #E3E4E6;
+    }
+
+    .pain-item {
+      background: white;
+      padding: 2rem 1.8rem;
+      transition: all 0.2s;
+    }
+
+    .pain-item:hover {
+      background: #f0fafa;
+    }
+
+    .pain-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: rgba(10, 31, 68, 0.08);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .pain-text h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+    }
+
+    .pain-text p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      line-height: 1.65;
+    }
+
+    .pain-closing {
+      margin-top: 2.5rem;
+      font-size: 0.95rem;
+      color: #0F1923;
+      font-weight: 400;
+      line-height: 1.7;
+      max-width: 600px;
+      border-left: 3px solid #C9A84C;
+      padding-left: 1.5rem;
+    }
+
+    /* ----- CONVERGENCE SECTION (new) ----- */
+    .convergence {
+      padding: 6rem 0;
+      background: #F7F7F5;
+    }
+
+    .convergence-content {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .convergence-content p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #1F2A3A;
+      margin-bottom: 1.2rem;
+    }
+
+    .convergence-content strong {
+      color: #0A1F44;
+    }
+
+    /* ----- STATS ----- */
+    .stats {
+      background: #071534;
+      padding: 5rem 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat-n {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: .5rem;
+    }
+
+    .stat-l {
+      display: block;
+      font-size: .9rem;
+      color: rgba(255, 255, 255, .72);
+      letter-spacing: .04em;
+    }
+
+    /* ----- SERVICES SECTION ----- */
+    .services {
+      padding: 7rem 0;
+      background: #F7F7F5;
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #E3E4E6;
+    }
+
+    .svc-card {
+      background: white;
+      padding: 3rem 2rem;
+      transition: all 0.2s;
+    }
+
+    .svc-card:hover {
+      background: #f0fafa;
+    }
+
+    .svc-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #e5e7eb;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .svc-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .svc-card p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .svc-arrow {
+      color: #008080;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .svc-arrow:hover {
+      gap: 0.7rem;
+    }
+
+    /* ----- COMPETITIVE SECTION (new) ----- */
+    .competitive {
+      padding: 7rem 0;
+      background: white;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: #E3E4E6;
+      margin-top: 2.5rem;
+    }
+
+    .compare-item {
+      background: white;
+      padding: 2rem 1.8rem;
+    }
+
+    .compare-item h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .compare-item p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      line-height: 1.6;
+    }
+
+    .compare-prime {
+      grid-column: 1 / -1;
+      background: #f0fafa;
+      border-top: 2px solid #008080;
+    }
+
+    .compare-prime h4 {
+      color: #008080;
+    }
+
+    .competitive-closing {
+      margin-top: 2.5rem;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #0F1923;
+      max-width: 700px;
+      border-left: 3px solid #C9A84C;
+      padding-left: 1.5rem;
+    }
+
+    /* ----- CASE STUDIES ----- */
+    .cases {
+      padding: 7rem 0;
+      background: #F7F7F5;
+    }
+
+    .cases-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #E3E4E6;
+    }
+
+    .case-card {
+      background: white;
+      padding: 2.5rem 2rem;
+      transition: background 0.2s;
+    }
+
+    .case-card:hover {
+      background: #ffffff;
+    }
+
+    .case-industry {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #008080;
+      text-transform: uppercase;
+    }
+
+    .case-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      margin: 0.8rem 0 1rem;
+      font-weight: 600;
+    }
+
+    .case-problem {
+      font-size: 0.85rem;
+      color: #6B7280;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .case-outcome {
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding-top: 1.2rem;
+      border-top: 1px solid #E3E4E6;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    .case-outcome::before {
+      content: "→";
+      color: #C9A84C;
+    }
+
+    .case-link {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #008080;
+      letter-spacing: 0.04em;
+    }
+
+    .case-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ----- TESTIMONIAL ----- */
+    .testimonial {
+      position: relative;
+      background: #071A36;
+      padding: 6rem 0;
+      overflow: hidden;
+    }
+
+    .testimonial-bg {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.12) 2px, transparent 2px),
+        radial-gradient(circle at 80% 70%, rgba(0, 128, 128, 0.1) 2px, transparent 2px);
+      background-size: 48px 48px, 36px 36px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .testimonial-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
+    .testimonial-inner::before {
+      content: "\201C";
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7rem;
+      line-height: 1;
+      color: rgba(212, 175, 55, 0.18);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+      font-weight: 500;
+      font-style: italic;
+      color: white;
+      line-height: 1.45;
+      margin-bottom: 2rem;
+    }
+
+    .testimonial cite {
+      font-style: normal;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .testimonial cite::before,
+    .testimonial cite::after {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ----- HOW WE WORK ----- */
+    .how {
+      padding: 7rem 0;
+      background: white;
+    }
+
+    .how-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .how-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid #E3E4E6;
+    }
+
+    .how-step:first-child {
+      border-top: 1px solid #E3E4E6;
+    }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #D1D5DB;
+      transition: color 0.2s;
+    }
+
+    .how-step:hover .step-num {
+      color: #008080;
+    }
+
+    .step-body h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-body p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      line-height: 1.7;
+    }
+
+    /* ----- DATA JOURNEY (new sub-section) ----- */
+    .data-journey {
+      margin-top: 5rem;
+      padding-top: 4rem;
+      border-top: 1px solid #E3E4E6;
+    }
+
+    .data-journey h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #0A1F44;
+      margin-bottom: 1.5rem;
+    }
+
+    .data-journey p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #1F2A3A;
+      max-width: 720px;
+      margin-bottom: 1rem;
+    }
+
+    .journey-pipeline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.2rem;
+      margin: 2rem 0 1.5rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: #008080;
+    }
+
+    .journey-pipeline span {
+      background: #f0fafa;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+    }
+
+    .journey-pipeline i {
+      color: #C9A84C;
+      font-size: 0.7rem;
+    }
+
+    /* ----- CONTACT ----- */
+    .contact {
+      padding: 7rem 0;
+      background: #F7F7F5;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+    }
+
+    .contact-info {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-info a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: #6B7280;
+    }
+
+    .contact-info a:hover {
+      color: #008080;
+    }
+
+    .contact-note {
+      font-size: 0.8rem;
+      color: #6B7280;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #E3E4E6;
+    }
+
+    .contact-right {
+      background: white;
+      padding: 2.5rem;
+      border: 1px solid #E3E4E6;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0F1923;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #E3E4E6;
+      border-bottom-width: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #008080;
+      outline: none;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: #0A1F44;
+      color: white;
+      border: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover {
+      background: #008080;
+    }
+
+    /* ----- FOOTER ----- */
+    footer {
+      background: #071534;
+      padding: 5rem 0 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 3rem;
+    }
+
+    .footer-brand img {
+      height: 36px;
+      filter: brightness(0) invert(1);
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.7;
+      max-width: 260px;
+    }
+
+    .footer-col h5 {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .footer-col a {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.45);
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .social {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+
+    .social a:hover {
+      border-color: #008080;
+      color: #008080;
+    }
+
+    /* ----- REVEAL ANIMATIONS ----- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 1024px) {
+      .problem-layout,
+      .about-layout,
+      .contact-layout,
+      .how-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .svc-grid,
+      .case-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-top {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .compare-prime {
+        grid-column: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 80px;
+        right: 0;
+        width: 260px;
+        height: calc(100vh - 80px);
+        background: #071534;
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1rem;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        z-index: 1999;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .mobile-btn {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .problem-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .pain-list {
+        grid-template-columns: 1fr;
+      }
+
+      .svc-grid,
+      .case-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid .stat {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .services-header,
+      .cases-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="scroll-progress" id="scrollProgress"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-<nav class="navbar" id="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <img src="/assets/primechain.svg" alt="PrimeChain Solutions">
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#services">Services</a></li>
-      <li><a href="case-studies.html">Case Studies</a></li>
-      <li><a href="articles.html">Articles</a></li>
-      <li><a href="our-story.html">Our Story</a></li>
-      <li><a href="#contact" class="nav-cta">Talk to us</a></li>
-    </ul>
-    <button class="mobile-btn" id="mobileBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-  </div>
-</nav>
-
-<!-- HERO SECTION -->
-<section class="hero">
-  <div class="hero-container">
-    <div class="hero-content">
-      <div class="hero-eyebrow">Operational Intelligence</div>
-      <h1>Operational chaos<br>isn't your problem.<br><em>Lack of visibility is.</em></h1>
-      <p class="hero-sub">We design purpose-built systems that eliminate repetitive admin, stop margin leaks, and give you total control over your daily operations. Built for businesses that have outgrown manual spreadsheets but aren't ready for massive enterprise software.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-teal">Talk to us</a>
-        <a href="case-studies.html" class="btn-outline">View our work</a>
-      </div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="our-story.html">Our Story</a></li>
+        <li><a href="#contact" class="nav-cta">Talk to us</a></li>
+      </ul>
+      <button class="mobile-btn" id="mobileBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- PROBLEM SECTION -->
-<section class="problem">
-  <div class="container">
-    <div class="problem-layout">
-      <div class="problem-left reveal">
-        <div class="section-label">Sound familiar?</div>
-        <h2 class="section-title">If you're still finding problems at month end, you're already too late.</h2>
-        <p class="about-body">The businesses we work with aren't struggling because they're badly run. They're struggling because they can't see what's happening inside their own operation until the damage is done.</p>
-        <a href="#contact" class="btn-teal" style="margin-top: 1.5rem; display: inline-flex;">Talk to us</a>
-      </div>
-      <div class="problem-right">
-        <div class="pain-list">
-          <div class="pain-item reveal d1"><span class="pain-num">01</span><div class="pain-text"><h4>The Month-End Financial Blindspot</h4><p>Stock losses, fuel discrepancies, and delivery gaps only surface on the last day of the month. By then, physical slips are missing, the money is gone, and the damage is untraceable.</p></div></div>
-          <div class="pain-item reveal d2"><span class="pain-num">02</span><div class="pain-text"><h4>Delayed Field Data Stalls Your Cash Flow</h4><p>Field teams submit installation logs, proof of work, or delivery notes days after the job is completed. You manage on yesterday's information, leading to client invoice disputes and delayed payments.</p></div></div>
-          <div class="pain-item reveal d3"><span class="pain-num">03</span><div class="pain-text"><h4>You don't know which vehicles or partners cost you most</h4><p>Fuel spend is a black box. Subcontractor performance is judged on gut feel. There is no clear way to challenge an overcharge or verify a transit variance you cannot see in real time.</p></div></div>
-          <div class="pain-item reveal d4"><span class="pain-num">04</span><div class="pain-text"><h4>High-Value Skills Drowned in Manual Admin</h4><p>Information that already exists in one sheet gets copied by hand into another, printed, attached, and filed. Your team is buried in repetitive data entry instead of running the operation.</p></div></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Operational Intelligence</div>
+        <h1>Operational chaos<br />isn't your problem.<br /><em>Lack of visibility is.</em></h1>
+        <p class="hero-sub">We've seen it in transport yards, field service teams, and fleet operations. The surface problems are always different. The root cause almost never is. We find it, fix it, and build systems that keep it fixed.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-teal">Talk to us</a>
+          <a href="case-studies.html" class="btn-outline">View our work</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="container">
-    <div class="services-header reveal">
-      <div><div class="section-label">Restore visibility. Eliminate operational friction</div><h2 class="section-title">Three ways we solve operational problems.</h2></div>
-      <p class="section-sub">We help growing businesses replace disconnected spreadsheets, repetitive admin, and delayed reporting with operational systems built specifically for how they work.</p>
+  <!-- PROBLEM / SOUND FAMILIAR? -->
+  <section class="problem">
+    <div class="container">
+      <div class="problem-layout">
+        <div class="problem-left reveal">
+          <div class="section-label">Sound familiar?</div>
+          <h2 class="section-title">If you're still finding problems at month end, you're already too late.</h2>
+          <p class="about-body">The businesses we work with aren't badly run. They just can't see what's happening inside their own operation until the damage is already done.</p>
+          <a href="#contact" class="btn-teal" style="margin-top: 1.5rem; display: inline-flex;">Talk to us</a>
+        </div>
+        <div class="problem-right">
+          <div class="pain-list">
+            <div class="pain-item reveal d1"><span class="pain-num">01</span><div class="pain-text"><h4>The Month-End Financial Blindspot</h4><p>Fuel discrepancies, stock losses, and delivery gaps only appear at month-end. By then the slips are missing, the money is gone, and the source of the problem is untraceable. The data existed. It just never came together in time to act on it.</p></div></div>
+            <div class="pain-item reveal d2"><span class="pain-num">02</span><div class="pain-text"><h4>Delayed Field Data Stalls Your Cash Flow</h4><p>Field teams submit job cards, proof of work, and delivery notes days after the job is done. You're invoicing on yesterday's information, chasing disputes that wouldn't exist if the data had been captured correctly the first time.</p></div></div>
+            <div class="pain-item reveal d3"><span class="pain-num">03</span><div class="pain-text"><h4>You Don't Know Which Vehicles or Partners Cost You Most</h4><p>Fuel spend is a black box. Subcontractor performance is managed on gut feel. You have suspicions about which trucks overconsume and which routes underperform — but suspicion isn't enough to challenge a contractor or renegotiate a rate. Data is.</p></div></div>
+            <div class="pain-item reveal d4"><span class="pain-num">04</span><div class="pain-text"><h4>High-Value Skills Drowned in Manual Admin</h4><p>Information that already exists in one system gets copied by hand into another, printed, attached, and filed. Your team is spending Saturday mornings producing documents that add zero operational value — while the actual work waits.</p></div></div>
+          </div>
+          <div class="pain-closing reveal">
+            We've encountered every one of these across transport yards, field service teams, and fleet operations. They're not bad luck — they're symptoms of a process problem. And process problems are fixable.
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="svc-grid reveal">
-      <div class="svc-card"><span class="svc-num">01</span><h3>Operational Leak Audit™</h3><p>We identify where operational blind spots, admin bottlenecks, and reporting gaps are costing your business time, money, and control.</p><a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a></div>
-      <div class="svc-card"><span class="svc-num">02</span><h3>Operational Control Systems™</h3><p>We design and build lightweight operational platforms that replace repetitive manual processes without forcing your business into expensive enterprise software.</p><a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a></div>
-      <div class="svc-card"><span class="svc-num">03</span><h3>Continuous Improvement™</h3><p>Operational problems evolve. We stay involved after implementation to monitor performance, identify new bottlenecks, and ensure your systems continue creating measurable value.</p><a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a></div>
+  </section>
+
+  <!-- CONVERGENCE (NEW) -->
+  <section class="convergence">
+    <div class="container">
+      <div class="convergence-content reveal">
+        <div class="section-label">Why it stays broken</div>
+        <h2 class="section-title">The data exists. It just never converges.</h2>
+        <p>In almost every operation we've walked into, the information needed to make better decisions was already being generated. Fuel slips, weighbridge tickets, job cards, proof of delivery documents — all of it captured, somewhere.</p>
+        <p>The problem isn't that the data doesn't exist. It's that it lives in disconnected streams — WhatsApp, spreadsheets, paper files, accounting software — and never comes together into a picture anyone can act on.</p>
+        <p>Data that lives in separate streams has no analytical value until it converges. The insight only exists in the correlation. A fuel slip means nothing without the load record to measure it against. A job card means nothing if it takes ten minutes to produce what the system already knows.</p>
+        <p><strong>That's where most businesses are stuck — not because they're badly managed, but because nobody has ever built the layer that brings it together. That's the layer we build.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats reveal">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat"><span class="stat-n">Real-Time</span><span class="stat-l">Visibility</span></div>
+        <div class="stat"><span class="stat-n">30-40%</span><span class="stat-l">Cost Reduction</span></div>
+        <div class="stat"><span class="stat-n">50%</span><span class="stat-l">Faster Decisions</span></div>
+        <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Monitoring</span></div>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- STATS -->
-<div class="stats reveal">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat"><span class="stat-n">Real-Time</span><span class="stat-l">Visibility</span></div>
-      <div class="stat"><span class="stat-n">30-40%</span><span class="stat-l">Cost Reduction</span></div>
-      <div class="stat"><span class="stat-n">50%</span><span class="stat-l">Faster Decisions</span></div>
-      <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Monitoring</span></div>
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header reveal">
+        <div>
+          <div class="section-label">Restore visibility. Eliminate operational friction</div>
+          <h2 class="section-title">Three ways we solve operational problems.</h2>
+        </div>
+        <p class="section-sub">We don't arrive with a solution already in mind. We start by understanding exactly how your operation works — then we design what it actually needs.</p>
+      </div>
+      <div class="svc-grid reveal">
+        <div class="svc-card"><span class="svc-num">01</span><h3>Operational Leak Audit™</h3><p>We identify where operational blind spots, admin bottlenecks, and reporting gaps are costing your business time, money, and control.</p><a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a></div>
+        <div class="svc-card"><span class="svc-num">02</span><h3>Operational Control Systems™</h3><p>We design and build lightweight operational platforms that replace repetitive manual processes without forcing your business into expensive enterprise software.</p><a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a></div>
+        <div class="svc-card"><span class="svc-num">03</span><h3>Continuous Improvement™</h3><p>Operational problems evolve. We stay involved after implementation to monitor performance, identify new bottlenecks, and ensure your systems continue creating measurable value.</p><a href="services.html" class="svc-arrow"><i class="fas fa-arrow-right"></i></a></div>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- CASE STUDIES -->
-<section class="cases">
-  <div class="container">
-    <div class="cases-header reveal"><div><div class="section-label">Proof, not promises</div><h2 class="section-title">We have solved this before.</h2></div><a href="case-studies.html" class="svc-arrow">View all case studies <i class="fas fa-arrow-right"></i></a></div>
-    <div class="case-grid reveal">
-      <div class="case-card"><span class="case-industry">Commodity Trader</span><h3>How We Stopped a Commodity Trader's Undetected Fuel Leakage and Identified R200k+ in Waste.</h3><p class="case-problem">A commodity trader managing 38 vehicles had no way to track fuel consumption across subcontracted partners. Losses were accumulating undetected every month.</p><div class="case-outcome">Fuel leakage detected within weeks of go-live — for the first time in the operation's history</div></div>
-      <div class="case-card"><span class="case-industry">Electrical Contractor</span><h3>From 10 Minutes to Instant: Automating 1000 Manual Job Cards for a Field Service Operator.</h3><p class="case-problem">1000 job cards produced by hand every month. Each one requiring 10 minutes of copy-paste admin, printing and physical assembly of three pages.</p><div class="case-outcome">167 hours of admin eliminated monthly. R60,000 per year in printing costs removed entirely</div></div>
-      <div class="case-card"><span class="case-industry">Truck Owner</span><h3>Eliminating the Month-End Blindspot: Building a Live 6-KPI Control Tower for a 20-Vehicle Fleet.</h3><p class="case-problem">A fleet of 20 vehicles with no centralised performance view. Operational decisions only possible after month-end data was compiled.</p><div class="case-outcome">20 vehicles tracked across 6 live KPIs. Decisions shifted from month-end to real time</div></div>
+  <!-- COMPETITIVE (NEW) -->
+  <section class="competitive">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Why PrimeChain, not someone else?</div>
+        <h2 class="section-title">Most providers solve one part of the problem.</h2>
+      </div>
+      <div class="compare-grid reveal">
+        <div class="compare-item"><h4>Management consultant</h4><p>Understands the operation. Cannot build the system.</p></div>
+        <div class="compare-item"><h4>BI developer</h4><p>Can build the dashboard. Doesn't understand the operational context.</p></div>
+        <div class="compare-item"><h4>Enterprise software vendor</h4><p>Generic platform. Built for the top of the market. Priced to match.</p></div>
+        <div class="compare-item compare-prime"><h4>PrimeChain</h4><p>Operational domain expertise. Technical build capability. Analytical measurement. One relationship. SME-accessible price point.</p></div>
+      </div>
+      <div class="competitive-closing reveal">
+        That combination — delivered at a price point built for businesses that have outgrown spreadsheets but don't need enterprise software — is a position no current provider in South Africa occupies.
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- HOW WE WORK -->
-<section class="how">
-  <div class="container">
-    <div class="how-layout"><div class="how-left reveal"><div class="section-label">How it works</div><h2 class="section-title">From problem to solution in four steps.</h2><p class="section-sub" style="margin-top:1rem;">We don't arrive with a solution already in mind. We start by understanding your operation — then we build.</p></div><div class="how-steps reveal"><div class="how-step"><span class="step-num">01</span><div class="step-body"><h4>Book a 30-minute scoping call</h4><p>Tell us your sector, your bottleneck, and your rough scale. We'll tell you what a diagnosis would uncover and what it would cost to fix.</p></div></div><div class="how-step"><span class="step-num">02</span><div class="step-body"><h4>We run the Operational Leak Audit</h4><p>5–10 business days on-site and remote. We map your workflows, data gaps, and cost leakage. You get a Friction & Leakage Blueprint — regardless of whether you proceed to a build.</p></div></div><div class="how-step"><span class="step-num">03</span><div class="step-body"><h4>Decide what to fix, and when</h4><p>The blueprint makes the decision easy. If the leakage figure justifies a build, we scope it and quote it. If not, you keep the blueprint. Either way, you've spent money to save more.</p></div></div><div class="how-step"><span class="step-num">04</span><div class="step-body"><h4>We build, you run — we stay close</h4><p>Systems go live in weeks, not quarters. Monthly retainer clients get ongoing monitoring so the gains don't quietly reverse.</p></div></div></div></div>
-  </div>
-</section>
+  <!-- CASE STUDIES -->
+  <section class="cases">
+    <div class="container">
+      <div class="cases-header reveal">
+        <div>
+          <div class="section-label">Proof, not promises</div>
+          <h2 class="section-title">We have solved this before.</h2>
+          <p style="color:#6B7280; margin-top:0.5rem;">These are real engagements, real numbers. No estimates, no projections.</p>
+        </div>
+        <a href="case-studies.html" class="svc-arrow">View all case studies <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="case-grid reveal">
+        <div class="case-card">
+          <span class="case-industry">Commodity Trader — Mpumalanga Coal Haulage</span>
+          <h3>The R300k Fuel Leak Nobody Could See</h3>
+          <p class="case-problem">The refill data existed. The load records existed. They just lived in entirely separate places and were never brought together. When they were, the losses became impossible to ignore — and for the first time, there was evidentiary data to hold contractors accountable.</p>
+          <div class="case-outcome">R200,000+ in monthly fuel waste identified within the first reporting cycle.</div>
+          <a href="#" class="case-link">Read the full case study →</a>
+        </div>
+        <div class="case-card">
+          <span class="case-industry">Transport Operation — Multi-Route Fleet</span>
+          <h3>The R600k Margin Leak Hidden Inside a Profitable Fleet</h3>
+          <p class="case-problem">They thought their highest-revenue route was their most profitable. It wasn't. The route generating the most loads was quietly the worst performer — and nobody could see it because revenue and cost data had never been brought together at the per-trip level.</p>
+          <div class="case-outcome">Per-route profitability calculable on demand for the first time. Unprofitable route identified and renegotiated within the first month.</div>
+          <a href="#" class="case-link">Read the full case study →</a>
+        </div>
+        <div class="case-card">
+          <span class="case-industry">Electrical Contractor — Utility Mandate</span>
+          <h3>2,000 Admin Hours Eliminated</h3>
+          <p class="case-problem">"I spent seven hours on a Saturday creating job cards. Seven hours. On a Saturday. For work that adds zero value to anyone." Eighty percent of the information on every card already existed in the system. It just wasn't being used.</p>
+          <div class="case-outcome">167+ hours of admin eliminated monthly. Job card production reduced from 10 minutes to near-instant. R60,000 per year in printing costs removed entirely.</div>
+          <a href="#" class="case-link">Read the full case study →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- TESTIMONIAL (lightweight background) -->
-<section class="testimonial">
-  <div class="testimonial-bg"></div>
-  <div class="container"><div class="testimonial-inner reveal"><blockquote>"The system didn't just save us time — it showed us problems we didn't know we had. Within weeks of go-live, we had identified fuel losses that had been running undetected for months."</blockquote><cite>Commodity Trader</cite></div></div>
-</section>
+  <!-- TESTIMONIAL (moved up) -->
+  <section class="testimonial">
+    <div class="testimonial-bg"></div>
+    <div class="container">
+      <div class="testimonial-inner reveal">
+        <blockquote>"The system didn't just save us time — it showed us problems we didn't know we had. Within weeks of go-live, we had identified fuel losses that had been running undetected for months."</blockquote>
+        <cite>Commodity Trader, Mpumalanga</cite>
+      </div>
+    </div>
+  </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="container"><div class="contact-layout"><div class="contact-left reveal"><div class="section-label">Get in touch</div><h2 class="section-title">Recognise any of these problems?<br>Let's talk.</h2><p style="margin-top:1rem; color:#6B7280;">The first consultation is free and carries no obligation. We'll tell you honestly whether we can help — and if we can, exactly what that would look like.</p><div class="contact-info"><a href="mailto:hello@primechainsolutions.co.za"><i class="fas fa-envelope"></i> hello@primechainsolutions.co.za</a><a href="https://linkedin.com"><i class="fab fa-linkedin"></i> PrimeChain Solutions</a></div><p class="contact-note">We typically respond within one business day. The first conversation is about understanding your operation — nothing will be sold on that call.</p></div><div class="contact-right reveal d2"><div class="form-row"><div class="form-group"><label>Name</label><input type="text" placeholder="Your full name"></div><div class="form-group"><label>Company</label><input type="text" placeholder="Company name"></div></div><div class="form-group"><label>Industry</label><select><option value="">Select your industry</option><option>Logistics & Transport</option><option>Food & Beverage</option><option>Municipal Contracting</option><option>Commodity Trade</option><option>Other</option></select></div><div class="form-group"><label>What's the problem?</label><textarea placeholder="Briefly describe the operational challenge you're dealing with" rows="3"></textarea></div><button class="form-submit">Send message →</button></div></div></div>
-</section>
+  <!-- HOW WE WORK -->
+  <section class="how">
+    <div class="container">
+      <div class="how-layout">
+        <div class="how-left reveal">
+          <div class="section-label">How it works</div>
+          <h2 class="section-title">From problem to solution in four steps.</h2>
+          <p class="section-sub" style="margin-top:1rem;">Four steps. No jargon. No lock-in before you know what you're getting.</p>
+        </div>
+        <div class="how-steps reveal">
+          <div class="how-step"><span class="step-num">01</span><div class="step-body"><h4>Book a 30-minute scoping call</h4><p>Tell us your sector, your bottleneck, and your rough scale. We'll tell you what a diagnosis would uncover and what it would cost to fix.</p></div></div>
+          <div class="how-step"><span class="step-num">02</span><div class="step-body"><h4>We run the Operational Leak Audit</h4><p>5–10 business days on-site and remote. We map your workflows, data gaps, and cost leakage. You get a Friction & Leakage Blueprint — regardless of whether you proceed to a build.</p></div></div>
+          <div class="how-step"><span class="step-num">03</span><div class="step-body"><h4>Decide what to fix, and when</h4><p>The blueprint makes the decision easy. If the leakage figure justifies a build, we scope it and quote it. If not, you keep the blueprint. Either way, you've spent money to save more.</p></div></div>
+          <div class="how-step"><span class="step-num">04</span><div class="step-body"><h4>We build, you run — we stay close</h4><p>Systems go live in weeks, not quarters. Monthly retainer clients get ongoing monitoring so the gains don't quietly reverse.</p></div></div>
+        </div>
+      </div>
 
-<footer>
-  <div class="container"><div class="footer-top"><div class="footer-brand"><img src="/assets/primechain.svg" alt="PrimeChain Solutions"><p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p></div><div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="our-story.html">Our Story</a></li><li><a href="services.html">Services</a></li><li><a href="#contact">Contact</a></li></ul></div><div class="footer-col"><h5>Work</h5><ul><li><a href="case-studies.html">Case Studies</a></li><li><a href="articles.html">Articles</a></li><li><a href="cost-calculator.html">Cost Calculator</a></li></ul></div><div class="footer-col"><h5>Connect</h5><ul><li><a href="#">LinkedIn</a></li><li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li><li><a href="#">Johannesburg, SA</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p><div class="social"><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a></div></div></div>
-</footer>
+      <!-- DATA JOURNEY (new sub-section) -->
+      <div class="data-journey reveal">
+        <h3>Your data is already telling a story. You just can't hear it yet.</h3>
+        <p>Right now, somewhere in your operation, a driver is filling up at a fuel point. A slip is generated. That slip goes into a pocket, onto a WhatsApp message, into a pile on someone's desk.</p>
+        <p>Somewhere else, a load is being weighed at the mine. A ticket is printed. A coordinator notes it down. At the delivery point, a proof of delivery is signed. Filed. Forgotten.</p>
+        <p>Three moments. Three documents. Three pieces of the same story — and they will never meet.</p>
+        <p>That slip, that ticket, that POD — together they answer the most important question in your operation: <em>did that trip make money?</em> Separately, they're just paper.</p>
+        <div class="journey-pipeline">
+          <span>Field event</span> <i class="fas fa-arrow-right"></i>
+          <span>database</span> <i class="fas fa-arrow-right"></i>
+          <span>correlation</span> <i class="fas fa-arrow-right"></i>
+          <span>intelligence</span> <i class="fas fa-arrow-right"></i>
+          <span>decision</span>
+        </div>
+        <p>That full journey is what most operations are missing. Not the data. The pipeline that turns it into something you can act on.</p>
+        <p><strong>We build that pipeline.</strong></p>
+      </div>
+    </div>
+  </section>
 
-<script>
-  (function() {
-    const progressBar = document.getElementById('scrollProgress');
-    const navbar = document.getElementById('navbar');
-    const mobileBtn = document.getElementById('mobileBtn');
-    const navLinks = document.getElementById('navLinks');
-    
-    window.addEventListener('scroll', () => {
-      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
-      if (progressBar) {
-        const winScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - window.innerHeight;
-        const scrolled = (winScroll / height) * 100;
-        progressBar.style.width = scrolled + '%';
-      }
-    });
-    
-    if (mobileBtn && navLinks) {
-      mobileBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
-        mobileBtn.innerHTML = navLinks.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-layout">
+        <div class="contact-left reveal">
+          <div class="section-label">Get in touch</div>
+          <h2 class="section-title">Recognise any of these problems?<br />Let's talk.</h2>
+          <p style="margin-top:1rem; color:#6B7280;">The first consultation is free and carries no obligation. We'll tell you honestly whether we can help — and if we can, exactly what that would look like.</p>
+          <div class="contact-info">
+            <a href="mailto:hello@primechainsolutions.co.za"><i class="fas fa-envelope"></i> hello@primechainsolutions.co.za</a>
+            <a href="https://linkedin.com"><i class="fab fa-linkedin"></i> PrimeChain Solutions</a>
+          </div>
+          <p class="contact-note">We typically respond within one business day. The first conversation is about understanding your operation — nothing will be sold on that call.</p>
+        </div>
+        <div class="contact-right reveal d2">
+          <div class="form-row">
+            <div class="form-group"><label>Name</label><input type="text" placeholder="Your full name" /></div>
+            <div class="form-group"><label>Company</label><input type="text" placeholder="Company name" /></div>
+          </div>
+          <div class="form-group"><label>Industry</label>
+            <select>
+              <option value="">Select your industry</option>
+              <option>Logistics & Transport</option>
+              <option>Food & Beverage</option>
+              <option>Municipal Contracting</option>
+              <option>Commodity Trade</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label>What's the problem?</label><textarea placeholder="Briefly describe the operational challenge you're dealing with" rows="3"></textarea></div>
+          <button class="form-submit">Send message →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
+          <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p>
+        </div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="our-story.html">Our Story</a></li><li><a href="services.html">Services</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Work</h5><ul><li><a href="case-studies.html">Case Studies</a></li><li><a href="articles.html">Articles</a></li><li><a href="cost-calculator.html">Cost Calculator</a></li></ul></div>
+        <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">LinkedIn</a></li><li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li><li><a href="#">Johannesburg, SA</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
+        <div class="social">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const progressBar = document.getElementById('scrollProgress');
+      const navbar = document.getElementById('navbar');
+      const mobileBtn = document.getElementById('mobileBtn');
+      const navLinks = document.getElementById('navLinks');
+
+      window.addEventListener('scroll', () => {
+        if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
+        if (progressBar) {
+          const winScroll = document.documentElement.scrollTop;
+          const height = document.documentElement.scrollHeight - window.innerHeight;
+          const scrolled = (winScroll / height) * 100;
+          progressBar.style.width = scrolled + '%';
+        }
       });
-      document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
-      }));
-    }
-    
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-  })();
-</script>
+
+      if (mobileBtn && navLinks) {
+        mobileBtn.addEventListener('click', () => {
+          navLinks.classList.toggle('open');
+          mobileBtn.innerHTML = navLinks.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        }));
+      }
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: 0.08, rootMargin: "0px 0px -20px 0px" });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    })();
+  </script>
 </body>
 </html>
