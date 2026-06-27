@@ -1,205 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="PrimeChain Solutions builds operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa.">
-<title>PrimeChain Solutions | Clarity. Control. Growth.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- SVG favicon for modern browsers -->
-<link rel="icon" type="image/svg+xml" href="/assets/primechain.svg">
-<style>
-:root {
-  --navy:     #0A1F44;
-  --navy-dk:  #071534;
-  --teal:     #008080;
-  --teal-dk:  #006666;
-  --teal-lt:  #f0fafa;
-  --gold:     #C9A84C;
-  --white:    #ffffff;
-  --off:      #F7F7F5;
-  --text:     #0F1923;
-  --muted:    #6B7280;
-  --light:    #E8E9EB;
-  --border:   #E3E4E6;
-  --ease:     0.3s ease;
-  --section-y:   8rem;
-  --section-y-sm: 5rem;
-  --gap-xl: 6rem;
-  --gap-lg: 4rem;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;font-size:16px;}
-body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-h1,h2,h3,h4,blockquote{font-family:'Cormorant Garamond',serif;line-height:1.1;}
-img{display:block;max-width:100%;}
-a{text-decoration:none;}
-.container{width:100%;max-width:1160px;margin:0 auto;padding:0 2.5rem;}
-.sp{position:fixed;top:0;left:0;height:1.5px;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:3000;transition:width .08s linear;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our thinking · PrimeChain Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/primechain.svg">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #0A1F44; --navy-dk: #071534; --teal: #008080; --teal-dk: #006666;
+      --teal-lt: #f0fafa; --gold: #C9A84C; --white: #ffffff; --off: #F7F7F5;
+      --text: #0F1923; --muted: #6B7280; --border: #E3E4E6; --light: #E8E9EB;
+      --ease: 0.3s ease; --section-y: 6rem;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; line-height: 1.1; font-weight: 600; }
+    a { text-decoration: none; }
+    .container { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
 
-/* NAV */
-#nav{position:fixed;top:0;left:0;width:100%;z-index:2000;padding:0 2.5rem;transition:background var(--ease),box-shadow var(--ease);}
-#nav.scrolled{background:rgba(7,21,52,0.96);backdrop-filter:blur(20px) saturate(160%);border-bottom:1px solid rgba(255,255,255,0.05);box-shadow:0 2px 40px rgba(0,0,0,0.18);}
-.nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:78px;}
-.logo{display:flex;align-items:center;gap:.75rem;}
-.logo img{height:38px;width:auto;}
-.logo-text{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.2rem;color:var(--navy);display:none;}
-.nav-links{display:flex;list-style:none;gap:2.5rem;align-items:center;}
-.nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,0.58);transition:color var(--ease);}
-#nav.scrolled .nav-links a{color:rgba(255,255,255,0.5);}
-.nav-links a:hover{color:white;}
-.nav-cta{padding:.65rem 1.5rem !important;border:1px solid rgba(255,255,255,0.22) !important;color:white !important;font-weight:500 !important;transition:all var(--ease) !important;}
-.nav-cta:hover{background:rgba(255,255,255,0.06) !important;border-color:rgba(255,255,255,0.4) !important;}
-.mob-btn{display:none;background:none;border:none;cursor:pointer;font-size:1.2rem;color:white;}
+    /* scroll progress */
+    .sp { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: linear-gradient(90deg, var(--teal), var(--gold)); z-index: 3000; transition: width .08s linear; }
 
-/* PAGE HERO (unified) */
-.page-hero{background:var(--navy-dk);padding:10rem 2rem 6rem;position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 50%,rgba(0,128,128,.15) 0%,transparent 70%);}
-.page-hero-inner{max-width:1160px;margin:0 auto;position:relative;z-index:1;}
-.hero-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem;}
-.hero-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold);}
-.page-hero h1{font-size:clamp(2.8rem,5.5vw,4.5rem);color:white;letter-spacing:-.01em;margin-bottom:1.5rem;}
-.page-hero h1 em{font-style:italic;color:var(--gold);}
-.page-hero p{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.8;font-weight:300;max-width:620px;}
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 2000; padding: 0 2.5rem; background: rgba(7,21,52,0.94); backdrop-filter: blur(18px) saturate(160%); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-inner { max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .logo { display: flex; align-items: center; gap: .75rem; }
+    .logo img { height: 34px; width: auto; filter: brightness(0) invert(1) opacity(.85); }
+    .nav-links { display: flex; list-style: none; gap: 2.2rem; align-items: center; }
+    .nav-links a { font-size: .77rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.5); transition: color var(--ease); padding: .3rem 0; }
+    .nav-links a:hover, .nav-links a.on { color: white; }
+    .nav-cta { padding: .6rem 1.5rem !important; border: 1px solid rgba(255,255,255,0.2) !important; color: white !important; font-weight: 600 !important; transition: all var(--ease) !important; }
+    .nav-cta:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.4) !important; }
+    .mob-btn { display: none; background: none; border: none; cursor: pointer; font-size: 1.2rem; color: white; }
 
-/* SECTION LABELS */
-.section-label{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem;}
-.section-label::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.12;letter-spacing:-.015em;font-weight:600;color:var(--text);margin-bottom:1.25rem;}
+    /* HERO */
+    .page-hero { background: var(--navy-dk); padding: 10rem 2rem 5rem; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 70% 30%, rgba(0,128,128,.12), transparent 70%); }
+    .page-hero-inner { max-width: 1160px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-label { font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: .8rem; margin-bottom: 1.2rem; }
+    .hero-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+    .page-hero h1 { font-size: clamp(2.8rem, 5.5vw, 4.5rem); color: white; letter-spacing: -.02em; margin-bottom: 1.2rem; }
+    .page-hero h1 em { font-style: italic; color: var(--gold); }
+    .page-hero p { font-size: 1rem; color: rgba(255,255,255,.5); line-height: 1.8; font-weight: 300; max-width: 580px; }
 
-/* FEATURED ARTICLE */
-.featured-section{padding:7rem 0;background:var(--white);}
-.featured-article{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);transition:box-shadow var(--ease);}
-.featured-article:hover{box-shadow:0 12px 40px rgba(0,0,0,.08);}
-.fa-left{background:var(--navy);padding:3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
-.fa-left::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(0,128,128,.15) 0%,transparent 60%);}
-.fa-left-inner{position:relative;z-index:1;}
-.fa-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:1.5rem;display:block;}
-.fa-left h2{font-size:clamp(1.6rem,3vw,2.4rem);color:white;line-height:1.25;margin-bottom:1.25rem;}
-.fa-left p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.75;font-weight:300;}
-.fa-meta{display:flex;gap:1.5rem;margin-top:2rem;}
-.fa-meta span{font-size:.75rem;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:.4rem;}
-.fa-right{padding:3rem;background:var(--off);display:flex;flex-direction:column;justify-content:space-between;}
-.fa-right h4{font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:1.25rem;}
-.key-points{list-style:none;display:flex;flex-direction:column;gap:.85rem;margin-bottom:2rem;}
-.key-points li{display:flex;gap:.75rem;align-items:flex-start;font-size:.9rem;color:var(--text);line-height:1.55;}
-.key-points li::before{content:'→';color:var(--teal);flex-shrink:0;font-weight:500;}
-.read-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.88rem;font-weight:500;color:var(--teal);text-decoration:none;transition:gap var(--ease);}
-.read-link:hover{gap:.75rem;}
+    /* SECTION LABEL */
+    .section-label { font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); display: flex; align-items: center; gap: .8rem; margin-bottom: 1.6rem; }
+    .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
 
-/* ARTICLE GRID */
-.articles-grid-section{padding:0 0 7rem;background:var(--white);}
-.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
-.article-card{background:white;padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.25rem;transition:background var(--ease),box-shadow var(--ease);}
-.article-card:hover{background:var(--teal-lt);box-shadow:inset 0 0 0 1px rgba(0,128,128,0.1);}
-.ac-tag{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);}
-.article-card h3{font-size:1.25rem;line-height:1.3;font-weight:600;}
-.article-card p{font-size:.87rem;color:var(--muted);line-height:1.7;flex:1;}
-.ac-foot{display:flex;align-items:center;justify-content:space-between;padding-top:1.25rem;border-top:1px solid var(--border);}
-.ac-read{font-size:.85rem;font-weight:500;color:var(--teal);text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;transition:gap var(--ease);}
-.ac-read:hover{gap:.6rem;}
-.ac-time{font-size:.75rem;color:var(--muted);}
+    /* featured (article) */
+    .featured-section { padding: var(--section-y) 0; background: var(--white); }
+    .featured-article { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); transition: box-shadow var(--ease); }
+    .featured-article:hover { box-shadow: 0 12px 36px rgba(0,0,0,.07); }
+    .fa-left { background: var(--navy); padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+    .fa-left::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 80%, rgba(0,128,128,.15) 0%, transparent 60%); }
+    .fa-left-inner { position: relative; z-index: 1; }
+    .fa-tag { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.2rem; display: block; }
+    .fa-left h2 { font-size: clamp(1.5rem, 2.8vw, 2.2rem); color: white; line-height: 1.2; margin-bottom: 1.2rem; }
+    .fa-left p { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.75; font-weight: 300; }
+    .fa-meta { display: flex; gap: 1.5rem; margin-top: 2rem; }
+    .fa-meta span { font-size: .75rem; color: rgba(255,255,255,.35); display: flex; align-items: center; gap: .4rem; }
+    .fa-right { padding: 3rem; background: var(--off); display: flex; flex-direction: column; justify-content: space-between; }
+    .fa-right h4 { font-family: 'DM Sans', sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 1.25rem; }
+    .key-points { list-style: none; display: flex; flex-direction: column; gap: .85rem; margin-bottom: 2rem; }
+    .key-points li { display: flex; gap: .75rem; align-items: flex-start; font-size: .9rem; color: var(--text); line-height: 1.55; }
+    .key-points li::before { content: '→'; color: var(--teal); flex-shrink: 0; font-weight: 500; }
+    .read-link { display: inline-flex; align-items: center; gap: .5rem; font-size: .88rem; font-weight: 500; color: var(--teal); transition: gap var(--ease); }
+    .read-link:hover { gap: .8rem; }
 
-/* SUBSCRIBE */
-.subscribe{padding:5rem 0;background:var(--off);border-top:1px solid var(--border);}
-.subscribe-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-.subscribe h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2rem);margin-bottom:.75rem;}
-.subscribe p{font-size:.9rem;color:var(--muted);line-height:1.75;}
-.subscribe-form{display:flex;gap:.75rem;flex-wrap:wrap;}
-.subscribe-form input{flex:1;min-width:200px;padding:.8rem 1rem;border:1px solid var(--border);font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color var(--ease);}
-.subscribe-form input:focus{border-color:var(--teal);}
-.subscribe-form button{padding:.8rem 1.75rem;background:var(--navy);color:white;border:none;font-size:.9rem;font-weight:500;cursor:pointer;transition:background var(--ease);}
-.subscribe-form button:hover{background:var(--teal);}
+    /* Case study featured (different background) */
+    .featured-cs { padding: var(--section-y) 0; background: var(--off); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .cs-featured { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); background: white; }
+    .cs-feat-left { background: var(--navy); padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+    .cs-feat-left::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 15% 85%, rgba(0,128,128,.2), transparent); }
+    .cs-tag { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.2rem; display: block; }
+    .cs-feat-left h2 { font-size: clamp(1.4rem, 2.8vw, 2.2rem); color: white; line-height: 1.2; margin-bottom: 1.2rem; }
+    .cs-feat-left p { font-size: .9rem; color: rgba(255,255,255,.55); line-height: 1.8; font-weight: 300; }
+    .cs-nums { display: flex; gap: 2rem; margin-top: 2.5rem; }
+    .cs-num-v { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .cs-num-l { display: block; font-size: .68rem; color: rgba(255,255,255,.32); margin-top: .2rem; letter-spacing: .1em; text-transform: uppercase; }
+    .cs-feat-right { padding: 3rem; background: var(--white); display: flex; flex-direction: column; gap: 2rem; }
+    .cs-block h4 { font-family: 'DM Sans', sans-serif; font-size: .67rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); margin-bottom: .6rem; }
+    .cs-block p { font-size: .9rem; color: var(--text); line-height: 1.85; font-weight: 300; }
+    .cs-divider { border: none; border-top: 1px solid var(--border); }
+    .cs-outcomes { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .cs-outcomes li { display: flex; gap: .7rem; font-size: .88rem; color: var(--text); line-height: 1.6; font-weight: 300; }
+    .cs-outcomes li::before { content: '→'; color: var(--gold); flex-shrink: 0; font-weight: 600; }
+    .btn-navy { display: inline-flex; align-items: center; gap: .5rem; padding: .7rem 1.5rem; background: var(--navy); color: white; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transition: background var(--ease); }
+    .btn-navy:hover { background: var(--teal); }
 
-/* OUR STORY SPECIFIC STYLES */
-.gap-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;margin-top:2rem;}
-.gap-body p{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem;font-weight:300;}
-.gap-highlight{padding:2.5rem;background:var(--navy);color:white;margin-top:1rem;}
-.gap-highlight p{font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.6;font-weight:500;}
-.gap-highlight p em{font-style:italic;color:var(--gold);}
-.values-layout{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
-.values-list{display:flex;flex-direction:column;gap:0;}
-.value-item{padding:2rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:40px 1fr;gap:1.5rem;align-items:start;}
-.value-item:first-child{border-top:1px solid var(--border);}
-.val-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--border);line-height:1;transition:color var(--ease);}
-.value-item:hover .val-num{color:var(--teal);}
-.val-body h4{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;margin-bottom:.45rem;}
-.val-body p{font-size:.88rem;color:var(--muted);line-height:1.7;}
-.cred-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:3rem;}
-.cred-card{background:white;padding:2.5rem 2rem;transition:background var(--ease);}
-.cred-card:hover{background:var(--teal-lt);}
-.cred-icon{font-size:1.1rem;color:var(--teal);margin-bottom:1.25rem;display:block;}
-.cred-card h4{font-size:1.1rem;margin-bottom:.65rem;line-height:1.3;}
-.cred-card p{font-size:.85rem;color:var(--muted);line-height:1.7;}
-.story-cta{background:var(--navy);padding:7rem 0;text-align:center;}
-.story-cta h2{font-size:clamp(2rem,4vw,2.8rem);color:white;margin-bottom:1.25rem;}
-.story-cta p{font-size:1rem;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 2.5rem;line-height:1.8;font-weight:300;}
-.btn-teal{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;background:var(--teal);color:white;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:background var(--ease),box-shadow var(--ease);}
-.btn-teal:hover{background:var(--teal-dk);box-shadow:0 8px 28px rgba(0,128,128,0.28);}
-.btn-outline-white{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 2rem;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.78);font-size:.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:all var(--ease);}
-.btn-outline-white:hover{border-color:rgba(255,255,255,0.45);color:white;background:rgba(255,255,255,0.04);}
-.the-gap, .values, .credentials{padding:7rem 0;background:var(--white);}
-.credentials{background:var(--off);}
+    /* GRID (mix articles + cases) */
+    .thinking-grid-section { padding: var(--section-y) 0; background: var(--white); }
+    .thinking-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+    .tg-card { background: white; padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1rem; transition: background var(--ease), box-shadow var(--ease); }
+    .tg-card:hover { background: var(--teal-lt); box-shadow: inset 0 0 0 1px rgba(0,128,128,0.08); }
+    .tg-badge { font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); background: var(--teal-lt); padding: .2rem .7rem; border-radius: 20px; display: inline-block; width: fit-content; }
+    .tg-card h3 { font-size: 1.2rem; line-height: 1.3; font-weight: 600; }
+    .tg-card p { font-size: .87rem; color: var(--muted); line-height: 1.7; flex: 1; }
+    .tg-foot { display: flex; align-items: center; justify-content: space-between; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+    .tg-read { font-size: .85rem; font-weight: 500; color: var(--teal); display: inline-flex; align-items: center; gap: .35rem; transition: gap var(--ease); }
+    .tg-read:hover { gap: .6rem; }
+    .tg-time { font-size: .75rem; color: var(--muted); }
 
-/* FOOTER (unified) */
-footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3.5rem;margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,0.06);}
-.footer-brand img{height:34px;margin-bottom:1.25rem;filter:brightness(0) invert(1) opacity(.8);}
-.footer-brand p{font-size:.82rem;color:rgba(255,255,255,0.35);line-height:1.8;max-width:250px;font-weight:300;}
-.footer-col h5{font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:.14em;margin-bottom:1.25rem;}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
-.footer-col a{font-size:.83rem;color:rgba(255,255,255,0.45);transition:color var(--ease);font-weight:300;}
-.footer-col a:hover{color:white;}
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,0.25);}
-.social{display:flex;gap:.5rem;}
-.social a{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.35);font-size:.75rem;transition:all var(--ease);}
-.social a:hover{border-color:var(--teal);color:var(--teal);}
+    /* CTA band */
+    .cs-cta { background: var(--navy-dk); padding: 4.5rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+    .cs-cta h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); color: white; margin-bottom: 1.2rem; }
+    .cs-cta p { font-size: .95rem; color: rgba(255,255,255,.5); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.8; font-weight: 300; }
+    .btn-teal { display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 2rem; background: var(--teal); color: white; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: background var(--ease); }
+    .btn-teal:hover { background: var(--teal-dk); }
+    .btn-outline-white { display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 2rem; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); font-size: .78rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; transition: all var(--ease); }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.4); color: white; background: rgba(255,255,255,0.04); }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-/* RESPONSIVE */
-@media(max-width:1024px){
-  :root{--section-y:6rem;--gap-xl:4rem;}
-  .featured-article{grid-template-columns:1fr;}
-  .articles-grid{grid-template-columns:1fr;}
-  .gap-layout,.values-layout{grid-template-columns:1fr;gap:3rem;}
-  .cred-grid{grid-template-columns:1fr 1fr;}
-  .subscribe-layout{grid-template-columns:1fr;gap:2.5rem;}
-  .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem;}
-}
-@media(max-width:768px){
-  :root{--section-y:5rem;}
-  .mob-btn{display:block;}
-  .nav-links{display:none;position:fixed;top:78px;right:0;width:280px;height:calc(100vh - 78px);background:var(--navy-dk);flex-direction:column;align-items:flex-start;padding:2.5rem 2rem;gap:0;box-shadow:-4px 0 40px rgba(0,0,0,.3);overflow-y:auto;}
-  .nav-links.open{display:flex;}
-  .nav-links li{width:100%;}
-  .nav-links a{color:rgba(255,255,255,0.55) !important;display:block;padding:1rem .75rem;border-bottom:1px solid rgba(255,255,255,0.04);}
-  .nav-links a:hover{color:white !important;}
-  .cred-grid{grid-template-columns:1fr;}
-  .container{padding:0 1.5rem;}
-  .page-hero{padding:8rem 1.5rem 4rem;}
-  .featured-article .fa-left,.featured-article .fa-right{padding:2rem;}
-}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(0.16,1,0.3,1),transform .8s cubic-bezier(0.16,1,0.3,1);}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}
-</style>
+    /* FOOTER */
+    footer { background: var(--navy-dk); padding: 2.5rem 0 2rem; border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: .75rem; color: rgba(255,255,255,0.2); }
+    .foot-links { display: flex; gap: 2rem; }
+    .foot-links a { font-size: .75rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: .06em; transition: color var(--ease); font-weight: 500; }
+    .foot-links a:hover { color: white; }
+
+    /* RESPONSIVE */
+    @media(max-width:1024px) {
+      .featured-article, .cs-featured { grid-template-columns: 1fr; }
+      .thinking-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:768px) {
+      .mob-btn { display: block; }
+      .nav-links { display: none; position: fixed; top: 74px; right: 0; width: 280px; height: calc(100vh - 74px); background: var(--navy-dk); flex-direction: column; align-items: flex-start; padding: 2rem; gap: 0; box-shadow: -4px 0 40px rgba(0,0,0,.3); overflow-y: auto; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { color: rgba(255,255,255,0.5) !important; display: block; padding: 1rem .75rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+      .nav-cta { border-color: rgba(255,255,255,0.15) !important; }
+      .thinking-grid { grid-template-columns: 1fr; }
+      .fa-left, .fa-right, .cs-feat-left, .cs-feat-right { padding: 2rem; }
+    }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .06s; } .d2 { transition-delay: .12s; } .d3 { transition-delay: .18s; }
+  </style>
 </head>
 <body>
 <div class="sp" id="sp"></div>
 <nav id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <img src="/assets/primechain.svg" alt="PrimeChain Solutions">
-      <span class="logo-text">PrimeChain Solutions</span>
-    </a>
+    <a href="index.html" class="logo"><img src="/assets/primechain.svg" alt="PrimeChain"></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="index.html#services">Services</a></li>
       <li><a href="case-studies.html">Case Studies</a></li>
-      <li><a href="articles.html" class="on">Articles</a></li>
+      <li><a href="articles.html" class="on">Our thinking</a></li>
       <li><a href="our-story.html">Our Story</a></li>
       <li><a href="index.html#contact" class="nav-cta">Talk to us</a></li>
     </ul>
@@ -207,13 +163,16 @@ footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
   </div>
 </nav>
 
+<!-- hero -->
 <section class="page-hero">
   <div class="page-hero-inner">
-    <div class="hero-label">Insights</div>
-    <h1>Operational thinking<br>from <em>inside the work.</em></h1>
+    <div class="hero-label">Our thinking</div>
+    <h1>Insights &amp; outcomes<br><em>from the work.</em></h1>
+    <p>Stories, frameworks and hard-won lessons from building operational visibility for businesses that have outgrown spreadsheets.</p>
   </div>
 </section>
 
+<!-- featured article -->
 <section class="featured-section">
   <div class="container">
     <div class="section-label reveal">Featured article</div>
@@ -244,52 +203,121 @@ footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
   </div>
 </section>
 
-<section class="articles-grid-section">
+<!-- featured case study -->
+<section class="featured-cs">
   <div class="container">
-    <div class="articles-grid reveal">
-      <div class="article-card">
-        <span class="ac-tag">Dashboards</span>
+    <div class="section-label reveal">Featured case study</div>
+    <div class="cs-featured reveal">
+      <div class="cs-feat-left">
+        <div>
+          <span class="cs-tag">Commodity Trader</span>
+          <h2>How We Stopped a Commodity Trader’s Undetected Fuel Leakage</h2>
+          <p>38 vehicles across multiple subcontractors. No reliable fuel monitoring. Losses accumulated undetected until we built a live exception-driven dashboard.</p>
+        </div>
+        <div class="cs-nums">
+          <div><span class="cs-num-v">38+</span><span class="cs-num-l">Vehicles</span></div>
+          <div><span class="cs-num-v">R200k+</span><span class="cs-num-l">Waste identified</span></div>
+          <div><span class="cs-num-v">Wks</span><span class="cs-num-l">To first detection</span></div>
+        </div>
+      </div>
+      <div class="cs-feat-right">
+        <div class="cs-block">
+          <h4>What was built</h4>
+          <p>A Python-based fuel monitoring API connected to a real-time web dashboard. Fuel issued vs consumed, distance vs usage, time-based trip analysis, and automated exception alerts — all running without manual input.</p>
+        </div>
+        <hr class="cs-divider">
+        <div class="cs-block">
+          <h4>Outcomes</h4>
+          <ul class="cs-outcomes">
+            <li>Fuel leakage detected within weeks of go-live</li>
+            <li>Full cost visibility across every vehicle &amp; partner</li>
+            <li>Partners held accountable against objective data</li>
+          </ul>
+        </div>
+        <a href="index.html#contact" class="btn-navy" style="align-self:flex-start;">Discuss a similar problem →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- mixed grid: articles + case studies -->
+<section class="thinking-grid-section">
+  <div class="container">
+    <div class="section-label reveal">More from our thinking</div>
+    <div class="thinking-grid reveal">
+      <!-- article -->
+      <div class="tg-card">
+        <span class="tg-badge">Article</span>
         <h3>How to Build a Business Dashboard Without Being a Data Nerd</h3>
-        <p>A business dashboard is only useful if the right people can understand it without a training course. Here's what actually works — and what most implementations get wrong.</p>
-        <div class="ac-foot">
-          <span class="ac-time"><i class="fas fa-clock"></i> 4 min</span>
-          <a href="article-dashboard.html" class="ac-read">Read <i class="fas fa-arrow-right"></i></a>
+        <p>A business dashboard is only useful if the right people can understand it without a training course. Here's what actually works.</p>
+        <div class="tg-foot">
+          <span class="tg-time"><i class="fas fa-clock"></i> 4 min</span>
+          <a href="article-dashboard.html" class="tg-read">Read <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-      <div class="article-card">
-        <span class="ac-tag">Supply Chain</span>
+      <!-- case study -->
+      <div class="tg-card">
+        <span class="tg-badge">Case study</span>
+        <h3>From 10 Minutes to Instant: Automating 1000 Manual Job Cards</h3>
+        <p>1000 job cards produced by hand every month. 10 minutes per card. We eliminated 167 hours of admin and R60k/yr in printing costs.</p>
+        <div class="tg-foot">
+          <span class="tg-time">Field service</span>
+          <a href="index.html#contact" class="tg-read">Enquire <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- article -->
+      <div class="tg-card">
+        <span class="tg-badge">Article</span>
         <h3>Your Supply Chain Knows More Than You Think</h3>
-        <p>The data you need to make better operational decisions is almost certainly already being generated inside your business. The problem isn't data — it's visibility.</p>
-        <div class="ac-foot">
-          <span class="ac-time"><i class="fas fa-clock"></i> 6 min</span>
-          <a href="article-supply-chain.html" class="ac-read">Read <i class="fas fa-arrow-right"></i></a>
+        <p>The data you need to make better operational decisions is almost certainly already being generated. The problem isn't data — it's visibility.</p>
+        <div class="tg-foot">
+          <span class="tg-time"><i class="fas fa-clock"></i> 6 min</span>
+          <a href="article-supply-chain.html" class="tg-read">Read <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-      <div class="article-card">
-        <span class="ac-tag">Data &amp; Insights</span>
+      <!-- case study -->
+      <div class="tg-card">
+        <span class="tg-badge">Case study</span>
+        <h3>Eliminating the Month-End Blindspot: 20-Vehicle Fleet Control Tower</h3>
+        <p>No centralised performance view. Decisions only possible after month-end. We built a live 6-KPI dashboard that shifted decisions to real time.</p>
+        <div class="tg-foot">
+          <span class="tg-time">Logistics</span>
+          <a href="index.html#contact" class="tg-read">Enquire <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- article -->
+      <div class="tg-card">
+        <span class="tg-badge">Article</span>
         <h3>Unlocking Hidden Business Insights in Your Paperwork</h3>
-        <p>Most businesses are sitting on months of operational intelligence — locked inside job cards, delivery notes, and stock sheets. Here's how to make it useful.</p>
-        <div class="ac-foot">
-          <span class="ac-time"><i class="fas fa-clock"></i> 5 min</span>
-          <a href="article-paperwork.html" class="ac-read">Read <i class="fas fa-arrow-right"></i></a>
+        <p>Most businesses sit on months of operational intelligence — locked inside job cards, delivery notes, and stock sheets. Here's how to make it useful.</p>
+        <div class="tg-foot">
+          <span class="tg-time"><i class="fas fa-clock"></i> 5 min</span>
+          <a href="article-paperwork.html" class="tg-read">Read <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- case study -->
+      <div class="tg-card">
+        <span class="tg-badge">Case study</span>
+        <h3>Stopping Client Disputes: Real-Time Field Tracking for Electrical Contractor</h3>
+        <p>No live view of field teams. Work logged manually. We timestamped every action, shifted reporting to daily cadence, and resolved disputes with verifiable records.</p>
+        <div class="tg-foot">
+          <span class="tg-time">Field service</span>
+          <a href="index.html#contact" class="tg-read">Enquire <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="subscribe">
+<!-- cta -->
+<section class="cs-cta">
   <div class="container">
-    <div class="subscribe-layout reveal">
-      <div>
-        <h3>Get new articles when they're published.</h3>
-        <p>Practical operational insights. No fluff, no newsletters full of nothing. Just thinking that's useful if you run an operation.</p>
-      </div>
-      <div>
-        <div class="subscribe-form">
-          <input type="email" placeholder="Your email address">
-          <button>Subscribe</button>
-        </div>
+    <div class="reveal">
+      <h2>Recognise any of these problems?</h2>
+      <p>If your operation is dealing with poor visibility, manual workflows, or disconnected data — there is a good chance we have solved something similar.</p>
+      <div class="cta-btns">
+        <a href="index.html#contact" class="btn-teal">Talk to us</a>
+        <a href="our-story.html" class="btn-outline-white">Our story</a>
       </div>
     </div>
   </div>
@@ -297,32 +325,42 @@ footer{background:var(--navy-dk);padding:5rem 0 2.5rem;}
 
 <footer>
   <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-          <img src="/assets/primechain.svg" alt="PrimeChain Solutions">
-          <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p>
-      </div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="our-story.html">Our Story</a></li><li><a href="services.html">Services</a></li><li><a href="index.html#contact">Contact</a></li></ul></div>
-      <div class="footer-col"><h5>Work</h5><ul><li><a href="case-studies.html">Case Studies</a></li><li><a href="articles.html">Articles</a></li><li><a href="cost-calculator.html">Cost Calculator</a></li></ul></div>
-      <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">LinkedIn</a></li><li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li><li><a href="#">Johannesburg, SA</a></li></ul></div>
-    </div>
     <div class="footer-bottom">
       <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
-      <div class="social">
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <div class="foot-links">
+        <a href="index.html">Home</a>
+        <a href="articles.html">Our thinking</a>
+        <a href="our-story.html">Our Story</a>
+        <a href="index.html#contact">Contact</a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-const sp=document.getElementById('sp'),nav=document.getElementById('nav'),mobBtn=document.getElementById('mobBtn'),navLinks=document.getElementById('navLinks');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60);const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;sp.style.width=(h>0?(window.scrollY/h)*100:0)+'%';});
-mobBtn.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');mobBtn.innerHTML=o?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';});
-document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');mobBtn.innerHTML='<i class="fas fa-bars"></i>';}));
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  const sp = document.getElementById('sp');
+  const mobBtn = document.getElementById('mobBtn');
+  const navLinks = document.getElementById('navLinks');
+
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    sp.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  });
+
+  mobBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    mobBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+  });
+
+  document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  }));
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
