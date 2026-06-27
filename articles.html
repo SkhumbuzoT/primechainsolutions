@@ -308,37 +308,7 @@
       background: var(--off);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-    }
-    .fa-right h4 {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-    .key-points {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin-bottom: 1.5rem;
-    }
-    .key-points li {
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-start;
-      font-size: 0.8rem;
-      color: var(--text);
-      line-height: 1.5;
-    }
-    .key-points li::before {
-      content: '→';
-      color: var(--teal);
-      flex-shrink: 0;
-      font-weight: 500;
+      justify-content: flex-end;
     }
     .read-link {
       display: inline-flex;
@@ -348,6 +318,7 @@
       font-weight: 600;
       color: var(--teal);
       transition: gap var(--ease);
+      margin-top: 1rem;
     }
     .read-link:hover { gap: 0.8rem; }
     /* case card (right) */
@@ -429,7 +400,8 @@
       background: white;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      justify-content: flex-end;
+      gap: 0.8rem;
     }
     .cs-block h4 {
       font-family: 'DM Sans', sans-serif;
@@ -439,16 +411,6 @@
       letter-spacing: 0.14em;
       color: var(--muted);
       margin-bottom: 0.4rem;
-    }
-    .cs-block p {
-      font-size: 0.8rem;
-      color: var(--text);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .cs-divider {
-      border: none;
-      border-top: 1px solid var(--border);
     }
     .cs-outcomes {
       list-style: none;
@@ -484,6 +446,7 @@
       border-radius: var(--radius);
       transition: background var(--ease), transform var(--ease);
       align-self: flex-start;
+      margin-top: 0.5rem;
     }
     .btn-navy:hover {
       background: var(--teal);
@@ -787,15 +750,6 @@
           </div>
         </div>
         <div class="fa-right">
-          <div>
-            <h4>What this article covers</h4>
-            <ul class="key-points">
-              <li>How to calculate the true cost of manual admin in your operation</li>
-              <li>The hidden cost nobody counts — decision delays caused by slow information</li>
-              <li>Three signs your operation is ready for automation</li>
-              <li>What automating admin actually looks like in a real operational environment</li>
-            </ul>
-          </div>
           <a href="article-manual-work.html" class="read-link">Read article <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
@@ -815,11 +769,6 @@
           </div>
         </div>
         <div class="cs-feat-right">
-          <div class="cs-block">
-            <h4>What was built</h4>
-            <p>A Python-based fuel monitoring API connected to a real-time web dashboard. Fuel issued vs consumed, distance vs usage, time-based trip analysis, and automated exception alerts — all running without manual input.</p>
-          </div>
-          <hr class="cs-divider" />
           <div class="cs-block">
             <h4>Outcomes</h4>
             <ul class="cs-outcomes">
