@@ -239,36 +239,29 @@
     }
     /* article card (left) */
     .featured-article {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      background: white;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-      transition: box-shadow var(--ease);
-    }
-    .featured-article:hover {
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
-    }
-    .fa-left {
       background: var(--navy);
       padding: 2.5rem 2rem;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: box-shadow var(--ease);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
-      overflow: hidden;
     }
-    .fa-left::before {
+    .featured-article::before {
       content: '';
       position: absolute;
       inset: 0;
       background: radial-gradient(circle at 20% 80%, rgba(0, 128, 128, 0.12) 0%, transparent 60%);
       pointer-events: none;
     }
-    .fa-left-inner { position: relative; z-index: 1; }
+    .featured-article:hover {
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
+    }
+    .featured-article > * { position: relative; z-index: 1; }
     .fa-tag {
       font-size: 0.6rem;
       font-weight: 700;
@@ -278,14 +271,14 @@
       margin-bottom: 0.8rem;
       display: block;
     }
-    .fa-left h2 {
+    .featured-article h2 {
       font-size: clamp(1.2rem, 1.8vw, 1.6rem);
       color: white;
       line-height: 1.2;
       margin-bottom: 0.8rem;
       font-weight: 600;
     }
-    .fa-left p {
+    .featured-article p {
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.6);
       line-height: 1.7;
@@ -303,13 +296,6 @@
       align-items: center;
       gap: 0.4rem;
     }
-    .fa-right {
-      padding: 2.5rem 2rem;
-      background: var(--off);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
     .read-link {
       display: inline-flex;
       align-items: center;
@@ -323,35 +309,29 @@
     .read-link:hover { gap: 0.8rem; }
     /* case card (right) */
     .cs-featured {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      background: white;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-      transition: box-shadow var(--ease);
-    }
-    .cs-featured:hover {
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
-    }
-    .cs-feat-left {
       background: var(--navy);
       padding: 2.5rem 2rem;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: box-shadow var(--ease);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
-      overflow: hidden;
     }
-    .cs-feat-left::before {
+    .cs-featured::before {
       content: '';
       position: absolute;
       inset: 0;
       background: radial-gradient(ellipse 60% 70% at 15% 85%, rgba(0, 128, 128, 0.15), transparent);
       pointer-events: none;
     }
+    .cs-featured:hover {
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
+    }
+    .cs-featured > * { position: relative; z-index: 1; }
     .cs-tag {
       font-size: 0.6rem;
       font-weight: 700;
@@ -361,83 +341,25 @@
       margin-bottom: 0.8rem;
       display: block;
     }
-    .cs-feat-left h2 {
+    .cs-featured h2 {
       font-size: clamp(1.2rem, 1.8vw, 1.6rem);
       color: white;
       line-height: 1.2;
       margin-bottom: 0.8rem;
       font-weight: 600;
     }
-    .cs-feat-left p {
+    .cs-featured p {
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.55);
       line-height: 1.7;
       font-weight: 300;
-    }
-    .cs-nums {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .cs-num-v {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .cs-num-l {
-      display: block;
-      font-size: 0.6rem;
-      color: rgba(255, 255, 255, 0.3);
-      margin-top: 0.1rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .cs-feat-right {
-      padding: 2.5rem 2rem;
-      background: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: 0.8rem;
-    }
-    .cs-block h4 {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-    .cs-outcomes {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .cs-outcomes li {
-      display: flex;
-      gap: 0.6rem;
-      font-size: 0.8rem;
-      color: var(--text);
-      line-height: 1.5;
-      font-weight: 300;
-    }
-    .cs-outcomes li::before {
-      content: '→';
-      color: var(--gold);
-      flex-shrink: 0;
-      font-weight: 600;
     }
     .btn-navy {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem 1.2rem;
-      background: var(--navy);
+      background: var(--teal);
       color: white;
       font-size: 0.7rem;
       font-weight: 700;
@@ -446,10 +368,10 @@
       border-radius: var(--radius);
       transition: background var(--ease), transform var(--ease);
       align-self: flex-start;
-      margin-top: 0.5rem;
+      margin-top: 1.5rem;
     }
     .btn-navy:hover {
-      background: var(--teal);
+      background: var(--teal-dk);
       transform: translateY(-1px);
     }
     /* ----- mixed grid (articles + cases) ----- */
@@ -626,10 +548,6 @@
         grid-template-columns: 1fr;
         gap: 2rem;
       }
-      .featured-article,
-      .cs-featured {
-        grid-template-columns: 1fr 1fr;
-      }
       .thinking-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -664,22 +582,8 @@
       .nav-cta {
         border-color: rgba(255, 255, 255, 0.15) !important;
       }
-      .featured-article,
-      .cs-featured {
-        grid-template-columns: 1fr;
-      }
       .thinking-grid {
         grid-template-columns: 1fr;
-      }
-      .fa-left,
-      .fa-right,
-      .cs-feat-left,
-      .cs-feat-right {
-        padding: 2rem 1.5rem;
-      }
-      .cs-nums {
-        gap: 1.5rem;
-        flex-wrap: wrap;
       }
       .page-hero {
         padding: 9rem 1.5rem 4rem;
@@ -739,23 +643,24 @@
     <div class="two-up-grid reveal">
       <!-- LEFT: Featured Article -->
       <div class="featured-article">
-            <span class="fa-tag">Operations &amp; Admin</span>
-            <h2>Manual Work Is Costing You More Than You Think</h2>
-            <p>Every hour your team spends on repetitive manual work is an hour not spent on things that move your business forward. But the real cost isn't just time — it's the decisions that never get made because the right information never surfaces.</p>
-          </div>
-          <div class="fa-meta">
-            <span><i class="fas fa-clock"></i> 5 min read</span>
-          </div>
+        <div>
+          <span class="fa-tag">Operations &amp; Admin</span>
+          <h2>Manual Work Is Costing You More Than You Think</h2>
+          <p>Every hour your team spends on repetitive manual work is an hour not spent on things that move your business forward. But the real cost isn't just time — it's the decisions that never get made because the right information never surfaces.</p>
+        </div>
+        <div class="fa-meta">
+          <span><i class="fas fa-clock"></i> 5 min read</span>
+        </div>
       </div>
 
       <!-- RIGHT: Featured Case Study -->
       <div class="cs-featured">
-            <span class="cs-tag">Commodity Trader</span>
-            <h2>How We Stopped a Commodity Trader’s Undetected Fuel Leakage</h2>
-            <p>38 vehicles across multiple subcontractors. No reliable fuel monitoring. Losses accumulated undetected until we built a live exception-driven dashboard.</p>
-          </div>
-          <a href="index.html#contact" class="btn-navy">Discuss a similar problem →</a>
+        <div>
+          <span class="cs-tag">Commodity Trader</span>
+          <h2>How We Stopped a Commodity Trader’s Undetected Fuel Leakage</h2>
+          <p>38 vehicles across multiple subcontractors. No reliable fuel monitoring. Losses accumulated undetected until we built a live exception-driven dashboard.</p>
         </div>
+        <a href="index.html#contact" class="btn-navy">Discuss a similar problem →</a>
       </div>
     </div>
   </div>
