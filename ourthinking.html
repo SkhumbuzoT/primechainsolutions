@@ -3,425 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our thinking · PrimeChain Solutions</title>
+  <meta name="description" content="Insights, case studies, and hard-won lessons from building operational visibility for South African SMEs." />
+  <title>Our Thinking · PrimeChain Solutions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="icon" type="image/svg+xml" href="/assets/primechain.svg" />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    /* ----- reset & base ----- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --navy: #0A1F44;
-      --navy-dk: #071534;
-      --teal: #008080;
-      --teal-dk: #006666;
-      --teal-lt: #f0fafa;
-      --gold: #C9A84C;
-      --white: #ffffff;
-      --off: #F7F7F5;
-      --text: #0F1923;
-      --muted: #5A6675;
-      --border: #E3E4E6;
-      --light: #E8E9EB;
-      --ease: 0.3s ease;
-      --section-y: 6rem;
-      --radius: 4px;
-    }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      background: var(--white);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: -0.01em; }
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
-    .container {
-      width: 100%;
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-    }
-    /* scroll progress */
-    .sp {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 2px;
-      width: 0;
-      background: linear-gradient(90deg, var(--teal), var(--gold));
-      z-index: 3000;
-      transition: width .08s linear;
-    }
-    /* ----- navigation ----- */
-    #nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 2000;
-      padding: 0 2.5rem;
-      background: rgba(7, 21, 52, 0.92);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition: background var(--ease);
-    }
-    .nav-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 76px;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .logo img {
-      height: 34px;
-      width: auto;
-      filter: brightness(0) invert(1) opacity(0.85);
-      transition: opacity var(--ease);
-    }
-    .logo:hover img { opacity: 1; }
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2.4rem;
-      align-items: center;
-    }
-    .nav-links a {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      transition: color var(--ease);
-      padding: 0.3rem 0;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1.5px;
-      background: var(--gold);
-      transition: width var(--ease);
-    }
-    .nav-links a:hover,
-    .nav-links a.on {
-      color: white;
-    }
-    .nav-links a:hover::after,
-    .nav-links a.on::after {
-      width: 100%;
-    }
-    .nav-cta {
-      padding: 0.6rem 1.5rem !important;
-      border: 1px solid rgba(255, 255, 255, 0.15) !important;
-      border-radius: var(--radius);
-      color: white !important;
-      font-weight: 600 !important;
-      transition: all var(--ease) !important;
-    }
-    .nav-cta::after { display: none !important; }
-    .nav-cta:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.35) !important;
-    }
-    .mob-btn {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.2rem;
-      color: white;
-    }
-    /* ----- hero ----- */
-    .page-hero {
-      background: var(--navy-dk);
-      padding: 11rem 2rem 5rem;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 70% 20%, rgba(0, 128, 128, 0.10) 0%, transparent 70%),
-                  radial-gradient(circle at 20% 80%, rgba(201, 168, 76, 0.04) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .page-hero-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 1.4rem;
-    }
-    .hero-label::before {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 1px;
-      background: var(--gold);
-    }
-    .page-hero h1 {
-      font-size: clamp(2.8rem, 5.5vw, 4.6rem);
-      color: white;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.2rem;
-      line-height: 1.08;
-    }
-    .page-hero h1 em {
-      font-style: italic;
-      color: var(--gold);
-      font-weight: 500;
-    }
-    .page-hero p {
-      font-size: 1rem;
-      color: rgba(255, 255, 255, 0.5);
-      line-height: 1.8;
-      font-weight: 300;
-      max-width: 580px;
-    }
-    /* ----- section label ----- */
-    .section-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--teal);
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 1.8rem;
-    }
-    .section-label::before {
-      content: '';
-      display: block;
-      width: 24px;
-      height: 1px;
-      background: var(--gold);
-      flex-shrink: 0;
-    }
-    /* ----- TWO-UP FEATURED (article + case side by side) ----- */
-    .featured-two-up {
-      padding: var(--section-y) 0;
-      background: var(--white);
-    }
+    /* ---- OUR THINKING — PAGE-SPECIFIC ---- */
+
+    /* Featured two-up */
+    .featured { padding: 7rem 0; background: white; }
     .two-up-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-    /* article card (left) */
-    .featured-article {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: var(--navy);
-      padding: 2.5rem 2rem;
-      position: relative;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-      transition: box-shadow var(--ease);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .featured-article::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 20% 80%, rgba(0, 128, 128, 0.12) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .featured-article:hover {
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
-    }
-    .featured-article > * { position: relative; z-index: 1; }
-    .fa-tag {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 0.8rem;
-      display: block;
-    }
-    .featured-article h2 {
-      font-size: clamp(1.2rem, 1.8vw, 1.6rem);
-      color: white;
-      line-height: 1.2;
-      margin-bottom: 0.8rem;
-      font-weight: 600;
-    }
-    .featured-article p {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.6);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-    .fa-meta {
-      display: flex;
       gap: 1.5rem;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
-    .fa-meta span {
-      font-size: 0.7rem;
-      color: rgba(255, 255, 255, 0.3);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .read-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--teal);
-      transition: gap var(--ease);
-      margin-top: 1rem;
-    }
-    .read-link:hover { gap: 0.8rem; }
-    /* case card (right) */
-    .cs-featured {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
+
+    .feat-card {
       background: var(--navy);
-      padding: 2.5rem 2rem;
+      padding: 2.5rem 2.2rem;
       position: relative;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-      transition: box-shadow var(--ease);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      min-height: 360px;
+      transition: box-shadow var(--ease);
     }
-    .cs-featured::before {
+    .feat-card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 70% at 15% 85%, rgba(0, 128, 128, 0.15), transparent);
       pointer-events: none;
     }
-    .cs-featured:hover {
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
+    .feat-card--article::before {
+      background: radial-gradient(ellipse 70% 60% at 15% 85%, rgba(0,128,128,0.18), transparent);
     }
-    .cs-featured > * { position: relative; z-index: 1; }
-    .cs-tag {
+    .feat-card--case::before {
+      background: radial-gradient(ellipse 70% 60% at 85% 15%, rgba(201,168,76,0.1), transparent);
+    }
+    .feat-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+    .feat-card > * { position: relative; z-index: 1; }
+
+    .feat-tag {
       font-size: 0.6rem;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--teal);
-      margin-bottom: 0.8rem;
       display: block;
+      margin-bottom: 1rem;
     }
-    .cs-featured h2 {
-      font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+    .feat-card h2 {
+      font-size: clamp(1.2rem, 2vw, 1.65rem);
       color: white;
-      line-height: 1.2;
-      margin-bottom: 0.8rem;
+      line-height: 1.25;
+      margin-bottom: 0.9rem;
       font-weight: 600;
     }
-    .cs-featured p {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1.7;
+    .feat-card p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.75;
       font-weight: 300;
     }
-    .btn-navy {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1.2rem;
-      background: var(--teal);
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: var(--radius);
-      transition: background var(--ease), transform var(--ease);
-      align-self: flex-start;
+    .feat-meta {
+      display: flex;
+      gap: 1.5rem;
       margin-top: 1.5rem;
     }
-    .btn-navy:hover {
-      background: var(--teal-dk);
-      transform: translateY(-1px);
+    .feat-meta span {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.28);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
     }
-    /* ----- mixed grid (articles + cases) ----- */
-    .thinking-grid-section {
-      padding: var(--section-y) 0;
-      background: var(--white);
+
+    /* Grid of cards */
+    .thinking-section {
+      padding: 0 0 8rem;
+      background: white;
       border-top: 1px solid var(--border);
     }
+    .thinking-section .container { padding-top: 5rem; }
+
     .thinking-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
       background: var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
+      margin-top: 2rem;
     }
+
     .tg-card {
       background: white;
       padding: 2.5rem 2.2rem;
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
-      transition: background var(--ease), box-shadow var(--ease);
+      transition: background var(--ease);
     }
-    .tg-card:hover {
-      background: var(--teal-lt);
-      box-shadow: inset 0 0 0 1px rgba(0, 128, 128, 0.06);
-    }
+    .tg-card:hover { background: var(--teal-lt); }
+
     .tg-badge {
       font-size: 0.6rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--teal);
       background: var(--teal-lt);
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
+      padding: 0.2rem 0.75rem;
       display: inline-block;
       width: fit-content;
+      border-radius: 20px;
     }
     .tg-card h3 {
       font-size: 1.2rem;
       line-height: 1.3;
       font-weight: 600;
+      color: var(--text);
     }
     .tg-card p {
-      font-size: 0.87rem;
+      font-size: 0.85rem;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.75;
       flex: 1;
+      font-weight: 300;
     }
     .tg-foot {
       display: flex;
@@ -430,363 +141,210 @@
       padding-top: 1.2rem;
       border-top: 1px solid var(--border);
     }
-    .tg-read {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--teal);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      transition: gap var(--ease);
-    }
-    .tg-read:hover { gap: 0.6rem; }
     .tg-time {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-    /* ----- cta band ----- */
-    .cs-cta {
-      background: var(--navy-dk);
-      padding: 5rem 0;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
-    }
-    .cs-cta h2 {
-      font-size: clamp(2rem, 3.5vw, 2.9rem);
-      color: white;
-      margin-bottom: 1.2rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    .cs-cta p {
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.5);
-      max-width: 480px;
-      margin: 0 auto 2.8rem;
-      line-height: 1.8;
-      font-weight: 300;
-    }
-    .btn-teal {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.85rem 2.2rem;
-      background: var(--teal);
-      color: white;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: var(--radius);
-      transition: background var(--ease), transform var(--ease);
-    }
-    .btn-teal:hover {
-      background: var(--teal-dk);
-      transform: translateY(-2px);
-    }
-    .btn-outline-white {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.85rem 2.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: var(--radius);
-      transition: all var(--ease);
-    }
-    .btn-outline-white:hover {
-      border-color: rgba(255, 255, 255, 0.4);
-      color: white;
-      background: rgba(255, 255, 255, 0.04);
-      transform: translateY(-2px);
-    }
-    .cta-btns {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    /* ----- footer ----- */
-    footer {
-      background: var(--navy-dk);
-      padding: 2.5rem 0 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.03);
-    }
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .footer-bottom p {
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.2);
-      letter-spacing: 0.02em;
-    }
-    .foot-links {
-      display: flex;
-      gap: 2.2rem;
-    }
-    .foot-links a {
       font-size: 0.72rem;
-      color: rgba(255, 255, 255, 0.3);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      transition: color var(--ease);
-      font-weight: 500;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
-    .foot-links a:hover { color: white; }
-    /* ----- responsive ----- */
+
+    /* Responsive */
     @media (max-width: 1024px) {
-      :root { --section-y: 4rem; }
-      .two-up-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      .thinking-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      .thinking-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      .container { padding: 0 1.5rem; }
-      .mob-btn { display: block; }
-      .nav-links {
-        display: none;
-        position: fixed;
-        top: 76px;
-        right: 0;
-        width: 280px;
-        height: calc(100vh - 76px);
-        background: var(--navy-dk);
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 2rem 2rem;
-        gap: 0;
-        box-shadow: -8px 0 48px rgba(0, 0, 0, 0.3);
-        overflow-y: auto;
-      }
-      .nav-links.open { display: flex; }
-      .nav-links li { width: 100%; }
-      .nav-links a {
-        color: rgba(255, 255, 255, 0.5) !important;
-        display: block;
-        padding: 1rem 0.75rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      }
-      .nav-links a::after { display: none; }
-      .nav-cta {
-        border-color: rgba(255, 255, 255, 0.15) !important;
-      }
-      .thinking-grid {
-        grid-template-columns: 1fr;
-      }
-      .page-hero {
-        padding: 9rem 1.5rem 4rem;
-      }
-      .cs-cta { padding: 3.5rem 0; }
+      .two-up-grid { grid-template-columns: 1fr; }
+      .thinking-grid { grid-template-columns: 1fr; }
+      .feat-card { min-height: auto; }
     }
-    /* ----- reveal animation ----- */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .d1 { transition-delay: 0.06s; }
-    .d2 { transition-delay: 0.12s; }
-    .d3 { transition-delay: 0.18s; }
   </style>
 </head>
 <body>
-<div class="sp" id="sp"></div>
 
-<!-- navigation -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">What we do?</a></li>
-      <li><a href="ourthinking.html" class="on">Our thinking</a></li>
-      <li><a href="whoweare.html">Who we are?</a></li>
-      <li><a href="index.html#contact" class="nav-cta">Talk to us</a></li>
-    </ul>
-    <button class="mob-btn" id="mobBtn"><i class="fas fa-bars"></i></button>
-  </div>
-</nav>
+  <div class="sp" id="sp"></div>
 
-<!-- hero -->
-<section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="hero-label">Our thinking</div>
-    <h1>Insights &amp; outcomes<br /><em>from the work.</em></h1>
-    <p>Stories, frameworks and hard-won lessons from building operational visibility for businesses that have outgrown spreadsheets.</p>
-  </div>
-</section>
+  <nav id="nav" class="scrolled">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">What we do</a></li>
+        <li><a href="ourthinking.html" class="on">Our thinking</a></li>
+        <li><a href="whoweare.html">Who we are</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Talk to us</a></li>
+      </ul>
+      <button class="mob-btn" id="mobBtn" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
 
-<!-- TWO-UP: Featured article + Featured case side by side -->
-<section class="featured-two-up">
-  <div class="container">
-    <div class="section-label reveal">Featured</div>
-    <div class="two-up-grid reveal">
-      <!-- LEFT: Featured Article -->
-      <div class="featured-article">
-        <div>
-          <span class="fa-tag">Operations &amp; Admin</span>
-          <h2>Manual Work Is Costing You More Than You Think</h2>
-          <p>Every hour your team spends on repetitive manual work is an hour not spent on things that move your business forward. But the real cost isn't just time — it's the decisions that never get made because the right information never surfaces.</p>
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="hero-label">Our thinking</div>
+      <h1>Insights &amp; outcomes<br /><em>from the work.</em></h1>
+      <p>Stories, frameworks, and hard-won lessons from building operational visibility for businesses that have outgrown spreadsheets.</p>
+    </div>
+  </section>
+
+  <!-- FEATURED TWO-UP -->
+  <section class="featured">
+    <div class="container">
+      <div class="section-label reveal">Featured</div>
+      <div class="two-up-grid reveal">
+
+        <div class="feat-card feat-card--article">
+          <div>
+            <span class="feat-tag">Operations &amp; Admin</span>
+            <h2>Manual Work Is Costing You More Than You Think</h2>
+            <p>Every hour your team spends on repetitive manual work is an hour not spent on things that move your business forward. But the real cost isn't just time — it's the decisions that never get made because the right information never surfaces.</p>
+          </div>
+          <div class="feat-meta">
+            <span><i class="fas fa-clock"></i> 5 min read</span>
+          </div>
         </div>
-        <div class="fa-meta">
-          <span><i class="fas fa-clock"></i> 5 min read</span>
-        </div>
-      </div>
 
-      <!-- RIGHT: Featured Case Study -->
-      <div class="cs-featured">
-        <div>
-          <span class="cs-tag">Commodity Trader</span>
-          <h2>How We Stopped a Commodity Trader’s Undetected Fuel Leakage</h2>
-          <p>38 vehicles across multiple subcontractors. No reliable fuel monitoring. Losses accumulated undetected until we built a live exception-driven dashboard.</p>
+        <div class="feat-card feat-card--case">
+          <div>
+            <span class="feat-tag">Commodity Trader</span>
+            <h2>How We Stopped a Commodity Trader's Undetected Fuel Leakage</h2>
+            <p>38 vehicles across multiple subcontractors. No reliable fuel monitoring. Losses accumulated undetected until we built a live exception-driven dashboard that changed everything.</p>
+          </div>
+          <a href="index.html#contact" class="btn-teal" style="align-self: flex-start; margin-top: 1.5rem;">Discuss a similar problem →</a>
         </div>
-        <a href="index.html#contact" class="btn-navy">Discuss a similar problem →</a>
+
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- mixed grid: articles + case studies -->
-<section class="thinking-grid-section">
-  <div class="container">
-    <div class="section-label reveal">More from our thinking</div>
-    <div class="thinking-grid reveal">
-      <!-- article -->
-      <div class="tg-card">
-        <span class="tg-badge">Article</span>
-        <h3>How to Build a Business Dashboard Without Being a Data Nerd</h3>
-        <p>A business dashboard is only useful if the right people can understand it without a training course. Here's what actually works.</p>
-        <div class="tg-foot">
-          <span class="tg-time"><i class="fas fa-clock"></i> 4 min</span>
-          <a href="article-dashboard.html" class="tg-read">Read <i class="fas fa-arrow-right"></i></a>
+  <!-- THINKING GRID -->
+  <section class="thinking-section">
+    <div class="container">
+      <div class="section-label reveal">More from our thinking</div>
+      <div class="thinking-grid reveal">
+
+        <div class="tg-card">
+          <span class="tg-badge">Article</span>
+          <h3>How to Build a Business Dashboard Without Being a Data Nerd</h3>
+          <p>A business dashboard is only useful if the right people can understand it without a training course. Here's what actually works.</p>
+          <div class="tg-foot">
+            <span class="tg-time"><i class="fas fa-clock"></i> 4 min</span>
+            <a href="index.html#contact" class="arrow-link">Read <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-      </div>
-      <!-- case study -->
-      <div class="tg-card">
-        <span class="tg-badge">Case study</span>
-        <h3>From 10 Minutes to Instant: Automating 1000 Manual Job Cards</h3>
-        <p>1000 job cards produced by hand every month. 10 minutes per card. We eliminated 167 hours of admin and R60k/yr in printing costs.</p>
-        <div class="tg-foot">
-          <span class="tg-time">Field service</span>
-          <a href="index.html#contact" class="tg-read">Enquire <i class="fas fa-arrow-right"></i></a>
+
+        <div class="tg-card">
+          <span class="tg-badge">Case study</span>
+          <h3>From 10 Minutes to Instant: Automating 1,000 Manual Job Cards</h3>
+          <p>1,000 job cards produced by hand every month. 10 minutes per card. We eliminated 167 hours of admin and R60k/yr in printing costs.</p>
+          <div class="tg-foot">
+            <span class="tg-time">Field service</span>
+            <a href="index.html#contact" class="arrow-link">Enquire <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-      </div>
-      <!-- article -->
-      <div class="tg-card">
-        <span class="tg-badge">Article</span>
-        <h3>Your Supply Chain Knows More Than You Think</h3>
-        <p>The data you need to make better operational decisions is almost certainly already being generated. The problem isn't data — it's visibility.</p>
-        <div class="tg-foot">
-          <span class="tg-time"><i class="fas fa-clock"></i> 6 min</span>
-          <a href="article-supply-chain.html" class="tg-read">Read <i class="fas fa-arrow-right"></i></a>
+
+        <div class="tg-card">
+          <span class="tg-badge">Article</span>
+          <h3>Your Supply Chain Knows More Than You Think</h3>
+          <p>The data you need to make better operational decisions is almost certainly already being generated. The problem isn't data — it's visibility.</p>
+          <div class="tg-foot">
+            <span class="tg-time"><i class="fas fa-clock"></i> 6 min</span>
+            <a href="index.html#contact" class="arrow-link">Read <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-      </div>
-      <!-- case study -->
-      <div class="tg-card">
-        <span class="tg-badge">Case study</span>
-        <h3>Eliminating the Month-End Blindspot: 20-Vehicle Fleet Control Tower</h3>
-        <p>No centralised performance view. Decisions only possible after month-end. We built a live 6-KPI dashboard that shifted decisions to real time.</p>
-        <div class="tg-foot">
-          <span class="tg-time">Logistics</span>
-          <a href="index.html#contact" class="tg-read">Enquire <i class="fas fa-arrow-right"></i></a>
+
+        <div class="tg-card">
+          <span class="tg-badge">Case study</span>
+          <h3>Eliminating the Month-End Blindspot: 20-Vehicle Fleet Control Tower</h3>
+          <p>No centralised performance view. Decisions only possible after month-end. We built a live 6-KPI dashboard that shifted decisions to real time.</p>
+          <div class="tg-foot">
+            <span class="tg-time">Logistics</span>
+            <a href="index.html#contact" class="arrow-link">Enquire <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
-      </div>
-      <!-- article -->
-      <div class="tg-card">
-        <span class="tg-badge">Article</span>
-        <h3>Unlocking Hidden Business Insights in Your Paperwork</h3>
-        <p>Most businesses sit on months of operational intelligence — locked inside job cards, delivery notes, and stock sheets. Here's how to make it useful.</p>
-        <div class="tg-foot">
-          <span class="tg-time"><i class="fas fa-clock"></i> 5 min</span>
-          <a href="article-paperwork.html" class="tg-read">Read <i class="fas fa-arrow-right"></i></a>
+
+        <div class="tg-card">
+          <span class="tg-badge">Article</span>
+          <h3>Unlocking Hidden Business Insights in Your Paperwork</h3>
+          <p>Most businesses sit on months of operational intelligence — locked inside job cards, delivery notes, and stock sheets. Here's how to make it useful.</p>
+          <div class="tg-foot">
+            <span class="tg-time"><i class="fas fa-clock"></i> 5 min</span>
+            <a href="index.html#contact" class="arrow-link">Read <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
+
+        <div class="tg-card">
+          <span class="tg-badge">Case study</span>
+          <h3>Stopping Client Disputes: Real-Time Field Tracking for an Electrical Contractor</h3>
+          <p>No live view of field teams. Work logged manually. We timestamped every action, shifted reporting to a daily cadence, and resolved disputes with verifiable records.</p>
+          <div class="tg-foot">
+            <span class="tg-time">Field service</span>
+            <a href="index.html#contact" class="arrow-link">Enquire <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
       </div>
-      <!-- case study -->
-      <div class="tg-card">
-        <span class="tg-badge">Case study</span>
-        <h3>Stopping Client Disputes: Real-Time Field Tracking for Electrical Contractor</h3>
-        <p>No live view of field teams. Work logged manually. We timestamped every action, shifted reporting to daily cadence, and resolved disputes with verifiable records.</p>
-        <div class="tg-foot">
-          <span class="tg-time">Field service</span>
-          <a href="index.html#contact" class="tg-read">Enquire <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="container">
+      <div class="reveal">
+        <h2>Recognise any of these problems?</h2>
+        <p>If your operation is dealing with poor visibility, manual workflows, or disconnected data — there is a good chance we have solved something similar.</p>
+        <div class="cta-btns centered">
+          <a href="index.html#contact" class="btn-teal">Talk to us</a>
+          <a href="whoweare.html" class="btn-outline-white">Our story</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- cta -->
-<section class="cs-cta">
-  <div class="container">
-    <div class="reveal">
-      <h2>Recognise any of these problems?</h2>
-      <p>If your operation is dealing with poor visibility, manual workflows, or disconnected data — there is a good chance we have solved something similar.</p>
-      <div class="cta-btns">
-        <a href="index.html#contact" class="btn-teal">Talk to us</a>
-        <a href="our-story.html" class="btn-outline-white">Our story</a>
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
+        <div class="social">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<!-- footer -->
-<footer>
-  <div class="container">
-    <div class="footer-bottom">
-      <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
-      <div class="foot-links">
-        <a href="index.html">Home</a>
-        <a href="articles.html">Our thinking</a>
-        <a href="our-story.html">Our Story</a>
-        <a href="index.html#contact">Contact</a>
-      </div>
-    </div>
-  </div>
-</footer>
+  <script>
+  (function() {
+    const sp       = document.getElementById('sp');
+    const nav      = document.getElementById('nav');
+    const mobBtn   = document.getElementById('mobBtn');
+    const navLinks = document.getElementById('navLinks');
 
-<script>
-  // scroll progress
-  const sp = document.getElementById('sp');
-  window.addEventListener('scroll', () => {
-    const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    sp.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-  });
+    window.addEventListener('scroll', () => {
+      if (sp) {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        sp.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      }
+    }, { passive: true });
 
-  // mobile nav toggle
-  const mobBtn = document.getElementById('mobBtn');
-  const navLinks = document.getElementById('navLinks');
-  mobBtn.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    mobBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-  });
-  document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
-  }));
+    mobBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      mobBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    }));
 
-  // reveal observer
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-</script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  })();
+  </script>
+
 </body>
 </html>
