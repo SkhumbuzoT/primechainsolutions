@@ -181,6 +181,143 @@ a { text-decoration: none; color: inherit; transition: color var(--ease); }
   font-weight: 300;
 }
 
+/* --- Honeycomb Container Layout --- */
+.honeycomb-wrapper {
+  display: grid;
+  /* 3-column layout with specific gaps to allow overlapping */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "item1 item2 item3"
+    "item4 item5 item6";
+  gap: 2rem 1rem; /* Vertical gap, horizontal gap */
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem 0;
+  justify-items: center;
+}
+
+/* --- The Hexagon Shape --- */
+.honeycomb-item {
+  position: relative;
+  width: 200px;
+  height: 230px;
+  background: #ffffff;
+  border: 6px solid #ccc; /* Fallback border */
+  border-radius: 12px; /* Slight rounding to mimic the image */
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  /* Create the Hexagon clip (Cutting off the top/bottom corners) */
+  clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+  /* Ensure content doesn't bleed out of the shape */
+  overflow: hidden; 
+}
+
+.honeycomb-item:hover {
+  transform: translateY(-5px);
+}
+
+/* --- Custom "Honeycomb" Colors (Matching the image) --- */
+.color-blue { border-color: #2b6b8a; }
+.color-teal { border-color: #4ca5a7; }
+.color-green { border-color: #8bc34a; }
+.color-yellow { border-color: #f0ad4e; }
+.color-red { border-color: #e5554d; }
+.color-pink { border-color: #b73f67; }
+
+/* --- Connector Line & Dot (The vertical text part in your image) --- */
+.connector-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: transparent;
+  border: 3px solid inherit; /* Inherits parent color */
+  top: -45px; /* Pushes it up above the hexagon */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* Create the dotted line going up */
+.honeycomb-item::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: radial-gradient(#ccc 2px, transparent 2px);
+  background-size: 2px 8px;
+  background-position: 0 0;
+}
+
+/* Styling specific connector dots matching border color */
+.color-blue .connector-dot { border-color: #2b6b8a; background: #2b6b8a; }
+.color-teal .connector-dot { border-color: #4ca5a7; background: #4ca5a7; }
+.color-green .connector-dot { border-color: #8bc34a; background: #8bc34a; }
+.color-yellow .connector-dot { border-color: #f0ad4e; background: #f0ad4e; }
+.color-red .connector-dot { border-color: #e5554d; background: #e5554d; }
+.color-pink .connector-dot { border-color: #b73f67; background: #b73f67; }
+
+/* --- Icon & Text Styling --- */
+.honeycomb-item .cred-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.honeycomb-item h4 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #222;
+}
+
+.honeycomb-item p {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #666;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .honeycomb-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "item1 item2"
+      "item3 item4"
+      "item5 item6";
+    gap: 2rem 0.5rem;
+  }
+  .honeycomb-item {
+    width: 160px;
+    height: 190px;
+    padding: 15px 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .honeycomb-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "item1"
+      "item2"
+      "item3"
+      "item4"
+      "item5"
+      "item6";
+    gap: 3rem 0; /* Increase gap so the hexagons don't touch */
+  }
+}
+
 /* ----- BUTTONS ----- */
 .btn-teal, .btn-navy, .btn-outline, .btn-outline-white {
   display: inline-flex;
