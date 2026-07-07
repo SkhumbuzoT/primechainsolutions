@@ -5,24 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="PrimeChain Solutions builds operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa." />
   <title>PrimeChain Solutions | Clarity. Control. Growth.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- ✅ OPTIMIZED: Preload critical fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" as="style" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" />
+
+  <!-- ✅ OPTIMIZED: Font loading with swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  </noscript>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </noscript>
+
+  <!-- ✅ OPTIMIZED: External stylesheets (cached separately) -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="css/index.css" />
-  <link rel="icon" type="image/svg+xml" href="/assets/primechain.svg" />
-  <link rel="icon" type="image/svg" sizes="32x32" href="/assets/primechain.svg" />
-  <link rel="icon" type="image/svg" sizes="16x16" href="/assets/primechain.svg" />
+
+  <!-- ✅ ADDED: Open Graph Metadata -->
+  <meta property="og:title" content="PrimeChain Solutions | Clarity. Control. Growth." />
+  <meta property="og:description" content="Operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa." />
+  <meta property="og:image" content="https://primechainsolutions.co.za/assets/og-image.jpg" />
+  <meta property="og:url" content="https://primechainsolutions.co.za/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PrimeChain Solutions" />
+
+  <!-- ✅ ADDED: Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PrimeChain Solutions | Clarity. Control. Growth." />
+  <meta name="twitter:description" content="Operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa." />
+
+  <!-- ✅ ADDED: Canonical -->
+  <link rel="canonical" href="https://primechainsolutions.co.za/" />
+
+  <!-- ✅ ADDED: Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PrimeChain Solutions",
+    "url": "https://primechainsolutions.co.za",
+    "logo": "https://primechainsolutions.co.za/assets/primechain.svg",
+    "description": "Operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Johannesburg",
+      "addressCountry": "South Africa"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@primechainsolutions.co.za",
+      "contactType": "sales"
+    },
+    "sameAs": [
+      "https://linkedin.com/company/primechain-solutions"
+    ]
+  }
+  </script>
+
+  <!-- ✅ ADDED: WebApp Manifest (optional) -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- ✅ FIXED: Favicon with proper sizes -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 </head>
 <body>
 
+  <!-- Scroll Progress Bar -->
   <div class="sp" id="sp"></div>
 
+  <!-- Navigation -->
   <nav id="nav">
     <div class="nav-inner">
       <a href="index.html" class="logo">
-        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
+        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" width="150" height="36" />
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="on">Home</a></li>
@@ -73,7 +135,6 @@
   <section class="problem">
     <div class="container">
       <div class="problem-layout">
-
         <div class="problem-left reveal">
           <div class="section-label">Sound familiar?</div>
           <h2 class="section-title">If you're still finding problems at month end, you're already too late.</h2>
@@ -81,7 +142,6 @@
           <p class="about-body">We've encountered every one of these across transport yards, field service teams, and fleet operations. They're not bad luck — they're symptoms of a process problem.</p>
           <a href="#contact" class="btn-teal" style="margin-top:1.5rem;">Talk to us</a>
         </div>
-
         <div class="problem-right">
           <div class="pain-list">
             <div class="pain-item reveal">
@@ -114,7 +174,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -268,7 +327,7 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- ✅ UPDATED: Contact with proper form handling -->
   <section class="contact" id="contact">
     <div class="container">
       <div class="contact-layout">
@@ -280,51 +339,62 @@
             <a href="mailto:hello@primechainsolutions.co.za">
               <i class="fas fa-envelope"></i> hello@primechainsolutions.co.za
             </a>
-            <a href="https://linkedin.com">
+            <a href="https://linkedin.com/company/primechain-solutions">
               <i class="fab fa-linkedin"></i> PrimeChain Solutions
             </a>
           </div>
           <p class="contact-note">We typically respond within one business day. The first conversation is about understanding your operation — nothing will be sold on that call.</p>
         </div>
         <div class="contact-form reveal d2">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" placeholder="Your full name" />
+          <form id="contactForm" action="/api/submit-form" method="POST" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true" />
+                <span class="form-error" id="nameError"></span>
+              </div>
+              <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" placeholder="Company name" />
+              </div>
             </div>
             <div class="form-group">
-              <label>Company</label>
-              <input type="text" placeholder="Company name" />
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required aria-required="true" />
+              <span class="form-error" id="emailError"></span>
             </div>
-          </div>
-          <div class="form-group">
-            <label>Industry</label>
-            <select>
-              <option value="">Select your industry</option>
-              <option>Logistics &amp; Transport</option>
-              <option>Food &amp; Beverage</option>
-              <option>Municipal Contracting</option>
-              <option>Commodity Trade</option>
-              <option>Electrical / Field Services</option>
-              <option>Mining / Coal Haulage</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>What's the problem?</label>
-            <textarea placeholder="Briefly describe the operational challenge you're dealing with" rows="4"></textarea>
-          </div>
-          <button class="form-submit">Send message →</button>
+            <div class="form-group">
+              <label for="industry">Industry</label>
+              <select id="industry" name="industry">
+                <option value="">Select your industry</option>
+                <option>Logistics &amp; Transport</option>
+                <option>Food &amp; Beverage</option>
+                <option>Municipal Contracting</option>
+                <option>Commodity Trade</option>
+                <option>Electrical / Field Services</option>
+                <option>Mining / Coal Haulage</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">What's the problem? *</label>
+              <textarea id="message" name="message" placeholder="Briefly describe the operational challenge you're dealing with" rows="4" required aria-required="true"></textarea>
+              <span class="form-error" id="messageError"></span>
+            </div>
+            <div id="formStatus" class="form-status" style="display:none;"></div>
+            <button type="submit" class="form-submit" id="formSubmitBtn">Send message →</button>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
+          <img src="/assets/primechain.svg" alt="PrimeChain Solutions" width="150" height="34" />
           <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p>
         </div>
         <div class="footer-col">
@@ -345,7 +415,7 @@
         <div class="footer-col">
           <h5>Connect</h5>
           <ul>
-            <li><a href="#">LinkedIn</a></li>
+            <li><a href="https://linkedin.com/company/primechain-solutions" target="_blank" rel="noopener">LinkedIn</a></li>
             <li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li>
             <li><a href="#">Johannesburg, SA</a></li>
           </ul>
@@ -354,14 +424,15 @@
       <div class="footer-bottom">
         <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
         <div class="social">
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://linkedin.com/company/primechain-solutions" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
-
+  <!-- ✅ OPTIMIZED: External JavaScript (minified in production) -->
+  <script src="js/main.js" defer></script>
+  <script src="js/form-handler.js" defer></script>
 </body>
 </html>
