@@ -472,6 +472,62 @@ a { text-decoration: none; color: inherit; transition: color var(--ease); }
   font-weight: 300;
 }
 
+/* ==========================================================
+   EXPERIENCE STRIP
+========================================================== */
+
+.brand-strip {
+    padding: 6rem 0;
+    background: #fff;
+}
+
+.brand-label {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3rem;
+}
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem 2rem;
+    align-items: center;
+    justify-items: center;
+}
+
+.brand-grid img {
+    max-width: 150px;
+    max-height: 42px;
+    width: auto;
+    height: auto;
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transition: all .3s ease;
+}
+
+.brand-grid img:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .brand-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
 /* ----- FOOTER ----- */
 footer {
   background: var(--navy);
