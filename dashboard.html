@@ -9,120 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="icon" type="image/svg+xml" href="/assets/primechain.svg" />
   <link rel="stylesheet" href="style.css" />
-        <!-- Favicon -->
-  <link rel="icon" type="image/svg" sizes="32x32" href="/assets/primechain.svg">
-  <link rel="icon" type="image/svg" sizes="16x16" href="/assets/primechain.svg">
-  <style>
-    /* ---- ARTICLE-SPECIFIC ---- */
-    .article-body {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 4rem 0 6rem;
-    }
-    .article-body h2 {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      margin: 2.5rem 0 1rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    .article-body h3 {
-      font-size: clamp(1.2rem, 2vw, 1.5rem);
-      margin: 2rem 0 0.8rem;
-      font-weight: 600;
-    }
-    .article-body p {
-      font-size: 1rem;
-      line-height: 1.85;
-      color: var(--text);
-      margin-bottom: 1.25rem;
-      font-weight: 300;
-    }
-    .article-body p:first-of-type {
-      font-size: 1.08rem;
-      line-height: 1.9;
-      color: var(--text);
-    }
-    .article-body ul {
-      margin: 1.25rem 0 1.5rem 1.5rem;
-    }
-    .article-body ul li {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: var(--text);
-      font-weight: 300;
-      margin-bottom: 0.5rem;
-    }
-    .article-body blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      line-height: 1.5;
-      font-weight: 500;
-      color: var(--navy-mid);
-      margin: 2rem 0;
-      border-left: 3px solid var(--gold);
-      background: var(--off);
-      padding: 1.5rem 2rem;
-    }
-    .article-body blockquote p {
-      margin-bottom: 0;
-      font-size: inherit;
-      font-weight: 500;
-      color: var(--navy-mid);
-    }
-    .article-meta {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.8rem;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .article-meta span { display: flex; align-items: center; gap: 0.4rem; }
-    .article-tag {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--teal);
-      background: var(--teal-lt);
-      padding: 0.25rem 0.9rem;
-      border-radius: 20px;
-      display: inline-block;
-    }
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--teal);
-      margin-bottom: 1.5rem;
-      transition: gap var(--ease);
-    }
-    .back-link:hover { gap: 0.75rem; }
-    .article-divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 2.5rem 0;
-    }
-    .article-nav {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 1rem 0;
-    }
-
-    @media (max-width: 768px) {
-      .article-body { padding: 2.5rem 0 4rem; }
-      .article-body blockquote { font-size: 1.2rem; padding: 1.25rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/article.css" />
+  <link rel="icon" type="image/svg+xml" href="/assets/primechain.svg" />
+  <link rel="icon" type="image/svg" sizes="32x32" href="/assets/primechain.svg" />
+  <link rel="icon" type="image/svg" sizes="16x16" href="/assets/primechain.svg" />
 </head>
 <body>
 
@@ -166,11 +57,11 @@
 
       <p>There is a moment that happens in almost every dashboard project.</p>
 
-      <p>Someone — usually the person who asked for the dashboard in the first place — sits down in front of the screen, looks at the beautifully designed charts and graphs, and says: "This is great. But what am I actually looking at?"</p>
+      <p>Someone — usually the person who asked for the dashboard in the first place — sits down in front of the screen, looks at the beautifully designed charts and graphs, and says: "This is great, but I don't know what I'm supposed to do with it."</p>
 
       <p>That moment is not a failure of the dashboard. It is a failure of the thinking that went into building it.</p>
 
-      <p>Most business dashboards are built by people who understand data, for people who do not. The result is a screen full of information that makes sense to the person who built it — and leaves the person who needs to act on it feeling overwhelmed, confused, and quietly skeptical about whether this whole dashboard thing was worth the effort.</p>
+      <p>Most business dashboards are built by people who understand data, for people who do not. The result is a screen full of information that makes sense to the person who built it — and leaves everyone else confused.</p>
 
       <p>There is a better way.</p>
 
@@ -178,9 +69,9 @@
 
       <p>Before we talk about how to build a dashboard, let us be clear about what a dashboard is for.</p>
 
-      <p>A dashboard is not a report. A report answers questions you already know to ask. A dashboard shows you things you did not know to look for — changes, patterns, exceptions, and problems that would otherwise remain invisible until they became expensive.</p>
+      <p>A dashboard is not a report. A report answers questions you already know to ask. A dashboard shows you things you did not know to look for — changes, patterns, exceptions, and problems that need attention right now.</p>
 
-      <p>A dashboard is not a data dump. If the person using it needs to scroll, filter, or squint to find the information they need, it is not doing its job. The right information should be immediately visible, without interpretation, without explanation, without a training course.</p>
+      <p>A dashboard is not a data dump. If the person using it needs to scroll, filter, or squint to find the information they need, it is not doing its job. The right information should be immediately visible.</p>
 
       <p>A dashboard is not a trophy. It is a tool. It exists to help someone make better decisions, faster. If it is not doing that, it is just a very expensive screensaver.</p>
 
@@ -196,7 +87,7 @@
 
       <p>The first question is the most important, and it is the one most dashboard projects get wrong.</p>
 
-      <p>A dashboard for a dispatcher looks different from a dashboard for a fleet manager. A dashboard for an operations director looks different from a dashboard for a site supervisor. The numbers might be the same. How they are presented, what gets emphasised, and what gets left out — that needs to match the person who is actually going to use it.</p>
+      <p>A dashboard for a dispatcher looks different from a dashboard for a fleet manager. A dashboard for an operations director looks different from a dashboard for a site supervisor. The number of metrics, the level of detail, the time period — all of it changes depending on who needs to use it.</p>
 
       <p>Ask yourself: what decisions does this person need to make, and what information would make those decisions easier? Not what data do you have. What decisions do they make.</p>
 
@@ -206,15 +97,15 @@
 
       <p>Every dashboard should have a single, primary thing that it is designed to show. The thing that, when someone glances at it, they know immediately whether things are good or bad.</p>
 
-      <p>For a fleet operator, that might be fuel efficiency against target across the fleet. For a contractor, it might be jobs completed today versus the schedule. For a field service business, it might be the number of open work orders that are overdue.</p>
+      <p>For a fleet operator, that might be fuel efficiency against target across the fleet. For a contractor, it might be jobs completed today versus the schedule. For a field service business, it might be technician utilization or service level breach risk.</p>
 
-      <p>That one thing is not the whole dashboard. It is the anchor — the metric that the rest of the dashboard exists to explain. When that number changes, the user knows something has changed. They can then look at the supporting information to understand why.</p>
+      <p>That one thing is not the whole dashboard. It is the anchor — the metric that the rest of the dashboard exists to explain. When that number changes, the user knows something has changed, and they know where to look next.</p>
 
       <h3>Step Three: What Is the Minimum?</h3>
 
       <p>Here is the discipline that separates useful dashboards from clutter: before you add anything, ask whether it is truly necessary for the decisions this dashboard supports.</p>
 
-      <p>The minimum viable dashboard is not a nice-to-have. It is a necessity. Every extra metric, every extra chart, every extra piece of information is a distraction from the thing that matters most.</p>
+      <p>The minimum viable dashboard is not a nice-to-have. It is a necessity. Every extra metric, every extra chart, every extra piece of information is a distraction from the thing that matters.</p>
 
       <p>If someone needs more detail, they can click through. The dashboard is for the overview. The detail lives elsewhere.</p>
 
@@ -224,15 +115,15 @@
 
       <p><strong>Reason One: Too Much Information</strong></p>
 
-      <p>The builder tried to show everything. Every metric, every chart, every data point that could possibly be relevant. The result is a screen that requires the user to hunt for the information they actually need. By the time they find it, they are too tired to act on it.</p>
+      <p>The builder tried to show everything. Every metric, every chart, every data point that could possibly be relevant. The result is a screen that requires the user to hunt for the information they actually need.</p>
 
       <p><strong>Reason Two: No Context</strong></p>
 
-      <p>The dashboard shows the numbers, but it does not show what those numbers mean. Is 0.45 litres per kilometre good or bad? Is 87% on-time delivery acceptable or a problem? Without a target, a benchmark, or a trend, the numbers are just numbers. They do not tell a story.</p>
+      <p>The dashboard shows the numbers, but it does not show what those numbers mean. Is 0.45 litres per kilometre good or bad? Is 87% on-time delivery acceptable or a problem? Without a target, a threshold, or a comparison, the number is just a number.</p>
 
       <p><strong>Reason Three: Built for the Builder</strong></p>
 
-      <p>The person who built the dashboard understood the data. They knew what each metric meant and why it mattered. But they did not design it for the person who actually needed to use it. The language is technical. The layout assumes prior knowledge. The user ends up feeling stupid — and abandons the dashboard.</p>
+      <p>The person who built the dashboard understood the data. They knew what each metric meant and why it mattered. But they did not design it for the person who actually needed to use it. The result is a dashboard that works perfectly for the builder and confuses everyone else.</p>
 
       <h2>What a Good Dashboard Looks Like</h2>
 
@@ -267,7 +158,7 @@
 
       <div class="article-nav">
         <a href="ourthinking.html" class="arrow-link"><i class="fas fa-arrow-left"></i> All articles</a>
-        <a href="article-paperwork-intelligence.html" class="arrow-link">Next article <i class="fas fa-arrow-right"></i></a>
+        <a href="ourthinking.html" class="arrow-link">Next article <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </div>
@@ -328,36 +219,7 @@
     </div>
   </footer>
 
-  <script>
-  (function() {
-    const sp = document.getElementById('sp');
-    const nav = document.getElementById('nav');
-    const mobBtn = document.getElementById('mobBtn');
-    const navLinks = document.getElementById('navLinks');
-
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-      if (sp) {
-        const h = document.documentElement.scrollHeight - window.innerHeight;
-        sp.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-      }
-    }, { passive: true });
-
-    mobBtn.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      mobBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
-    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
-    }));
-
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.07, rootMargin: '0px 0px -20px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  })();
-  </script>
+  <script src="js/main.js"></script>
 
 </body>
 </html>

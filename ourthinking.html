@@ -10,158 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
-        <!-- Favicon -->
-  <link rel="icon" type="image/svg" sizes="32x32" href="/assets/primechain.svg">
-  <link rel="icon" type="image/svg" sizes="16x16" href="/assets/primechain.svg">
-  <style>
-    /* ---- OUR THINKING — PAGE-SPECIFIC ---- */
-
-    /* Featured two-up */
-    .featured { padding: 7rem 0; background: white; }
-    .two-up-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .feat-card {
-      background: var(--navy);
-      padding: 2.5rem 2.2rem;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 360px;
-      transition: box-shadow var(--ease);
-    }
-    .feat-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-    .feat-card--article::before {
-      background: radial-gradient(ellipse 70% 60% at 15% 85%, rgba(0,128,128,0.18), transparent);
-    }
-    .feat-card--case::before {
-      background: radial-gradient(ellipse 70% 60% at 85% 15%, rgba(201,168,76,0.1), transparent);
-    }
-    .feat-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
-    .feat-card > * { position: relative; z-index: 1; }
-
-    .feat-tag {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--teal);
-      display: block;
-      margin-bottom: 1rem;
-    }
-    .feat-card h2 {
-      font-size: clamp(1.2rem, 2vw, 1.65rem);
-      color: white;
-      line-height: 1.25;
-      margin-bottom: 0.9rem;
-      font-weight: 600;
-    }
-    .feat-card p {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.75;
-      font-weight: 300;
-    }
-    .feat-meta {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .feat-meta span {
-      font-size: 0.68rem;
-      color: rgba(255,255,255,0.28);
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    /* Grid of cards */
-    .thinking-section {
-      padding: 0 0 8rem;
-      background: white;
-      border-top: 1px solid var(--border);
-    }
-    .thinking-section .container { padding-top: 5rem; }
-
-    .thinking-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      margin-top: 2rem;
-    }
-
-    .tg-card {
-      background: white;
-      padding: 2.5rem 2.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-      transition: background var(--ease);
-    }
-    .tg-card:hover { background: var(--teal-lt); }
-
-    .tg-badge {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--teal);
-      background: var(--teal-lt);
-      padding: 0.2rem 0.75rem;
-      display: inline-block;
-      width: fit-content;
-      border-radius: 20px;
-    }
-    .tg-card h3 {
-      font-size: 1.2rem;
-      line-height: 1.3;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .tg-card p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.75;
-      flex: 1;
-      font-weight: 300;
-    }
-    .tg-foot {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 1.2rem;
-      border-top: 1px solid var(--border);
-    }
-    .tg-time {
-      font-size: 0.72rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .thinking-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      .two-up-grid { grid-template-columns: 1fr; }
-      .thinking-grid { grid-template-columns: 1fr; }
-      .feat-card { min-height: auto; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/ourthinking.css" />
+  <link rel="icon" type="image/svg" sizes="32x32" href="/assets/primechain.svg" />
+  <link rel="icon" type="image/svg" sizes="16x16" href="/assets/primechain.svg" />
 </head>
 <body>
 
@@ -173,10 +24,10 @@
         <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="on">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="whoweare.html">Who we are</a></li>
-        <li><a href="ourthinking.html">Our thinking</a></li>
-        <li><a href="#contact" class="nav-cta">Talk to us</a></li>
+        <li><a href="ourthinking.html" class="on">Our thinking</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Talk to us</a></li>
       </ul>
       <button class="mob-btn" id="mobBtn" aria-label="Menu">
         <i class="fas fa-bars"></i>
@@ -203,7 +54,7 @@
           <div>
             <span class="feat-tag">Article</span>
             <h2>Manual Work Is Costing You More Than You Think</h2>
-            <p>Every hour your team spends on repetitive manual work is an hour not spent on things that move your business forward. But the real cost isn't just time — it's the decisions that never get made because the right information never surfaces.</p>
+            <p>Every hour your team spends on repetitive manual work is an hour not spent on things that move your business forward. But the real cost isn't just time — it's the decisions that never happen.</p>
           </div>
           <div class="feat-meta">
             <span class="tg-time"><i class="fas fa-clock"></i> 5 min</span>
@@ -256,7 +107,7 @@
           <p>The data you need to make better operational decisions is almost certainly already being generated. The problem isn't data — it's visibility.</p>
           <div class="tg-foot">
             <span class="tg-time"><i class="fas fa-clock"></i> 6 min</span>
-            <a href="supplychain.html" class="arrow-link">Read <i class="fas fa-arrow-right"></i></a>
+            <a href="#" class="arrow-link">Read <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
 
@@ -320,35 +171,7 @@
     </div>
   </footer>
 
-  <script>
-  (function() {
-    const sp       = document.getElementById('sp');
-    const nav      = document.getElementById('nav');
-    const mobBtn   = document.getElementById('mobBtn');
-    const navLinks = document.getElementById('navLinks');
-
-    window.addEventListener('scroll', () => {
-      if (sp) {
-        const h = document.documentElement.scrollHeight - window.innerHeight;
-        sp.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-      }
-    }, { passive: true });
-
-    mobBtn.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      mobBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
-    document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
-    }));
-
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.07 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  })();
-  </script>
+  <script src="js/main.js"></script>
 
 </body>
 </html>
