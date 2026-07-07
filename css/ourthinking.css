@@ -1,0 +1,188 @@
+/* ============================================================
+   PRIMECHAIN SOLUTIONS — OUR THINKING PAGE STYLES
+   ============================================================ */
+
+/* Featured two-up */
+.featured {
+  padding: 7rem 0;
+  background: white;
+}
+
+.two-up-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.feat-card {
+  background: var(--navy);
+  padding: 2.5rem 2.2rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+  transition: box-shadow var(--ease);
+}
+
+.feat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.feat-card--article::before {
+  background: radial-gradient(ellipse 70% 60% at 15% 85%, rgba(0,128,128,0.18), transparent);
+}
+
+.feat-card--case::before {
+  background: radial-gradient(ellipse 70% 60% at 85% 15%, rgba(201,168,76,0.1), transparent);
+}
+
+.feat-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.feat-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.feat-tag {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.feat-card h2 {
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  color: white;
+  line-height: 1.25;
+  margin-bottom: 0.9rem;
+  font-weight: 600;
+}
+
+.feat-card p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.feat-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.feat-meta span {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.28);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Grid of cards */
+.thinking-section {
+  padding: 0 0 8rem;
+  background: white;
+  border-top: 1px solid var(--border);
+}
+
+.thinking-section .container {
+  padding-top: 5rem;
+}
+
+.thinking-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 2rem;
+}
+
+.tg-card {
+  background: white;
+  padding: 2.5rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  transition: background var(--ease);
+}
+
+.tg-card:hover {
+  background: var(--teal-lt);
+}
+
+.tg-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: var(--teal-lt);
+  padding: 0.2rem 0.75rem;
+  display: inline-block;
+  width: fit-content;
+  border-radius: 20px;
+}
+
+.tg-card h3 {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tg-card p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.75;
+  flex: 1;
+  font-weight: 300;
+}
+
+.tg-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}
+
+.tg-time {
+  font-size: 0.72rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .thinking-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .two-up-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .thinking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feat-card {
+    min-height: auto;
+  }
+}
