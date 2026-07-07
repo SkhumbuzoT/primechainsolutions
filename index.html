@@ -5,17 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="PrimeChain Solutions builds operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa." />
   <title>PrimeChain Solutions | Clarity. Control. Growth.</title>
+  
+  <!-- CRITICAL: Font preload for fast rendering -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Optimized: Only load essential weights & sizes -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Remove FontAwesome CDN - using inline SVG instead -->
   <link rel="stylesheet" href="style.css" />
-      <!-- Favicon -->
+  
+  <!-- Favicon -->
   <link rel="icon" type="image/svg" sizes="32x32" href="/assets/primechain.svg">
   <link rel="icon" type="image/svg" sizes="16x16" href="/assets/primechain.svg">
+  
   <style>
-    /* ---- INDEX-SPECIFIC ---- */
-
+    /* ---- PERFORMANCE: Inline critical CSS ---- */
     /* Hero */
     .hero {
       position: relative;
@@ -25,6 +30,8 @@
       background:
         linear-gradient(140deg, rgba(4,12,30,0.88) 0%, rgba(0,36,36,0.82) 100%),
         url('/assets/empower.jpeg') center 30% / cover no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
     }
     .hero::after {
       content: '';
@@ -80,452 +87,34 @@
       font-weight: 300;
     }
 
-    /* Stat strip in hero */
-    .hero-stats {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 4rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      flex-wrap: wrap;
+    /* OPTIMIZED: Reduced animation duration 0.7s -> 0.4s */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.4s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.4s cubic-bezier(0.16,1,0.3,1);
     }
-    .hstat {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-    .hstat-n {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: white;
-      line-height: 1;
-    }
-    .hstat-l {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.38);
-      letter-spacing: 0.06em;
-      font-weight: 400;
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
 
-    /* Problem section */
-    .problem { padding: 8rem 0; background: white; }
-    .problem-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-    .problem-intro {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      line-height: 1.55;
-      color: var(--text);
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-    }
-    .about-body {
-      font-size: 0.93rem;
-      color: var(--muted);
-      line-height: 1.85;
-      margin-bottom: 1.5rem;
-      font-weight: 300;
-    }
-
-    .pain-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-    }
-    .pain-item {
-      background: white;
-      padding: 2rem 1.75rem;
-      transition: background var(--ease);
-    }
-    .pain-item:hover { background: var(--teal-lt); }
-    .pain-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: rgba(10,31,68,0.07);
-      display: block;
-      margin-bottom: 1rem;
-      line-height: 1;
-    }
-    .pain-text h4 {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 700;
-      margin-bottom: 0.6rem;
-      color: var(--text);
-    }
-    .pain-text p {
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    .pain-closing {
-      margin-top: 2.5rem;
-      font-size: 0.93rem;
-      color: var(--text);
-      line-height: 1.75;
-      border-left: 2px solid var(--gold);
-      padding-left: 1.5rem;
-      font-weight: 400;
-    }
-
-    /* Convergence */
-    .convergence { padding: 7rem 0; background: var(--off); }
-    .convergence-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 5rem;
-      align-items: start;
-    }
-    .convergence-sticky {
-      position: sticky;
-      top: 100px;
-    }
-    .convergence-body p {
-      font-size: 0.97rem;
-      line-height: 1.85;
-      color: #334155;
-      margin-bottom: 1.2rem;
-      font-weight: 300;
-    }
-    .convergence-body strong {
-      font-weight: 600;
-      color: var(--navy-mid);
-    }
-    .convergence-body p:last-child {
-      font-size: 1rem;
-      color: var(--text);
-      font-weight: 500;
-      line-height: 1.7;
-    }
-
-    /* Services */
-    .services { padding: 8rem 0; background: white; }
-    .services-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 4rem;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .svc-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-    }
-    .svc-card {
-      background: white;
-      padding: 2.5rem 2rem;
-      transition: background var(--ease);
-    }
-    .svc-card:hover { background: var(--teal-lt); }
-    .svc-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: #ebebeb;
-      display: block;
-      margin-bottom: 1.5rem;
-      line-height: 1;
-    }
-    .svc-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.9rem;
-      font-weight: 600;
-    }
-    .svc-card p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    /* Case studies */
-    .cases { padding: 8rem 0; background: var(--off); }
-    .cases-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 4rem;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .case-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-    }
-    .case-card {
-      background: white;
-      padding: 2.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      transition: background var(--ease);
-    }
-    .case-card:hover { background: #fafafa; }
-    .case-industry {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--teal);
-      text-transform: uppercase;
-      margin-bottom: 0.9rem;
-      display: block;
-    }
-    .case-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.9rem;
-      font-weight: 600;
-      line-height: 1.3;
-      flex-shrink: 0;
-    }
-    .case-problem {
-      font-size: 0.83rem;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 1.25rem;
-      font-weight: 300;
-      flex: 1;
-    }
-    .case-outcome {
-      font-size: 0.83rem;
-      font-weight: 500;
-      padding-top: 1.2rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      gap: 0.6rem;
-      color: var(--text);
-    }
-    .case-outcome::before { content: "→"; color: var(--gold); flex-shrink: 0; }
-    .case-link {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--teal);
-      letter-spacing: 0.04em;
-      transition: color var(--ease);
-    }
-    .case-link:hover { text-decoration: underline; }
-
-    /* Testimonial */
-    .testimonial {
-      background: var(--navy);
-      padding: 7rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .testimonial::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(201,168,76,0.08) 0%, transparent 55%),
-        radial-gradient(circle at 80% 70%, rgba(0,128,128,0.08) 0%, transparent 55%);
-      pointer-events: none;
-    }
-    .testimonial-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 0 1.5rem;
-    }
-    .quote-mark {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 6rem;
-      line-height: 0.8;
-      color: rgba(201,168,76,0.15);
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-    .testimonial blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.5rem, 3.2vw, 2rem);
-      font-weight: 500;
-      font-style: italic;
-      color: white;
-      line-height: 1.5;
-      margin-bottom: 2rem;
-    }
-    .testimonial cite {
-      font-style: normal;
-      font-size: 0.67rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-    }
-    .testimonial cite::before,
-    .testimonial cite::after {
-      content: '';
-      width: 24px; height: 1px;
-      background: rgba(255,255,255,0.15);
-    }
-
-    /* How we work */
-    .how { padding: 8rem 0; background: white; }
-    .how-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 5rem;
-      align-items: start;
-    }
+    /* OPTIMIZED: Sticky elements - limit to necessary contexts */
+    .convergence-sticky,
     .how-sticky {
-      position: sticky;
-      top: 100px;
-    }
-    .how-intro {
-      font-size: 0.93rem;
-      color: var(--muted);
-      line-height: 1.85;
-      margin-top: 1.25rem;
-      font-weight: 300;
-    }
-    .how-intro + .how-intro { margin-top: 0.75rem; }
-    .how-step {
-      display: grid;
-      grid-template-columns: 52px 1fr;
-      gap: 1.5rem;
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--border);
-      transition: background var(--ease);
-    }
-    .how-step:first-child { border-top: 1px solid var(--border); }
-    .step-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #dde0e5;
-      transition: color var(--ease);
-      line-height: 1;
-      padding-top: 0.15rem;
-    }
-    .how-step:hover .step-num { color: var(--teal); }
-    .step-body h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-    }
-    .step-body p {
-      font-size: 0.83rem;
-      color: var(--muted);
-      line-height: 1.75;
-      font-weight: 300;
+      will-change: auto;
     }
 
-    /* Contact */
-    .contact { padding: 8rem 0; background: var(--off); }
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 5rem;
-      align-items: start;
+    /* ---- DESKTOP RESPONSIVENESS FIX ---- */
+    @media (max-width: 1440px) {
+      .problem-layout,
+      .convergence-inner,
+      .how-layout,
+      .contact-layout {
+        gap: clamp(2rem, 5vw, 5rem);
+      }
     }
-    .contact-info {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-    .contact-info a {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      font-size: 0.88rem;
-      color: var(--muted);
-      transition: color var(--ease);
-      font-weight: 300;
-    }
-    .contact-info a i { color: var(--teal); font-size: 0.8rem; }
-    .contact-info a:hover { color: var(--teal); }
-    .contact-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-      line-height: 1.75;
-      font-weight: 300;
-    }
-    .contact-form {
-      background: white;
-      padding: 2.5rem;
-      border: 1px solid var(--border);
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-bottom: 1.2rem;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      margin-bottom: 1.2rem;
-    }
-    .form-group label {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: 1px solid var(--border);
-      border-bottom-width: 2px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem;
-      background: white;
-      color: var(--text);
-      transition: border-color var(--ease);
-      outline: none;
-      border-radius: 0;
-      appearance: none;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--teal); }
-    .form-group textarea { resize: vertical; min-height: 90px; }
-    .form-submit {
-      width: 100%;
-      padding: 1rem;
-      background: var(--navy-mid);
-      color: white;
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background var(--ease);
-    }
-    .form-submit:hover { background: var(--teal); }
 
-    /* ---- RESPONSIVE ---- */
     @media (max-width: 1024px) {
       .problem-layout,
       .how-layout,
@@ -567,7 +156,7 @@
         <li><a href="#contact" class="nav-cta">Talk to us</a></li>
       </ul>
       <button class="mob-btn" id="mobBtn" aria-label="Menu">
-        <i class="fas fa-bars"></i>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
     </div>
   </nav>
@@ -578,7 +167,7 @@
       <div class="hero-content">
         <div class="hero-eyebrow">Operational Intelligence</div>
         <h1>Operational chaos<br />isn't your problem.<br /><em>Lack of visibility is.</em></h1>
-        <p class="hero-sub">We've seen it in transport yards, field service teams, and fleet operations. The surface problems are always different. The root cause almost never is. We find it, fix it, and build systems that keep it fixed.</p>
+        <p class="hero-sub">We've seen it in transport yards, field service teams, and fleet operations. The surface problems are always different. The root cause almost never is. We find it, fix it, and show you how to prevent it.</p>
         <div class="cta-btns">
           <a href="#contact" class="btn-teal">Talk to us</a>
           <a href="ourthinking.html" class="btn-outline">View our work</a>
@@ -609,12 +198,11 @@
   <section class="problem">
     <div class="container">
       <div class="problem-layout">
-
         <div class="problem-left reveal">
           <div class="section-label">Sound familiar?</div>
           <h2 class="section-title">If you're still finding problems at month end, you're already too late.</h2>
           <p class="about-body">The businesses we work with aren't badly run. They just can't see what's happening inside their own operation until the damage is already done.</p>
-          <p class="about-body">We've encountered every one of these across transport yards, field service teams, and fleet operations. They're not bad luck — they're symptoms of a process problem. And process problems are fixable.</p>
+          <p class="about-body">We've encountered every one of these across transport yards, field service teams, and fleet operations. They're not bad luck — they're symptoms of a process problem that lives inside the visibility gap.</p>
           <a href="#contact" class="btn-teal" style="margin-top:1.5rem;">Talk to us</a>
         </div>
 
@@ -624,33 +212,32 @@
               <span class="pain-num">01</span>
               <div class="pain-text">
                 <h4>The Month-End Financial Blindspot</h4>
-                <p>Fuel discrepancies, stock losses, and delivery gaps only appear at month-end. By then the slips are missing, the money is gone, and the source of the problem is untraceable. The data existed — it just never came together in time to act on it.</p>
+                <p>Fuel discrepancies, stock losses, and delivery gaps only appear at month-end. By then the slips are missing, the money is gone, and the source of the problem is untraceable.</p>
               </div>
             </div>
             <div class="pain-item reveal d1">
               <span class="pain-num">02</span>
               <div class="pain-text">
                 <h4>Delayed Field Data Stalls Your Cash Flow</h4>
-                <p>Field teams submit job cards, proof of work, and delivery notes days after the job is done. You're invoicing on yesterday's information, chasing disputes that wouldn't exist if the data had been captured correctly the first time.</p>
+                <p>Field teams submit job cards, proof of work, and delivery notes days after the job is done. You're invoicing on yesterday's information.</p>
               </div>
             </div>
             <div class="pain-item reveal d2">
               <span class="pain-num">03</span>
               <div class="pain-text">
                 <h4>You Don't Know Which Vehicles or Partners Cost You Most</h4>
-                <p>Fuel spend is a black box. Subcontractor performance is managed on gut feel. You have suspicions about which trucks overconsume — but suspicion isn't enough to challenge a contractor or renegotiate a rate. Data is.</p>
+                <p>Fuel spend is a black box. Subcontractor performance is managed on gut feel. You have suspicions about which trucks overconsume.</p>
               </div>
             </div>
             <div class="pain-item reveal d3">
               <span class="pain-num">04</span>
               <div class="pain-text">
                 <h4>High-Value Skills Drowned in Manual Admin</h4>
-                <p>Information that already exists in one system gets copied by hand into another, printed, attached, and filed. Your team is spending Saturday mornings producing documents that add zero operational value — while the actual work waits.</p>
+                <p>Information that already exists in one system gets copied by hand into another, printed, attached, and filed.</p>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -664,9 +251,9 @@
           <h2 class="section-title">The data exists.<br />It just never converges.</h2>
         </div>
         <div class="convergence-body reveal d1">
-          <p>In almost every operation we've walked into, the information needed to make better decisions was already being generated. Fuel slips, weighbridge tickets, job cards, proof of delivery documents — all of it captured, somewhere.</p>
-          <p>The problem isn't that the data doesn't exist. It's that it lives in disconnected streams — WhatsApp, spreadsheets, paper files, accounting software — and never comes together into a picture anyone can act on.</p>
-          <p>Data that lives in separate streams has no analytical value until it converges. The insight only exists in the correlation. A fuel slip means nothing without the load record to measure it against. A job card means nothing if it takes ten minutes to produce what the system already knows.</p>
+          <p>In almost every operation we've walked into, the information needed to make better decisions was already being generated. Fuel slips, weighbridge tickets, job cards, proof of delivery—all of it exists.</p>
+          <p>The problem isn't that the data doesn't exist. It's that it lives in disconnected streams — WhatsApp, spreadsheets, paper files, accounting software — and never comes together in one place where it can be analysed.</p>
+          <p>Data that lives in separate streams has no analytical value until it converges. The insight only exists in the correlation.</p>
           <p><strong>That's where most businesses are stuck — not because they're badly managed, but because nobody has ever built the layer that brings it together. That's the layer we build.</strong></p>
         </div>
       </div>
@@ -681,26 +268,26 @@
           <div class="section-label">Restore visibility. Eliminate operational friction.</div>
           <h2 class="section-title">Three ways we solve<br />operational problems.</h2>
         </div>
-        <a href="#contact" class="arrow-link">Talk to us <i class="fas fa-arrow-right"></i></a>
+        <a href="#contact" class="arrow-link">Talk to us <span>→</span></a>
       </div>
       <div class="svc-grid reveal">
         <div class="svc-card">
           <span class="svc-num">01</span>
           <h3>Operational Leak Audit™</h3>
           <p>We identify where operational blind spots, admin bottlenecks, and reporting gaps are costing your business time, money, and control.</p>
-          <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+          <a href="#contact" class="arrow-link"><span>→</span></a>
         </div>
         <div class="svc-card">
           <span class="svc-num">02</span>
           <h3>Operational Control Systems™</h3>
           <p>We design and build lightweight operational platforms that replace repetitive manual processes without forcing your business into expensive enterprise software.</p>
-          <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+          <a href="#contact" class="arrow-link"><span>→</span></a>
         </div>
         <div class="svc-card">
           <span class="svc-num">03</span>
           <h3>Continuous Improvement™</h3>
           <p>Operational problems evolve. We stay involved after implementation to monitor performance, identify new bottlenecks, and ensure your systems continue creating measurable value.</p>
-          <a href="#contact" class="arrow-link"><i class="fas fa-arrow-right"></i></a>
+          <a href="#contact" class="arrow-link"><span>→</span></a>
         </div>
       </div>
     </div>
@@ -714,27 +301,27 @@
           <div class="section-label">Proof, not promises</div>
           <h2 class="section-title">We have solved this before.</h2>
         </div>
-        <a href="ourthinking.html" class="arrow-link">View all case studies <i class="fas fa-arrow-right"></i></a>
+        <a href="ourthinking.html" class="arrow-link">View all case studies <span>→</span></a>
       </div>
       <div class="case-grid reveal">
         <div class="case-card">
           <span class="case-industry">Commodity Trader — Mpumalanga Coal Haulage</span>
           <h3>The R200k Fuel Leak Nobody Could See</h3>
-          <p class="case-problem">The refill data existed. The load records existed. They just lived in entirely separate places and were never brought together. When they were, the losses became impossible to ignore — and for the first time, there was evidentiary data to hold contractors accountable.</p>
+          <p class="case-problem">The refill data existed. The load records existed. They just lived in entirely separate places and were never brought together. When they were, the losses became impossible to ignore.</p>
           <div class="case-outcome">R200,000+ in monthly fuel waste identified within the first reporting cycle.</div>
           <a href="#contact" class="case-link">Discuss a similar problem →</a>
         </div>
         <div class="case-card">
           <span class="case-industry">Transport Operation — Multi-Route Fleet</span>
           <h3>The R600k Margin Leak Hidden Inside a Profitable Fleet</h3>
-          <p class="case-problem">They thought their highest-revenue route was their most profitable. It wasn't. The route generating the most loads was quietly the worst performer — and nobody could see it because revenue and cost data had never been brought together at the per-trip level.</p>
+          <p class="case-problem">They thought their highest-revenue route was their most profitable. It wasn't. The route generating the most loads was quietly the worst performer — and nobody knew.</p>
           <div class="case-outcome">Per-route profitability calculable on demand for the first time. Unprofitable route renegotiated within the first month.</div>
           <a href="#contact" class="case-link">Discuss a similar problem →</a>
         </div>
         <div class="case-card">
           <span class="case-industry">Electrical Contractor — Utility Mandate</span>
           <h3>2,000 Admin Hours Eliminated</h3>
-          <p class="case-problem">"I spent seven hours on a Saturday creating job cards. Seven hours. On a Saturday. For work that adds zero value to anyone." Eighty percent of the information on every card already existed in the system. It just wasn't being used.</p>
+          <p class="case-problem">"I spent seven hours on a Saturday creating job cards. Seven hours. On a Saturday. For work that adds zero value to anyone." Eighty percent of the information on those cards already existed in the system.</p>
           <div class="case-outcome">167+ hours of admin eliminated monthly. Job card production reduced from 10 minutes to near-instant. R60,000 per year in printing costs removed.</div>
           <a href="#contact" class="case-link">Discuss a similar problem →</a>
         </div>
@@ -760,43 +347,43 @@
         <div class="how-sticky reveal">
           <div class="section-label">How it works</div>
           <h2 class="section-title">Your data is already telling a story.<br />You just can't hear it yet.</h2>
-          <p class="how-intro">Right now, somewhere in your operation, a driver is filling up at a fuel point. A slip is generated. That slip goes into a pocket, onto a WhatsApp message, into a pile on someone's desk. Somewhere else, a load is being weighed at the mine.</p>
-          <p class="how-intro" style="margin-top:0.75rem;">Three moments. Three documents. Three pieces of the same story — and they will never meet. Together they answer the most important question in your operation: <em>did that trip make money?</em> Separately, they're just paper.</p>
+          <p class="how-intro">Right now, somewhere in your operation, a driver is filling up at a fuel point. A slip is generated. That slip goes into a pocket, onto a WhatsApp message, into a printout.</p>
+          <p class="how-intro" style="margin-top:0.75rem;">Three moments. Three documents. Three pieces of the same story — and they will never meet. Together they answer the most important question in your operation.</p>
         </div>
         <div class="how-steps reveal d1">
           <div class="how-step">
             <span class="step-num">01</span>
             <div class="step-body">
               <h4>Field Event</h4>
-              <p>The story begins in the physical world. A driver pulls up to a fuel point. A technician completes an installation. A truck crosses a weighbridge. Something happens, and it leaves a trace — a slip, a photograph, a timestamp. In most businesses, this is also where the story ends.</p>
+              <p>The story begins in the physical world. A driver pulls up to a fuel point. A technician completes an installation. A truck crosses a weighbridge. Something happens, and it leaves a trace.</p>
             </div>
           </div>
           <div class="how-step">
             <span class="step-num">02</span>
             <div class="step-body">
               <h4>Database</h4>
-              <p>We capture that field event through a structured process — a mobile form, a digital job card, a document scan. It lands in a centralised environment where it's held, timestamped, and available. Not in a spreadsheet. Not in a chat thread. In a structure that knows what it is, where it came from, and when it happened.</p>
+              <p>We capture that field event through a structured process — a mobile form, a digital job card, a document scan. It lands in a centralised environment where it's held, timestamped, and indexed.</p>
             </div>
           </div>
           <div class="how-step">
             <span class="step-num">03</span>
             <div class="step-body">
               <h4>Correlation</h4>
-              <p>A fuel slip on its own tells you very little. A load record on its own tells you very little. But match the fuel consumed against the load delivered, on the same truck, on the same route, against a benchmark — and suddenly you have a question worth asking, or an answer worth acting on.</p>
+              <p>A fuel slip on its own tells you very little. A load record on its own tells you very little. But match the fuel consumed against the load delivered, on the same truck, on the same day, and suddenly you see the truth.</p>
             </div>
           </div>
           <div class="how-step">
             <span class="step-num">04</span>
             <div class="step-body">
               <h4>Intelligence</h4>
-              <p>Correlation produces numbers. Intelligence gives those numbers context. It's the difference between knowing a truck consumed 180 litres and knowing that truck consumed 40 litres more than it should have, on a route where that variance has appeared three weeks in a row.</p>
+              <p>Correlation produces numbers. Intelligence gives those numbers context. It's the difference between knowing a truck consumed 180 litres and knowing that truck consumed 40 litres more than its peers on an identical route.</p>
             </div>
           </div>
           <div class="how-step">
             <span class="step-num">05</span>
             <div class="step-body">
               <h4>Decision</h4>
-              <p>This is the only reason any of it exists. Not dashboards for their own sake. A transport manager accepting a rate with the actual cost model in front of him. An ops manager removing a contractor because the numbers — not the suspicion — justify it. A business owner who stops being surprised at month-end.</p>
+              <p>This is the only reason any of it exists. Not dashboards for their own sake. A transport manager accepting a rate with the actual cost model in front of him. An ops manager removing a bottleneck because they can finally see it.</p>
             </div>
           </div>
         </div>
@@ -811,13 +398,13 @@
         <div class="contact-left reveal">
           <div class="section-label">Get in touch</div>
           <h2 class="section-title">Recognise any of<br />these problems?<br />Let's talk.</h2>
-          <p style="margin-top:1rem; font-size:0.93rem; color:var(--muted); line-height:1.8; font-weight:300;">The first consultation is free and carries no obligation. We'll tell you honestly whether we can help — and if we can, exactly what that would look like.</p>
+          <p style="margin-top:1rem; font-size:0.93rem; color:var(--muted); line-height:1.8; font-weight:300;">The first consultation is free and carries no obligation. We'll tell you honestly whether we can help. If we can't, we'll point you in a better direction.</p>
           <div class="contact-info">
             <a href="mailto:hello@primechainsolutions.co.za">
-              <i class="fas fa-envelope"></i> hello@primechainsolutions.co.za
+              <span>📧</span> hello@primechainsolutions.co.za
             </a>
             <a href="https://linkedin.com">
-              <i class="fab fa-linkedin"></i> PrimeChain Solutions
+              <span>🔗</span> PrimeChain Solutions
             </a>
           </div>
           <p class="contact-note">We typically respond within one business day. The first conversation is about understanding your operation — nothing will be sold on that call.</p>
@@ -890,8 +477,8 @@
       <div class="footer-bottom">
         <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
         <div class="social">
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email">✉</a>
         </div>
       </div>
     </div>
@@ -914,11 +501,11 @@
 
     mobBtn.addEventListener('click', () => {
       const open = navLinks.classList.toggle('open');
-      mobBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      mobBtn.innerHTML = open ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
     });
     document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
       navLinks.classList.remove('open');
-      mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      mobBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>';
     }));
 
     const obs = new IntersectionObserver(entries => {
