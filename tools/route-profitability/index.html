@@ -1,250 +1,800 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Chain | Route Profitability Calculator</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
+<title>LOI Profitability Engine — PrimeChain Solutions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  /* ----- TOKENS (from primechainsolutions.co.za) ----- */
+  :root {
+    --navy:      #071534;
+    --navy-mid:  #0A1F44;
+    --teal:      #008080;
+    --teal-dk:   #006666;
+    --teal-lt:   #f0fafa;
+    --gold:      #C9A84C;
+    --gold-lt:   #fbf6e9;
+    --white:     #ffffff;
+    --off:       #F8F8F6;
+    --text:      #0F1923;
+    --muted:     #64748b;
+    --border:    #E4E5E7;
+    --loss:      #B3261E;
+    --loss-lt:   #fbeceb;
+    --ease:      0.25s ease;
+    --radius-sm: 2px;
+    --radius:    4px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--off);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    padding:32px 20px 60px;
+  }
+  .wrap{max-width:1180px;margin:0 auto;}
+
+  /* ===== HEADER ===== */
+  .topbar{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:26px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--teal-dk);
+    margin-bottom:8px;
+    font-weight:600;
+  }
+  h1{
+    font-family:'Inter',sans-serif;
+    font-weight:800;
+    font-size:clamp(26px,3.6vw,38px);
+    letter-spacing:-0.01em;
+    margin:0 0 8px;
+    color:var(--navy);
+  }
+  .subhead{
+    color:var(--muted);
+    font-size:14px;
+    max-width:600px;
+    line-height:1.55;
+  }
+  .btn-download{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--navy);
+    color:var(--white);
+    border:none;
+    border-radius:var(--radius-sm);
+    padding:10px 16px;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    transition:background var(--ease);
+    white-space:nowrap;
+    margin-top:2px;
+  }
+  .btn-download:hover{background:var(--teal-dk);}
+  .btn-download svg{width:14px;height:14px;}
+  .btn-download.secondary{background:var(--white);color:var(--navy);border:1px solid var(--border);}
+  .btn-download.secondary:hover{background:var(--off);}
+  .btn-download:disabled{opacity:0.6;cursor:wait;}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;}
+  body.exporting .btn-row{visibility:hidden;}
+
+  /* ===== ROUTE STRIP (signature element) ===== */
+  .route-strip{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px 28px;
+    margin-bottom:22px;
+    position:relative;
+  }
+  .route-strip::before{
+    content:"MANIFEST — ROUTE";
+    position:absolute;
+    top:10px; right:16px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9px;
+    letter-spacing:0.16em;
+    color:var(--border);
+  }
+  .route-line{
+    display:flex;
+    align-items:center;
+    margin-top:4px;
+  }
+  .route-node{
+    display:flex;
+    flex-direction:column;
+    min-width:120px;
+  }
+  .route-node .label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.12em;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-bottom:5px;
+  }
+  .route-node input{
+    background:transparent;
+    border:none;
+    border-bottom:2px solid var(--border);
+    color:var(--navy);
+    font-family:'Inter',sans-serif;
+    font-size:19px;
+    font-weight:700;
+    padding:4px 2px;
+    width:100%;
+    transition:border-color var(--ease);
+  }
+  .route-node input:focus{outline:none;border-bottom-color:var(--teal);}
+  .route-track{
+    flex:1;
+    height:2px;
+    background:repeating-linear-gradient(90deg, var(--teal) 0 10px, transparent 10px 18px);
+    position:relative;
+    margin:0 18px;
+    top:10px;
+  }
+  .route-track .dist-badge{
+    position:absolute;
+    top:-33px;
+    left:50%;
+    transform:translateX(-50%);
+    background:var(--teal-lt);
+    border:1px solid var(--teal);
+    border-radius:var(--radius-sm);
+    padding:5px 10px;
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+    white-space:nowrap;
+  }
+  .route-track .dist-badge input{
+    background:transparent;border:none;color:var(--teal-dk);
+    font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;
+    width:52px;text-align:right;
+  }
+  .route-track .dist-badge input:focus{outline:none;}
+  .route-track .dist-badge .unit{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-right:10px;}
+  .route-node.dest .dot{background:var(--gold);}
+
+  .trip-toggle{
+    margin-top:16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--muted);
+    flex-wrap:wrap;
+  }
+  .trip-toggle .seg{
+    display:flex; border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden;
+  }
+  .trip-toggle button{
+    background:var(--white);border:none;color:var(--muted);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;padding:6px 12px;cursor:pointer;
+    letter-spacing:0.04em;
+    transition:background var(--ease), color var(--ease);
+  }
+  .trip-toggle button.active{background:var(--teal);color:var(--white);font-weight:600;}
+
+  /* ===== TWO COLUMN INPUT PANELS ===== */
+  .panels{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:22px;
+  }
+  @media (max-width:820px){ .panels{grid-template-columns:1fr;} }
+
+  .panel{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px 22px 22px;
+  }
+  .panel-title{
+    font-size:14.5px;
+    letter-spacing:0.01em;
+    font-weight:700;
+    color:var(--navy);
+    margin:0 0 4px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .panel-title .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9px;
+    letter-spacing:0.08em;
+    color:var(--teal-dk);
+    background:var(--teal-lt);
+    border:1px solid var(--teal);
+    padding:3px 8px;
+    border-radius:var(--radius-sm);
+    text-transform:uppercase;
+    font-weight:600;
+  }
+  .panel.cost .panel-title .tag{color:#8a6d1f;background:var(--gold-lt);border-color:var(--gold);}
+  .panel-note{
+    font-size:11.5px;
+    color:var(--muted);
+    line-height:1.5;
+    margin-bottom:16px;
+  }
+
+  .field-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:9px 0;
+    border-bottom:1px solid var(--border);
+    gap:12px;
+  }
+  .field-row:last-child{border-bottom:none;}
+  .field-row label{
+    font-size:12.5px;
+    color:var(--text);
+    flex:1;
+  }
+  .field-row .derived{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--teal-dk);
+    background:var(--teal-lt);
+    padding:5px 8px;
+    border-radius:var(--radius-sm);
+    white-space:nowrap;
+  }
+  .field-row input{
+    background:var(--off);
+    border:1px solid var(--border);
+    color:var(--text);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    padding:6px 9px;
+    border-radius:var(--radius-sm);
+    width:100px;
+    text-align:right;
+    transition:border-color var(--ease);
+  }
+  .field-row input:focus{outline:none;border-color:var(--teal);}
+
+  .subgroup-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:16px 0 4px;
+  }
+
+  /* ===== OUTPUT LEDGER ===== */
+  .ledger{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    margin-bottom:22px;
+  }
+  .ledger-title{
+    font-size:14.5px;
+    font-weight:700;
+    color:var(--navy);
+    margin:0 0 16px;
+  }
+  .ledger-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    overflow:hidden;
+  }
+  @media (max-width:900px){ .ledger-grid{grid-template-columns:repeat(2,1fr);} }
+  .cell{
+    background:var(--off);
+    padding:14px 16px;
+  }
+  .cell .k{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .cell .v{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:19px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .cell .v.pos{color:var(--teal-dk);}
+  .cell .v.neg{color:var(--loss);}
+  .cell .sub{font-size:10.5px;color:var(--muted);margin-top:4px;}
+
+  /* ===== CHARTS ===== */
+  .charts{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:20px;
+    margin-bottom:22px;
+  }
+  @media (max-width:900px){ .charts{grid-template-columns:1fr;} }
+  .chart-card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px 20px;
+  }
+  .chart-card h3{
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    font-weight:700;
+    margin:0 0 14px;
+    color:var(--muted);
+  }
+  .chart-wrap{position:relative;height:230px;}
+
+  /* ===== VERDICT STAMP ===== */
+  .verdict-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px 28px;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .verdict-copy{max-width:560px;}
+  .verdict-copy .head{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.14em;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .verdict-copy p{margin:0;font-size:13px;line-height:1.6;color:var(--muted);}
+  .stamp{
+    font-weight:800;
+    font-size:22px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:13px 24px;
+    border:3px solid currentColor;
+    border-radius:var(--radius);
+    white-space:nowrap;
+  }
+  .stamp.profitable{color:var(--teal-dk);background:var(--teal-lt);}
+  .stamp.marginal{color:#8a6d1f;background:var(--gold-lt);}
+  .stamp.loss{color:var(--loss);background:var(--loss-lt);}
+
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.08em;
+    margin-top:30px;
+    text-transform:uppercase;
+  }
+</style>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-left">
-                <div class="brand">
-                    <span class="brand-icon">◆</span>
-                    <div>
-                        <h1>Prime Chain Solutions</h1>
-                        <span class="brand-sub">Operational Intelligence Platform</span>
-                    </div>
-                </div>
-                <nav class="breadcrumb">
-                    <span>Contract Intelligence</span>
-                    <span class="separator">/</span>
-                    <span class="active">Route Profitability</span>
-                </nav>
-            </div>
-            <div class="header-actions">
-                <button class="btn btn-outline" onclick="resetCalculator()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-                    Reset
-                </button>
-                <button class="btn btn-outline" onclick="window.print()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M18 9h3v9H3V9h3"/><rect x="6" y="13" width="12" height="8"/></svg>
-                    Print
-                </button>
-                <button class="btn btn-primary" onclick="exportCSV()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
-                    Export CSV
-                </button>
-            </div>
-        </header>
+<div class="wrap">
 
-        <!-- Main Input Grid -->
-        <div class="input-grid">
-            <!-- LOI Information -->
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">📋</span>
-                    <h3>LOI Information</h3>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label>Origin</label>
-                        <input type="text" id="origin" placeholder="e.g., Witbank" value="Witbank">
-                    </div>
-                    <div class="form-group">
-                        <label>Destination</label>
-                        <input type="text" id="destination" placeholder="e.g., Middelburg" value="Middelburg">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Distance (One Way KM)</label>
-                            <input type="number" id="distance" value="82">
-                        </div>
-                        <div class="form-group">
-                            <label>Rate per Ton (R)</label>
-                            <input type="number" id="rate" value="225">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Payload (Ton)</label>
-                            <input type="number" id="payload" value="34">
-                        </div>
-                        <div class="form-group">
-                            <label>Expected Loads / Day</label>
-                            <input type="number" id="loads" value="5">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Working Days / Month</label>
-                        <input type="number" id="days" value="22">
-                    </div>
-                </div>
-            </div>
+  <div class="topbar">
+    <div>
+      <div class="eyebrow">PrimeChain Solutions — Operational Intelligence</div>
+      <h1>LOI Profitability Engine</h1>
+      <p class="subhead">Load the Letter of Intent terms against your Vehicle Cost Schedule and see, per load, per day, and per month, whether the contract clears its own cost floor.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-download" id="downloadPdfBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+        Download PDF
+      </button>
+      <button class="btn-download secondary" id="downloadHtmlBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+        Download HTML
+      </button>
+    </div>
+  </div>
 
-            <!-- Vehicle Cost Profile -->
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-icon">🚛</span>
-                    <h3>Vehicle Cost Profile</h3>
-                    <span class="badge">34 Ton Side Tipper</span>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label>Total Cost per KM</label>
-                        <input type="number" id="costkm" value="24.04" step="0.01">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Fuel Consumption (L/100KM)</label>
-                            <input type="number" id="fuelcons" value="57">
-                        </div>
-                        <div class="form-group">
-                            <label>Fuel Price (R/L)</label>
-                            <input type="number" id="fuelprice" value="19.50" step="0.01">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Maintenance (R/KM)</label>
-                            <input type="number" id="maintenance" value="2.94" step="0.01">
-                        </div>
-                        <div class="form-group">
-                            <label>Insurance (R/KM)</label>
-                            <input type="number" id="insurance" value="0.63" step="0.01">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Driver Cost / Day</label>
-                        <input type="number" id="driver" value="755">
-                    </div>
-                    <button class="btn btn-success btn-block" onclick="calculateRoute()">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                        Analyse Profitability
-                    </button>
-                </div>
-            </div>
+  <!-- ROUTE STRIP -->
+  <div class="route-strip">
+    <div class="route-line">
+      <div class="route-node orig">
+        <span class="label">Origin</span>
+        <input id="origin" value="Witbank">
+      </div>
+      <div class="route-track">
+        <div class="dist-badge">
+          <input id="distance" type="number" value="42" step="1">
+          <span class="unit">km</span>
         </div>
+      </div>
+      <div class="route-node dest">
+        <span class="label">Destination</span>
+        <input id="destination" value="Middelburg">
+      </div>
+    </div>
+    <div class="trip-toggle">
+      <span>DISTANCE BASIS:</span>
+      <div class="seg">
+        <button id="btnOneway" class="">ONE-WAY (LOADED)</button>
+        <button id="btnRound" class="active">ROUND TRIP</button>
+      </div>
+      <span id="cycleKmNote"></span>
+    </div>
+  </div>
 
-        <!-- KPI Dashboard -->
-        <section class="kpi-dashboard">
-            <div class="kpi-card">
-                <div class="kpi-icon">💰</div>
-                <div class="kpi-content">
-                    <span class="kpi-label">Revenue / Load</span>
-                    <span class="kpi-value" id="revLoad">R 0.00</span>
-                </div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">📊</div>
-                <div class="kpi-content">
-                    <span class="kpi-label">Cost / Load</span>
-                    <span class="kpi-value" id="costLoad">R 0.00</span>
-                </div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">📈</div>
-                <div class="kpi-content">
-                    <span class="kpi-label">Profit / Load</span>
-                    <span class="kpi-value" id="profitLoad">R 0.00</span>
-                </div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">🎯</div>
-                <div class="kpi-content">
-                    <span class="kpi-label">Margin</span>
-                    <span class="kpi-value" id="margin">0%</span>
-                </div>
-            </div>
-        </section>
+  <!-- INPUT PANELS -->
+  <div class="panels">
+    <div class="panel loi">
+      <div class="panel-title">LOI Terms <span class="tag">Revenue</span></div>
+      <div class="panel-note">The commercial terms as stated in the Letter of Intent.</div>
 
-        <!-- Charts Grid -->
-        <div class="charts-grid">
-            <div class="card chart-card">
-                <div class="card-header">
-                    <span class="card-icon">📊</span>
-                    <h3>Revenue vs Cost</h3>
-                </div>
-                <div class="chart-container">
-                    <canvas id="revenueChart"></canvas>
-                </div>
-            </div>
-            <div class="card chart-card">
-                <div class="card-header">
-                    <span class="card-icon">🧩</span>
-                    <h3>Cost Breakdown</h3>
-                </div>
-                <div class="chart-container">
-                    <canvas id="costChart"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Projections Grid -->
-        <div class="projections-grid">
-            <div class="card projection-card">
-                <div class="projection-header">
-                    <span class="projection-icon">📅</span>
-                    <h3>Daily Projection</h3>
-                </div>
-                <div class="projection-values">
-                    <div>
-                        <span class="projection-label">Revenue</span>
-                        <span class="projection-value" id="dailyRevenue">R 0.00</span>
-                    </div>
-                    <div>
-                        <span class="projection-label">Cost</span>
-                        <span class="projection-value" id="dailyCost">R 0.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="card projection-card">
-                <div class="projection-header">
-                    <span class="projection-icon">📆</span>
-                    <h3>Monthly Projection</h3>
-                </div>
-                <div class="projection-values">
-                    <div>
-                        <span class="projection-label">Revenue</span>
-                        <span class="projection-value" id="monthlyRevenue">R 0.00</span>
-                    </div>
-                    <div>
-                        <span class="projection-label">Profit</span>
-                        <span class="projection-value" id="monthlyProfit">R 0.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="card projection-card">
-                <div class="projection-header">
-                    <span class="projection-icon">⭐</span>
-                    <h3>Route Score</h3>
-                </div>
-                <div class="route-score">
-                    <div id="routeScore" class="score-stars">★★★★★</div>
-                    <div id="recommendation" class="score-label">Highly Profitable</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="app-footer">
-            <div class="footer-content">
-                <span>Prime Chain Solutions © 2026</span>
-                <span class="footer-separator">|</span>
-                <span>Operational Intelligence Platform</span>
-                <span class="footer-separator">|</span>
-                <span>Version 1.0</span>
-            </div>
-        </footer>
+      <div class="field-row">
+        <label>Rate / ton</label>
+        <input id="rateTon" type="number" value="185" step="1">
+      </div>
+      <div class="field-row">
+        <label>Tons / load</label>
+        <input id="tonsLoad" type="number" value="34" step="0.5">
+      </div>
+      <div class="field-row">
+        <label>Expected loads / day</label>
+        <input id="loadsDay" type="number" value="3" step="0.5">
+      </div>
+      <div class="field-row">
+        <label>Working days / month</label>
+        <input id="workDays" type="number" value="24" step="1">
+      </div>
     </div>
 
-    <script src="app.js"></script>
+    <div class="panel cost">
+      <div class="panel-title">Cost Engine <span class="tag">VCS · 34t</span></div>
+      <div class="panel-note">Defaults approximate an RFA-style Vehicle Cost Schedule for a 34t interlink. Replace with your actual VCS figures per vehicle/subcontractor.</div>
+
+      <div class="subgroup-label">Fixed costs — R / month</div>
+      <div class="field-row"><label>Driver wages &amp; overtime</label><input id="fWages" type="number" value="25000" step="500"></div>
+      <div class="field-row"><label>Licensing &amp; permits</label><input id="fLicense" type="number" value="2500" step="100"></div>
+      <div class="field-row"><label>Insurance</label><input id="fInsurance" type="number" value="8000" step="250"></div>
+      <div class="field-row"><label>Depreciation</label><input id="fDeprec" type="number" value="35000" step="500"></div>
+
+      <div class="subgroup-label">Fuel</div>
+      <div class="field-row"><label>Diesel price (R / litre)</label><input id="fuelPrice" type="number" value="24.50" step="0.10"></div>
+      <div class="field-row"><label>Consumption (L / 100km, loaded)</label><input id="fuelConsumption" type="number" value="38" step="0.5"></div>
+      <div class="field-row"><label>Fuel cost — derived</label><span class="derived" id="derivedFuelKm">–</span></div>
+
+      <div class="subgroup-label">Other variable costs — R / km</div>
+      <div class="field-row"><label>Tyres</label><input id="vTyres" type="number" value="1.20" step="0.05"></div>
+      <div class="field-row"><label>Maintenance &amp; repair</label><input id="vMaint" type="number" value="2.80" step="0.10"></div>
+      <div class="field-row"><label>Lubricants</label><input id="vLube" type="number" value="0.30" step="0.05"></div>
+    </div>
+  </div>
+
+  <!-- OUTPUT LEDGER -->
+  <div class="ledger">
+    <div class="ledger-title">Output Ledger</div>
+    <div class="ledger-grid">
+      <div class="cell"><div class="k">Revenue / load</div><div class="v" id="outRevLoad">–</div></div>
+      <div class="cell"><div class="k">Full cost / load</div><div class="v" id="outCostLoad">–</div></div>
+      <div class="cell"><div class="k">Margin / load</div><div class="v" id="outMarginLoad">–</div><div class="sub" id="outMarginPct"></div></div>
+      <div class="cell"><div class="k">Cost / km (variable)</div><div class="v" id="outCostKm">–</div></div>
+
+      <div class="cell"><div class="k">Revenue / day</div><div class="v" id="outRevDay">–</div></div>
+      <div class="cell"><div class="k">Cost / day</div><div class="v" id="outCostDay">–</div></div>
+      <div class="cell"><div class="k">Margin / day</div><div class="v" id="outMarginDay">–</div></div>
+      <div class="cell"><div class="k">Break-even loads / day</div><div class="v" id="outBEloads">–</div></div>
+
+      <div class="cell"><div class="k">Revenue / month</div><div class="v" id="outRevMonth">–</div></div>
+      <div class="cell"><div class="k">Cost / month</div><div class="v" id="outCostMonth">–</div></div>
+      <div class="cell"><div class="k">Margin / month</div><div class="v" id="outMarginMonth">–</div></div>
+      <div class="cell"><div class="k">Break-even rate / ton</div><div class="v" id="outBErate">–</div></div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="charts">
+    <div class="chart-card">
+      <h3>Revenue vs. Cost — Day &amp; Month</h3>
+      <div class="chart-wrap"><canvas id="chartRevCost"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Cost / Month Composition</h3>
+      <div class="chart-wrap"><canvas id="chartComposition"></canvas></div>
+    </div>
+  </div>
+
+  <div class="charts">
+    <div class="chart-card" style="grid-column:1/-1;">
+      <h3>Margin Sensitivity — Loads / Day</h3>
+      <div class="chart-wrap"><canvas id="chartSensitivity"></canvas></div>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict-row">
+    <div class="verdict-copy">
+      <div class="head" id="verdictRoute">Witbank → Middelburg · 42 km round trip</div>
+      <p id="verdictText">Adjust the LOI terms and cost schedule above — the verdict updates live.</p>
+    </div>
+    <div class="stamp" id="stamp">—</div>
+  </div>
+
+  <footer>PrimeChain Solutions · Operational Leak Audit™ · Model is indicative — verify against signed LOI and actual VCS</footer>
+</div>
+
+<script>
+let tripMode = 'round'; // 'round' or 'oneway'
+const $ = id => document.getElementById(id);
+
+function num(id){ return parseFloat($(id).value) || 0; }
+function rand(v){ return 'R' + v.toLocaleString('en-ZA', {maximumFractionDigits:0}); }
+function randDec(v){ return 'R' + v.toLocaleString('en-ZA', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+$('btnOneway').addEventListener('click', ()=>{ tripMode='oneway'; $('btnOneway').classList.add('active'); $('btnRound').classList.remove('active'); calc(); });
+$('btnRound').addEventListener('click', ()=>{ tripMode='round'; $('btnRound').classList.add('active'); $('btnOneway').classList.remove('active'); calc(); });
+
+$('downloadHtmlBtn').addEventListener('click', ()=>{
+  const blob = new Blob(['<!DOCTYPE html>\n' + document.documentElement.outerHTML], {type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'loi-profitability-engine.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+});
+
+$('downloadPdfBtn').addEventListener('click', async ()=>{
+  const btn = $('downloadPdfBtn');
+  const originalLabel = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = 'Generating…';
+  document.body.classList.add('exporting');
+
+  try{
+    const target = document.querySelector('.wrap');
+    const canvas = await html2canvas(target, {
+      scale: 2,
+      backgroundColor: '#F8F8F6',
+      useCORS: true
+    });
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    const imgData = canvas.toDataURL('image/png');
+    const imgWidth = pdfWidth;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    heightLeft -= pdfHeight;
+
+    while (heightLeft > 0){
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pdfHeight;
+    }
+
+    const routeLabel = `${$('origin').value}-${$('destination').value}`.replace(/\s+/g, '');
+    pdf.save(`LOI-Profitability-${routeLabel}.pdf`);
+  } catch(err){
+    console.error('PDF export failed:', err);
+    alert('PDF export failed. Please try again.');
+  } finally {
+    document.body.classList.remove('exporting');
+    btn.disabled = false;
+    btn.innerHTML = originalLabel;
+  }
+});
+
+let chartRevCost, chartComposition, chartSensitivity;
+
+function calc(){
+  const distanceOneWay = num('distance');
+  const cycleKm = tripMode === 'round' ? distanceOneWay * 2 : distanceOneWay;
+  $('cycleKmNote').textContent = `(${cycleKm} km / cycle)`;
+
+  const rateTon = num('rateTon');
+  const tonsLoad = num('tonsLoad');
+  const loadsDay = num('loadsDay');
+  const workDays = num('workDays');
+
+  const fixedMonth = num('fWages') + num('fLicense') + num('fInsurance') + num('fDeprec');
+
+  const fuelPrice = num('fuelPrice');
+  const fuelConsumption = num('fuelConsumption');
+  const fuelKm = fuelPrice * (fuelConsumption / 100); // R/km
+  $('derivedFuelKm').textContent = randDec(fuelKm) + '/km';
+
+  const varKm = fuelKm + num('vTyres') + num('vMaint') + num('vLube');
+
+  const revLoad = rateTon * tonsLoad;
+  const varCostLoad = varKm * cycleKm;
+  const loadsMonth = loadsDay * workDays;
+  const fixedAllocLoad = loadsMonth > 0 ? fixedMonth / loadsMonth : 0;
+  const fullCostLoad = varCostLoad + fixedAllocLoad;
+  const marginLoad = revLoad - fullCostLoad;
+  const marginPct = revLoad > 0 ? (marginLoad / revLoad) * 100 : 0;
+
+  const revDay = revLoad * loadsDay;
+  const varCostDay = varCostLoad * loadsDay;
+  const costDay = varCostDay + (workDays > 0 ? fixedMonth / workDays : 0);
+  const marginDay = revDay - costDay;
+
+  const revMonth = revDay * workDays;
+  const costMonth = fixedMonth + (varCostLoad * loadsMonth);
+  const marginMonth = revMonth - costMonth;
+
+  const contribPerLoad = revLoad - varCostLoad;
+  const beLoadsPerMonth = contribPerLoad > 0 ? fixedMonth / contribPerLoad : Infinity;
+  const beLoadsPerDay = workDays > 0 ? beLoadsPerMonth / workDays : Infinity;
+  const beRateTon = tonsLoad > 0 ? fullCostLoad / tonsLoad : 0;
+
+  // ---- write ledger ----
+  $('outRevLoad').textContent = rand(revLoad);
+  $('outCostLoad').textContent = rand(fullCostLoad);
+  $('outMarginLoad').textContent = rand(marginLoad);
+  $('outMarginLoad').className = 'v ' + (marginLoad >= 0 ? 'pos' : 'neg');
+  $('outMarginPct').textContent = marginPct.toFixed(1) + '% margin';
+  $('outCostKm').textContent = randDec(varKm) + '/km';
+
+  $('outRevDay').textContent = rand(revDay);
+  $('outCostDay').textContent = rand(costDay);
+  $('outMarginDay').textContent = rand(marginDay);
+  $('outMarginDay').className = 'v ' + (marginDay >= 0 ? 'pos' : 'neg');
+  $('outBEloads').textContent = isFinite(beLoadsPerDay) ? beLoadsPerDay.toFixed(2) : '∞';
+
+  $('outRevMonth').textContent = rand(revMonth);
+  $('outCostMonth').textContent = rand(costMonth);
+  $('outMarginMonth').textContent = rand(marginMonth);
+  $('outMarginMonth').className = 'v ' + (marginMonth >= 0 ? 'pos' : 'neg');
+  $('outBErate').textContent = rand(beRateTon) + '/t';
+
+  // ---- verdict ----
+  $('verdictRoute').textContent = `${$('origin').value} → ${$('destination').value} · ${cycleKm} km ${tripMode === 'round' ? 'round trip' : 'one-way'}`;
+  const stampEl = $('stamp');
+  let verdictMsg = '';
+  if (marginPct >= 15){
+    stampEl.textContent = 'PROFITABLE';
+    stampEl.className = 'stamp profitable';
+    verdictMsg = `Margin holds at ${marginPct.toFixed(1)}% after full cost allocation. Rate/ton could drop to ${rand(beRateTon)} before this route stops paying for itself — meaningful headroom above the ${rand(rateTon)} on offer.`;
+  } else if (marginPct >= 0){
+    stampEl.textContent = 'MARGINAL';
+    stampEl.className = 'stamp marginal';
+    verdictMsg = `Margin is thin at ${marginPct.toFixed(1)}%. Break-even sits at ${rand(beRateTon)}/t and ${beLoadsPerDay.toFixed(2)} loads/day — any slip in loads, distance, or fuel cost pushes this into a loss. Treat as a floor, not a target.`;
+  } else {
+    stampEl.textContent = 'LOSS-MAKING';
+    stampEl.className = 'stamp loss';
+    verdictMsg = `At the stated terms this route runs at a ${marginPct.toFixed(1)}% loss. The rate would need to reach ${rand(beRateTon)}/t, or loads/day rise to ${beLoadsPerDay.toFixed(2)}, just to break even.`;
+  }
+  $('verdictText').textContent = verdictMsg;
+
+  updateCharts({revDay, costDay, revMonth, costMonth, fixedMonth, varCostMonth: varCostLoad*loadsMonth, revLoad, varCostLoad, workDays});
+}
+
+function updateCharts(d){
+  const muted = { color: '#64748b', font:{family:"'IBM Plex Mono', monospace", size:10} };
+  const grid = { color: '#E4E5E7' };
+
+  // Revenue vs Cost
+  const rcData = {
+    labels:['Per day','Per month (÷1000)'],
+    datasets:[
+      {label:'Revenue', backgroundColor:'#008080', data:[d.revDay, d.revMonth/1000]},
+      {label:'Cost', backgroundColor:'#C9A84C', data:[d.costDay, d.costMonth/1000]}
+    ]
+  };
+  if (chartRevCost){ chartRevCost.data = rcData; chartRevCost.update(); }
+  else {
+    chartRevCost = new Chart($('chartRevCost'), {
+      type:'bar',
+      data: rcData,
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{labels:muted} },
+        scales:{ x:{ticks:muted, grid:grid}, y:{ticks:muted, grid:grid} }
+      }
+    });
+  }
+
+  // Cost composition (month): fixed vs variable
+  const compData = {
+    labels:['Fixed (wages, license, insurance, depreciation)','Variable (fuel, tyres, R&M, lube)'],
+    datasets:[{ data:[d.fixedMonth, d.varCostMonth], backgroundColor:['#0A1F44','#C9A84C'], borderWidth:0 }]
+  };
+  if (chartComposition){ chartComposition.data = compData; chartComposition.update(); }
+  else {
+    chartComposition = new Chart($('chartComposition'), {
+      type:'doughnut',
+      data: compData,
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{position:'bottom', labels:{...muted, boxWidth:10, padding:12}} }
+      }
+    });
+  }
+
+  // Sensitivity: margin % across loads/day range
+  const labels = [];
+  const marginPctSeries = [];
+  const revSeries = [];
+  const costSeries = [];
+  for (let l=0.5; l<=8; l+=0.5){
+    const loadsMonth = l * d.workDays;
+    const fixedAlloc = loadsMonth>0 ? d.fixedMonth/loadsMonth : 0;
+    const fullCost = d.varCostLoad + fixedAlloc;
+    const mPct = d.revLoad>0 ? ((d.revLoad-fullCost)/d.revLoad)*100 : 0;
+    labels.push(l.toFixed(1));
+    marginPctSeries.push(mPct);
+    revSeries.push(d.revLoad*l);
+    costSeries.push(fullCost*l);
+  }
+  const sensData = {
+    labels,
+    datasets:[
+      { label:'Margin %', data:marginPctSeries, borderColor:'#C9A84C', backgroundColor:'transparent', yAxisID:'y1', tension:0.3, pointRadius:0, borderWidth:2 },
+      { label:'Revenue/day', data:revSeries, borderColor:'#008080', backgroundColor:'transparent', yAxisID:'y', tension:0.3, pointRadius:0, borderWidth:1.5, borderDash:[4,3] },
+      { label:'Cost/day', data:costSeries, borderColor:'#0A1F44', backgroundColor:'transparent', yAxisID:'y', tension:0.3, pointRadius:0, borderWidth:1.5, borderDash:[4,3] }
+    ]
+  };
+  if (chartSensitivity){ chartSensitivity.data = sensData; chartSensitivity.update(); }
+  else {
+    chartSensitivity = new Chart($('chartSensitivity'), {
+      type:'line',
+      data: sensData,
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        interaction:{ mode:'index', intersect:false },
+        plugins:{ legend:{labels:muted} },
+        scales:{
+          x:{ title:{display:true, text:'Loads / day', color:'#64748b', font:muted.font}, ticks:muted, grid:grid },
+          y:{ position:'left', title:{display:true, text:'R / day', color:'#64748b', font:muted.font}, ticks:muted, grid:grid },
+          y1:{ position:'right', title:{display:true, text:'Margin %', color:'#64748b', font:muted.font}, ticks:muted, grid:{display:false} }
+        }
+      }
+    });
+  }
+}
+
+document.querySelectorAll('input').forEach(inp => inp.addEventListener('input', calc));
+calc();
+</script>
 </body>
 </html>
