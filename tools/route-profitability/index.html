@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prime Chain Route Profitability Calculator</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<div class="logo">
+
+<h1>Prime Chain Solutions</h1>
+
+<p>Route Profitability Calculator</p>
+
+</div>
+
+<div class="header-right">
+
+<button class="btn">Save LOI</button>
+
+<button class="btn">Export PDF</button>
+
+</div>
+
+</header>
+
+<!-- ========================= -->
+
+<section class="hero">
+
+<h2>Transport Contract Profitability</h2>
+
+<p>
+Determine whether a transport contract is profitable before committing your fleet.
+</p>
+
+</section>
+
+<!-- ========================= -->
+
+<section class="grid-2">
+
+<div class="card">
+
+<h3>LOI Information</h3>
+
+<div class="form-group">
+
+<label>Origin</label>
+
+<input
+type="text"
+id="origin"
+placeholder="Witbank">
+
+</div>
+
+<div class="form-group">
+
+<label>Destination</label>
+
+<input
+type="text"
+id="destination"
+placeholder="Middelburg">
+
+</div>
+
+<div class="form-group">
+
+<label>Distance (One Way KM)</label>
+
+<input
+type="number"
+id="distance"
+value="82">
+
+</div>
+
+<div class="form-group">
+
+<label>Rate per Ton (R)</label>
+
+<input
+type="number"
+id="rate"
+value="225">
+
+</div>
+
+<div class="form-group">
+
+<label>Payload (Ton)</label>
+
+<input
+type="number"
+id="payload"
+value="34">
+
+</div>
+
+<div class="form-group">
+
+<label>Expected Loads / Day</label>
+
+<input
+type="number"
+id="loads"
+value="5">
+
+</div>
+
+<div class="form-group">
+
+<label>Working Days / Month</label>
+
+<input
+type="number"
+id="days"
+value="22">
+
+</div>
+
+</div>
+
+<!-- ========================= -->
+
+<div class="card">
+
+<h3>Vehicle Cost Profile</h3>
+
+<div class="form-group">
+
+<label>Total Cost per KM</label>
+
+<input
+type="number"
+id="costkm"
+value="24.04">
+
+</div>
+
+<div class="form-group">
+
+<label>Fuel Consumption (L/100KM)</label>
+
+<input
+type="number"
+id="fuelcons"
+value="57">
+
+</div>
+
+<div class="form-group">
+
+<label>Fuel Price (R/L)</label>
+
+<input
+type="number"
+id="fuelprice"
+value="19.50">
+
+</div>
+
+<div class="form-group">
+
+<label>Maintenance Cost/KM</label>
+
+<input
+type="number"
+id="maintenance"
+value="2.94">
+
+</div>
+
+<div class="form-group">
+
+<label>Insurance/KM</label>
+
+<input
+type="number"
+id="insurance"
+value="0.63">
+
+</div>
+
+<div class="form-group">
+
+<label>Driver Cost/Day</label>
+
+<input
+type="number"
+id="driver"
+value="755">
+
+</div>
+
+<button
+class="calculate-btn"
+onclick="calculateRoute()">
+
+Calculate Profitability
+
+</button>
+
+</div>
+
+</section>
+
+<!-- KPI Cards -->
+
+<section class="kpis">
+
+<div class="kpi">
+
+<h4>Revenue / Load</h4>
+
+<h2 id="revLoad">R0</h2>
+
+</div>
+
+<div class="kpi">
+
+<h4>Cost / Load</h4>
+
+<h2 id="costLoad">R0</h2>
+
+</div>
+
+<div class="kpi">
+
+<h4>Profit / Load</h4>
+
+<h2 id="profitLoad">R0</h2>
+
+</div>
+
+<div class="kpi">
+
+<h4>Margin</h4>
+
+<h2 id="margin">0%</h2>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+
+<section class="grid-2">
+
+<div class="card">
+
+<h3>Revenue vs Cost</h3>
+
+<canvas id="revenueChart"></canvas>
+
+</div>
+
+<div class="card">
+
+<h3>Cost Breakdown</h3>
+
+<canvas id="costChart"></canvas>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+
+<section class="grid-3">
+
+<div class="card">
+
+<h3>Daily Projection</h3>
+
+<h2 id="dailyRevenue">R0</h2>
+
+<p>Revenue Per Day</p>
+
+<h2 id="dailyCost">R0</h2>
+
+<p>Cost Per Day</p>
+
+</div>
+
+<div class="card">
+
+<h3>Monthly Projection</h3>
+
+<h2 id="monthlyRevenue">R0</h2>
+
+<p>Revenue</p>
+
+<h2 id="monthlyProfit">R0</h2>
+
+<p>Profit</p>
+
+</div>
+
+<div class="card">
+
+<h3>Route Score</h3>
+
+<div id="routeScore" class="score">
+
+★★★★★
+
+</div>
+
+<h2 id="recommendation">
+
+Highly Profitable
+
+</h2>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+
+<section class="card">
+
+<h3>AI Operational Insights</h3>
+
+<div id="insights">
+
+<p>Click Calculate to analyse the transport contract.</p>
+
+</div>
+
+</section>
+
+<footer>
+
+Prime Chain Solutions © 2026
+
+</footer>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
