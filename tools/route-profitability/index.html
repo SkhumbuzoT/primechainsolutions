@@ -32,9 +32,17 @@
 
 <div class="header-right">
 
-<button class="btn">Save LOI</button>
+<button class="btn" onclick="resetCalculator()">
+Reset
+</button>
 
-<button class="btn">Export PDF</button>
+<button class="btn" onclick="window.print()">
+Print Report
+</button>
+
+<button class="btn" onclick="exportCSV()">
+Export CSV
+</button>
 
 </div>
 
@@ -256,6 +264,25 @@ Calculate Profitability
 <h4>Margin</h4>
 
 <h2 id="margin">0%</h2>
+
+</div>
+
+</section>
+
+<section class="card">
+
+<h3>Executive Decision</h3>
+
+<div id="decisionCard">
+
+<h2>Waiting for Analysis...</h2>
+
+<p>
+
+Enter the LOI information and click
+Calculate Profitability.
+
+</p>
 
 </div>
 
