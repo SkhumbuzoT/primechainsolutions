@@ -1,391 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Prime Chain Route Profitability Calculator</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Chain | Route Profitability Calculator</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-
-<div class="container">
-
-<header>
-
-<div class="logo">
-
-<h1>Prime Chain Solutions</h1>
-
-<p>Route Profitability Calculator</p>
-
-</div>
-
-<div class="header-right">
-
-<button class="btn" onclick="resetCalculator()">
-Reset
-</button>
-
-<button class="btn" onclick="window.print()">
-Print Report
-</button>
-
-<button class="btn" onclick="exportCSV()">
-Export CSV
-</button>
-
-</div>
-
-</header>
-
-<!-- ========================= -->
-
-<section class="hero">
-
-<h2>Transport Contract Profitability</h2>
-
-<p>
-Determine whether a transport contract is profitable before committing your fleet.
-</p>
-
-</section>
-
-<!-- ========================= -->
-
-<section class="grid-2">
-
-<div class="card">
-
-<h3>LOI Information</h3>
-
-<div class="form-group">
-
-<label>Origin</label>
-
-<input
-type="text"
-id="origin"
-placeholder="Witbank">
-
-</div>
-
-<div class="form-group">
-
-<label>Destination</label>
-
-<input
-type="text"
-id="destination"
-placeholder="Middelburg">
-
-</div>
-
-<div class="form-group">
-
-<label>Distance (One Way KM)</label>
-
-<input
-type="number"
-id="distance"
-value="82">
-
-</div>
-
-<div class="form-group">
-
-<label>Rate per Ton (R)</label>
-
-<input
-type="number"
-id="rate"
-value="225">
-
-</div>
-
-<div class="form-group">
-
-<label>Payload (Ton)</label>
-
-<input
-type="number"
-id="payload"
-value="34">
-
-</div>
-
-<div class="form-group">
-
-<label>Expected Loads / Day</label>
-
-<input
-type="number"
-id="loads"
-value="5">
-
-</div>
-
-<div class="form-group">
-
-<label>Working Days / Month</label>
-
-<input
-type="number"
-id="days"
-value="22">
-
-</div>
-
-</div>
-
-<!-- ========================= -->
-
-<div class="card">
-
-<h3>Vehicle Cost Profile</h3>
-
-<div class="form-group">
-
-<label>Total Cost per KM</label>
-
-<input
-type="number"
-id="costkm"
-value="24.04">
-
-</div>
-
-<div class="form-group">
-
-<label>Fuel Consumption (L/100KM)</label>
-
-<input
-type="number"
-id="fuelcons"
-value="57">
-
-</div>
-
-<div class="form-group">
-
-<label>Fuel Price (R/L)</label>
-
-<input
-type="number"
-id="fuelprice"
-value="19.50">
-
-</div>
-
-<div class="form-group">
-
-<label>Maintenance Cost/KM</label>
-
-<input
-type="number"
-id="maintenance"
-value="2.94">
-
-</div>
-
-<div class="form-group">
-
-<label>Insurance/KM</label>
-
-<input
-type="number"
-id="insurance"
-value="0.63">
-
-</div>
-
-<div class="form-group">
-
-<label>Driver Cost/Day</label>
-
-<input
-type="number"
-id="driver"
-value="755">
-
-</div>
-
-<button
-class="calculate-btn"
-onclick="calculateRoute()">
-
-Calculate Profitability
-
-</button>
-
-</div>
-
-</section>
-
-<!-- KPI Cards -->
-
-<section class="kpis">
-
-<div class="kpi">
-
-<h4>Revenue / Load</h4>
-
-<h2 id="revLoad">R0</h2>
-
-</div>
-
-<div class="kpi">
-
-<h4>Cost / Load</h4>
-
-<h2 id="costLoad">R0</h2>
-
-</div>
-
-<div class="kpi">
-
-<h4>Profit / Load</h4>
-
-<h2 id="profitLoad">R0</h2>
-
-</div>
-
-<div class="kpi">
-
-<h4>Margin</h4>
-
-<h2 id="margin">0%</h2>
-
-</div>
-
-</section>
-
-<section class="card">
-
-<h3>Executive Decision</h3>
-
-<div id="decisionCard">
-
-<h2>Waiting for Analysis...</h2>
-
-<p>
-
-Enter the LOI information and click
-Calculate Profitability.
-
-</p>
-
-</div>
-
-</section>
-
-<!-- ========================= -->
-
-<section class="grid-2">
-
-<div class="card">
-
-<h3>Revenue vs Cost</h3>
-
-<canvas id="revenueChart"></canvas>
-
-</div>
-
-<div class="card">
-
-<h3>Cost Breakdown</h3>
-
-<canvas id="costChart"></canvas>
-
-</div>
-
-</section>
-
-<!-- ========================= -->
-
-<section class="grid-3">
-
-<div class="card">
-
-<h3>Daily Projection</h3>
-
-<h2 id="dailyRevenue">R0</h2>
-
-<p>Revenue Per Day</p>
-
-<h2 id="dailyCost">R0</h2>
-
-<p>Cost Per Day</p>
-
-</div>
-
-<div class="card">
-
-<h3>Monthly Projection</h3>
-
-<h2 id="monthlyRevenue">R0</h2>
-
-<p>Revenue</p>
-
-<h2 id="monthlyProfit">R0</h2>
-
-<p>Profit</p>
-
-</div>
-
-<div class="card">
-
-<h3>Route Score</h3>
-
-<div id="routeScore" class="score">
-
-★★★★★
-
-</div>
-
-<h2 id="recommendation">
-
-Highly Profitable
-
-</h2>
-
-</div>
-
-</section>
-
-<!-- ========================= -->
-
-<section class="card">
-
-<h3>AI Operational Insights</h3>
-
-<div id="insights">
-
-<p>Click Calculate to analyse the transport contract.</p>
-
-</div>
-
-</section>
-
-<footer>
-
-Prime Chain Solutions © 2026
-
-</footer>
-
-</div>
-
-<script src="app.js"></script>
-
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="brand">
+                    <span class="brand-icon">◆</span>
+                    <div>
+                        <h1>Prime Chain Solutions</h1>
+                        <span class="brand-sub">Operational Intelligence Platform</span>
+                    </div>
+                </div>
+                <nav class="breadcrumb">
+                    <span>Contract Intelligence</span>
+                    <span class="separator">/</span>
+                    <span class="active">Route Profitability</span>
+                </nav>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-outline" onclick="resetCalculator()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                    Reset
+                </button>
+                <button class="btn btn-outline" onclick="window.print()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M18 9h3v9H3V9h3"/><rect x="6" y="13" width="12" height="8"/></svg>
+                    Print
+                </button>
+                <button class="btn btn-primary" onclick="exportCSV()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+                    Export CSV
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Transport Contract Profitability</h2>
+                <p>Make data-driven decisions before committing your fleet. Analyse LOIs, optimise routes, and maximise margins.</p>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Industry Standard Margin</span>
+                    <span class="stat-value">25-35%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Current Diesel Price</span>
+                    <span class="stat-value">R19.50/L</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Average Cost/KM</span>
+                    <span class="stat-value">R24.04</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Input Grid -->
+        <div class="input-grid">
+            <!-- LOI Information -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">📋</span>
+                    <h3>LOI Information</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Origin</label>
+                        <input type="text" id="origin" placeholder="e.g., Witbank" value="Witbank">
+                    </div>
+                    <div class="form-group">
+                        <label>Destination</label>
+                        <input type="text" id="destination" placeholder="e.g., Middelburg" value="Middelburg">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Distance (One Way KM)</label>
+                            <input type="number" id="distance" value="82">
+                        </div>
+                        <div class="form-group">
+                            <label>Rate per Ton (R)</label>
+                            <input type="number" id="rate" value="225">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Payload (Ton)</label>
+                            <input type="number" id="payload" value="34">
+                        </div>
+                        <div class="form-group">
+                            <label>Expected Loads / Day</label>
+                            <input type="number" id="loads" value="5">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Working Days / Month</label>
+                        <input type="number" id="days" value="22">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicle Cost Profile -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">🚛</span>
+                    <h3>Vehicle Cost Profile</h3>
+                    <span class="badge">34 Ton Side Tipper</span>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Total Cost per KM</label>
+                        <input type="number" id="costkm" value="24.04" step="0.01">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Fuel Consumption (L/100KM)</label>
+                            <input type="number" id="fuelcons" value="57">
+                        </div>
+                        <div class="form-group">
+                            <label>Fuel Price (R/L)</label>
+                            <input type="number" id="fuelprice" value="19.50" step="0.01">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Maintenance (R/KM)</label>
+                            <input type="number" id="maintenance" value="2.94" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label>Insurance (R/KM)</label>
+                            <input type="number" id="insurance" value="0.63" step="0.01">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Driver Cost / Day</label>
+                        <input type="number" id="driver" value="755">
+                    </div>
+                    <button class="btn btn-success btn-block" onclick="calculateRoute()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Analyse Profitability
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPI Dashboard -->
+        <section class="kpi-dashboard">
+            <div class="kpi-card">
+                <div class="kpi-icon">💰</div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Revenue / Load</span>
+                    <span class="kpi-value" id="revLoad">R 0.00</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">📊</div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Cost / Load</span>
+                    <span class="kpi-value" id="costLoad">R 0.00</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">📈</div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Profit / Load</span>
+                    <span class="kpi-value" id="profitLoad">R 0.00</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">🎯</div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Margin</span>
+                    <span class="kpi-value" id="margin">0%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Decision Card -->
+        <section class="card decision-card">
+            <div class="decision-header">
+                <span class="decision-icon">⚡</span>
+                <h3>Executive Decision</h3>
+            </div>
+            <div id="decisionCard" class="decision-content">
+                <div class="decision-placeholder">
+                    <div class="placeholder-icon">📋</div>
+                    <h2>Awaiting Analysis</h2>
+                    <p>Enter LOI details and click "Analyse Profitability" for executive insights</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+            <div class="card chart-card">
+                <div class="card-header">
+                    <span class="card-icon">📊</span>
+                    <h3>Revenue vs Cost</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+            <div class="card chart-card">
+                <div class="card-header">
+                    <span class="card-icon">🧩</span>
+                    <h3>Cost Breakdown</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="costChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projections Grid -->
+        <div class="projections-grid">
+            <div class="card projection-card">
+                <div class="projection-header">
+                    <span class="projection-icon">📅</span>
+                    <h3>Daily Projection</h3>
+                </div>
+                <div class="projection-values">
+                    <div>
+                        <span class="projection-label">Revenue</span>
+                        <span class="projection-value" id="dailyRevenue">R 0.00</span>
+                    </div>
+                    <div>
+                        <span class="projection-label">Cost</span>
+                        <span class="projection-value" id="dailyCost">R 0.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card projection-card">
+                <div class="projection-header">
+                    <span class="projection-icon">📆</span>
+                    <h3>Monthly Projection</h3>
+                </div>
+                <div class="projection-values">
+                    <div>
+                        <span class="projection-label">Revenue</span>
+                        <span class="projection-value" id="monthlyRevenue">R 0.00</span>
+                    </div>
+                    <div>
+                        <span class="projection-label">Profit</span>
+                        <span class="projection-value" id="monthlyProfit">R 0.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card projection-card">
+                <div class="projection-header">
+                    <span class="projection-icon">⭐</span>
+                    <h3>Route Score</h3>
+                </div>
+                <div class="route-score">
+                    <div id="routeScore" class="score-stars">★★★★★</div>
+                    <div id="recommendation" class="score-label">Highly Profitable</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Insights -->
+        <section class="card insights-card">
+            <div class="card-header">
+                <span class="card-icon">🤖</span>
+                <h3>AI Operational Insights</h3>
+                <span class="badge badge-ai">Powered by Prime Chain</span>
+            </div>
+            <div id="insights" class="insights-content">
+                <div class="insight-placeholder">
+                    <p>Click "Analyse Profitability" to receive AI-powered operational insights</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <span>Prime Chain Solutions © 2026</span>
+                <span class="footer-separator">|</span>
+                <span>Operational Intelligence Platform</span>
+                <span class="footer-separator">|</span>
+                <span>Version 1.0</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
 </body>
-
 </html>
