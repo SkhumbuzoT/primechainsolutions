@@ -95,7 +95,33 @@
   .btn-download.secondary:hover{background:var(--off);}
   .btn-download:disabled{opacity:0.6;cursor:wait;}
   .btn-row{display:flex;gap:10px;flex-wrap:wrap;}
-  body.exporting .btn-row{visibility:hidden;}
+
+  .prepared-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .prepared-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .prepared-row input{
+    background:var(--white);
+    border:1px solid var(--border);
+    color:var(--navy);
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    padding:6px 10px;
+    border-radius:var(--radius-sm);
+    min-width:220px;
+    transition:border-color var(--ease);
+  }
+  .prepared-row input:focus{outline:none;border-color:var(--teal);}
 
   /* ===== ROUTE STRIP (signature element) ===== */
   .route-strip{
@@ -405,6 +431,114 @@
     margin-top:30px;
     text-transform:uppercase;
   }
+
+  /* ===== OFFSCREEN ONE-PAGE PDF REPORT ===== */
+  .pdf-page{
+    position:fixed;
+    top:0;
+    left:-99999px;
+    width:794px;
+    height:1123px;
+    background:#ffffff;
+    box-sizing:border-box;
+    padding:46px;
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+    overflow:hidden;
+  }
+  .pdf-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .pdf-brand{display:flex;align-items:center;gap:12px;}
+  .pdf-brand-mark{
+    width:42px;height:42px;
+    background:var(--navy);
+    color:var(--white);
+    border-radius:var(--radius-sm);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:15px;letter-spacing:0.02em;
+  }
+  .pdf-brand-name{font-weight:800;font-size:17px;color:var(--navy);}
+  .pdf-brand-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+  .pdf-doc-title{text-align:right;}
+  .pdf-doc-label{font-weight:700;font-size:14px;color:var(--navy);}
+  .pdf-doc-date{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-top:3px;}
+
+  .pdf-rule{height:3px;background:linear-gradient(90deg, var(--teal), var(--gold));margin:18px 0 20px;border-radius:2px;}
+
+  .pdf-meta{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:22px;
+    padding:14px 16px;
+    background:var(--off);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+  }
+  .pdf-meta > div{display:flex;flex-direction:column;gap:4px;}
+  .pdf-meta-k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+  .pdf-meta-v{font-weight:700;font-size:13.5px;color:var(--navy);}
+
+  .pdf-verdict{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:18px 22px;
+    border-radius:var(--radius);
+    border-left:5px solid;
+    margin-bottom:24px;
+  }
+  .pdf-verdict.profitable{background:var(--teal-lt);border-color:var(--teal-dk);}
+  .pdf-verdict.marginal{background:var(--gold-lt);border-color:var(--gold);}
+  .pdf-verdict.loss{background:var(--loss-lt);border-color:var(--loss);}
+  .pdf-verdict-word{
+    font-weight:800;font-size:19px;letter-spacing:0.03em;text-transform:uppercase;white-space:nowrap;
+  }
+  .pdf-verdict.profitable .pdf-verdict-word{color:var(--teal-dk);}
+  .pdf-verdict.marginal .pdf-verdict-word{color:#8a6d1f;}
+  .pdf-verdict.loss .pdf-verdict-word{color:var(--loss);}
+  .pdf-verdict-text{font-size:11.5px;line-height:1.55;color:var(--text);}
+
+  .pdf-section-title{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--navy);font-weight:700;
+    margin:0 0 10px;
+  }
+
+  .pdf-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-bottom:24px;
+  }
+  .pdf-cell{
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    background:var(--off);
+    padding:11px 15px;
+  }
+  .pdf-cell .k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+  .pdf-cell .v{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:700;color:var(--navy);}
+  .pdf-cell .v.pos{color:var(--teal-dk);}
+  .pdf-cell .v.neg{color:var(--loss);}
+  .pdf-cell .sub{font-size:10px;color:var(--muted);margin-top:2px;}
+
+  .pdf-charts{display:flex;gap:16px;margin-bottom:24px;}
+  .pdf-chart-box{flex:1;border:1px solid var(--border);border-radius:var(--radius);padding:12px;text-align:center;background:var(--white);}
+  .pdf-chart-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .pdf-chart-box img{width:100%;height:auto;display:block;}
+
+  .pdf-footer{
+    border-top:1px solid var(--border);
+    padding-top:12px;
+    font-size:9.5px;
+    color:var(--muted);
+    text-align:center;
+    line-height:1.6;
+  }
 </style>
 </head>
 <body>
@@ -426,6 +560,12 @@
         Download HTML
       </button>
     </div>
+  </div>
+
+  <!-- PREPARED FOR -->
+  <div class="prepared-row">
+    <span class="prepared-label">Prepared for</span>
+    <input id="clientName" value="Prospective Client" placeholder="Client / prospect name">
   </div>
 
   <!-- ROUTE STRIP -->
@@ -554,6 +694,63 @@
   <footer>PrimeChain Solutions · Operational Leak Audit™ · Model is indicative — verify against signed LOI and actual VCS</footer>
 </div>
 
+<!-- OFFSCREEN ONE-PAGE PDF REPORT TEMPLATE (populated at export time, not visible in the UI) -->
+<div class="pdf-page" id="pdfReport">
+  <div class="pdf-header">
+    <div class="pdf-brand">
+      <div class="pdf-brand-mark">PC</div>
+      <div>
+        <div class="pdf-brand-name">PrimeChain Solutions</div>
+        <div class="pdf-brand-tag">Operational Intelligence</div>
+      </div>
+    </div>
+    <div class="pdf-doc-title">
+      <div class="pdf-doc-label">LOI Profitability Report</div>
+      <div class="pdf-doc-date" id="pdfDate">–</div>
+    </div>
+  </div>
+
+  <div class="pdf-rule"></div>
+
+  <div class="pdf-meta">
+    <div><span class="pdf-meta-k">Prepared for</span><span class="pdf-meta-v" id="pdfClient">–</span></div>
+    <div><span class="pdf-meta-k">Route</span><span class="pdf-meta-v" id="pdfRoute">–</span></div>
+  </div>
+
+  <div class="pdf-verdict" id="pdfVerdictBanner">
+    <div class="pdf-verdict-word" id="pdfVerdictWord">–</div>
+    <div class="pdf-verdict-text" id="pdfVerdictText">–</div>
+  </div>
+
+  <div class="pdf-section-title">Key Figures</div>
+  <div class="pdf-grid">
+    <div class="pdf-cell"><div class="k">Revenue / load</div><div class="v" id="pdfRevLoad">–</div></div>
+    <div class="pdf-cell"><div class="k">Full cost / load</div><div class="v" id="pdfCostLoad">–</div></div>
+    <div class="pdf-cell"><div class="k">Margin / load</div><div class="v" id="pdfMarginLoad">–</div><div class="sub" id="pdfMarginPct"></div></div>
+    <div class="pdf-cell"><div class="k">Break-even rate / ton</div><div class="v" id="pdfBErate">–</div></div>
+    <div class="pdf-cell"><div class="k">Revenue / month</div><div class="v" id="pdfRevMonth">–</div></div>
+    <div class="pdf-cell"><div class="k">Cost / month</div><div class="v" id="pdfCostMonth">–</div></div>
+    <div class="pdf-cell"><div class="k">Margin / month</div><div class="v" id="pdfMarginMonth">–</div></div>
+    <div class="pdf-cell"><div class="k">Break-even loads / day</div><div class="v" id="pdfBEloads">–</div></div>
+  </div>
+
+  <div class="pdf-charts">
+    <div class="pdf-chart-box">
+      <div class="pdf-chart-label">Revenue vs. Cost</div>
+      <img id="pdfChartImg1" alt="Revenue vs cost chart">
+    </div>
+    <div class="pdf-chart-box">
+      <div class="pdf-chart-label">Cost Composition</div>
+      <img id="pdfChartImg2" alt="Cost composition chart">
+    </div>
+  </div>
+
+  <div class="pdf-footer">
+    PrimeChain Solutions · Operational Leak Audit™ · primechainsolutions.co.za<br>
+    Indicative model — verify against the signed LOI and actual Vehicle Cost Schedule before committing to terms.
+  </div>
+</div>
+
 <script>
 let tripMode = 'round'; // 'round' or 'oneway'
 const $ = id => document.getElementById(id);
@@ -580,13 +777,42 @@ $('downloadPdfBtn').addEventListener('click', async ()=>{
   const originalLabel = btn.innerHTML;
   btn.disabled = true;
   btn.innerHTML = 'Generating…';
-  document.body.classList.add('exporting');
 
   try{
-    const target = document.querySelector('.wrap');
-    const canvas = await html2canvas(target, {
-      scale: 2,
-      backgroundColor: '#F8F8F6',
+    // ---- populate the hidden one-page report from current state ----
+    $('pdfDate').textContent = new Date().toLocaleDateString('en-ZA', { year:'numeric', month:'long', day:'numeric' });
+    $('pdfClient').textContent = $('clientName').value || 'Prospective Client';
+    $('pdfRoute').textContent = $('verdictRoute').textContent;
+
+    const stampClass = $('stamp').classList.contains('profitable') ? 'profitable'
+                      : $('stamp').classList.contains('marginal') ? 'marginal' : 'loss';
+    const banner = $('pdfVerdictBanner');
+    banner.classList.remove('profitable','marginal','loss');
+    banner.classList.add(stampClass);
+    $('pdfVerdictWord').textContent = $('stamp').textContent;
+    $('pdfVerdictText').textContent = $('verdictText').textContent;
+
+    $('pdfRevLoad').textContent = $('outRevLoad').textContent;
+    $('pdfCostLoad').textContent = $('outCostLoad').textContent;
+    $('pdfMarginLoad').textContent = $('outMarginLoad').textContent;
+    $('pdfMarginLoad').className = 'v ' + ($('outMarginLoad').classList.contains('pos') ? 'pos' : 'neg');
+    $('pdfMarginPct').textContent = $('outMarginPct').textContent;
+    $('pdfBErate').textContent = $('outBErate').textContent;
+
+    $('pdfRevMonth').textContent = $('outRevMonth').textContent;
+    $('pdfCostMonth').textContent = $('outCostMonth').textContent;
+    $('pdfMarginMonth').textContent = $('outMarginMonth').textContent;
+    $('pdfMarginMonth').className = 'v ' + ($('outMarginMonth').classList.contains('pos') ? 'pos' : 'neg');
+    $('pdfBEloads').textContent = $('outBEloads').textContent;
+
+    $('pdfChartImg1').src = chartRevCost.toBase64Image();
+    $('pdfChartImg2').src = chartComposition.toBase64Image();
+
+    // ---- render the hidden report to a single A4 page ----
+    const reportEl = $('pdfReport');
+    const canvas = await html2canvas(reportEl, {
+      scale: 2.5,
+      backgroundColor: '#ffffff',
       useCORS: true
     });
 
@@ -594,23 +820,8 @@ $('downloadPdfBtn').addEventListener('click', async ()=>{
     const pdf = new jsPDF('p', 'mm', 'a4');
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
-
     const imgData = canvas.toDataURL('image/png');
-    const imgWidth = pdfWidth;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-    let heightLeft = imgHeight;
-    let position = 0;
-
-    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-    heightLeft -= pdfHeight;
-
-    while (heightLeft > 0){
-      position = heightLeft - imgHeight;
-      pdf.addPage();
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pdfHeight;
-    }
+    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
 
     const routeLabel = `${$('origin').value}-${$('destination').value}`.replace(/\s+/g, '');
     pdf.save(`LOI-Profitability-${routeLabel}.pdf`);
@@ -618,7 +829,6 @@ $('downloadPdfBtn').addEventListener('click', async ()=>{
     console.error('PDF export failed:', err);
     alert('PDF export failed. Please try again.');
   } finally {
-    document.body.classList.remove('exporting');
     btn.disabled = false;
     btn.innerHTML = originalLabel;
   }
