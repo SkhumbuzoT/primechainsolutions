@@ -266,6 +266,67 @@ function calculateRoute() {
 
     document.getElementById("insights").innerHTML =
         html;
+    let decision = "";
+
+    let colour = "";
+    
+    if(margin>=35){
+    
+    decision="Highly Recommended";
+    
+    colour="#16a34a";
+    
+    }
+    
+    else if(margin>=20){
+    
+    decision="Recommended";
+    
+    colour="#f59e0b";
+    
+    }
+    
+    else{
+    
+    decision="Not Recommended";
+    
+    colour="#dc2626";
+    
+    }
+    
+    document.getElementById("decisionCard").innerHTML=`
+    
+    <h1 style="color:${colour}">
+    
+    ${decision}
+    
+    </h1>
+    
+    <p>
+    
+    Expected Monthly Revenue
+    
+    <strong>${money(revenuePerMonth)}</strong>
+    
+    </p>
+    
+    <p>
+    
+    Expected Monthly Profit
+    
+    <strong>${money(monthlyProfit)}</strong>
+    
+    </p>
+    
+    <p>
+    
+    Estimated Margin
+    
+    <strong>${margin.toFixed(1)}%</strong>
+    
+    </p>
+    
+    `;
 
     // =============================
     // CHARTS
@@ -378,3 +439,15 @@ function drawCostChart(fuel, maintenance, insurance, driver) {
 // ==========================================
 
 window.onload = calculateRoute;
+
+function resetCalculator(){
+
+document.querySelectorAll("input").forEach(input=>{
+
+input.value="";
+
+});
+
+location.reload();
+
+}
