@@ -800,7 +800,7 @@
       <div class="chart-wrap"><canvas id="chartRevCost"></canvas></div>
     </div>
     <div class="chart-card">
-      <h3>Cost / Month Composition</h3>
+      <h3>Monthly Cost Breakdown</h3>
       <div class="chart-wrap"><canvas id="chartComposition"></canvas></div>
     </div>
   </div>
@@ -870,8 +870,8 @@
       <img id="pdfChartImg1" alt="Revenue vs cost chart">
     </div>
     <div class="pdf-chart-box">
-      <div class="pdf-chart-label">Cost Composition</div>
-      <img id="pdfChartImg2" alt="Cost composition chart">
+      <div class="pdf-chart-label">Cost Breakdown</div>
+      <img id="pdfChartImg2" alt="Cost breakdown chart">
     </div>
   </div>
 
@@ -975,14 +975,21 @@
     const loadsDay = num('loadsDay');
     const workDays = num('workDays');
 
-    const fixedMonth = num('fWages') + num('fLicense') + num('fInsurance') + num('fDeprec');
+    const fWages = num('fWages');
+    const fLicense = num('fLicense');
+    const fInsurance = num('fInsurance');
+    const fDeprec = num('fDeprec');
+    const fixedMonth = fWages + fLicense + fInsurance + fDeprec;
 
     const fuelPrice = num('fuelPrice');
     const fuelConsumption = num('fuelConsumption');
     const fuelKm = fuelPrice * (fuelConsumption / 100);
     $('derivedFuelKm').textContent = randDec(fuelKm) + '/km';
 
-    const varKm = fuelKm + num('vTyres') + num('vMaint') + num('vLube');
+    const vTyres = num('vTyres');
+    const vMaint = num('vMaint');
+    const vLube = num('vLube');
+    const varKm = fuelKm + vTyres + vMaint + vLube;
 
     const revLoad = rateTon * tonsLoad;
     const varCostLoad = varKm * cycleKm;
@@ -1043,49 +1050,177 @@
     }
     $('verdictText').textContent = verdictMsg;
 
-    updateCharts({revDay, costDay, revMonth, costMonth, fixedMonth, varCostMonth: varCostLoad*loadsMonth, revLoad, varCostLoad, workDays});
+    updateCharts({revDay, costDay, revMonth, costMonth, fixedMonth, varCostMonth: varCostLoad*loadsMonth, revLoad, varCostLoad, workDays, fWages, fLicense, fInsurance, fDeprec, fuelKm: fuelKm * cycleKm * loadsMonth, vTyres: vTyres * cycleKm * loadsMonth, vMaint: vMaint * cycleKm * loadsMonth, vLube: vLube * cycleKm * loadsMonth});
   }
 
   function updateCharts(d){
     const muted = { color: '#5B6D89', font:{family:"'IBM Plex Mono', monospace", size:10} };
     const grid = { color: '#E2E6EC' };
 
+    // ----- Revenue vs Cost chart - FIXED: proper number display -----
     const rcData = {
-      labels:['Per day','Per month (÷1000)'],
+      labels:['Per Day', 'Per Month'],
       datasets:[
-        {label:'Revenue', backgroundColor:'#008080', data:[d.revDay, d.revMonth/1000]},
-        {label:'Cost', backgroundColor:'#C9A84C', data:[d.costDay, d.costMonth/1000]}
+        {
+          label:'Revenue',
+          backgroundColor: '#008080',
+          borderRadius: 4,
+          data:[d.revDay, d.revMonth]
+        },
+        {
+          label:'Cost',
+          backgroundColor: '#C9A84C',
+          borderRadius: 4,
+          data:[d.costDay, d.costMonth]
+        }
       ]
     };
-    if (chartRevCost){ chartRevCost.data = rcData; chartRevCost.update(); }
-    else {
+    if (chartRevCost){
+      chartRevCost.data = rcData;
+      chartRevCost.update();
+    } else {
       chartRevCost = new Chart($('chartRevCost'), {
         type:'bar',
         data: rcData,
         options:{
-          responsive:true, maintainAspectRatio:false,
-          plugins:{ legend:{labels:muted} },
-          scales:{ x:{ticks:muted, grid:grid}, y:{ticks:muted, grid:grid} }
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: { ...muted, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  let label = context.dataset.label || '';
+                  let value = context.parsed.y;
+                  return label + ': R' + value.toLocaleString('en-ZA', {maximumFractionDigits:0});
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: muted,
+              grid: { display: false }
+            },
+            y: {
+              ticks: {
+                ...muted,
+                callback: function(value) {
+                  if (value >= 1000) {
+                    return 'R' + (value / 1000).toFixed(0) + 'k';
+                  }
+                  return 'R' + value.toFixed(0);
+                }
+              },
+              grid: grid
+            }
+          }
         }
       });
     }
+
+    // ----- Cost Composition chart - SPLIT into individual expense categories with different blue shades -----
+    // Fixed costs: different shades of blue/navy
+    // Variable costs: different shades of gold/amber
+    const compLabels = [
+      'Depreciation',
+      'Driver Wages',
+      'Insurance',
+      'Licensing & Permits',
+      'Fuel',
+      'Maintenance & Repair',
+      'Tyres',
+      'Lubricants'
+    ];
+
+    const compValues = [
+      d.fDeprec || 0,
+      d.fWages || 0,
+      d.fInsurance || 0,
+      d.fLicense || 0,
+      d.fuelKm || 0,
+      d.vMaint || 0,
+      d.vTyres || 0,
+      d.vLube || 0
+    ];
+
+    // Filter out zero values for cleaner display
+    const filteredData = compLabels.map((label, i) => ({ label, value: compValues[i] }))
+      .filter(item => item.value > 0);
+
+    const pieLabels = filteredData.map(item => item.label);
+    const pieValues = filteredData.map(item => item.value);
+
+    // Color palette: blues for fixed (0-3), golds/ambers for variable (4-7)
+    const fixedColors = [
+      '#071534', // Depreciation - darkest navy
+      '#0A1F44', // Driver Wages
+      '#1A3A6B', // Insurance
+      '#2A5A8A'  // Licensing
+    ];
+    const variableColors = [
+      '#C9A84C', // Fuel - gold
+      '#D4B85C', // Maintenance
+      '#DFC86C', // Tyres
+      '#EAD87C'  // Lubricants
+    ];
+
+    const pieColors = pieLabels.map(label => {
+      const idx = compLabels.indexOf(label);
+      if (idx < 4) return fixedColors[idx];
+      return variableColors[idx - 4];
+    });
 
     const compData = {
-      labels:['Fixed (wages, license, insurance, depreciation)','Variable (fuel, tyres, R&M, lube)'],
-      datasets:[{ data:[d.fixedMonth, d.varCostMonth], backgroundColor:['#0A1F44','#C9A84C'], borderWidth:0 }]
+      labels: pieLabels,
+      datasets: [{
+        data: pieValues,
+        backgroundColor: pieColors,
+        borderWidth: 0,
+        hoverOffset: 6
+      }]
     };
-    if (chartComposition){ chartComposition.data = compData; chartComposition.update(); }
-    else {
+
+    if (chartComposition) {
+      chartComposition.data = compData;
+      chartComposition.update();
+    } else {
       chartComposition = new Chart($('chartComposition'), {
-        type:'doughnut',
+        type: 'doughnut',
         data: compData,
-        options:{
-          responsive:true, maintainAspectRatio:false,
-          plugins:{ legend:{position:'bottom', labels:{...muted, boxWidth:10, padding:12}} }
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '55%',
+          plugins: {
+            legend: {
+              position: 'right',
+              labels: {
+                ...muted,
+                boxWidth: 12,
+                padding: 10,
+                usePointStyle: true,
+                pointStyle: 'circle',
+                font: { size: 10, family: "'IBM Plex Mono', monospace" }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                  let percentage = total > 0 ? (context.parsed / total * 100).toFixed(1) : 0;
+                  return context.label + ': R' + context.parsed.toLocaleString('en-ZA', {maximumFractionDigits:0}) + ' (' + percentage + '%)';
+                }
+              }
+            }
+          }
         }
       });
     }
 
+    // ----- Sensitivity chart (unchanged) -----
     const labels = [];
     const marginPctSeries = [];
     const revSeries = [];
