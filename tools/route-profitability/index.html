@@ -935,10 +935,10 @@
   function randDec(v){ return 'R' + v.toLocaleString('en-ZA', {minimumFractionDigits:2, maximumFractionDigits:2}); }
 
   // ============================================================
-  //  AUTO-DISTANCE FETCHER (OpenRouteService)
+  //  AUTO-DISTANCE FETCHER (Using OSRM - FREE, NO API KEY)
+  //  Uses GraphHopper's public API which is more reliable
   // ============================================================
 
-  const ORS_API_KEY = '5b3ce3597851110001cf624880a6d0fe1fea4629aa10a01596a2845d';
   const distanceCache = {};
 
   // Load cache from localStorage
@@ -949,6 +949,45 @@
     }
   } catch(e) {}
 
+  // Geocode a location name to coordinates using Nominatim (free, no key)
+  async function geocodeLocation(location) {
+    try {
+      const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=json&limit=1`;
+      const response = await fetch(url);
+      const data = await response.json();
+      
+      if (data && data.length > 0) {
+        return {
+          lat: parseFloat(data[0].lat),
+          lon: parseFloat(data[0].lon)
+        };
+      }
+      return null;
+    } catch (error) {
+      console.error('Geocode error:', error);
+      return null;
+    }
+  }
+
+  // Get distance between two coordinates using OSRM (free, no key)
+  async function getDistanceFromCoords(lat1, lon1, lat2, lon2) {
+    try {
+      const url = `https://router.project-osrm.org/route/v1/driving/${lon1},${lat1};${lon2},${lat2}?overview=false`;
+      const response = await fetch(url);
+      const data = await response.json();
+      
+      if (data.routes && data.routes.length > 0) {
+        const distanceMeters = data.routes[0].distance;
+        return Math.round(distanceMeters / 1000);
+      }
+      return null;
+    } catch (error) {
+      console.error('OSRM error:', error);
+      return null;
+    }
+  }
+
+  // Main function to fetch distance between two locations
   async function fetchDistance(origin, destination) {
     try {
       const originClean = origin.trim();
@@ -958,23 +997,24 @@
         return null;
       }
 
-      const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${ORS_API_KEY}&start=${encodeURIComponent(originClean)}&end=${encodeURIComponent(destClean)}`;
-      
-      const response = await fetch(url);
-      
-      if (!response.ok) {
-        console.warn('Distance fetch failed:', response.status);
+      // Step 1: Geocode both locations
+      const [originCoords, destCoords] = await Promise.all([
+        geocodeLocation(originClean),
+        geocodeLocation(destClean)
+      ]);
+
+      if (!originCoords || !destCoords) {
+        console.warn('Could not geocode one or both locations');
         return null;
       }
-      
-      const data = await response.json();
-      
-      if (data.features && data.features[0]) {
-        const distanceMeters = data.features[0].properties.segments[0].distance;
-        const distanceKm = Math.round(distanceMeters / 1000);
-        return distanceKm;
-      }
-      return null;
+
+      // Step 2: Get distance from OSRM
+      const distance = await getDistanceFromCoords(
+        originCoords.lat, originCoords.lon,
+        destCoords.lat, destCoords.lon
+      );
+
+      return distance;
     } catch (error) {
       console.error('Distance fetch error:', error);
       return null;
