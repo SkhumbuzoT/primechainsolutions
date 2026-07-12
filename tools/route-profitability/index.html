@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LOI Profitability Engine — PrimeChain Solutions</title>
-  <!-- Fonts & Libraries (kept same) -->
+  <!-- Fonts & Libraries -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
-    /* ----- TOKENS (refined for world‑class feel) ----- */
+    /* ----- TOKENS ----- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
@@ -50,7 +50,7 @@
       margin: 0 auto;
     }
 
-    /* ----- HEADER & TOPBAR (more air, refined typography) ----- */
+    /* ----- HEADER ----- */
     .topbar {
       display: flex;
       align-items: flex-start;
@@ -131,7 +131,7 @@
       height: 16px;
     }
 
-    /* ----- Prepared row (more subtle) ----- */
+    /* ----- Prepared row ----- */
     .prepared-row {
       display: flex;
       align-items: center;
@@ -167,7 +167,7 @@
       border-bottom-color: var(--teal);
     }
 
-    /* ----- ROUTE STRIP (signature element, elevated) ----- */
+    /* ----- ROUTE STRIP ----- */
     .route-strip {
       background: var(--white);
       border: 1px solid var(--border);
@@ -250,7 +250,7 @@
       font-family: 'IBM Plex Mono', monospace;
       font-weight: 700;
       font-size: 16px;
-      width: 52px;
+      width: 60px;
       text-align: right;
     }
     .route-track .dist-badge input:focus { outline: none; }
@@ -258,6 +258,36 @@
       font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
       color: var(--muted);
+    }
+    .route-track .dist-badge .fetch-btn {
+      background: var(--teal-lt);
+      border: 1px solid var(--teal);
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--ease);
+      padding: 0;
+      margin-left: 4px;
+    }
+    .route-track .dist-badge .fetch-btn:hover {
+      background: var(--teal);
+      color: white;
+      transform: scale(1.1);
+    }
+    .route-track .dist-badge .fetch-btn:active {
+      transform: scale(0.95);
+    }
+    .route-track .dist-badge .fetch-btn.loading {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     .dot {
       width: 10px;
@@ -304,7 +334,7 @@
     .trip-toggle button:first-child { border-radius: 40px 0 0 40px; }
     .trip-toggle button:last-child { border-radius: 0 40px 40px 0; }
 
-    /* ----- PANELS (cards with more depth) ----- */
+    /* ----- PANELS ----- */
     .panels {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -411,7 +441,7 @@
       font-weight: 600;
     }
 
-    /* ----- LEDGER (clean, grid with subtle hierarchy) ----- */
+    /* ----- LEDGER ----- */
     .ledger {
       background: var(--white);
       border: 1px solid var(--border);
@@ -462,7 +492,7 @@
       margin-top: 4px;
     }
 
-    /* ----- CHARTS (cards with elevation) ----- */
+    /* ----- CHARTS ----- */
     .charts {
       display: grid;
       grid-template-columns: 1.3fr 1fr;
@@ -495,7 +525,7 @@
       height: 240px;
     }
 
-    /* ----- VERDICT (prominent, with refined stamp) ----- */
+    /* ----- VERDICT ----- */
     .verdict-row {
       display: flex;
       align-items: center;
@@ -538,7 +568,7 @@
     .stamp.marginal { color: #8a6d1f; background: var(--gold-lt); border-color: var(--gold); }
     .stamp.loss { color: var(--loss); background: var(--loss-lt); border-color: var(--loss); }
 
-    /* ----- FOOTER (elegant) ----- */
+    /* ----- FOOTER ----- */
     footer {
       text-align: center;
       color: var(--muted);
@@ -550,7 +580,7 @@
       opacity: 0.7;
     }
 
-    /* ===== OFFSCREEN PDF (same, kept) ===== */
+    /* ----- PDF (offscreen) ----- */
     .pdf-page {
       position: fixed;
       top: 0;
@@ -663,6 +693,15 @@
     .route-node.orig { display: flex; align-items: center; gap: 10px; }
     .route-node.dest { display: flex; align-items: center; gap: 10px; flex-direction: row-reverse; }
     .route-node.dest .dot { margin-right: 0; margin-left: 12px; }
+
+    /* Status indicator for auto-fetch */
+    .fetch-status {
+      font-size: 10px;
+      color: var(--muted);
+      margin-left: 4px;
+    }
+    .fetch-status.success { color: var(--teal-dk); }
+    .fetch-status.error { color: var(--loss); }
   </style>
 </head>
 <body>
@@ -699,20 +738,22 @@
         <span class="dot"></span>
         <div>
           <span class="label">Origin</span>
-          <input id="origin" value="Witbank">
+          <input id="origin" value="Witbank" placeholder="e.g. Johannesburg">
         </div>
       </div>
       <div class="route-track">
         <div class="dist-badge">
-          <input id="distance" type="number" value="42" step="1">
+          <input id="distance" type="number" value="42" step="1" placeholder="km">
           <span class="unit">km</span>
+          <button class="fetch-btn" id="fetchDistanceBtn" title="Fetch distance from route">↻</button>
+          <span class="fetch-status" id="fetchStatus"></span>
         </div>
       </div>
       <div class="route-node dest">
         <span class="dot"></span>
         <div style="text-align:right;">
           <span class="label">Destination</span>
-          <input id="destination" value="Middelburg" style="text-align:right;">
+          <input id="destination" value="Middelburg" placeholder="e.g. Pretoria" style="text-align:right;">
         </div>
       </div>
     </div>
@@ -824,7 +865,7 @@
   <footer>PrimeChain Solutions · Operational Leak Audit™ · Model is indicative — verify against signed LOI and actual VCS</footer>
 </div>
 
-<!-- OFFSCREEN PDF (kept) -->
+<!-- PDF (offscreen) -->
 <div class="pdf-page" id="pdfReport">
   <div class="pdf-header">
     <div class="pdf-brand">
@@ -882,7 +923,10 @@
 </div>
 
 <script>
-  // ---- keep all JS exactly as original (no functional changes) ----
+  // ============================================================
+  //  MAIN APPLICATION LOGIC
+  // ============================================================
+
   let tripMode = 'round';
   const $ = id => document.getElementById(id);
 
@@ -890,8 +934,148 @@
   function rand(v){ return 'R' + v.toLocaleString('en-ZA', {maximumFractionDigits:0}); }
   function randDec(v){ return 'R' + v.toLocaleString('en-ZA', {minimumFractionDigits:2, maximumFractionDigits:2}); }
 
-  $('btnOneway').addEventListener('click', ()=>{ tripMode='oneway'; $('btnOneway').classList.add('active'); $('btnRound').classList.remove('active'); calc(); });
-  $('btnRound').addEventListener('click', ()=>{ tripMode='round'; $('btnRound').classList.add('active'); $('btnOneway').classList.remove('active'); calc(); });
+  // ============================================================
+  //  AUTO-DISTANCE FETCHER (OpenRouteService)
+  // ============================================================
+
+  const ORS_API_KEY = '5b3ce3597851110001cf624880a6d0fe1fea4629aa10a01596a2845d';
+  const distanceCache = {};
+
+  // Load cache from localStorage
+  try {
+    const saved = localStorage.getItem('distanceCache');
+    if (saved) {
+      Object.assign(distanceCache, JSON.parse(saved));
+    }
+  } catch(e) {}
+
+  async function fetchDistance(origin, destination) {
+    try {
+      const originClean = origin.trim();
+      const destClean = destination.trim();
+      
+      if (!originClean || !destClean || originClean === destClean) {
+        return null;
+      }
+
+      const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${ORS_API_KEY}&start=${encodeURIComponent(originClean)}&end=${encodeURIComponent(destClean)}`;
+      
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        console.warn('Distance fetch failed:', response.status);
+        return null;
+      }
+      
+      const data = await response.json();
+      
+      if (data.features && data.features[0]) {
+        const distanceMeters = data.features[0].properties.segments[0].distance;
+        const distanceKm = Math.round(distanceMeters / 1000);
+        return distanceKm;
+      }
+      return null;
+    } catch (error) {
+      console.error('Distance fetch error:', error);
+      return null;
+    }
+  }
+
+  async function getDistanceWithCache(origin, destination) {
+    const key = `${origin.toLowerCase().trim()}|${destination.toLowerCase().trim()}`;
+    
+    // Check memory cache
+    if (distanceCache[key]) {
+      const cached = distanceCache[key];
+      if (Date.now() - cached.timestamp < 7 * 24 * 60 * 60 * 1000) {
+        return cached.distance;
+      }
+    }
+    
+    // Fetch fresh
+    const distance = await fetchDistance(origin, destination);
+    if (distance !== null && distance > 0) {
+      distanceCache[key] = {
+        distance: distance,
+        timestamp: Date.now()
+      };
+      try {
+        localStorage.setItem('distanceCache', JSON.stringify(distanceCache));
+      } catch(e) {}
+    }
+    return distance;
+  }
+
+  let distanceFetching = false;
+
+  async function autoFetchDistance() {
+    const origin = $('origin').value.trim();
+    const destination = $('destination').value.trim();
+    const statusEl = $('fetchStatus');
+    const fetchBtn = $('fetchDistanceBtn');
+    
+    if (!origin || !destination || origin === destination) {
+      statusEl.textContent = '';
+      statusEl.className = 'fetch-status';
+      return;
+    }
+    if (distanceFetching) return;
+    
+    const distanceInput = $('distance');
+    const originalValue = distanceInput.value;
+    
+    distanceFetching = true;
+    fetchBtn.classList.add('loading');
+    statusEl.textContent = 'Fetching...';
+    statusEl.className = 'fetch-status';
+    
+    const dist = await getDistanceWithCache(origin, destination);
+    
+    if (dist !== null && dist > 0) {
+      distanceInput.value = dist;
+      statusEl.textContent = '✓';
+      statusEl.className = 'fetch-status success';
+      calc(); // Trigger recalculation
+    } else {
+      statusEl.textContent = '✗';
+      statusEl.className = 'fetch-status error';
+      if (!distanceInput.value) {
+        distanceInput.value = originalValue || '42';
+      }
+    }
+    
+    fetchBtn.classList.remove('loading');
+    distanceFetching = false;
+    
+    // Auto-clear status after 3 seconds
+    setTimeout(() => {
+      if (statusEl.textContent === '✓' || statusEl.textContent === '✗') {
+        statusEl.textContent = '';
+        statusEl.className = 'fetch-status';
+      }
+    }, 3000);
+  }
+
+  // ============================================================
+  //  TRIP MODE TOGGLES
+  // ============================================================
+
+  $('btnOneway').addEventListener('click', ()=>{ 
+    tripMode='oneway'; 
+    $('btnOneway').classList.add('active'); 
+    $('btnRound').classList.remove('active'); 
+    calc(); 
+  });
+  $('btnRound').addEventListener('click', ()=>{ 
+    tripMode='round'; 
+    $('btnRound').classList.add('active'); 
+    $('btnOneway').classList.remove('active'); 
+    calc(); 
+  });
+
+  // ============================================================
+  //  DOWNLOAD HANDLERS
+  // ============================================================
 
   $('downloadHtmlBtn').addEventListener('click', ()=>{
     const blob = new Blob(['<!DOCTYPE html>\n' + document.documentElement.outerHTML], {type:'text/html'});
@@ -963,7 +1147,15 @@
     }
   });
 
+  // ============================================================
+  //  CHART VARIABLES
+  // ============================================================
+
   let chartRevCost, chartComposition, chartSensitivity;
+
+  // ============================================================
+  //  MAIN CALCULATION ENGINE
+  // ============================================================
 
   function calc(){
     const distanceOneWay = num('distance');
@@ -1013,6 +1205,7 @@
     const beLoadsPerDay = workDays > 0 ? beLoadsPerMonth / workDays : Infinity;
     const beRateTon = tonsLoad > 0 ? fullCostLoad / tonsLoad : 0;
 
+    // --- Update Ledger ---
     $('outRevLoad').textContent = rand(revLoad);
     $('outCostLoad').textContent = rand(fullCostLoad);
     $('outMarginLoad').textContent = rand(marginLoad);
@@ -1032,6 +1225,7 @@
     $('outMarginMonth').className = 'v ' + (marginMonth >= 0 ? 'pos' : 'neg');
     $('outBErate').textContent = rand(beRateTon) + '/t';
 
+    // --- Verdict ---
     $('verdictRoute').textContent = `${$('origin').value} → ${$('destination').value} · ${cycleKm} km ${tripMode === 'round' ? 'round trip' : 'one-way'}`;
     const stampEl = $('stamp');
     let verdictMsg = '';
@@ -1050,14 +1244,28 @@
     }
     $('verdictText').textContent = verdictMsg;
 
-    updateCharts({revDay, costDay, revMonth, costMonth, fixedMonth, varCostMonth: varCostLoad*loadsMonth, revLoad, varCostLoad, workDays, fWages, fLicense, fInsurance, fDeprec, fuelKm: fuelKm * cycleKm * loadsMonth, vTyres: vTyres * cycleKm * loadsMonth, vMaint: vMaint * cycleKm * loadsMonth, vLube: vLube * cycleKm * loadsMonth});
+    // --- Update Charts ---
+    updateCharts({
+      revDay, costDay, revMonth, costMonth, fixedMonth, 
+      varCostMonth: varCostLoad * loadsMonth, 
+      revLoad, varCostLoad, workDays,
+      fWages, fLicense, fInsurance, fDeprec,
+      fuelKm: fuelKm * cycleKm * loadsMonth,
+      vTyres: vTyres * cycleKm * loadsMonth,
+      vMaint: vMaint * cycleKm * loadsMonth,
+      vLube: vLube * cycleKm * loadsMonth
+    });
   }
+
+  // ============================================================
+  //  CHART UPDATES
+  // ============================================================
 
   function updateCharts(d){
     const muted = { color: '#5B6D89', font:{family:"'IBM Plex Mono', monospace", size:10} };
     const grid = { color: '#E2E6EC' };
 
-    // ----- Revenue vs Cost chart - FIXED: proper number display -----
+    // --- Revenue vs Cost ---
     const rcData = {
       labels:['Per Day', 'Per Month'],
       datasets:[
@@ -1121,9 +1329,7 @@
       });
     }
 
-    // ----- Cost Composition chart - SPLIT into individual expense categories with different blue shades -----
-    // Fixed costs: different shades of blue/navy
-    // Variable costs: different shades of gold/amber
+    // --- Cost Composition (split into individual expenses) ---
     const compLabels = [
       'Depreciation',
       'Driver Wages',
@@ -1146,26 +1352,14 @@
       d.vLube || 0
     ];
 
-    // Filter out zero values for cleaner display
     const filteredData = compLabels.map((label, i) => ({ label, value: compValues[i] }))
       .filter(item => item.value > 0);
 
     const pieLabels = filteredData.map(item => item.label);
     const pieValues = filteredData.map(item => item.value);
 
-    // Color palette: blues for fixed (0-3), golds/ambers for variable (4-7)
-    const fixedColors = [
-      '#071534', // Depreciation - darkest navy
-      '#0A1F44', // Driver Wages
-      '#1A3A6B', // Insurance
-      '#2A5A8A'  // Licensing
-    ];
-    const variableColors = [
-      '#C9A84C', // Fuel - gold
-      '#D4B85C', // Maintenance
-      '#DFC86C', // Tyres
-      '#EAD87C'  // Lubricants
-    ];
+    const fixedColors = ['#071534', '#0A1F44', '#1A3A6B', '#2A5A8A'];
+    const variableColors = ['#C9A84C', '#D4B85C', '#DFC86C', '#EAD87C'];
 
     const pieColors = pieLabels.map(label => {
       const idx = compLabels.indexOf(label);
@@ -1220,7 +1414,7 @@
       });
     }
 
-    // ----- Sensitivity chart (unchanged) -----
+    // --- Sensitivity Chart ---
     const labels = [];
     const marginPctSeries = [];
     const revSeries = [];
@@ -1262,7 +1456,23 @@
     }
   }
 
+  // ============================================================
+  //  WIRE UP EVENTS
+  // ============================================================
+
+  // Auto-fetch distance on blur or Enter
+  $('origin').addEventListener('blur', autoFetchDistance);
+  $('destination').addEventListener('blur', autoFetchDistance);
+  $('origin').addEventListener('keydown', (e) => { if (e.key === 'Enter') autoFetchDistance(); });
+  $('destination').addEventListener('keydown', (e) => { if (e.key === 'Enter') autoFetchDistance(); });
+
+  // Manual fetch button
+  $('fetchDistanceBtn').addEventListener('click', autoFetchDistance);
+
+  // All inputs trigger recalculation
   document.querySelectorAll('input').forEach(inp => inp.addEventListener('input', calc));
+
+  // Initial calculation
   calc();
 </script>
 </body>
