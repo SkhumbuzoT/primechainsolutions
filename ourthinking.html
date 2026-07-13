@@ -9,138 +9,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <!-- using embedded style to keep theme consistent with index.html (no external file changes) -->
-  <style>
-    /* reset & base — matches index theme */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: #faf9f6;
-      color: #1e1e2a;
-      line-height: 1.5;
-    }
-    .container { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-
-    /* nav (identical to index) */
-    #nav { padding: 1.2rem 2rem; background: #fff; border-bottom: 1px solid #eae8e0; position: sticky; top:0; z-index:100; }
-    .nav-inner { max-width: 1280px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
-    .logo img { height: 2.8rem; width: auto; }
-    .nav-links { display:flex; gap:2.5rem; list-style:none; align-items:center; font-weight:500; font-size:1rem; }
-    .nav-links a { color:#1e1e2a; transition:0.2s; }
-    .nav-links a.on { color:#1d7a6b; border-bottom:2px solid #1d7a6b; padding-bottom:4px; }
-    .nav-cta { background:#1d7a6b; color:#fff!important; padding:0.5rem 1.5rem; border-radius:40px; font-weight:600; }
-    .mob-btn { display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; }
-    @media (max-width: 768px) { .nav-links { display:none; } .mob-btn { display:block; } }
-
-    /* page hero (matches index hero styling) */
-    .page-hero { padding: 4rem 2rem 3rem; background: #f1efe8; }
-    .page-hero-inner { max-width: 1000px; margin:0 auto; }
-    .hero-label { font-size:0.85rem; text-transform:uppercase; letter-spacing:2px; color:#5b6b6a; margin-bottom:0.75rem; }
-    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size:3.6rem; font-weight:600; line-height:1.1; }
-    .page-hero h1 em { font-style:italic; color:#1d7a6b; }
-    .page-hero p { font-size:1.25rem; max-width:650px; margin-top:0.75rem; color:#3a3a48; }
-
-    .section-label { font-size:0.8rem; text-transform:uppercase; letter-spacing:2px; color:#5b6b6a; margin-bottom:1.5rem; }
-
-    /* featured two-up */
-    .featured { padding: 4rem 0; }
-    .two-up-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
-    .feat-card { background:#fff; padding:2rem; border-radius:24px; box-shadow:0 8px 20px rgba(0,0,0,0.02); display:flex; flex-direction:column; justify-content:space-between; transition:0.25s; border:1px solid #eae8e0; }
-    .feat-card:hover { box-shadow:0 12px 28px rgba(0,0,0,0.05); }
-    .feat-tag { display:inline-block; background:#e1efe7; color:#1d7a6b; font-weight:600; font-size:0.7rem; padding:0.25rem 0.9rem; border-radius:40px; letter-spacing:0.5px; margin-bottom:0.8rem; }
-    .feat-card h2 { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; margin-bottom:0.6rem; }
-    .feat-card p { color:#3a3a48; margin-bottom:1.2rem; }
-    .feat-meta { display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem; }
-    .arrow-link { font-weight:600; color:#1d7a6b; display:inline-flex; align-items:center; gap:0.4rem; }
-    .btn-teal { background:#1d7a6b; color:#fff; border:none; padding:0.7rem 1.8rem; border-radius:40px; font-weight:600; display:inline-block; transition:0.2s; cursor:pointer; }
-    .btn-teal:hover { background:#155b4f; }
-    .btn-outline-white { background:transparent; border:1px solid #fff; color:#fff; padding:0.7rem 1.8rem; border-radius:40px; font-weight:600; transition:0.2s; }
-    .btn-outline-white:hover { background:#fff; color:#1d7a6b; }
-
-    /* thinking grid */
-    .thinking-section { padding: 2rem 0 4rem; }
-    .thinking-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
-    .tg-card { background:#fff; padding:1.8rem; border-radius:20px; border:1px solid #eae8e0; display:flex; flex-direction:column; }
-    .tg-badge { display:inline-block; background:#eae8e0; font-size:0.7rem; font-weight:600; padding:0.2rem 0.9rem; border-radius:40px; align-self:flex-start; margin-bottom:0.8rem; color:#3a3a48; }
-    .tg-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; margin-bottom:0.4rem; }
-    .tg-card p { color:#3a3a48; font-size:0.95rem; margin-bottom:1.2rem; flex:1; }
-    .tg-foot { display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem; }
-    .tg-time { font-size:0.85rem; color:#5b6b6a; }
-    .tg-time i { margin-right:0.3rem; }
-
-    /* CTA band (matches index) */
-    .cta-band { background:#1e2b2a; color:#fff; padding:4rem 0; text-align:center; }
-    .cta-band h2 { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:600; }
-    .cta-band p { max-width:600px; margin:0.8rem auto 2rem; color:#cbd5d1; }
-    .cta-btns { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; }
-
-    footer { background:#f1efe8; padding:2rem 0; }
-    .footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-    .social { display:flex; gap:1.2rem; }
-    .social a { color:#1e1e2a; font-size:1.2rem; }
-
-    /* lead gen widget — subtle, inline, consistent with theme */
-    .lead-widget {
-      margin-top: 1.2rem;
-      background: #f4f7f5;
-      border-radius: 40px;
-      padding: 0.6rem 1rem 0.6rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      border: 1px solid #d0ddd6;
-      transition: 0.2s;
-    }
-    .lead-widget:hover { background: #ebf3ef; }
-    .lead-widget span {
-      font-weight: 500;
-      font-size: 0.9rem;
-      color: #1d3a33;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .lead-widget span i { color: #1d7a6b; font-size: 1rem; }
-    .lead-widget .btn-small {
-      background: #1d7a6b;
-      color: #fff;
-      border: none;
-      padding: 0.4rem 1.2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: 0.2s;
-      white-space: nowrap;
-    }
-    .lead-widget .btn-small:hover { background: #13584a; }
-
-    @media (max-width: 992px) {
-      .two-up-grid { grid-template-columns:1fr; }
-      .thinking-grid { grid-template-columns:1fr 1fr; }
-    }
-    @media (max-width: 640px) {
-      .page-hero h1 { font-size:2.6rem; }
-      .thinking-grid { grid-template-columns:1fr; }
-      .lead-widget { flex-direction: column; align-items: stretch; text-align: center; padding:1rem; }
-      .lead-widget .btn-small { align-self: center; }
-    }
-    .reveal { opacity:1; }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/ourthinking.css" />
+  <link rel="icon" type="image/svg" sizes="32x32" href="/assets/primechain.svg" />
+  <link rel="icon" type="image/svg" sizes="16x16" href="/assets/primechain.svg" />
 </head>
 <body>
 
   <div class="sp" id="sp"></div>
 
-  <!-- NAVIGATION (identical to index) -->
   <nav id="nav">
     <div class="nav-inner">
       <a href="index.html" class="logo">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3E%3Ctext x='0' y='35' font-family='Arial' font-size='28' fill='%231d7a6b' font-weight='bold'%3EPC%3C/text%3E%3C/svg%3E" alt="PrimeChain Solutions" />
+        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
@@ -169,7 +50,7 @@
       <div class="section-label reveal">Featured</div>
       <div class="two-up-grid reveal">
 
-        <!-- CARD 1: Manual Work article + lead widget -->
+        <!-- Card 1: Manual Work article + lead widget -->
         <div class="feat-card feat-card--article">
           <div>
             <span class="feat-tag">Article</span>
@@ -187,7 +68,7 @@
           </div>
         </div>
 
-        <!-- CARD 2: Fleet case + lead widget (linked to R600k leak) -->
+        <!-- Card 2: Fleet case + lead widget (linked to R600k leak) -->
         <div class="feat-card feat-card--case">
           <div>
             <span class="feat-tag">Case study</span>
@@ -206,7 +87,7 @@
     </div>
   </section>
 
-  <!-- THINKING GRID (unchanged structure, all cards intact) -->
+  <!-- THINKING GRID (unchanged) -->
   <section class="thinking-section">
     <div class="container">
       <div class="section-label reveal">More from our thinking</div>
@@ -276,7 +157,7 @@
     </div>
   </section>
 
-  <!-- CTA BAND (matches index) -->
+  <!-- CTA -->
   <section class="cta-band">
     <div class="container">
       <div class="reveal">
@@ -290,7 +171,6 @@
     </div>
   </section>
 
-  <!-- FOOTER (matches index) -->
   <footer>
     <div class="container">
       <div class="footer-bottom">
@@ -303,24 +183,52 @@
     </div>
   </footer>
 
-  <!-- minimal mobile toggle + demo -->
-  <script>
-    document.getElementById('mobBtn')?.addEventListener('click', function() {
-      const links = document.getElementById('navLinks');
-      if (links.style.display === 'flex') { links.style.display = 'none'; } 
-      else { links.style.display = 'flex'; links.style.flexDirection = 'column'; links.style.position = 'absolute'; links.style.top = '70px'; links.style.left = '0'; links.style.width = '100%'; links.style.background = '#fff'; links.style.padding = '1.5rem'; links.style.gap = '1.2rem'; links.style.borderBottom = '1px solid #ddd'; }
-    });
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-        const links = document.getElementById('navLinks');
-        links.style.display = 'flex';
-        links.style.position = 'static';
-        links.style.flexDirection = 'row';
-        links.style.padding = '0';
-        links.style.background = 'transparent';
-        links.style.border = 'none';
-      }
-    });
-  </script>
+  <script src="js/main.js"></script>
+
+  <!-- small inline style for lead widgets (uses existing theme variables) -->
+  <style>
+    /* lead widget — matches theme, no external changes */
+    .lead-widget {
+      margin-top: 1.2rem;
+      background: #f4f7f5;
+      border-radius: 40px;
+      padding: 0.6rem 1rem 0.6rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      border: 1px solid #d0ddd6;
+      transition: 0.2s;
+    }
+    .lead-widget:hover { background: #ebf3ef; }
+    .lead-widget span {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #1d3a33;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .lead-widget span i { color: #1d7a6b; font-size: 1rem; }
+    .lead-widget .btn-small {
+      background: #1d7a6b;
+      color: #fff;
+      border: none;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .lead-widget .btn-small:hover { background: #13584a; }
+    @media (max-width: 640px) {
+      .lead-widget { flex-direction: column; align-items: stretch; text-align: center; padding:1rem; }
+      .lead-widget .btn-small { align-self: center; }
+    }
+  </style>
+
 </body>
 </html>
