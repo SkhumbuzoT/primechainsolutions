@@ -1,770 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Metadata -->
-    <meta name="description" content="Calculate the cost of manual work and discover potential savings with automation. Free business process automation calculator." />
-    <meta name="keywords" content="cost calculator, manual work cost, automation savings, business process automation, ROI calculator" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.primechainsolutions.co.za/cost-calculator.html">
-    <meta property="og:title" content="Cost Calculator - Prime Chain Solutions">
-    <meta property="og:description" content="Calculate the cost of manual work and discover potential savings with automation.">
-    <meta property="og:image" content="https://www.primechainsolutions.co.za/assets/og-image.jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Calculate the cost of manual work and discover potential savings with automation. Free business process automation calculator." />
+  <title>Cost Calculator · PrimeChain Solutions</title>
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.primechainsolutions.co.za/cost-calculator.html">
-    <meta property="twitter:title" content="Cost Calculator - Prime Chain Solutions">
-    <meta property="twitter:description" content="Calculate the cost of manual work and discover potential savings with automation.">
-    <meta property="twitter:image" content="https://www.primechainsolutions.co.za/assets/twitter-image.jpg">
+  <!-- ✅ OPTIMIZED: Preload critical fonts (matching homepage) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" as="style" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/Symbol Only.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/Symbol Only.png">
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHLZW1RWWZ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FHLZW1RWWZ');
-    </script>
-    <!-- End Google tag -->
+  <!-- ✅ OPTIMIZED: Font loading with swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  </noscript>
 
-    <title>Cost Calculator - Prime Chain Solutions</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* ===== CSS VARIABLES - Matching LOI Calculator ===== */
-        :root {
-            --navy:       #071534;
-            --navy-mid:   #0A1F44;
-            --teal:       #008080;
-            --teal-dk:    #006666;
-            --teal-lt:    #f0fafa;
-            --gold:       #C9A84C;
-            --gold-lt:    #fbf6e9;
-            --white:      #ffffff;
-            --off:        #F5F7FA;
-            --text:       #0F1923;
-            --muted:      #5B6D89;
-            --border:     #E2E6EC;
-            --shadow-sm:  0 8px 24px rgba(7,21,52,0.04);
-            --shadow-md:  0 12px 40px rgba(7,21,52,0.06);
-            --shadow-lg:  0 16px 48px rgba(7,21,52,0.10);
-            --radius-sm:  6px;
-            --radius:     10px;
-            --radius-lg:  16px;
-            --ease:       0.2s ease;
-        }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </noscript>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <!-- ✅ External stylesheets (same as homepage) -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/index.css" />
 
-        body {
-            background: var(--off);
-            color: var(--text);
-            font-family: 'Inter', -apple-system, sans-serif;
-            padding: 40px 24px 70px;
-            line-height: 1.5;
-        }
+  <!-- ✅ Favicon (matching homepage) -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 
-        .wrap {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+  <style>
+    /* ===== CALCULATOR SPECIFIC STYLES (extends homepage theme) ===== */
+    .calc-section {
+      padding: 4rem 0 5rem;
+      background: var(--bg-section-alt, #F8FAFC);
+    }
 
-        /* ===== HEADER ===== */
-        .topbar {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 24px;
-            margin-bottom: 30px;
-        }
+    .calc-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-        .eyebrow {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--teal-dk);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
+    .calc-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .calc-header .section-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #5b6b6a;
+      margin-bottom: 0.5rem;
+    }
+    .calc-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 600;
+      color: var(--text-dark, #1e1e2a);
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+    }
+    .calc-header p {
+      font-size: 1.1rem;
+      color: var(--muted, #5B6D89);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
 
-        h1 {
-            font-weight: 800;
-            font-size: clamp(30px, 4vw, 44px);
-            letter-spacing: -0.02em;
-            margin: 0 0 8px;
-            color: var(--navy);
-            line-height: 1.1;
-        }
+    .calc-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 2.5rem 3rem 3rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      border: 1px solid #eae8e0;
+      transition: box-shadow 0.2s ease;
+    }
+    .calc-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
 
-        .subhead {
-            color: var(--muted);
-            font-size: 15px;
-            max-width: 600px;
-            line-height: 1.6;
-        }
+    .input-group {
+      margin-bottom: 2.5rem;
+    }
+    .input-group:last-of-type {
+      margin-bottom: 2rem;
+    }
 
-        .btn-row {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 4px;
-        }
+    .input-label {
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-dark, #1e1e2a);
+      margin-bottom: 0.75rem;
+      font-family: 'DM Sans', sans-serif;
+    }
 
-        .btn-download {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--navy);
-            color: var(--white);
-            border: none;
-            border-radius: 60px;
-            padding: 12px 22px;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--ease);
-            box-shadow: var(--shadow-sm);
-            letter-spacing: -0.01em;
-            text-decoration: none;
-        }
-        .btn-download:hover {
-            background: var(--teal-dk);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(0,128,128,0.15);
-        }
-        .btn-download.secondary {
-            background: var(--white);
-            color: var(--navy);
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow-sm);
-        }
-        .btn-download.secondary:hover {
-            background: var(--off);
-            border-color: var(--muted);
-            transform: translateY(-2px);
-        }
-        .btn-download svg {
-            width: 16px;
-            height: 16px;
-        }
+    .slider-container {
+      position: relative;
+    }
 
-        /* ===== NAVIGATION BAR (matching LOI) ===== */
-        .nav-bar {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 12px 24px;
-            margin-bottom: 28px;
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-        .nav-bar .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            font-size: 16px;
-            color: var(--navy);
-        }
-        .nav-bar .brand .mark {
-            width: 36px;
-            height: 36px;
-            background: var(--navy);
-            color: var(--white);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 13px;
-            letter-spacing: 0.02em;
-        }
-        .nav-bar .nav-links {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .nav-bar .nav-links a {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--muted);
-            text-decoration: none;
-            transition: color var(--ease);
-            padding: 4px 0;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-bar .nav-links a:hover {
-            color: var(--teal-dk);
-            border-bottom-color: var(--teal);
-        }
-        .nav-bar .nav-links a.active {
-            color: var(--teal-dk);
-            border-bottom-color: var(--teal);
-            font-weight: 600;
-        }
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted, #5B6D89);
+      font-weight: 500;
+    }
 
-        /* ===== CALCULATOR CARD ===== */
-        .calculator-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 32px 36px 36px;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 28px;
-            transition: box-shadow var(--ease);
-            position: relative;
-        }
-        .calculator-card:hover {
-            box-shadow: var(--shadow-md);
-        }
+    .slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 6px;
+      background: #e5e7eb;
+      outline: none;
+      -webkit-appearance: none;
+      transition: background 0.2s ease;
+      cursor: pointer;
+    }
+    .slider:hover {
+      background: #d1d5db;
+    }
 
-        .calculator-card::before {
-            content: "COST ENGINE";
-            position: absolute;
-            top: 12px;
-            right: 24px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 0.16em;
-            color: var(--border);
-        }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1d7a6b;
+      cursor: pointer;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 12px rgba(29, 122, 107, 0.3);
+      transition: all 0.2s ease;
+    }
+    .slider::-webkit-slider-thumb:hover {
+      transform: scale(1.12);
+      box-shadow: 0 6px 18px rgba(29, 122, 107, 0.4);
+      background: #155b4f;
+    }
 
-        .input-group {
-            margin-bottom: 28px;
-        }
+    .slider::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1d7a6b;
+      cursor: pointer;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 12px rgba(29, 122, 107, 0.3);
+      transition: all 0.2s ease;
+    }
+    .slider::-moz-range-thumb:hover {
+      transform: scale(1.12);
+      box-shadow: 0 6px 18px rgba(29, 122, 107, 0.4);
+      background: #155b4f;
+    }
 
-        .input-label {
-            display: block;
-            font-weight: 600;
-            color: var(--text);
-            font-size: 14px;
-            margin-bottom: 8px;
-            font-family: 'Inter', sans-serif;
-        }
+    .input-display {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1d7a6b;
+      margin-top: 1.2rem;
+      padding: 1rem;
+      background: rgba(29, 122, 107, 0.05);
+      border-radius: 14px;
+      border: 2px solid rgba(29, 122, 107, 0.08);
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s ease;
+    }
+    .input-display:hover {
+      background: rgba(29, 122, 107, 0.08);
+      transform: translateY(-2px);
+    }
 
-        .slider-container {
-            position: relative;
-        }
+    /* Results Grid — matches homepage case card style */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 2.5rem 0 2rem;
+    }
+    @media (max-width: 768px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
-        .slider-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 6px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            color: var(--muted);
-        }
+    .result-card {
+      background: var(--bg-section-alt, #F8FAFC);
+      padding: 1.8rem 1.5rem;
+      border-radius: 18px;
+      text-align: center;
+      border: 1px solid #eae8e0;
+      transition: all 0.2s ease;
+    }
+    .result-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    }
+    .result-card.savings {
+      background: rgba(29, 122, 107, 0.06);
+      border-color: rgba(29, 122, 107, 0.2);
+    }
+    .result-card.savings .result-value {
+      color: #1d7a6b;
+    }
 
-        .slider {
-            width: 100%;
-            height: 8px;
-            border-radius: var(--radius-sm);
-            background: #e5e7eb;
-            outline: none;
-            -webkit-appearance: none;
-            transition: background var(--ease);
-            cursor: pointer;
-        }
-        .slider:hover {
-            background: #d1d5db;
-        }
+    .result-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted, #5B6D89);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
 
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--teal);
-            cursor: pointer;
-            border: 4px solid var(--white);
-            box-shadow: 0 4px 12px rgba(0, 128, 128, 0.3);
-            transition: all var(--ease);
-        }
-        .slider::-webkit-slider-thumb:hover {
-            transform: scale(1.15);
-            box-shadow: 0 6px 18px rgba(0, 128, 128, 0.4);
-            background: var(--teal-dk);
-        }
+    .result-value {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text-dark, #1e1e2a);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.2;
+    }
 
-        .slider::-moz-range-thumb {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--teal);
-            cursor: pointer;
-            border: 4px solid var(--white);
-            box-shadow: 0 4px 12px rgba(0, 128, 128, 0.3);
-            transition: all var(--ease);
-        }
-        .slider::-moz-range-thumb:hover {
-            transform: scale(1.15);
-            box-shadow: 0 6px 18px rgba(0, 128, 128, 0.4);
-            background: var(--teal-dk);
-        }
+    .result-description {
+      font-size: 0.85rem;
+      color: var(--muted, #5B6D89);
+      margin-top: 0.3rem;
+    }
 
-        .input-display {
-            text-align: center;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--teal-dk);
-            margin-top: 16px;
-            padding: 14px;
-            background: var(--teal-lt);
-            border-radius: var(--radius);
-            border: 2px solid rgba(0, 128, 128, 0.1);
-            transition: all var(--ease);
-        }
-        .input-display:hover {
-            background: rgba(0, 128, 128, 0.08);
-            transform: translateY(-2px);
-        }
+    /* Impact Statement — matches homepage testimonial style */
+    .impact-statement {
+      background: #f1efe8;
+      border-radius: 18px;
+      padding: 1.8rem 2.2rem;
+      margin: 1.5rem 0 0;
+      border-left: 4px solid #1d7a6b;
+      position: relative;
+    }
+    .impact-statement p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text-dark, #1e1e2a);
+      font-weight: 500;
+      margin: 0;
+    }
+    .impact-highlight {
+      font-weight: 700;
+      color: #1d7a6b;
+      background: rgba(29, 122, 107, 0.08);
+      padding: 0.1rem 0.6rem;
+      border-radius: 6px;
+    }
 
-        /* ===== RESULTS GRID (matching LOI ledger style) ===== */
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin: 32px 0 28px;
-        }
+    /* CTA Section — matches homepage button styles */
+    .calc-cta {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eae8e0;
+    }
 
-        @media (max-width: 768px) {
-            .results-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-        }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-        .result-card {
-            background: var(--off);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px 22px;
-            text-align: center;
-            transition: all var(--ease);
-        }
-        .result-card:hover {
-            box-shadow: var(--shadow-sm);
-            transform: translateY(-4px);
-        }
+    .btn-teal {
+      background: #1d7a6b;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-teal:hover {
+      background: #155b4f;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(29, 122, 107, 0.25);
+    }
 
-        .result-card.savings {
-            background: var(--teal-lt);
-            border-color: var(--teal);
-        }
-        .result-card.savings .result-value {
-            color: var(--teal-dk);
-        }
+    .btn-outline {
+      background: transparent;
+      color: #1e1e2a;
+      border: 2px solid #eae8e0;
+      padding: 0.75rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-outline:hover {
+      border-color: #1d7a6b;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    }
 
-        .result-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--muted);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-whatsapp:hover {
+      background: #128c7e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+    }
 
-        .result-value {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--navy);
-            line-height: 1.2;
-        }
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted, #5B6D89);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      font-size: 0.95rem;
+    }
+    .back-link:hover {
+      color: #1d7a6b;
+    }
 
-        .result-description {
-            font-size: 12px;
-            color: var(--muted);
-            margin-top: 6px;
-        }
-
-        /* ===== IMPACT STATEMENT (matching LOI verdict) ===== */
-        .impact-statement {
-            background: var(--teal-lt);
-            border: 1px solid var(--teal);
-            border-radius: var(--radius);
-            padding: 20px 24px;
-            margin: 24px 0 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .impact-statement::before {
-            content: "💡";
-            position: absolute;
-            top: -10px;
-            right: 16px;
-            font-size: 48px;
-            opacity: 0.12;
-        }
-        .impact-statement p {
-            font-size: 15px;
-            line-height: 1.6;
-            color: var(--text);
-            font-weight: 500;
-        }
-        .impact-highlight {
-            font-weight: 700;
-            color: var(--teal-dk);
-            background: rgba(0, 128, 128, 0.08);
-            padding: 2px 8px;
-            border-radius: var(--radius-sm);
-        }
-
-        /* ===== CTA SECTION ===== */
-        .cta-section {
-            text-align: center;
-            margin-top: 36px;
-            padding-top: 28px;
-            border-top: 1px solid var(--border);
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 28px;
-            font-weight: 600;
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
-            text-decoration: none;
-            border-radius: 60px;
-            transition: all var(--ease);
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--teal);
-            color: var(--white);
-            box-shadow: 0 4px 12px rgba(0, 128, 128, 0.3);
-        }
-        .btn-primary:hover {
-            background: var(--teal-dk);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 128, 128, 0.4);
-        }
-
-        .btn-whatsapp {
-            background: #25d366;
-            color: var(--white);
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-        }
-        .btn-whatsapp:hover {
-            background: #128c7e;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--navy);
-            border: 2px solid var(--border);
-        }
-        .btn-outline:hover {
-            border-color: var(--teal);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* ===== FOOTER (matching LOI) ===== */
-        footer {
-            text-align: center;
-            color: var(--muted);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            margin-top: 40px;
-            text-transform: uppercase;
-            opacity: 0.7;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .calculator-card {
-                padding: 24px 20px 28px;
-                margin: 0 0 20px;
-            }
-            .calculator-card::before {
-                display: none;
-            }
-            .topbar {
-                flex-direction: column;
-            }
-            .btn-row {
-                width: 100%;
-            }
-            .btn-download {
-                flex: 1;
-                justify-content: center;
-            }
-            .nav-bar {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 12px;
-            }
-            .nav-bar .nav-links {
-                justify-content: center;
-                gap: 16px;
-            }
-            .result-value {
-                font-size: 22px;
-            }
-            .impact-statement p {
-                font-size: 14px;
-            }
-            .btn-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn {
-                width: 100%;
-                max-width: 320px;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 20px 16px 40px; }
-            h1 { font-size: 26px; }
-            .result-value { font-size: 20px; }
-            .input-display { font-size: 17px; padding: 12px; }
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-            opacity: 0;
-            animation: fadeInUp 0.7s ease forwards;
-        }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-500 { animation-delay: 0.5s; }
-        .delay-600 { animation-delay: 0.6s; }
-        .delay-700 { animation-delay: 0.7s; }
-    </style>
+    /* Responsive */
+    @media (max-width: 640px) {
+      .calc-card {
+        padding: 1.8rem 1.5rem 2rem;
+      }
+      .result-value {
+        font-size: 1.8rem;
+      }
+      .input-display {
+        font-size: 1.3rem;
+        padding: 0.8rem;
+      }
+      .impact-statement {
+        padding: 1.2rem 1.5rem;
+      }
+      .impact-statement p {
+        font-size: 1rem;
+      }
+      .btn-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      .btn-teal, .btn-outline, .btn-whatsapp {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="wrap">
+  <!-- Scroll Progress Bar (matches homepage) -->
+  <div class="sp" id="sp"></div>
 
-        <!-- ===== TOP BAR ===== -->
-        <div class="topbar">
-            <div>
-                <div class="eyebrow">PrimeChain Solutions — Operational Intelligence</div>
-                <h1>Manual Work Cost Calculator</h1>
-                <p class="subhead">See exactly how much manual work is costing your business — and the savings you could unlock with smart automation.</p>
-            </div>
-            <div class="btn-row">
-                <a href="/ourthinking.html" class="btn-download secondary">
-                    <i class="fas fa-arrow-left"></i> Back to Insights
-                </a>
-                <a href="/tools/route-profitability/index.html" class="btn-download">
-                    <i class="fas fa-truck"></i> Fleet Profitability
-                </a>
-            </div>
-        </div>
-
-        <!-- ===== CALCULATOR ===== -->
-        <div class="calculator-card animate-fade-in delay-100">
-            
-            <!-- Hours Slider -->
-            <div class="input-group">
-                <label class="input-label" for="hoursSlider">Hours spent on manual work per week</label>
-                <div class="slider-container">
-                    <input class="slider" id="hoursSlider" type="range" min="5" max="50" step="1" value="20" aria-label="Hours per week slider" />
-                    <div class="slider-labels">
-                        <span>5 hrs</span>
-                        <span>50 hrs</span>
-                    </div>
-                </div>
-                <div class="input-display"><span id="hoursDisplay">20</span> hours / week</div>
-            </div>
-            
-            <!-- Rate Slider -->
-            <div class="input-group">
-                <label class="input-label" for="rateSlider">Average hourly cost (incl. benefits)</label>
-                <div class="slider-container">
-                    <input class="slider" id="rateSlider" type="range" min="20" max="120" step="10" value="80" aria-label="Hourly rate slider" />
-                    <div class="slider-labels">
-                        <span>R20</span>
-                        <span>R120</span>
-                    </div>
-                </div>
-                <div class="input-display">R<span id="rateDisplay">80</span> per hour</div>
-            </div>
-            
-            <!-- Results Grid -->
-            <div class="results-grid">
-                <div class="result-card animate-fade-in delay-200">
-                    <div class="result-label">Monthly Cost</div>
-                    <div class="result-value" id="monthlyCost">R0</div>
-                    <div class="result-description">Current manual work spend</div>
-                </div>
-                <div class="result-card animate-fade-in delay-300">
-                    <div class="result-label">Annual Cost</div>
-                    <div class="result-value" id="annualCost">R0</div>
-                    <div class="result-description">12 months of manual work</div>
-                </div>
-                <div class="result-card savings animate-fade-in delay-400">
-                    <div class="result-label">Potential Savings</div>
-                    <div class="result-value" id="potentialSavings">R0</div>
-                    <div class="result-description">Based on automating 80%</div>
-                </div>
-            </div>
-
-            <!-- Impact Statement -->
-            <div class="impact-statement animate-fade-in delay-500">
-                <p>By automating <span class="impact-highlight" id="hoursDisplay2">20</span> hours per week at R<span class="impact-highlight" id="rateDisplay2">80</span> per hour, you could save approximately <span class="impact-highlight" id="savingsAmount">R0</span> annually.</p>
-            </div>
-        </div>
-        
-        <!-- CTA Section -->
-        <div class="cta-section animate-fade-in delay-600">
-            <div class="btn-group">
-                <a href="mailto:hello@primechainsolutions.co.za" class="btn btn-primary">
-                    <i class="fas fa-calendar"></i> Schedule a Free Consultation
-                </a>
-                <a href="https://wa.me/27846503832?text=Hi,%20I'm%20interested%20in%20automating%20manual%20work" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                </a>
-                <a href="/ourthinking.html" class="btn btn-outline">
-                    <i class="fas fa-lightbulb"></i> See Case Studies
-                </a>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            PrimeChain Solutions · Operational Leak Audit™ · primechainsolutions.co.za<br>
-            This calculator provides an indicative estimate based on your inputs.
-        </footer>
-
+  <!-- Navigation (EXACTLY matches homepage) -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" width="150" height="36" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="whoweare.html">Who we are</a></li>
+        <li><a href="ourthinking.html">Our thinking</a></li>
+        <li><a href="#contact" class="nav-cta">Talk to us</a></li>
+      </ul>
+      <button class="mob-btn" id="mobBtn" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
+  </nav>
 
-    <script>
-        // ============================================================
-        //  COST CALCULATOR ENGINE
-        // ============================================================
+  <!-- CALCULATOR SECTION -->
+  <section class="calc-section">
+    <div class="container">
+      <div class="calc-container">
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const hoursSlider = document.getElementById('hoursSlider');
-            const rateSlider = document.getElementById('rateSlider');
-            const hoursDisplay = document.getElementById('hoursDisplay');
-            const hoursDisplay2 = document.getElementById('hoursDisplay2');
-            const rateDisplay = document.getElementById('rateDisplay');
-            const rateDisplay2 = document.getElementById('rateDisplay2');
-            const monthlyCost = document.getElementById('monthlyCost');
-            const annualCost = document.getElementById('annualCost');
-            const potentialSavings = document.getElementById('potentialSavings');
-            const savingsAmount = document.getElementById('savingsAmount');
+        <!-- Header -->
+        <div class="calc-header reveal">
+          <div class="section-label">Cost Calculator</div>
+          <h2>What's the Cost of Manual Work?</h2>
+          <p>Drag the sliders to see how much manual work is costing your business — and discover the savings you could unlock with automation.</p>
+          <div style="margin-top: 1.2rem;">
+            <a href="ourthinking.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Insights</a>
+          </div>
+        </div>
 
-            function animateValue(element, start, end, duration, prefix = 'R') {
-                let startTimestamp = null;
-                const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
-                
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    const easedProgress = easeOutQuart(progress);
-                    const value = Math.floor(easedProgress * (end - start) + start);
-                    
-                    element.textContent = prefix + value.toLocaleString('en-ZA');
-                    
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
-                };
-                window.requestAnimationFrame(step);
-            }
-            
-            function updateCalculations() {
-                const hours = parseInt(hoursSlider.value);
-                const rate = parseInt(rateSlider.value);
-            
-                hoursDisplay.textContent = hours;
-                hoursDisplay2.textContent = hours;
-                rateDisplay.textContent = rate.toLocaleString('en-ZA');
-                rateDisplay2.textContent = rate.toLocaleString('en-ZA');
-            
-                const weeklyCost = hours * rate;
-                const monthly = Math.round(weeklyCost * 4.33);
-                const annual = Math.round(weeklyCost * 52);
-                const savings = Math.round(annual * 0.8);
-            
-                const currentMonthly = parseInt(monthlyCost.textContent.replace(/[^0-9]/g, '') || 0);
-                const currentAnnual = parseInt(annualCost.textContent.replace(/[^0-9]/g, '') || 0);
-                const currentSavings = parseInt(potentialSavings.textContent.replace(/[^0-9]/g, '') || 0);
-                
-                animateValue(monthlyCost, currentMonthly, monthly, 500, 'R');
-                animateValue(annualCost, currentAnnual, annual, 500, 'R');
-                animateValue(potentialSavings, currentSavings, savings, 500, 'R');
-                
-                savingsAmount.textContent = 'R' + savings.toLocaleString('en-ZA');
-            }
+        <!-- Calculator Card -->
+        <div class="calc-card reveal">
 
-            // Initialize sliders
-            [hoursSlider, rateSlider].forEach(slider => {
-                slider.addEventListener('input', function() {
-                    const val = this.value;
-                    const max = this.max;
-                    const percent = (val / max) * 100;
-                    this.style.background = `linear-gradient(90deg, #008080 ${percent}%, #e5e7eb ${percent}%)`;
-                    updateCalculations();
-                });
-            });
+          <!-- Hours Slider -->
+          <div class="input-group">
+            <label class="input-label" for="hoursSlider">Hours spent on manual work per week</label>
+            <div class="slider-container">
+              <input class="slider" id="hoursSlider" type="range" min="5" max="50" step="1" value="20" aria-label="Hours per week" />
+              <div class="slider-labels">
+                <span>5 hrs</span>
+                <span>50 hrs</span>
+              </div>
+            </div>
+            <div class="input-display"><span id="hoursDisplay">20</span> hours / week</div>
+          </div>
 
-            // Set initial gradients
-            hoursSlider.style.background = `linear-gradient(90deg, #008080 ${(hoursSlider.value / hoursSlider.max) * 100}%, #e5e7eb ${(hoursSlider.value / hoursSlider.max) * 100}%)`;
-            rateSlider.style.background = `linear-gradient(90deg, #008080 ${(rateSlider.value / rateSlider.max) * 100}%, #e5e7eb ${(rateSlider.value / rateSlider.max) * 100}%)`;
+          <!-- Rate Slider -->
+          <div class="input-group">
+            <label class="input-label" for="rateSlider">Average hourly cost (incl. benefits)</label>
+            <div class="slider-container">
+              <input class="slider" id="rateSlider" type="range" min="20" max="120" step="10" value="80" aria-label="Hourly rate" />
+              <div class="slider-labels">
+                <span>R20</span>
+                <span>R120</span>
+              </div>
+            </div>
+            <div class="input-display">R<span id="rateDisplay">80</span> per hour</div>
+          </div>
 
-            // Initial calculation
-            updateCalculations();
+          <!-- Results -->
+          <div class="results-grid">
+            <div class="result-card">
+              <div class="result-label">Monthly Cost</div>
+              <div class="result-value" id="monthlyCost">R0</div>
+              <div class="result-description">Current manual work spend</div>
+            </div>
+            <div class="result-card">
+              <div class="result-label">Annual Cost</div>
+              <div class="result-value" id="annualCost">R0</div>
+              <div class="result-description">12 months of manual work</div>
+            </div>
+            <div class="result-card savings">
+              <div class="result-label">Potential Savings</div>
+              <div class="result-value" id="potentialSavings">R0</div>
+              <div class="result-description">Based on automating 80%</div>
+            </div>
+          </div>
 
-            // Recalculate on resize
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(updateCalculations, 100);
-            });
+          <!-- Impact Statement -->
+          <div class="impact-statement">
+            <p>By automating <span class="impact-highlight" id="hoursDisplay2">20</span> hours per week at R<span class="impact-highlight" id="rateDisplay2">80</span> per hour, you could save approximately <span class="impact-highlight" id="savingsAmount">R0</span> annually.</p>
+          </div>
+
+          <!-- CTA -->
+          <div class="calc-cta">
+            <div class="btn-group">
+              <a href="mailto:hello@primechainsolutions.co.za" class="btn-teal">
+                <i class="fas fa-calendar"></i> Schedule a Consultation
+              </a>
+              <a href="https://wa.me/27846503832?text=Hi,%20I'm%20interested%20in%20automating%20manual%20work" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+              </a>
+              <a href="ourthinking.html" class="btn-outline">
+                <i class="fas fa-lightbulb"></i> See Case Studies
+              </a>
+            </div>
+          </div>
+
+        </div><!-- /calc-card -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (matches homepage) -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/primechain.svg" alt="PrimeChain Solutions" width="150" height="34" />
+          <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="index.html">What we do</a></li>
+            <li><a href="whoweare.html">Who we are</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Work</h5>
+          <ul>
+            <li><a href="ourthinking.html">Case Studies</a></li>
+            <li><a href="ourthinking.html">Our thinking</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="https://linkedin.com/company/primechain-solutions" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li>
+            <li><a href="#">Johannesburg, SA</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
+        <div class="social">
+          <a href="https://linkedin.com/company/primechain-solutions" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ✅ External JS (matches homepage) -->
+  <script src="js/main.js" defer></script>
+
+  <!-- Calculator Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hoursSlider = document.getElementById('hoursSlider');
+      const rateSlider = document.getElementById('rateSlider');
+      const hoursDisplay = document.getElementById('hoursDisplay');
+      const hoursDisplay2 = document.getElementById('hoursDisplay2');
+      const rateDisplay = document.getElementById('rateDisplay');
+      const rateDisplay2 = document.getElementById('rateDisplay2');
+      const monthlyCost = document.getElementById('monthlyCost');
+      const annualCost = document.getElementById('annualCost');
+      const potentialSavings = document.getElementById('potentialSavings');
+      const savingsAmount = document.getElementById('savingsAmount');
+
+      function animateValue(element, start, end, duration, prefix = 'R') {
+        let startTimestamp = null;
+        const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const easedProgress = easeOutQuart(progress);
+          const value = Math.floor(easedProgress * (end - start) + start);
+          element.textContent = prefix + value.toLocaleString('en-ZA');
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+
+      function updateCalculations() {
+        const hours = parseInt(hoursSlider.value);
+        const rate = parseInt(rateSlider.value);
+
+        hoursDisplay.textContent = hours;
+        hoursDisplay2.textContent = hours;
+        rateDisplay.textContent = rate.toLocaleString('en-ZA');
+        rateDisplay2.textContent = rate.toLocaleString('en-ZA');
+
+        const weeklyCost = hours * rate;
+        const monthly = Math.round(weeklyCost * 4.33);
+        const annual = Math.round(weeklyCost * 52);
+        const savings = Math.round(annual * 0.8);
+
+        const currentMonthly = parseInt(monthlyCost.textContent.replace(/[^0-9]/g, '') || 0);
+        const currentAnnual = parseInt(annualCost.textContent.replace(/[^0-9]/g, '') || 0);
+        const currentSavings = parseInt(potentialSavings.textContent.replace(/[^0-9]/g, '') || 0);
+
+        animateValue(monthlyCost, currentMonthly, monthly, 500, 'R');
+        animateValue(annualCost, currentAnnual, annual, 500, 'R');
+        animateValue(potentialSavings, currentSavings, savings, 500, 'R');
+        savingsAmount.textContent = 'R' + savings.toLocaleString('en-ZA');
+      }
+
+      // Initialize sliders with gradient
+      [hoursSlider, rateSlider].forEach(slider => {
+        slider.addEventListener('input', function() {
+          const val = this.value;
+          const max = this.max;
+          const percent = (val / max) * 100;
+          this.style.background = `linear-gradient(90deg, #1d7a6b ${percent}%, #e5e7eb ${percent}%)`;
+          updateCalculations();
         });
-    </script>
+      });
+
+      // Set initial gradients
+      hoursSlider.style.background = `linear-gradient(90deg, #1d7a6b ${(hoursSlider.value / hoursSlider.max) * 100}%, #e5e7eb ${(hoursSlider.value / hoursSlider.max) * 100}%)`;
+      rateSlider.style.background = `linear-gradient(90deg, #1d7a6b ${(rateSlider.value / rateSlider.max) * 100}%, #e5e7eb ${(rateSlider.value / rateSlider.max) * 100}%)`;
+
+      updateCalculations();
+    });
+  </script>
 
 </body>
 </html>
