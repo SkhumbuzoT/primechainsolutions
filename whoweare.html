@@ -201,6 +201,36 @@
       font-weight: 300;
     }
 
+    /* Honeycomb — overridden to use the site's teal/navy/gold palette instead of a mixed rainbow */
+    .honeycomb-item.color-blue,
+    .honeycomb-item.color-teal,
+    .honeycomb-item.color-green,
+    .honeycomb-item.color-yellow,
+    .honeycomb-item.color-red,
+    .honeycomb-item.color-pink {
+      background: white !important;
+      border-color: var(--teal) !important;
+    }
+    .honeycomb-item.color-teal,
+    .honeycomb-item.color-red {
+      background: var(--teal-lt) !important;
+    }
+    .honeycomb-item.color-yellow {
+      border-color: var(--gold) !important;
+    }
+    .honeycomb-item .cred-icon {
+      color: var(--teal) !important;
+    }
+    .honeycomb-item.color-yellow .cred-icon {
+      color: var(--gold) !important;
+    }
+    .honeycomb-item .connector-dot {
+      background: var(--teal);
+    }
+    .honeycomb-item.color-yellow .connector-dot {
+      background: var(--gold);
+    }
+
     /* Responsive */
     @media (max-width: 1024px) {
       .page-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -226,10 +256,10 @@
         <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="on">Home</a></li>
-        <li><a href="whoweare.html">Who we are</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="whoweare.html" class="on">Who we are</a></li>
         <li><a href="ourthinking.html">Our thinking</a></li>
-        <li><a href="#contact" class="nav-cta">Talk to us</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Talk to us</a></li>
       </ul>
       <button class="mob-btn" id="mobBtn" aria-label="Menu">
         <i class="fas fa-bars"></i>
@@ -242,13 +272,13 @@
     <div class="page-hero-inner">
       <div class="hero-left">
         <div class="hero-label">Our Story</div>
-        <h1>Built from<br />the inside.<br /><em>By someone<br />who's been there.</em></h1>
+        <h1>Built from<br />the inside.<br /><em>By people<br />who've been there.</em></h1>
       </div>
       <div class="hero-right">
-        <p>PrimeChain Solutions wasn't built because I wanted to create software. It was built because, throughout my career, I kept asking the same question: <strong style="color:white;">Why do well-run businesses still struggle with problems they should be able to see?</strong></p>
+        <p>PrimeChain Solutions wasn't built because we wanted to create software. It was built because, throughout our work in operations, we kept asking the same question: <strong style="color:white;">Why do well-run businesses still struggle with problems they should be able to see?</strong></p>
         <div class="hero-quote-block">
           <p>"Operational chaos isn't your problem. Lack of visibility is."</p>
-          <cite>Founder, PrimeChain Solutions</cite>
+          <cite>PrimeChain Solutions</cite>
         </div>
       </div>
     </div>
@@ -262,14 +292,14 @@
       <div class="gap-layout">
         <div class="gap-left reveal d1">
           <div class="gap-body">
-            <p>Working in logistics introduced me to the complexity of operations. Trucks, people, inventory, suppliers and customers all depend on hundreds of decisions being made every day. I quickly realised that running an operation wasn't just about moving things from one place to another — it was about managing an interconnected system.</p>
-            <p>That curiosity led me deeper. Business Analysis taught me to understand processes before proposing solutions. Lean Six Sigma taught me that every recurring problem is the output of a process, and that lasting improvement comes from fixing the system rather than treating the symptoms.</p>
-            <p>Data Science and Business Intelligence changed the way I viewed information. Data isn't valuable because it exists; it's valuable because it allows better decisions to be made. If the right information isn't being captured, measured and presented, businesses are forced to rely on assumptions instead of evidence.</p>
+            <p>Working in logistics introduced us to the complexity of operations. Trucks, people, inventory, suppliers and customers all depend on hundreds of decisions being made every day. We quickly realised that running an operation wasn't just about moving things from one place to another — it was about managing an interconnected system.</p>
+            <p>That curiosity led us deeper. Business Analysis taught us to understand processes before proposing solutions. Lean Six Sigma taught us that every recurring problem is the output of a process, and that lasting improvement comes from fixing the system rather than treating the symptoms.</p>
+            <p>Data Science and Business Intelligence changed the way we viewed information. Data isn't valuable because it exists; it's valuable because it allows better decisions to be made. If the right information isn't being captured, measured and presented, businesses are forced to rely on assumptions instead of evidence.</p>
           </div>
         </div>
         <div class="gap-right reveal d2">
           <div class="gap-highlight">
-            <p>As I began building solutions across different industries, I noticed something unexpected. <em>The problems looked completely different on the surface, but they all shared the same root cause.</em></p>
+            <p>As we began building solutions across different industries, we noticed something unexpected. <em>The problems looked completely different on the surface, but they all shared the same root cause.</em></p>
           </div>
         </div>
       </div>
@@ -332,42 +362,42 @@
         <div class="honeycomb-item color-blue" style="grid-area: item1;">
           <i class="fas fa-user-tie cred-icon"></i>
           <h4>Experience</h4>
-          <p>Building solutions across transport, field service, and fleet operations.</p>
+          <p>Hands-on delivery across transport, field service, and fleet operations.</p>
           <div class="connector-dot"></div>
         </div>
   
         <div class="honeycomb-item color-teal" style="grid-area: item2;">
           <i class="fas fa-handshake cred-icon"></i>
           <h4>Logistics &amp; Supply Chain</h4>
-          <p>Supply chain specialist who learned to build systems for operational engagement.</p>
+          <p>A supply chain background that shaped how we design for real operational conditions.</p>
           <div class="connector-dot"></div>
         </div>
   
         <div class="honeycomb-item color-green" style="grid-area: item3;">
           <i class="fas fa-chart-line cred-icon"></i>
           <h4>Business Intelligence</h4>
-          <p>Turning operational data into decisions from messy, real-world environments.</p>
+          <p>Turning messy, real-world operational data into decisions leaders can act on.</p>
           <div class="connector-dot"></div>
         </div>
   
         <div class="honeycomb-item color-yellow" style="grid-area: item4;">
           <i class="fas fa-clock cred-icon"></i>
           <h4>Quantitative Mgmt</h4>
-          <p>The rigour behind operational analysis with sound methodology.</p>
+          <p>Structured, rigorous analysis behind every recommendation we make.</p>
           <div class="connector-dot"></div>
         </div>
   
         <div class="honeycomb-item color-red" style="grid-area: item5;">
           <i class="fas fa-cogs cred-icon"></i>
           <h4>Lean Six Sigma</h4>
-          <p>Define, measure, analyse, improve, control applied to every engagement.</p>
+          <p>Define, measure, analyse, improve, control — applied to every engagement.</p>
           <div class="connector-dot"></div>
         </div>
   
         <div class="honeycomb-item color-pink" style="grid-area: item6;">
           <i class="fas fa-globe cred-icon"></i>
           <h4>Business Analysis</h4>
-          <p>Understanding the problem completely before proposing a solution.</p>
+          <p>We understand the problem completely before we propose a solution.</p>
           <div class="connector-dot"></div>
         </div>
       </div>
