@@ -80,7 +80,7 @@
       padding: 0 2rem;
     }
 
-    /* ----- SCROLL PROGRESS BAR ----- */
+    /* ----- SCROLL PROGRESS BAR (matches homepage) ----- */
     .sp {
       position: fixed;
       top: 0;
@@ -92,7 +92,7 @@
       transition: width 0.1s;
     }
 
-    /* ----- NAVIGATION (matches homepage) ----- */
+    /* ----- NAVIGATION (EXACTLY matches homepage) ----- */
     #nav {
       padding: 1.2rem 2rem;
       background: var(--white);
@@ -160,7 +160,7 @@
       }
     }
 
-    /* ----- SECTION LABEL ----- */
+    /* ----- SECTION LABEL (matches homepage) ----- */
     .section-label {
       font-size: 0.8rem;
       text-transform: uppercase;
@@ -170,7 +170,7 @@
       font-weight: 600;
     }
 
-    /* ----- REVEAL ANIMATION ----- */
+    /* ----- REVEAL ANIMATION (matches homepage) ----- */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
@@ -390,7 +390,7 @@
       margin-top: 0.3rem;
     }
 
-    /* ----- IMPACT STATEMENT ----- */
+    /* ----- IMPACT STATEMENT (matches homepage testimonial style) ----- */
     .impact-statement {
       background: #f1efe8;
       border-radius: var(--radius);
@@ -414,7 +414,7 @@
       border-radius: 6px;
     }
 
-    /* ----- CTA SECTION ----- */
+    /* ----- CTA SECTION (matches homepage buttons) ----- */
     .calc-cta {
       text-align: center;
       margin-top: 2.5rem;
@@ -495,7 +495,7 @@
       box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
     }
 
-    /* ----- FOOTER (matches homepage) ----- */
+    /* ----- FOOTER (EXACTLY matches homepage) ----- */
     footer {
       background: #f1efe8;
       padding: 3rem 0 2rem;
@@ -612,7 +612,7 @@
       }
     }
 
-    /* ----- MOBILE NAV ----- */
+    /* ----- MOBILE NAV (matches homepage) ----- */
     @media (max-width: 768px) {
       .nav-links.show {
         display: flex;
@@ -626,6 +626,7 @@
         gap: 1.2rem;
         border-bottom: 1px solid var(--border-color);
         box-shadow: var(--shadow-md);
+        z-index: 99;
       }
       .nav-links.show li {
         width: 100%;
@@ -753,7 +754,7 @@
     </div>
   </section>
 
-  <!-- Footer (matches homepage) -->
+  <!-- Footer (EXACTLY matches homepage) -->
   <footer>
     <div class="container">
       <div class="footer-top">
