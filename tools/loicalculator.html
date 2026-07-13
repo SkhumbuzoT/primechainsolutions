@@ -1,1 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>LOI Profitability Engine · PrimeChain Solutions</title>
 
+  <!-- ✅ Preload critical fonts (matching homepage) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" as="style" />
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" />
+
+  <!-- ✅ Font loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- ✅ EXTERNAL STYLESHEETS - corrected for /tools/ folder -->
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../css/index.css" />
+
+  <!-- ✅ Favicon - corrected paths -->
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+
+  <!-- Chart.js & html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    /* ============================================================
+       LOI CALCULATOR STYLES (extends style.css)
+       ============================================================ */
+
+    /* ----- Override body padding for consistency ----- */
+    body {
+      background: var(--off, #F8F8F6);
+      color: var(--text, #0F1923);
+      font-family: 'DM Sans', sans-serif;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .loi-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    /* ----- TOP BAR (matches homepage style) ----- */
+    .loi-topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 30px;
+      padding-top: 2rem;
+    }
+
+    .loi-topbar .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal, #008080);
+      margin-bottom: 8px;
+    }
+
+    .loi-topbar h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      color: var(--text, #0F1923);
+      line-height: 1.1;
+    }
+
+    .loi-topbar .subhead {
+      color: var(--muted, #64748b);
+      font-size: 1rem;
+      max-width: 600px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--teal, #008080);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      padding: 12px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--ease, 0.25s ease);
+      box-shadow: var(--shadow-sm, 0 8px 24px rgba(0,0,0,0.04));
+      text-decoration: none;
+    }
+    .btn-download:hover {
+      background: var(--teal-dk, #006666);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,128,128,0.15);
+    }
+    .btn-download.secondary {
+      background: var(--white, #ffffff);
+      color: var(--text, #0F1923);
+      border: 1px solid var(--border, #E4E5E7);
+    }
+    .btn-download.secondary:hover {
+      background: var(--off, #F8F8F6);
+      border-color: var(--muted, #64748b);
+    }
+    .btn-download svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted, #64748b);
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--ease, 0.25s ease);
+      font-size: 0.85rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .back-link:hover {
+      color: var(--teal, #008080);
+    }
+
+    /* ----- PREPARED ROW (matches homepage card style) ----- */
+    .prepared-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+      background: var(--white, #ffffff);
+      padding: 12px 20px;
+      border-radius: var(--radius, 4px);
+      border: 1px solid var(--border, #E4E5E7);
+      box-shadow: var(--shadow-sm, 0 8px 24px rgba(0,0,0,0.04));
+    }
+    .prepared-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted, #64748b);
+    }
+    .prepared-row input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--border, #E4E5E7);
+      color: var(--text, #0F1923);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 4px 0 6px;
+      min-width: 200px;
+      transition: border-color var(--ease, 0.25s ease);
+    }
+    .prepared-row input:focus {
+      outline: none;
+      border-bottom-color: var(--teal, #008080);
+    }
+
+    /* ----- ROUTE STRIP (matches homepage card style) ----- */
+    .route-strip {
+      background: var(--white, #ffffff);
+      border: 1px solid var(--border, #E4E5E7);
+      border-radius: var(--radius, 4px);
+      padding: 28px 32px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm, 0 8px 24px rgba(0,0,0,0.04));
+      position: relative;
+    }
+    .route-strip::before {
+      content: "MANIFEST — ROUTE";
+      position: absolute;
+      top: 12px;
+      right: 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      color: var(--border, #E4E5E7);
+      text-transform: uppercase;
+    }
+    .route-line {
+      display: flex;
+      align-items: center;
+      margin-top: 8px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .route-node {
+      display: flex;
+      flex-direction: column;
+      min-width: 130px;
+    }
+    .route-node .label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--muted, #64748b);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .route-node input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--border, #E4E5E7);
+      color: var(--text, #0F1923);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      padding: 4px 2px;
+      width: 100%;
+      transition: border-color var(--ease, 0.25s ease);
+    }
+    .route-node input:focus {
+      outline: none;
+      border-bottom-color: var(--teal, #008080);
+    }
+    .route-track {
+      flex: 1;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, var(--teal, #008080) 0 10px, transparent 10px 18px);
+      position: relative;
+      margin: 0 20px;
+      top: 12px;
+      min-width: 120px;
+    }
+    .route-track .dist-badge {
+      position: absolute;
+      top: -36px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--teal-lt, #f0fafa);
+      border: 1px solid var(--teal, #008080);
+      border-radius: 40px;
+      padding: 6px 16px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .route-track .dist-badge input {
+      background: transparent;
+      border: none;
+      color: var(--teal-dk, #006666);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      width: 60px;
+      text-align: right;
+    }
+    .route-track .dist-badge input:focus { outline: none; }
+    .route-track .dist-badge .unit {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: var(--muted, #64748b);
+    }
+    .route-track .dist-badge .fetch-btn {
+      background: var(--teal-lt, #f0fafa);
+      border: 1px solid var(--teal, #008080);
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--ease, 0.25s ease);
+      padding: 0;
+      margin-left: 4px;
+    }
+    .route-track .dist-badge .fetch-btn:hover {
+      background: var(--teal, #008080);
+      color: white;
+      transform: scale(1.1);
+    }
+    .route-track .dist-badge .fetch-btn:active {
+      transform: scale(0.95);
+    }
+    .route-track .dist-badge .fetch-btn.loading {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--teal, #008080);
+      flex-shrink: 0;
+      margin-right: 12px;
+    }
+    .route-node.dest .dot { background: var(--gold, #C9A84C); }
+
+    .trip-toggle {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      color: var(--muted, #64748b);
+      flex-wrap: wrap;
+    }
+    .trip-toggle .seg {
+      display: flex;
+      border: 1px solid var(--border, #E4E5E7);
+      border-radius: 40px;
+      overflow: hidden;
+    }
+    .trip-toggle button {
+      background: var(--white, #ffffff);
+      border: none;
+      color: var(--muted, #64748b);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: all var(--ease, 0.25s ease);
+    }
+    .trip-toggle button.active {
+      background: var(--teal, #008080);
+      color: white;
+      font-weight: 700;
+    }
+    .trip-toggle button:first-child { border-radius: 40px 0 0 40px; }
+    .trip-toggle button:last-child { border-radius: 0 40px 40px 0; }
+
+    /* ----- PANELS (matches homepage card style) ----- */
+    .panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 820px) { .panels { grid-template-columns: 1fr; } }
+
+    .panel {
+      background: var(--white, #ffffff);
+      border: 1px solid var(--border, #E4E5E7);
+      border-radius: var(--radius, 4px);
+      padding: 24px 28px 28px;
+      box-shadow: var(--shadow-sm, 0 8px 24px rgba(0,0,0,0.04));
+      transition: box-shadow var(--ease, 0.25s ease);
+    }
+    .panel:hover {
+      box-shadow: var(--shadow-md, 0 12px 40px rgba(0,0,0,0.06));
+    }
+    .panel-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text, #0F1923);
+      margin: 0 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .panel-title .tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--teal-dk, #006666);
+      background: var(--teal-lt, #f0fafa);
+      border: 1px solid var(--teal, #008080);
+      padding: 4px 12px;
+      border-radius: 40px;
+      text-transform: uppercase;
+    }
+    .panel.cost .panel-title .tag {
+      color: #8a6d1f;
+      background: var(--gold-lt, #fbf6e9);
+      border-color: var(--gold, #C9A84C);
+    }
+    .panel-note {
+      font-size: 0.8rem;
+      color: var(--muted, #64748b);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border, #E4E5E7);
+    }
+
+    .field-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border, #E4E5E7);
+      gap: 16px;
+    }
+    .field-row:last-child { border-bottom: none; }
+    .field-row label {
+      font-size: 0.82rem;
+      color: var(--text, #0F1923);
+      flex: 1;
+      font-weight: 400;
+    }
+    .field-row .derived {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--teal-dk, #006666);
+      background: var(--teal-lt, #f0fafa);
+      padding: 4px 12px;
+      border-radius: 40px;
+      white-space: nowrap;
+    }
+    .field-row input {
+      background: var(--off, #F8F8F6);
+      border: 1px solid var(--border, #E4E5E7);
+      color: var(--text, #0F1923);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm, 2px);
+      width: 110px;
+      text-align: right;
+      transition: border-color var(--ease, 0.25s ease), box-shadow var(--ease, 0.25s ease);
+    }
+    .field-row input:focus {
+      outline: none;
+      border-color: var(--teal, #008080);
+      box-shadow: 0 0 0 3px rgba(0,128,128,0.08);
+    }
+
+    .subgroup-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted, #64748b);
+      margin: 20px 0 8px;
+    }
+
+    /* ----- LEDGER (matches homepage case study style) ----- */
+    .ledger {
+      background: var(--white, #ffffff);
+      border: 1px solid var(--border, #E4E5E7);
+      border-radius: var(--radius, 4px);
+      padding: 24px 28px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm, 0 8px 24px rgba(0,0,0,0.04));
+    }
+    .ledger-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text, #0F1923);
+      margin: 0 0 18px;
+    }
+    .ledger-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--border, #E4E5E7);
+      border: 1px solid var(--border, #E4E5E7);
+      border-radius: var(--radius-sm, 2px);
+      overflow: hidden;
+    }
+    @media (max-width: 900px) { .ledger-grid { grid-template-columns: repeat(2, 1fr); } }
+    .cell {
+      background: var(--off, #F8F8F6);
+      padding: 18px 16px 14px;
+    }
+    .cell .k {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted, #64748b);
+      margin-bottom: 6px;
+    }
+    .cell .v {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text, #0F1923);
+    }
+    .cell .v.pos { color: var(--teal-dk, #006666); }
+    .cell .v.neg { color: #B3261E; }
+    .cell .sub {
+      font-size: 0.7rem;
+      color: var(--muted, #64748b);
+      margin-top: 4px;
+    }
+
+    /* ----- CHARTS ----- */
+    .charts {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 900px) { .charts { grid-template-columns: 1fr; } }
+
+    .chart-card {
+      background: var(--white, #ffffff);
+      border: 1px solid var(--border, #E4E5E7);
+      border-radius: var(--radius, 4px);
+      padding: 20px 22px 22px;
+      box-shadow: var(--shadow-sm, 0 8px 24px rgba(0,0,0,0.04));
+      transition: box-shadow var(--ease, 0.25s ease);
+    }
+    .chart-card:hover {
+      box-shadow: var(--shadow-md, 0 12px 40px rgba(0,0,0,0.06));
+    }
+    .chart-card h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 16px;
+      color: var(--muted, #64748b);
+    }
+    .chart-wrap {
+      position: relative;
+      height: 240px;
+    }
+
+    /* ----- VERDICT (matches homepage testimonial style) ----- */
+    .verdict-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--white, #ffffff);
+      border: 1px solid var(--border, #E4E5E7);
+      border-radius: var(--radius, 4px);
+      padding: 28px 32px;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: var(--shadow-sm, 0 8px 24px rgba(0,0,0,0.04));
+    }
+    .verdict-copy { max-width: 600px; }
+    .verdict-copy .head {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--muted, #64748b);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .verdict-copy p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text, #0F1923);
+    }
+    .stamp {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border: 3px solid currentColor;
+      border-radius: 60px;
+      white-space: nowrap;
+      background: transparent;
+    }
+    .stamp.profitable { color: var(--teal-dk, #006666); background: var(--teal-lt, #f0fafa); border-color: var(--teal-dk, #006666); }
+    .stamp.marginal { color: #8a6d1f; background: var(--gold-lt, #fbf6e9); border-color: var(--gold, #C9A84C); }
+    .stamp.loss { color: #B3261E; background: #fbeceb; border-color: #B3261E; }
+
+    /* ----- FOOTER (matches homepage footer) ----- */
+    .loi-footer {
+      text-align: center;
+      color: var(--muted, #64748b);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-top: 40px;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    /* ----- PDF (offscreen) ----- */
+    .pdf-page {
+      position: fixed;
+      top: 0;
+      left: -99999px;
+      width: 794px;
+      height: 1123px;
+      background: #ffffff;
+      box-sizing: border-box;
+      padding: 46px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text, #0F1923);
+      overflow: hidden;
+    }
+    .pdf-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .pdf-brand{display:flex;align-items:center;gap:12px;}
+    .pdf-brand-mark{
+      width:42px;height:42px;
+      background:var(--navy, #071534);
+      color:var(--white, #ffffff);
+      border-radius:var(--radius-sm, 2px);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-size:15px;letter-spacing:0.02em;
+    }
+    .pdf-brand-name{font-weight:800;font-size:17px;color:var(--navy, #071534);}
+    .pdf-brand-tag{font-family:'DM Sans', sans-serif;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted, #64748b);margin-top:2px;}
+    .pdf-doc-title{text-align:right;}
+    .pdf-doc-label{font-weight:700;font-size:14px;color:var(--navy, #071534);}
+    .pdf-doc-date{font-family:'DM Sans', sans-serif;font-size:10px;color:var(--muted, #64748b);margin-top:3px;}
+
+    .pdf-rule{height:3px;background:linear-gradient(90deg, var(--teal, #008080), var(--gold, #C9A84C));margin:18px 0 20px;border-radius:2px;}
+
+    .pdf-meta{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:22px;
+      padding:14px 16px;
+      background:var(--off, #F8F8F6);
+      border:1px solid var(--border, #E4E5E7);
+      border-radius:var(--radius, 4px);
+    }
+    .pdf-meta > div{display:flex;flex-direction:column;gap:4px;}
+    .pdf-meta-k{font-family:'DM Sans', sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted, #64748b);}
+    .pdf-meta-v{font-weight:700;font-size:13.5px;color:var(--navy, #071534);}
+
+    .pdf-verdict{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      padding:18px 22px;
+      border-radius:var(--radius, 4px);
+      border-left:5px solid;
+      margin-bottom:24px;
+    }
+    .pdf-verdict.profitable{background:var(--teal-lt, #f0fafa);border-color:var(--teal-dk, #006666);}
+    .pdf-verdict.marginal{background:var(--gold-lt, #fbf6e9);border-color:var(--gold, #C9A84C);}
+    .pdf-verdict.loss{background:#fbeceb;border-color:#B3261E;}
+    .pdf-verdict-word{
+      font-weight:800;font-size:19px;letter-spacing:0.03em;text-transform:uppercase;white-space:nowrap;
+    }
+    .pdf-verdict.profitable .pdf-verdict-word{color:var(--teal-dk, #006666);}
+    .pdf-verdict.marginal .pdf-verdict-word{color:#8a6d1f;}
+    .pdf-verdict.loss .pdf-verdict-word{color:#B3261E;}
+    .pdf-verdict-text{font-size:11.5px;line-height:1.55;color:var(--text, #0F1923);}
+
+    .pdf-section-title{
+      font-family:'DM Sans', sans-serif;
+      font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;
+      color:var(--navy, #071534);font-weight:700;
+      margin:0 0 10px;
+    }
+
+    .pdf-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-bottom:24px;
+    }
+    .pdf-cell{
+      border:1px solid var(--border, #E4E5E7);
+      border-radius:var(--radius-sm, 2px);
+      background:var(--off, #F8F8F6);
+      padding:11px 15px;
+    }
+    .pdf-cell .k{font-family:'DM Sans', sans-serif;font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted, #64748b);margin-bottom:5px;}
+    .pdf-cell .v{font-family:'DM Sans', sans-serif;font-size:17px;font-weight:700;color:var(--navy, #071534);}
+    .pdf-cell .v.pos{color:var(--teal-dk, #006666);}
+    .pdf-cell .v.neg{color:#B3261E;}
+    .pdf-cell .sub{font-size:10px;color:var(--muted, #64748b);margin-top:2px;}
+
+    .pdf-charts{display:flex;gap:16px;margin-bottom:24px;}
+    .pdf-chart-box{flex:1;border:1px solid var(--border, #E4E5E7);border-radius:var(--radius, 4px);padding:12px;text-align:center;background:var(--white, #ffffff);}
+    .pdf-chart-label{font-family:'DM Sans', sans-serif;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted, #64748b);margin-bottom:8px;}
+    .pdf-chart-box img{width:100%;height:auto;display:block;}
+
+    .pdf-footer{
+      border-top:1px solid var(--border, #E4E5E7);
+      padding-top:12px;
+      font-size:9.5px;
+      color:var(--muted, #64748b);
+      text-align:center;
+      line-height:1.6;
+    }
+
+    /* small tweaks */
+    .route-node .dot { margin-right: 0; }
+    .route-node.orig { display: flex; align-items: center; gap: 10px; }
+    .route-node.dest { display: flex; align-items: center; gap: 10px; flex-direction: row-reverse; }
+    .route-node.dest .dot { margin-right: 0; margin-left: 12px; }
+
+    .fetch-status {
+      font-size: 10px;
+      color: var(--muted, #64748b);
+      margin-left: 4px;
+    }
+    .fetch-status.success { color: var(--teal-dk, #006666); }
+    .fetch-status.error { color: #B3261E; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .loi-wrap { padding: 1rem 1.25rem 3rem; }
+      .route-strip { padding: 20px 16px 16px; }
+      .route-strip::before { display: none; }
+      .route-line { flex-direction: column; align-items: stretch; }
+      .route-track { margin: 16px 0; top: 0; }
+      .route-track .dist-badge { position: relative; top: 0; left: 0; transform: none; }
+      .panel { padding: 18px 16px 20px; }
+      .ledger { padding: 18px 16px 16px; }
+      .verdict-row { flex-direction: column; text-align: center; padding: 20px; }
+      .stamp { font-size: 1rem; padding: 10px 20px; }
+      .loi-topbar { flex-direction: column; }
+      .btn-row { width: 100%; }
+      .btn-download { flex: 1; justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .field-row { flex-wrap: wrap; }
+      .field-row input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="sp" id="sp"></div>
+
+  <!-- Navigation (EXACTLY matches homepage) -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/primechain.svg" alt="PrimeChain Solutions" width="150" height="36" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../whoweare.html">Who we are</a></li>
+        <li><a href="../ourthinking.html">Our thinking</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Talk to us</a></li>
+      </ul>
+      <button class="mob-btn" id="mobBtn" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="loi-wrap">
+
+    <!-- TOP BAR -->
+    <div class="loi-topbar">
+      <div>
+        <div class="eyebrow">PrimeChain Solutions — Operational Intelligence</div>
+        <h1>LOI Profitability Engine</h1>
+        <p class="subhead">Load the Letter of Intent terms against your Vehicle Cost Schedule and see, per load, per day, and per month, whether the contract clears its own cost floor.</p>
+        <div style="margin-top: 1rem;">
+          <a href="../ourthinking.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Insights</a>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-download" id="downloadPdfBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+          Download PDF
+        </button>
+        <button class="btn-download secondary" id="downloadHtmlBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+          Download HTML
+        </button>
+      </div>
+    </div>
+
+    <!-- PREPARED FOR -->
+    <div class="prepared-row">
+      <span class="prepared-label">Prepared for</span>
+      <input id="clientName" value="Prospective Client" placeholder="Client / prospect name">
+    </div>
+
+    <!-- ROUTE STRIP -->
+    <div class="route-strip">
+      <div class="route-line">
+        <div class="route-node orig">
+          <span class="dot"></span>
+          <div>
+            <span class="label">Origin</span>
+            <input id="origin" value="Witbank" placeholder="e.g. Johannesburg">
+          </div>
+        </div>
+        <div class="route-track">
+          <div class="dist-badge">
+            <input id="distance" type="number" value="42" step="1" placeholder="km">
+            <span class="unit">km</span>
+            <button class="fetch-btn" id="fetchDistanceBtn" title="Fetch distance from route">↻</button>
+            <span class="fetch-status" id="fetchStatus"></span>
+          </div>
+        </div>
+        <div class="route-node dest">
+          <span class="dot"></span>
+          <div style="text-align:right;">
+            <span class="label">Destination</span>
+            <input id="destination" value="Middelburg" placeholder="e.g. Pretoria" style="text-align:right;">
+          </div>
+        </div>
+      </div>
+      <div class="trip-toggle">
+        <span>DISTANCE BASIS:</span>
+        <div class="seg">
+          <button id="btnOneway" class="">ONE-WAY (LOADED)</button>
+          <button id="btnRound" class="active">ROUND TRIP</button>
+        </div>
+        <span id="cycleKmNote"></span>
+      </div>
+    </div>
+
+    <!-- INPUT PANELS -->
+    <div class="panels">
+      <div class="panel loi">
+        <div class="panel-title">LOI Terms <span class="tag">Revenue</span></div>
+        <div class="panel-note">The commercial terms as stated in the Letter of Intent.</div>
+
+        <div class="field-row">
+          <label>Rate / ton</label>
+          <input id="rateTon" type="number" value="185" step="1">
+        </div>
+        <div class="field-row">
+          <label>Tons / load</label>
+          <input id="tonsLoad" type="number" value="34" step="0.5">
+        </div>
+        <div class="field-row">
+          <label>Expected loads / day</label>
+          <input id="loadsDay" type="number" value="3" step="0.5">
+        </div>
+        <div class="field-row">
+          <label>Working days / month</label>
+          <input id="workDays" type="number" value="24" step="1">
+        </div>
+      </div>
+
+      <div class="panel cost">
+        <div class="panel-title">Cost Engine <span class="tag">VCS · 34t</span></div>
+        <div class="panel-note">Defaults approximate an RFA-style Vehicle Cost Schedule for a 34t interlink. Replace with your actual VCS figures per vehicle/subcontractor.</div>
+
+        <div class="subgroup-label">Fixed costs — R / month</div>
+        <div class="field-row"><label>Driver wages &amp; overtime</label><input id="fWages" type="number" value="25000" step="500"></div>
+        <div class="field-row"><label>Licensing &amp; permits</label><input id="fLicense" type="number" value="2500" step="100"></div>
+        <div class="field-row"><label>Insurance</label><input id="fInsurance" type="number" value="8000" step="250"></div>
+        <div class="field-row"><label>Depreciation</label><input id="fDeprec" type="number" value="35000" step="500"></div>
+
+        <div class="subgroup-label">Fuel</div>
+        <div class="field-row"><label>Diesel price (R / litre)</label><input id="fuelPrice" type="number" value="24.50" step="0.10"></div>
+        <div class="field-row"><label>Consumption (L / 100km, loaded)</label><input id="fuelConsumption" type="number" value="38" step="0.5"></div>
+        <div class="field-row"><label>Fuel cost — derived</label><span class="derived" id="derivedFuelKm">–</span></div>
+
+        <div class="subgroup-label">Other variable costs — R / km</div>
+        <div class="field-row"><label>Tyres</label><input id="vTyres" type="number" value="1.20" step="0.05"></div>
+        <div class="field-row"><label>Maintenance &amp; repair</label><input id="vMaint" type="number" value="2.80" step="0.10"></div>
+        <div class="field-row"><label>Lubricants</label><input id="vLube" type="number" value="0.30" step="0.05"></div>
+      </div>
+    </div>
+
+    <!-- OUTPUT LEDGER -->
+    <div class="ledger">
+      <div class="ledger-title">Output Ledger</div>
+      <div class="ledger-grid">
+        <div class="cell"><div class="k">Revenue / load</div><div class="v" id="outRevLoad">–</div></div>
+        <div class="cell"><div class="k">Full cost / load</div><div class="v" id="outCostLoad">–</div></div>
+        <div class="cell"><div class="k">Margin / load</div><div class="v" id="outMarginLoad">–</div><div class="sub" id="outMarginPct"></div></div>
+        <div class="cell"><div class="k">Cost / km (variable)</div><div class="v" id="outCostKm">–</div></div>
+
+        <div class="cell"><div class="k">Revenue / day</div><div class="v" id="outRevDay">–</div></div>
+        <div class="cell"><div class="k">Cost / day</div><div class="v" id="outCostDay">–</div></div>
+        <div class="cell"><div class="k">Margin / day</div><div class="v" id="outMarginDay">–</div></div>
+        <div class="cell"><div class="k">Break-even loads / day</div><div class="v" id="outBEloads">–</div></div>
+
+        <div class="cell"><div class="k">Revenue / month</div><div class="v" id="outRevMonth">–</div></div>
+        <div class="cell"><div class="k">Cost / month</div><div class="v" id="outCostMonth">–</div></div>
+        <div class="cell"><div class="k">Margin / month</div><div class="v" id="outMarginMonth">–</div></div>
+        <div class="cell"><div class="k">Break-even rate / ton</div><div class="v" id="outBErate">–</div></div>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts">
+      <div class="chart-card">
+        <h3>Revenue vs. Cost — Day &amp; Month</h3>
+        <div class="chart-wrap"><canvas id="chartRevCost"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Monthly Cost Breakdown</h3>
+        <div class="chart-wrap"><canvas id="chartComposition"></canvas></div>
+      </div>
+    </div>
+
+    <div class="charts">
+      <div class="chart-card" style="grid-column:1/-1;">
+        <h3>Margin Sensitivity — Loads / Day</h3>
+        <div class="chart-wrap"><canvas id="chartSensitivity"></canvas></div>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict-row">
+      <div class="verdict-copy">
+        <div class="head" id="verdictRoute">Witbank → Middelburg · 42 km round trip</div>
+        <p id="verdictText">Adjust the LOI terms and cost schedule above — the verdict updates live.</p>
+      </div>
+      <div class="stamp" id="stamp">—</div>
+    </div>
+
+    <div class="loi-footer">PrimeChain Solutions · Operational Leak Audit™ · Model is indicative — verify against signed LOI and actual VCS</div>
+  </div>
+
+  <!-- PDF (offscreen) -->
+  <div class="pdf-page" id="pdfReport">
+    <div class="pdf-header">
+      <div class="pdf-brand">
+        <div class="pdf-brand-mark">PC</div>
+        <div>
+          <div class="pdf-brand-name">PrimeChain Solutions</div>
+          <div class="pdf-brand-tag">Operational Intelligence</div>
+        </div>
+      </div>
+      <div class="pdf-doc-title">
+        <div class="pdf-doc-label">LOI Profitability Report</div>
+        <div class="pdf-doc-date" id="pdfDate">–</div>
+      </div>
+    </div>
+
+    <div class="pdf-rule"></div>
+
+    <div class="pdf-meta">
+      <div><span class="pdf-meta-k">Prepared for</span><span class="pdf-meta-v" id="pdfClient">–</span></div>
+      <div><span class="pdf-meta-k">Route</span><span class="pdf-meta-v" id="pdfRoute">–</span></div>
+    </div>
+
+    <div class="pdf-verdict" id="pdfVerdictBanner">
+      <div class="pdf-verdict-word" id="pdfVerdictWord">–</div>
+      <div class="pdf-verdict-text" id="pdfVerdictText">–</div>
+    </div>
+
+    <div class="pdf-section-title">Key Figures</div>
+    <div class="pdf-grid">
+      <div class="pdf-cell"><div class="k">Revenue / load</div><div class="v" id="pdfRevLoad">–</div></div>
+      <div class="pdf-cell"><div class="k">Full cost / load</div><div class="v" id="pdfCostLoad">–</div></div>
+      <div class="pdf-cell"><div class="k">Margin / load</div><div class="v" id="pdfMarginLoad">–</div><div class="sub" id="pdfMarginPct"></div></div>
+      <div class="pdf-cell"><div class="k">Break-even rate / ton</div><div class="v" id="pdfBErate">–</div></div>
+      <div class="pdf-cell"><div class="k">Revenue / month</div><div class="v" id="pdfRevMonth">–</div></div>
+      <div class="pdf-cell"><div class="k">Cost / month</div><div class="v" id="pdfCostMonth">–</div></div>
+      <div class="pdf-cell"><div class="k">Margin / month</div><div class="v" id="pdfMarginMonth">–</div></div>
+      <div class="pdf-cell"><div class="k">Break-even loads / day</div><div class="v" id="pdfBEloads">–</div></div>
+    </div>
+
+    <div class="pdf-charts">
+      <div class="pdf-chart-box">
+        <div class="pdf-chart-label">Revenue vs. Cost</div>
+        <img id="pdfChartImg1" alt="Revenue vs cost chart">
+      </div>
+      <div class="pdf-chart-box">
+        <div class="pdf-chart-label">Cost Breakdown</div>
+        <img id="pdfChartImg2" alt="Cost breakdown chart">
+      </div>
+    </div>
+
+    <div class="pdf-footer">
+      PrimeChain Solutions · Operational Leak Audit™ · primechainsolutions.co.za<br>
+      Indicative model — verify against the signed LOI and actual Vehicle Cost Schedule before committing to terms.
+    </div>
+  </div>
+
+  <!-- External JS -->
+  <script src="../js/main.js" defer></script>
+
+  <script>
+    // ============================================================
+    //  MOBILE NAV TOGGLE (matches homepage)
+    // ============================================================
+    document.getElementById('mobBtn').addEventListener('click', function() {
+      const links = document.getElementById('navLinks');
+      links.classList.toggle('open');
+      this.innerHTML = links.classList.contains('open') ?
+        '<i class="fas fa-times"></i>' :
+        '<i class="fas fa-bars"></i>';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('mobBtn').innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+
+    // Scroll Progress
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('sp').style.width = scrolled + '%';
+    });
+
+    // ============================================================
+    //  MAIN APPLICATION LOGIC
+    // ============================================================
+
+    let tripMode = 'round';
+    const $ = id => document.getElementById(id);
+
+    function num(id){ return parseFloat($(id).value) || 0; }
+    function rand(v){ return 'R' + v.toLocaleString('en-ZA', {maximumFractionDigits:0}); }
+    function randDec(v){ return 'R' + v.toLocaleString('en-ZA', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+    // ============================================================
+    //  AUTO-DISTANCE FETCHER
+    // ============================================================
+
+    const distanceCache = {};
+
+    try {
+      const saved = localStorage.getItem('distanceCache');
+      if (saved) {
+        Object.assign(distanceCache, JSON.parse(saved));
+      }
+    } catch(e) {}
+
+    async function geocodeLocation(location) {
+      try {
+        const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(location)}&format=json&limit=1`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data && data.length > 0) {
+          return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+        }
+        return null;
+      } catch (error) {
+        console.error('Geocode error:', error);
+        return null;
+      }
+    }
+
+    async function getDistanceFromCoords(lat1, lon1, lat2, lon2) {
+      try {
+        const url = `https://router.project-osrm.org/route/v1/driving/${lon1},${lat1};${lon2},${lat2}?overview=false`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data.routes && data.routes.length > 0) {
+          return Math.round(data.routes[0].distance / 1000);
+        }
+        return null;
+      } catch (error) {
+        console.error('OSRM error:', error);
+        return null;
+      }
+    }
+
+    async function fetchDistance(origin, destination) {
+      try {
+        const originClean = origin.trim();
+        const destClean = destination.trim();
+        if (!originClean || !destClean || originClean === destClean) return null;
+
+        const [originCoords, destCoords] = await Promise.all([
+          geocodeLocation(originClean),
+          geocodeLocation(destClean)
+        ]);
+
+        if (!originCoords || !destCoords) return null;
+        return await getDistanceFromCoords(originCoords.lat, originCoords.lon, destCoords.lat, destCoords.lon);
+      } catch (error) {
+        console.error('Distance fetch error:', error);
+        return null;
+      }
+    }
+
+    async function getDistanceWithCache(origin, destination) {
+      const key = `${origin.toLowerCase().trim()}|${destination.toLowerCase().trim()}`;
+      if (distanceCache[key]) {
+        const cached = distanceCache[key];
+        if (Date.now() - cached.timestamp < 7 * 24 * 60 * 60 * 1000) {
+          return cached.distance;
+        }
+      }
+      const distance = await fetchDistance(origin, destination);
+      if (distance !== null && distance > 0) {
+        distanceCache[key] = { distance, timestamp: Date.now() };
+        try { localStorage.setItem('distanceCache', JSON.stringify(distanceCache)); } catch(e) {}
+      }
+      return distance;
+    }
+
+    let distanceFetching = false;
+
+    async function autoFetchDistance() {
+      const origin = $('origin').value.trim();
+      const destination = $('destination').value.trim();
+      const statusEl = $('fetchStatus');
+      const fetchBtn = $('fetchDistanceBtn');
+
+      if (!origin || !destination || origin === destination) {
+        statusEl.textContent = '';
+        statusEl.className = 'fetch-status';
+        return;
+      }
+      if (distanceFetching) return;
+
+      const distanceInput = $('distance');
+      const originalValue = distanceInput.value;
+
+      distanceFetching = true;
+      fetchBtn.classList.add('loading');
+      statusEl.textContent = 'Fetching...';
+      statusEl.className = 'fetch-status';
+
+      const dist = await getDistanceWithCache(origin, destination);
+
+      if (dist !== null && dist > 0) {
+        distanceInput.value = dist;
+        statusEl.textContent = '✓';
+        statusEl.className = 'fetch-status success';
+        calc();
+      } else {
+        statusEl.textContent = '✗';
+        statusEl.className = 'fetch-status error';
+        if (!distanceInput.value) {
+          distanceInput.value = originalValue || '42';
+        }
+      }
+
+      fetchBtn.classList.remove('loading');
+      distanceFetching = false;
+
+      setTimeout(() => {
+        if (statusEl.textContent === '✓' || statusEl.textContent === '✗') {
+          statusEl.textContent = '';
+          statusEl.className = 'fetch-status';
+        }
+      }, 3000);
+    }
+
+    // ============================================================
+    //  TRIP MODE TOGGLES
+    // ============================================================
+
+    $('btnOneway').addEventListener('click', ()=>{
+      tripMode='oneway';
+      $('btnOneway').classList.add('active');
+      $('btnRound').classList.remove('active');
+      calc();
+    });
+    $('btnRound').addEventListener('click', ()=>{
+      tripMode='round';
+      $('btnRound').classList.add('active');
+      $('btnOneway').classList.remove('active');
+      calc();
+    });
+
+    // ============================================================
+    //  DOWNLOAD HANDLERS
+    // ============================================================
+
+    $('downloadHtmlBtn').addEventListener('click', ()=>{
+      const blob = new Blob(['<!DOCTYPE html>\n' + document.documentElement.outerHTML], {type:'text/html'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'loi-profitability-engine.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+
+    $('downloadPdfBtn').addEventListener('click', async ()=>{
+      const btn = $('downloadPdfBtn');
+      const originalLabel = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = 'Generating…';
+
+      try{
+        $('pdfDate').textContent = new Date().toLocaleDateString('en-ZA', { year:'numeric', month:'long', day:'numeric' });
+        $('pdfClient').textContent = $('clientName').value || 'Prospective Client';
+        $('pdfRoute').textContent = $('verdictRoute').textContent;
+
+        const stampClass = $('stamp').classList.contains('profitable') ? 'profitable'
+                          : $('stamp').classList.contains('marginal') ? 'marginal' : 'loss';
+        const banner = $('pdfVerdictBanner');
+        banner.classList.remove('profitable','marginal','loss');
+        banner.classList.add(stampClass);
+        $('pdfVerdictWord').textContent = $('stamp').textContent;
+        $('pdfVerdictText').textContent = $('verdictText').textContent;
+
+        $('pdfRevLoad').textContent = $('outRevLoad').textContent;
+        $('pdfCostLoad').textContent = $('outCostLoad').textContent;
+        $('pdfMarginLoad').textContent = $('outMarginLoad').textContent;
+        $('pdfMarginLoad').className = 'v ' + ($('outMarginLoad').classList.contains('pos') ? 'pos' : 'neg');
+        $('pdfMarginPct').textContent = $('outMarginPct').textContent;
+        $('pdfBErate').textContent = $('outBErate').textContent;
+
+        $('pdfRevMonth').textContent = $('outRevMonth').textContent;
+        $('pdfCostMonth').textContent = $('outCostMonth').textContent;
+        $('pdfMarginMonth').textContent = $('outMarginMonth').textContent;
+        $('pdfMarginMonth').className = 'v ' + ($('outMarginMonth').classList.contains('pos') ? 'pos' : 'neg');
+        $('pdfBEloads').textContent = $('outBEloads').textContent;
+
+        $('pdfChartImg1').src = chartRevCost.toBase64Image();
+        $('pdfChartImg2').src = chartComposition.toBase64Image();
+
+        const reportEl = $('pdfReport');
+        const canvas = await html2canvas(reportEl, {
+          scale: 2.5,
+          backgroundColor: '#ffffff',
+          useCORS: true
+        });
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const imgData = canvas.toDataURL('image/png');
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+        const routeLabel = `${$('origin').value}-${$('destination').value}`.replace(/\s+/g, '');
+        pdf.save(`LOI-Profitability-${routeLabel}.pdf`);
+      } catch(err){
+        console.error('PDF export failed:', err);
+        alert('PDF export failed. Please try again.');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalLabel;
+      }
+    });
+
+    // ============================================================
+    //  CHART VARIABLES
+    // ============================================================
+
+    let chartRevCost, chartComposition, chartSensitivity;
+
+    // ============================================================
+    //  MAIN CALCULATION ENGINE
+    // ============================================================
+
+    function calc(){
+      const distanceOneWay = num('distance');
+      const cycleKm = tripMode === 'round' ? distanceOneWay * 2 : distanceOneWay;
+      $('cycleKmNote').textContent = `(${cycleKm} km / cycle)`;
+
+      const rateTon = num('rateTon');
+      const tonsLoad = num('tonsLoad');
+      const loadsDay = num('loadsDay');
+      const workDays = num('workDays');
+
+      const fWages = num('fWages');
+      const fLicense = num('fLicense');
+      const fInsurance = num('fInsurance');
+      const fDeprec = num('fDeprec');
+      const fixedMonth = fWages + fLicense + fInsurance + fDeprec;
+
+      const fuelPrice = num('fuelPrice');
+      const fuelConsumption = num('fuelConsumption');
+      const fuelKm = fuelPrice * (fuelConsumption / 100);
+      $('derivedFuelKm').textContent = randDec(fuelKm) + '/km';
+
+      const vTyres = num('vTyres');
+      const vMaint = num('vMaint');
+      const vLube = num('vLube');
+      const varKm = fuelKm + vTyres + vMaint + vLube;
+
+      const revLoad = rateTon * tonsLoad;
+      const varCostLoad = varKm * cycleKm;
+      const loadsMonth = loadsDay * workDays;
+      const fixedAllocLoad = loadsMonth > 0 ? fixedMonth / loadsMonth : 0;
+      const fullCostLoad = varCostLoad + fixedAllocLoad;
+      const marginLoad = revLoad - fullCostLoad;
+      const marginPct = revLoad > 0 ? (marginLoad / revLoad) * 100 : 0;
+
+      const revDay = revLoad * loadsDay;
+      const varCostDay = varCostLoad * loadsDay;
+      const costDay = varCostDay + (workDays > 0 ? fixedMonth / workDays : 0);
+      const marginDay = revDay - costDay;
+
+      const revMonth = revDay * workDays;
+      const costMonth = fixedMonth + (varCostLoad * loadsMonth);
+      const marginMonth = revMonth - costMonth;
+
+      const contribPerLoad = revLoad - varCostLoad;
+      const beLoadsPerMonth = contribPerLoad > 0 ? fixedMonth / contribPerLoad : Infinity;
+      const beLoadsPerDay = workDays > 0 ? beLoadsPerMonth / workDays : Infinity;
+      const beRateTon = tonsLoad > 0 ? fullCostLoad / tonsLoad : 0;
+
+      // --- Update Ledger ---
+      $('outRevLoad').textContent = rand(revLoad);
+      $('outCostLoad').textContent = rand(fullCostLoad);
+      $('outMarginLoad').textContent = rand(marginLoad);
+      $('outMarginLoad').className = 'v ' + (marginLoad >= 0 ? 'pos' : 'neg');
+      $('outMarginPct').textContent = marginPct.toFixed(1) + '% margin';
+      $('outCostKm').textContent = randDec(varKm) + '/km';
+
+      $('outRevDay').textContent = rand(revDay);
+      $('outCostDay').textContent = rand(costDay);
+      $('outMarginDay').textContent = rand(marginDay);
+      $('outMarginDay').className = 'v ' + (marginDay >= 0 ? 'pos' : 'neg');
+      $('outBEloads').textContent = isFinite(beLoadsPerDay) ? beLoadsPerDay.toFixed(2) : '∞';
+
+      $('outRevMonth').textContent = rand(revMonth);
+      $('outCostMonth').textContent = rand(costMonth);
+      $('outMarginMonth').textContent = rand(marginMonth);
+      $('outMarginMonth').className = 'v ' + (marginMonth >= 0 ? 'pos' : 'neg');
+      $('outBErate').textContent = rand(beRateTon) + '/t';
+
+      // --- Verdict ---
+      $('verdictRoute').textContent = `${$('origin').value} → ${$('destination').value} · ${cycleKm} km ${tripMode === 'round' ? 'round trip' : 'one-way'}`;
+      const stampEl = $('stamp');
+      let verdictMsg = '';
+      if (marginPct >= 15){
+        stampEl.textContent = 'PROFITABLE';
+        stampEl.className = 'stamp profitable';
+        verdictMsg = `Margin holds at ${marginPct.toFixed(1)}% after full cost allocation. Rate/ton could drop to ${rand(beRateTon)} before this route stops paying for itself — meaningful headroom above the ${rand(rateTon)} on offer.`;
+      } else if (marginPct >= 0){
+        stampEl.textContent = 'MARGINAL';
+        stampEl.className = 'stamp marginal';
+        verdictMsg = `Margin is thin at ${marginPct.toFixed(1)}%. Break-even sits at ${rand(beRateTon)}/t and ${beLoadsPerDay.toFixed(2)} loads/day — any slip in loads, distance, or fuel cost pushes this into a loss. Treat as a floor, not a target.`;
+      } else {
+        stampEl.textContent = 'LOSS-MAKING';
+        stampEl.className = 'stamp loss';
+        verdictMsg = `At the stated terms this route runs at a ${marginPct.toFixed(1)}% loss. The rate would need to reach ${rand(beRateTon)}/t, or loads/day rise to ${beLoadsPerDay.toFixed(2)}, just to break even.`;
+      }
+      $('verdictText').textContent = verdictMsg;
+
+      // --- Update Charts ---
+      updateCharts({
+        revDay, costDay, revMonth, costMonth, fixedMonth,
+        varCostMonth: varCostLoad * loadsMonth,
+        revLoad, varCostLoad, workDays,
+        fWages, fLicense, fInsurance, fDeprec,
+        fuelKm: fuelKm * cycleKm * loadsMonth,
+        vTyres: vTyres * cycleKm * loadsMonth,
+        vMaint: vMaint * cycleKm * loadsMonth,
+        vLube: vLube * cycleKm * loadsMonth
+      });
+    }
+
+    // ============================================================
+    //  CHART UPDATES
+    // ============================================================
+
+    function updateCharts(d){
+      const muted = { color: '#64748b', font:{family:"'DM Sans', sans-serif", size:10} };
+      const grid = { color: '#E4E5E7' };
+
+      // --- Revenue vs Cost ---
+      const rcData = {
+        labels:['Per Day', 'Per Month'],
+        datasets:[
+          { label:'Revenue', backgroundColor: '#008080', borderRadius: 4, data:[d.revDay, d.revMonth] },
+          { label:'Cost', backgroundColor: '#C9A84C', borderRadius: 4, data:[d.costDay, d.costMonth] }
+        ]
+      };
+      if (chartRevCost){
+        chartRevCost.data = rcData;
+        chartRevCost.update();
+      } else {
+        chartRevCost = new Chart($('chartRevCost'), {
+          type:'bar',
+          data: rcData,
+          options:{
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { labels: { ...muted, usePointStyle: true, pointStyle: 'rectRounded', padding: 16 } },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.dataset.label + ': R' + context.parsed.y.toLocaleString('en-ZA', {maximumFractionDigits:0});
+                  }
+                }
+              }
+            },
+            scales: {
+              x: { ticks: muted, grid: { display: false } },
+              y: {
+                ticks: { ...muted, callback: function(value) { return value >= 1000 ? 'R' + (value/1000).toFixed(0) + 'k' : 'R' + value.toFixed(0); } },
+                grid: grid
+              }
+            }
+          }
+        });
+      }
+
+      // --- Cost Composition ---
+      const compLabels = ['Depreciation', 'Driver Wages', 'Insurance', 'Licensing & Permits', 'Fuel', 'Maintenance & Repair', 'Tyres', 'Lubricants'];
+      const compValues = [d.fDeprec||0, d.fWages||0, d.fInsurance||0, d.fLicense||0, d.fuelKm||0, d.vMaint||0, d.vTyres||0, d.vLube||0];
+      const filtered = compLabels.map((l,i) => ({label:l, value:compValues[i]})).filter(item => item.value > 0);
+      const pieLabels = filtered.map(item => item.label);
+      const pieValues = filtered.map(item => item.value);
+      const fixedColors = ['#071534', '#0A1F44', '#1A3A6B', '#2A5A8A'];
+      const variableColors = ['#C9A84C', '#D4B85C', '#DFC86C', '#EAD87C'];
+      const pieColors = pieLabels.map(label => {
+        const idx = compLabels.indexOf(label);
+        return idx < 4 ? fixedColors[idx] : variableColors[idx - 4];
+      });
+
+      const compData = {
+        labels: pieLabels,
+        datasets: [{ data: pieValues, backgroundColor: pieColors, borderWidth: 0, hoverOffset: 6 }]
+      };
+
+      if (chartComposition) {
+        chartComposition.data = compData;
+        chartComposition.update();
+      } else {
+        chartComposition = new Chart($('chartComposition'), {
+          type: 'doughnut',
+          data: compData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '55%',
+            plugins: {
+              legend: {
+                position: 'right',
+                labels: { ...muted, boxWidth: 12, padding: 10, usePointStyle: true, pointStyle: 'circle', font: { size: 10, family: "'DM Sans', sans-serif" } }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    let total = context.dataset.data.reduce((a,b) => a+b, 0);
+                    let pct = total > 0 ? (context.parsed/total*100).toFixed(1) : 0;
+                    return context.label + ': R' + context.parsed.toLocaleString('en-ZA', {maximumFractionDigits:0}) + ' (' + pct + '%)';
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      // --- Sensitivity Chart ---
+      const labels = [];
+      const marginPctSeries = [], revSeries = [], costSeries = [];
+      for (let l=0.5; l<=8; l+=0.5){
+        const loadsMonth = l * d.workDays;
+        const fixedAlloc = loadsMonth>0 ? d.fixedMonth/loadsMonth : 0;
+        const fullCost = d.varCostLoad + fixedAlloc;
+        const mPct = d.revLoad>0 ? ((d.revLoad-fullCost)/d.revLoad)*100 : 0;
+        labels.push(l.toFixed(1));
+        marginPctSeries.push(mPct);
+        revSeries.push(d.revLoad*l);
+        costSeries.push(fullCost*l);
+      }
+      const sensData = {
+        labels,
+        datasets:[
+          { label:'Margin %', data:marginPctSeries, borderColor:'#C9A84C', backgroundColor:'transparent', yAxisID:'y1', tension:0.3, pointRadius:0, borderWidth:2 },
+          { label:'Revenue/day', data:revSeries, borderColor:'#008080', backgroundColor:'transparent', yAxisID:'y', tension:0.3, pointRadius:0, borderWidth:1.5, borderDash:[4,3] },
+          { label:'Cost/day', data:costSeries, borderColor:'#0A1F44', backgroundColor:'transparent', yAxisID:'y', tension:0.3, pointRadius:0, borderWidth:1.5, borderDash:[4,3] }
+        ]
+      };
+      if (chartSensitivity){ chartSensitivity.data = sensData; chartSensitivity.update(); }
+      else {
+        chartSensitivity = new Chart($('chartSensitivity'), {
+          type:'line',
+          data: sensData,
+          options:{
+            responsive:true, maintainAspectRatio:false,
+            interaction:{ mode:'index', intersect:false },
+            plugins:{ legend:{labels:muted} },
+            scales:{
+              x:{ title:{display:true, text:'Loads / day', color:'#64748b', font:muted.font}, ticks:muted, grid:grid },
+              y:{ position:'left', title:{display:true, text:'R / day', color:'#64748b', font:muted.font}, ticks:muted, grid:grid },
+              y1:{ position:'right', title:{display:true, text:'Margin %', color:'#64748b', font:muted.font}, ticks:muted, grid:{display:false} }
+            }
+          }
+        });
+      }
+    }
+
+    // ============================================================
+    //  WIRE UP EVENTS
+    // ============================================================
+
+    $('origin').addEventListener('blur', autoFetchDistance);
+    $('destination').addEventListener('blur', autoFetchDistance);
+    $('origin').addEventListener('keydown', (e) => { if (e.key === 'Enter') autoFetchDistance(); });
+    $('destination').addEventListener('keydown', (e) => { if (e.key === 'Enter') autoFetchDistance(); });
+    $('fetchDistanceBtn').addEventListener('click', autoFetchDistance);
+    document.querySelectorAll('input').forEach(inp => inp.addEventListener('input', calc));
+
+    calc();
+  </script>
+
+</body>
+</html>
