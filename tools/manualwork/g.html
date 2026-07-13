@@ -14,15 +14,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- ✅ EXTERNAL STYLESHEETS (same as homepage) -->
+  <!-- ✅ EXTERNAL STYLESHEETS - corrected for /tools/ folder -->
   <link rel="stylesheet" href="../style.css" />
   <link rel="stylesheet" href="../css/index.css" />
 
-  <!-- ✅ Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <!-- ✅ Favicon - corrected paths -->
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
 
   <style>
     /* ============================================================
@@ -31,7 +31,7 @@
 
     .calc-section {
       padding: 8rem 0 5rem;
-      background: var(--off);
+      background: var(--off, #F8F8F6);
     }
 
     .calc-container {
@@ -52,13 +52,13 @@
     .calc-header h2 {
       font-size: clamp(2.5rem, 4vw, 3.5rem);
       font-weight: 600;
-      color: var(--text);
+      color: var(--text, #0F1923);
       margin-bottom: 0.75rem;
       line-height: 1.1;
     }
     .calc-header p {
       font-size: 1rem;
-      color: var(--muted);
+      color: var(--muted, #64748b);
       max-width: 600px;
       margin: 0 auto;
       line-height: 1.7;
@@ -69,25 +69,25 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      color: var(--muted);
+      color: var(--muted, #64748b);
       font-weight: 500;
       text-decoration: none;
-      transition: var(--ease);
+      transition: var(--ease, 0.25s ease);
       font-size: 0.85rem;
       font-family: 'DM Sans', sans-serif;
     }
     .back-link:hover {
-      color: var(--teal);
+      color: var(--teal, #008080);
     }
 
     /* ----- CALCULATOR CARD ----- */
     .calc-card {
-      background: var(--white);
-      border-radius: var(--radius);
+      background: var(--white, #ffffff);
+      border-radius: var(--radius, 4px);
       padding: 2.5rem 3rem 3rem;
       box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      border: 1px solid var(--border);
-      transition: box-shadow var(--ease);
+      border: 1px solid var(--border, #E4E5E7);
+      transition: box-shadow var(--ease, 0.25s ease);
     }
     .calc-card:hover {
       box-shadow: 0 12px 40px rgba(0,0,0,0.06);
@@ -104,7 +104,7 @@
       display: block;
       font-weight: 600;
       font-size: 0.85rem;
-      color: var(--text);
+      color: var(--text, #0F1923);
       margin-bottom: 0.75rem;
       font-family: 'DM Sans', sans-serif;
       letter-spacing: 0.02em;
@@ -119,7 +119,7 @@
       justify-content: space-between;
       margin-top: 0.4rem;
       font-size: 0.7rem;
-      color: var(--muted);
+      color: var(--muted, #64748b);
       font-weight: 500;
       font-family: 'DM Sans', sans-serif;
     }
@@ -127,7 +127,7 @@
     .slider {
       width: 100%;
       height: 6px;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-sm, 2px);
       background: #e5e7eb;
       outline: none;
       -webkit-appearance: none;
@@ -143,46 +143,46 @@
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: var(--teal);
+      background: var(--teal, #008080);
       cursor: pointer;
-      border: 3px solid var(--white);
+      border: 3px solid var(--white, #ffffff);
       box-shadow: 0 2px 8px rgba(0, 128, 128, 0.3);
       transition: all 0.2s ease;
     }
     .slider::-webkit-slider-thumb:hover {
       transform: scale(1.12);
       box-shadow: 0 4px 14px rgba(0, 128, 128, 0.4);
-      background: var(--teal-dk);
+      background: var(--teal-dk, #006666);
     }
 
     .slider::-moz-range-thumb {
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: var(--teal);
+      background: var(--teal, #008080);
       cursor: pointer;
-      border: 3px solid var(--white);
+      border: 3px solid var(--white, #ffffff);
       box-shadow: 0 2px 8px rgba(0, 128, 128, 0.3);
       transition: all 0.2s ease;
     }
     .slider::-moz-range-thumb:hover {
       transform: scale(1.12);
       box-shadow: 0 4px 14px rgba(0, 128, 128, 0.4);
-      background: var(--teal-dk);
+      background: var(--teal-dk, #006666);
     }
 
     .input-display {
       text-align: center;
       font-size: 1.4rem;
       font-weight: 700;
-      color: var(--teal);
+      color: var(--teal, #008080);
       margin-top: 1.2rem;
       padding: 0.8rem;
-      background: var(--teal-lt);
-      border-radius: var(--radius-sm);
+      background: var(--teal-lt, #f0fafa);
+      border-radius: var(--radius-sm, 2px);
       border: 1px solid rgba(0, 128, 128, 0.1);
       font-family: 'DM Sans', sans-serif;
-      transition: all var(--ease);
+      transition: all var(--ease, 0.25s ease);
     }
     .input-display:hover {
       background: rgba(0, 128, 128, 0.08);
@@ -204,23 +204,23 @@
     }
 
     .result-card {
-      background: var(--off);
+      background: var(--off, #F8F8F6);
       padding: 1.5rem 1.5rem;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-sm, 2px);
       text-align: center;
-      border: 1px solid var(--border);
-      transition: all var(--ease);
+      border: 1px solid var(--border, #E4E5E7);
+      transition: all var(--ease, 0.25s ease);
     }
     .result-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 4px 16px rgba(0,0,0,0.04);
     }
     .result-card.savings {
-      background: var(--teal-lt);
+      background: var(--teal-lt, #f0fafa);
       border-color: rgba(0, 128, 128, 0.2);
     }
     .result-card.savings .result-value {
-      color: var(--teal);
+      color: var(--teal, #008080);
     }
 
     .result-label {
@@ -228,7 +228,7 @@
       font-size: 0.6rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--muted);
+      color: var(--muted, #64748b);
       font-weight: 600;
       margin-bottom: 0.4rem;
     }
@@ -236,40 +236,40 @@
     .result-value {
       font-size: 2rem;
       font-weight: 700;
-      color: var(--text);
+      color: var(--text, #0F1923);
       font-family: 'DM Sans', sans-serif;
       line-height: 1.2;
     }
 
     .result-description {
       font-size: 0.75rem;
-      color: var(--muted);
+      color: var(--muted, #64748b);
       margin-top: 0.2rem;
       font-weight: 300;
     }
 
     /* ----- IMPACT STATEMENT ----- */
     .impact-statement {
-      background: var(--off);
-      border-radius: var(--radius-sm);
+      background: var(--off, #F8F8F6);
+      border-radius: var(--radius-sm, 2px);
       padding: 1.5rem 2rem;
       margin: 1.5rem 0 0;
-      border-left: 3px solid var(--teal);
+      border-left: 3px solid var(--teal, #008080);
       position: relative;
     }
     .impact-statement p {
       font-size: 0.95rem;
       line-height: 1.7;
-      color: var(--text);
+      color: var(--text, #0F1923);
       font-weight: 400;
       margin: 0;
     }
     .impact-highlight {
       font-weight: 700;
-      color: var(--teal);
+      color: var(--teal, #008080);
       background: rgba(0, 128, 128, 0.06);
       padding: 0.1rem 0.5rem;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-sm, 2px);
     }
 
     /* ----- CTA SECTION ----- */
@@ -277,7 +277,7 @@
       text-align: center;
       margin-top: 2.5rem;
       padding-top: 2rem;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border, #E4E5E7);
     }
 
     .btn-group {
@@ -295,12 +295,12 @@
       background: #25d366;
       color: white;
       border: none;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-sm, 2px);
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-      transition: all var(--ease);
+      transition: all var(--ease, 0.25s ease);
       cursor: pointer;
       text-decoration: none;
       font-family: 'DM Sans', sans-serif;
@@ -311,7 +311,199 @@
       box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
     }
 
-    @media (max-width: 640px) {
+    /* ----- FALLBACK STYLES (in case style.css doesn't load) ----- */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Navigation fallback */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 3000;
+      padding: 0 2rem;
+      background: #071534;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+    .logo img {
+      height: 36px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .nav-links a:hover {
+      color: white;
+    }
+    .nav-cta {
+      padding: 0.55rem 1.4rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: white !important;
+      border-radius: 4px;
+    }
+    .nav-cta:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.38);
+    }
+    .mob-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.15rem;
+      color: white;
+      padding: 0.3rem;
+    }
+
+    /* Footer fallback */
+    footer {
+      background: #071534;
+      padding: 5rem 0 2rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand img {
+      height: 34px;
+      filter: brightness(0) invert(1);
+      opacity: 0.8;
+      margin-bottom: 1.2rem;
+    }
+    .footer-brand p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.32);
+      line-height: 1.8;
+      max-width: 250px;
+      font-weight: 300;
+    }
+    .footer-col h5 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col ul li {
+      margin-bottom: 0.65rem;
+    }
+    .footer-col a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.42);
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.25s ease;
+    }
+    .footer-col a:hover {
+      color: white;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.22);
+    }
+    .social {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.35);
+      font-size: 0.72rem;
+      border-radius: 4px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .social a:hover {
+      border-color: #008080;
+      color: #008080;
+    }
+
+    @media (max-width: 768px) {
+      .mob-btn {
+        display: block;
+      }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 76px;
+        right: 0;
+        width: 270px;
+        height: calc(100vh - 76px);
+        background: #071534;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem;
+        gap: 0;
+        box-shadow: -6px 0 40px rgba(0,0,0,0.3);
+        overflow-y: auto;
+        z-index: 2999;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-links li {
+        width: 100%;
+      }
+      .nav-links a {
+        color: rgba(255,255,255,0.52) !important;
+        display: block;
+        padding: 0.9rem 0.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 0.8rem;
+      }
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .container {
+        padding: 0 1.25rem;
+      }
       .calc-card {
         padding: 1.5rem 1.25rem 2rem;
       }
@@ -340,6 +532,13 @@
         justify-content: center;
       }
     }
+
+    @media (max-width: 1024px) {
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -347,17 +546,17 @@
   <!-- Scroll Progress Bar -->
   <div class="sp" id="sp"></div>
 
-  <!-- Navigation (EXACTLY matches homepage) -->
+  <!-- Navigation -->
   <nav id="nav">
     <div class="nav-inner">
-      <a href="index.html" class="logo">
-        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" width="150" height="36" />
+      <a href="../index.html" class="logo">
+        <img src="../assets/primechain.svg" alt="PrimeChain Solutions" width="150" height="36" />
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="whoweare.html">Who we are</a></li>
-        <li><a href="ourthinking.html">Our thinking</a></li>
-        <li><a href="#contact" class="nav-cta">Talk to us</a></li>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../whoweare.html">Who we are</a></li>
+        <li><a href="../ourthinking.html">Our thinking</a></li>
+        <li><a href="../index.html#contact" class="nav-cta">Talk to us</a></li>
       </ul>
       <button class="mob-btn" id="mobBtn" aria-label="Menu">
         <i class="fas fa-bars"></i>
@@ -376,7 +575,7 @@
           <h2>What's the Cost of Manual Work?</h2>
           <p>Drag the sliders to see how much manual work is costing your business — and discover the savings you could unlock with automation.</p>
           <div style="margin-top: 1.2rem;">
-            <a href="ourthinking.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Insights</a>
+            <a href="../ourthinking.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Insights</a>
           </div>
         </div>
 
@@ -442,7 +641,7 @@
               <a href="https://wa.me/27846503832?text=Hi,%20I'm%20interested%20in%20automating%20manual%20work" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-whatsapp"></i> Chat on WhatsApp
               </a>
-              <a href="ourthinking.html" class="btn-outline">
+              <a href="../ourthinking.html" class="btn-outline">
                 <i class="fas fa-lightbulb"></i> See Case Studies
               </a>
             </div>
@@ -454,27 +653,27 @@
     </div>
   </section>
 
-  <!-- Footer (EXACTLY matches homepage) -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="/assets/primechain.svg" alt="PrimeChain Solutions" width="150" height="34" />
+          <img src="../assets/primechain.svg" alt="PrimeChain Solutions" width="150" height="34" />
           <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets but don't need enterprise software.</p>
         </div>
         <div class="footer-col">
           <h5>Company</h5>
           <ul>
-            <li><a href="index.html">What we do</a></li>
-            <li><a href="whoweare.html">Who we are</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="../index.html">What we do</a></li>
+            <li><a href="../whoweare.html">Who we are</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h5>Work</h5>
           <ul>
-            <li><a href="ourthinking.html">Case Studies</a></li>
-            <li><a href="ourthinking.html">Our thinking</a></li>
+            <li><a href="../ourthinking.html">Case Studies</a></li>
+            <li><a href="../ourthinking.html">Our thinking</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -496,8 +695,8 @@
     </div>
   </footer>
 
-  <!-- External JS (same as homepage) -->
-  <script src="js/main.js" defer></script>
+  <!-- External JS -->
+  <script src="../js/main.js" defer></script>
 
   <!-- Calculator Script -->
   <script>
@@ -572,7 +771,7 @@
       updateCalculations();
     });
 
-    // Mobile nav toggle (matches homepage)
+    // Mobile nav toggle
     document.getElementById('mobBtn').addEventListener('click', function() {
       const links = document.getElementById('navLinks');
       links.classList.toggle('open');
@@ -597,7 +796,7 @@
       document.getElementById('sp').style.width = scrolled + '%';
     });
 
-    // Reveal animations (matches homepage)
+    // Reveal animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
