@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="PrimeChain Solutions builds operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa." />
-  <title>PrimeChain Solutions | Clarity. Control. Growth.</title>
+  <title>Who We Are · PrimeChain Solutions</title>
 
-  <!-- ✅ OPTIMIZED: Preload critical fonts -->
+  <!-- Preload critical fonts & styles -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" as="style" />
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" />
 
-  <!-- ✅ OPTIMIZED: Font loading with swap -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
@@ -21,76 +20,292 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </noscript>
 
-  <!-- ✅ OPTIMIZED: External stylesheets (cached separately) -->
+  <!-- Main styles (same as homepage) -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="css/index.css" />
 
-  <!-- ✅ ADDED: Open Graph Metadata -->
-  <meta property="og:title" content="PrimeChain Solutions | Clarity. Control. Growth." />
-  <meta property="og:description" content="Operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa." />
-  <meta property="og:image" content="https://primechainsolutions.co.za/assets/og-image.jpg" />
-  <meta property="og:url" content="https://primechainsolutions.co.za/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="PrimeChain Solutions" />
-
-  <!-- ✅ ADDED: Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PrimeChain Solutions | Clarity. Control. Growth." />
-  <meta name="twitter:description" content="Operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa." />
-
-  <!-- ✅ ADDED: Canonical -->
-  <link rel="canonical" href="https://primechainsolutions.co.za/" />
-
-  <!-- ✅ ADDED: Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "PrimeChain Solutions",
-    "url": "https://primechainsolutions.co.za",
-    "logo": "https://primechainsolutions.co.za/assets/primechain.svg",
-    "description": "Operational visibility systems and automation tools for supply chain, logistics and field service businesses across South Africa.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Johannesburg",
-      "addressCountry": "South Africa"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "info@primechainsolutions.co.za",
-      "contactType": "sales"
-    },
-    "sameAs": [
-      "https://linkedin.com/company/primechain-solutions"
-    ]
-  }
-  </script>
-
-  <!-- ✅ ADDED: WebApp Manifest (optional) -->
-  <link rel="manifest" href="/manifest.json" />
-
-  <!-- ✅ FIXED: Favicon with proper sizes -->
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+  <style>
+    /* ---- WHO WE ARE — PAGE-SPECIFIC, MATCHING HOMEPAGE AESTHETIC ---- */
+
+    /* Hero – dark navy background, same as homepage */
+    .page-hero {
+      background: var(--navy);
+      color: white;
+      padding: 8rem 0 6rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .page-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: end;
+    }
+    .hero-left h1 {
+      font-size: 3.8rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      color: white;
+    }
+    .hero-left h1 em {
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .hero-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+    .hero-right p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.75);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+    .hero-quote-block {
+      border-left: 2px solid var(--teal);
+      padding: 1.5rem 0 1.5rem 2rem;
+      margin-top: 1rem;
+    }
+    .hero-quote-block p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: white !important;
+      line-height: 1.5;
+      font-style: italic;
+      max-width: none !important;
+    }
+    .hero-quote-block cite {
+      display: block;
+      margin-top: 0.85rem;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+
+    /* The Thinking section – clean white, same as homepage "problem" */
+    .the-thinking { padding: 8rem 0; background: white; }
+    .thinking-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+    .thinking-body p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.88;
+      margin-bottom: 1.4rem;
+      font-weight: 300;
+    }
+    .thinking-highlight {
+      background: var(--navy);
+      padding: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .thinking-highlight p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      line-height: 1.6;
+      font-weight: 500;
+      color: white;
+    }
+    .thinking-highlight p em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* Philosophy – off-white, same as homepage "convergence" */
+    .philosophy { padding: 8rem 0; background: var(--off); }
+    .philosophy-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .philosophy-intro {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.88;
+      margin-top: 1.25rem;
+      font-weight: 300;
+    }
+    .philosophy-callout {
+      margin-top: 2rem;
+      padding: 1.5rem 2rem;
+      background: var(--navy);
+      color: white;
+    }
+    .philosophy-callout p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    /* Methodology list – styled like pain items from homepage */
+    .methodology-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .method-item {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      transition: background var(--ease);
+    }
+    .method-item:first-child { border-top: 1px solid var(--border); }
+    .method-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--border);
+      line-height: 1;
+      transition: color var(--ease);
+    }
+    .method-item:hover .method-num { color: var(--teal); }
+    .method-body h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+      color: var(--text);
+    }
+    .method-body p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* Value Creation – uses same card style as services on homepage */
+    .value-creation { padding: 8rem 0; background: white; }
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .value-card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 0;
+      border-bottom: 3px solid var(--teal);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .value-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px -12px rgba(0,0,0,0.12);
+    }
+    .value-card i {
+      font-size: 1.4rem;
+      color: var(--teal);
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+    .value-card h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .value-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* CTA band – matches homepage */
+    .cta-band {
+      background: var(--navy);
+      color: white;
+      padding: 5rem 0;
+      text-align: center;
+    }
+    .cta-band h2 {
+      font-size: 2.8rem;
+      line-height: 1.2;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+    .cta-band p {
+      max-width: 580px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    .cta-btns.centered {
+      justify-content: center;
+    }
+    .btn-outline-white {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+    }
+    .btn-outline-white:hover {
+      background: white;
+      color: var(--navy);
+      border-color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .page-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .thinking-layout,
+      .philosophy-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .value-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .page-hero { padding: 6rem 0 4rem; min-height: auto; }
+      .hero-left h1 { font-size: 2.6rem; }
+      .value-grid { grid-template-columns: 1fr; }
+      .cta-band h2 { font-size: 2rem; }
+      .hero-quote-block { padding-left: 1.25rem; }
+      .hero-quote-block p { font-size: 1.2rem; }
+      .thinking-highlight { padding: 1.75rem; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- Scroll Progress Bar -->
   <div class="sp" id="sp"></div>
 
-  <!-- Navigation -->
+  <!-- Navigation (same as homepage) -->
   <nav id="nav">
     <div class="nav-inner">
       <a href="index.html" class="logo">
         <img src="/assets/primechain.svg" alt="PrimeChain Solutions" width="150" height="36" />
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="on">Home</a></li>
-        <li><a href="whoweare.html">Who we are</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="whoweare.html" class="on">Who we are</a></li>
         <li><a href="ourthinking.html">Our thinking</a></li>
-        <li><a href="#contact" class="nav-cta">Talk to us</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Talk to us</a></li>
       </ul>
       <button class="mob-btn" id="mobBtn" aria-label="Menu">
         <i class="fas fa-bars"></i>
@@ -98,326 +313,172 @@
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-container">
-      <div class="hero-content">
-        <h1>Operational chaos<br />isn't your problem.<br /><em>Lack of visibility is.</em></h1>
-        <p class="hero-sub">We help businesses connect operational data, streamline workflows, and make faster, more confident decisions.</p>
-        <div class="cta-btns">
-          <a href="#contact" class="btn-teal">Talk to us</a>
-          <a href="ourthinking.html" class="btn-outline">View our work</a>
-        </div>
-        <div class="hero-stats">
-          <div class="hstat">
-            <span class="hstat-n">Real-Time</span>
-            <span class="hstat-l">Visibility</span>
-          </div>
-          <div class="hstat">
-            <span class="hstat-n">30–40%</span>
-            <span class="hstat-l">Cost Reduction</span>
-          </div>
-          <div class="hstat">
-            <span class="hstat-n">50%</span>
-            <span class="hstat-l">Faster Decisions</span>
-          </div>
-          <div class="hstat">
-            <span class="hstat-n">24/7</span>
-            <span class="hstat-l">Monitoring</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROBLEM -->
-  <section class="problem">
+  <!-- HERO — Act 1: Why PrimeChain Exists (dark, like homepage) -->
+  <section class="page-hero">
     <div class="container">
-      <div class="problem-layout">
-        <div class="problem-left reveal">
-          <div class="section-label">Sound familiar?</div>
-          <h2 class="section-title">If you're still finding problems at month end, you're already too late.</h2>
-          <p class="about-body">The businesses we work with aren't badly run. They just can't see what's happening inside their own operation until the damage is already done.</p>
-          <p class="about-body">We've encountered every one of these across transport yards, field service teams, and fleet operations. They're not bad luck — they're symptoms of a process problem.</p>
-          <a href="#contact" class="btn-teal" style="margin-top:1.5rem;">Talk to us</a>
+      <div class="page-hero-inner">
+        <div class="hero-left">
+          <div class="hero-label">Why We Exist</div>
+          <h1>
+            Operational visibility<br />
+            shouldn't be a luxury<br />
+            <em>reserved for large enterprises.</em>
+          </h1>
         </div>
-        <div class="problem-right">
-          <div class="pain-list">
-            <div class="pain-item reveal">
-              <span class="pain-num">01</span>
-              <div class="pain-text">
-                <h4>The Month-End Financial Blindspot</h4>
-                <p>Fuel discrepancies, stock losses, and delivery gaps only appear at month-end. By then the slips are missing, the money is gone, and the source of the problem is untraceable. The damage was already done.</p>
-              </div>
-            </div>
-            <div class="pain-item reveal d1">
-              <span class="pain-num">02</span>
-              <div class="pain-text">
-                <h4>Delayed Field Data Stalls Your Cash Flow</h4>
-                <p>Field teams submit job cards, proof of work, and delivery notes days after the job is done. You're invoicing on yesterday's information, chasing disputes that wouldn't exist if you knew today.</p>
-              </div>
-            </div>
-            <div class="pain-item reveal d2">
-              <span class="pain-num">03</span>
-              <div class="pain-text">
-                <h4>You Don't Know Which Vehicles or Partners Cost You Most</h4>
-                <p>Fuel spend is a black box. Subcontractor performance is managed on gut feel. You have suspicions about which trucks overconsume — but suspicion isn't enough to challenge a contract.</p>
-              </div>
-            </div>
-            <div class="pain-item reveal d3">
-              <span class="pain-num">04</span>
-              <div class="pain-text">
-                <h4>High-Value Skills Drowned in Manual Admin</h4>
-                <p>Information that already exists in one system gets copied by hand into another, printed, attached, and filed. Your team is spending Saturday mornings producing documents that add zero value.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONVERGENCE -->
-  <section class="convergence">
-    <div class="container">
-      <div class="convergence-inner">
-        <div class="convergence-sticky reveal">
-          <div class="section-label">Why it stays broken</div>
-          <h2 class="section-title">The data exists.<br />It just never converges.</h2>
-        </div>
-        <div class="convergence-body reveal d1">
-          <p>In almost every operation we've walked into, the information needed to make better decisions was already being generated. Fuel slips, weighbridge tickets, job cards, proof of delivery, invoices, stock counts — all of it was real data, captured at source, by competent people.</p>
-          <p>The problem isn't that the data doesn't exist. It's that it lives in disconnected streams — WhatsApp, spreadsheets, paper files, accounting software — and never comes together in one place.</p>
-          <p>Data that lives in separate streams has no analytical value until it converges. The insight only exists in the correlation. A fuel slip means nothing without the load record to measure efficiency against. A delivery note means nothing without the invoice to measure profitability. A stock count means nothing without the sales record to detect losses.</p>
-          <p><strong>That's where most businesses are stuck — not because they're badly managed, but because nobody has ever built the layer that brings it together. That's the layer we build.</strong></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="container">
-      <div class="services-header reveal">
-        <div>
-          <div class="section-label">Diagnose. Digitise. Optimise.</div>
-          <h2 class="section-title">From operational problems<br />to intelligent systems.</h2>
-        </div>
-        <a href="#contact" class="arrow-link">Talk to us <i class="fas fa-arrow-right"></i></a>
-      </div>
-  
-      <div class="svc-grid reveal">
-  
-        <div class="svc-card">
-          <span class="svc-num">01</span>
-          <h3>Operational Leak Audit™</h3>
+        <div class="hero-right">
           <p>
-            Every business has operational blind spots. We analyse your workflows,
-            data, and processes to uncover where time, money, and control are being lost.
+            Every day, businesses generate thousands of operational events. Vehicles complete trips. Technicians complete jobs. Orders are fulfilled. Inventory moves. Customers are served.
           </p>
-          <a href="#contact" class="arrow-link">
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-  
-        <div class="svc-card">
-          <span class="svc-num">02</span>
-          <h3>Operational Control Systems™</h3>
           <p>
-            We transform fragmented spreadsheets, paper processes, and manual reporting
-            into connected digital systems that capture operational activity and create visibility.
+            Yet for many growing businesses, these activities remain disconnected across spreadsheets, paperwork, messaging apps, and multiple systems. The information exists, but the business never sees the complete picture.
           </p>
-          <a href="#contact" class="arrow-link">
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-  
-        <div class="svc-card">
-          <span class="svc-num">03</span>
-          <h3>Operational Intelligence™</h3>
           <p>
-            We connect operational data, identify patterns, and create the insights
-            leaders need to make faster decisions and continuously improve performance.
+            PrimeChain Solutions exists to bridge that gap. We help organisations transform everyday operational activity into visibility, intelligence, and confident decision-making—without the complexity of enterprise software.
           </p>
-          <a href="#contact" class="arrow-link">
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-  
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIAL -->
-  <section class="testimonial">
-    <div class="container">
-      <div class="testimonial-inner reveal">
-        <span class="quote-mark">"</span>
-        <blockquote>The system didn't just save us time — it showed us problems we didn't know we had. Within weeks of go-live, we had identified fuel losses that had been running undetected for months. That alone paid for the whole project.</blockquote>
-        <cite>Commodity Trader, Mpumalanga</cite>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW WE WORK -->
-  <section class="how">
-    <div class="container">
-      <div class="how-layout">
-        <div class="how-sticky reveal">
-          <div class="section-label">How it works</div>
-          <h2 class="section-title">Your data is already telling a story.<br />You just can't hear it yet.</h2>
-          <p class="how-intro">Right now, somewhere in your operation, a driver is filling up at a fuel point. A slip is generated. That slip goes into a pocket, onto a WhatsApp message, into a pile on someone's desk. Three days later someone types it into a spreadsheet.</p>
-          <p class="how-intro" style="margin-top:0.75rem;">Three moments. Three documents. Three pieces of the same story — and they will never meet. Together they answer the most important question in your business. Separately, they answer nothing.</p>
-        </div>
-        <div class="how-steps reveal d1">
-          <div class="how-step">
-            <span class="step-num">01</span>
-            <div class="step-body">
-              <h4>Field Event</h4>
-              <p>The story begins in the physical world. A driver pulls up to a fuel point. A technician completes an installation. A truck crosses a weighbridge. Something happens, and it leaves a trace.</p>
-            </div>
-          </div>
-          <div class="how-step">
-            <span class="step-num">02</span>
-            <div class="step-body">
-              <h4>Database</h4>
-              <p>We capture that field event through a structured process — a mobile form, a digital job card, a document scan. It lands in a centralised environment where it's held, timestamped, and connected to everything else.</p>
-            </div>
-          </div>
-          <div class="how-step">
-            <span class="step-num">03</span>
-            <div class="step-body">
-              <h4>Correlation</h4>
-              <p>A fuel slip on its own tells you very little. A load record on its own tells you very little. But match the fuel consumed against the load delivered, on the same truck, on the same day — now you have a number that means something.</p>
-            </div>
-          </div>
-          <div class="how-step">
-            <span class="step-num">04</span>
-            <div class="step-body">
-              <h4>Intelligence</h4>
-              <p>Correlation produces numbers. Intelligence gives those numbers context. It's the difference between knowing a truck consumed 180 litres and knowing that truck consumed 40 litres more than the fleet average on that route.</p>
-            </div>
-          </div>
-          <div class="how-step">
-            <span class="step-num">05</span>
-            <div class="step-body">
-              <h4>Decision</h4>
-              <p>This is the only reason any of it exists. Not dashboards for their own sake. A transport manager accepting a rate with the actual cost model in front of him. An ops manager removing a vehicle from service. A CFO spotting a R200k monthly leak.</p>
-            </div>
+          <div class="hero-quote-block">
+            <p>
+              "Every operation tells a story.<br />
+              We help businesses see it."
+            </p>
+            <cite>PrimeChain Solutions</cite>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE / TRUST BAR -->
-  <section class="brand-strip">
-      <div class="container">
-  
-          <p class="brand-label">
-              Our approach is shaped by real operational environments across industries.
-          </p>
-  
-          <div class="brand-grid">
-  
-              <img src="/assets/logos/supergroup.png"
-                   alt="Supergroup"
-                   loading="lazy">
-  
-              <img src="/assets/logos/fnb.svg"
-                   alt="FNB"
-                   loading="lazy">
-  
-              <img src="/assets/logos/selpal.png"
-                   alt="Selpal"
-                   loading="lazy">
-  
-              <img src="/assets/logos/mrd.svg"
-                   alt="Mr D"
-                   loading="lazy">
-  
-              <img src="/assets/logos/adgouw.png"
-                   alt="Adgouw"
-                   loading="lazy">
-  
-              <img src="/assets/logos/lightup.png"
-                   alt="LightUp"
-                   loading="lazy">
-  
-              <img src="/assets/logos/citypower.svg"
-                   alt="City Power"
-                   loading="lazy">
-  
-              <img src="/assets/logos/nmthela.png"
-                   alt="NM Thela Logistics"
-                   loading="lazy">
-  
+  <!-- THE THINKING — Act 2 (white background, matches homepage "problem" section) -->
+  <section class="the-thinking">
+    <div class="container">
+      <div class="section-label reveal">The Thinking Behind PrimeChain</div>
+      <h2 class="section-title reveal">The same operational challenge appears in different forms.</h2>
+      <div class="thinking-layout">
+        <div class="thinking-left reveal d1">
+          <div class="thinking-body">
+            <p>A transport business monitors fuel, routes and fleet utilisation. An electrical contractor manages work orders, technicians and installations. A growing service business coordinates paperwork, approvals and customer requests.</p>
+            <p>At first glance these businesses appear completely different.</p>
+            <p>Yet beneath the surface, they often face the same challenge: critical operational information is disconnected from the decisions that depend on it.</p>
+            <p>That's why we don't begin with software. We begin by understanding how an operation works, how information moves through it, and where better visibility creates better decisions.</p>
           </div>
-  
+        </div>
+        <div class="thinking-right reveal d2">
+          <div class="thinking-highlight">
+            <p>That is PrimeChain's philosophy. <em>Not your biography.</em></p>
+          </div>
+        </div>
       </div>
+    </div>
   </section>
 
-  <!-- ✅ UPDATED: Contact with proper form handling -->
-  <section class="contact" id="contact">
+  <!-- PHILOSOPHY — Act 3 (off-white, matches homepage "convergence") -->
+  <section class="philosophy">
     <div class="container">
-      <div class="contact-layout">
-        <div class="contact-left reveal">
-          <div class="section-label">Get in touch</div>
-          <h2 class="section-title">Recognise any of<br />these problems?<br />Let's talk.</h2>
-          <p style="margin-top:1rem; font-size:0.93rem; color:var(--muted); line-height:1.8; font-weight:300;">The first consultation is free and carries no obligation. We'll tell you honestly whether we think we can help. If we can't, we'll tell you that too.</p>
-          <div class="contact-info">
-            <a href="mailto:info@primechainsolutions.co.za">
-              <i class="fas fa-envelope"></i> info@primechainsolutions.co.za
-            </a>
-            <a href="https://linkedin.com/company/primechain-solutions">
-              <i class="fab fa-linkedin"></i> PrimeChain Solutions
-            </a>
+      <div class="philosophy-layout">
+        <div class="philosophy-left reveal">
+          <div class="section-label">The expertise behind PrimeChain's approach</div>
+          <h2 class="section-title">What shapes our approach.</h2>
+          <p class="philosophy-intro">PrimeChain's methodology is built on a combination of operational disciplines that are rarely brought together in one place. Each contributes a different perspective to solving operational complexity.</p>
+          <div class="philosophy-callout">
+            <p>We don't start with software. We start with operations.</p>
           </div>
-          <p class="contact-note">We typically respond within one business day. The first conversation is about understanding your operation — nothing will be sold on that call.</p>
         </div>
-        <div class="contact-form reveal d2">
-          <form id="contactForm" action="/api/submit-form" method="POST" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true" />
-                <span class="form-error" id="nameError"></span>
-              </div>
-              <div class="form-group">
-                <label for="company">Company</label>
-                <input type="text" id="company" name="company" placeholder="Company name" />
+        <div class="philosophy-right reveal d2">
+          <div class="methodology-list">
+            <div class="method-item">
+              <span class="method-num">01</span>
+              <div class="method-body">
+                <h4>Understanding Operational Flow</h4>
+                <p>Logistics and supply chain thinking that maps how work actually moves through your business.</p>
               </div>
             </div>
-            <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" placeholder="your@email.com" required aria-required="true" />
-              <span class="form-error" id="emailError"></span>
+            <div class="method-item">
+              <span class="method-num">02</span>
+              <div class="method-body">
+                <h4>Designing Better Processes</h4>
+                <p>Business analysis that uncovers inefficiencies and designs workflows that make sense for your people.</p>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="industry">Industry</label>
-              <select id="industry" name="industry">
-                <option value="">Select your industry</option>
-                <option>Logistics &amp; Transport</option>
-                <option>Commodity Trade</option>
-                <option>Electrical / Field Services</option>
-                <option>Mining / Coal Haulage</option>
-                <option>Other</option>
-              </select>
+            <div class="method-item">
+              <span class="method-num">03</span>
+              <div class="method-body">
+                <h4>Turning Data into Decisions</h4>
+                <p>Business intelligence that transforms raw operational data into clear, actionable insight.</p>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="message">What's the problem? *</label>
-              <textarea id="message" name="message" placeholder="Briefly describe the operational challenge you're dealing with" rows="4" required aria-required="true"></textarea>
-              <span class="form-error" id="messageError"></span>
+            <div class="method-item">
+              <span class="method-num">04</span>
+              <div class="method-body">
+                <h4>Continuous Improvement</h4>
+                <p>Lean Six Sigma discipline applied to every engagement—define, measure, analyse, improve, control.</p>
+              </div>
             </div>
-            <div id="formStatus" class="form-status" style="display:none;"></div>
-            <button type="submit" class="form-submit" id="formSubmitBtn">Send message →</button>
-          </form>
+            <div class="method-item">
+              <span class="method-num">05</span>
+              <div class="method-body">
+                <h4>Evidence-Based Decision Making</h4>
+                <p>Quantitative management that brings rigour and structure to every recommendation.</p>
+              </div>
+            </div>
+            <div class="method-item">
+              <span class="method-num">06</span>
+              <div class="method-body">
+                <h4>Practical Delivery</h4>
+                <p>Real-world experience across transport, field service, and fleet operations—built for the messy reality of operations.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- VALUE CREATION — card grid, matches homepage "services" -->
+  <section class="value-creation">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Where We Create Value</div>
+        <h2 class="section-title">We deliver four core capabilities.</h2>
+      </div>
+      <div class="value-grid reveal">
+        <div class="value-card">
+          <i class="fas fa-eye"></i>
+          <h4>Operational Visibility</h4>
+          <p>Real-time insight into what's happening across your fleet, workforce, and workflows.</p>
+        </div>
+        <div class="value-card">
+          <i class="fas fa-file-alt"></i>
+          <h4>Process Digitisation</h4>
+          <p>Moving critical workflows from paper and spreadsheets into structured, repeatable systems.</p>
+        </div>
+        <div class="value-card">
+          <i class="fas fa-robot"></i>
+          <h4>Workflow Automation</h4>
+          <p>Reducing manual effort and errors by automating repetitive operational tasks.</p>
+        </div>
+        <div class="value-card">
+          <i class="fas fa-brain"></i>
+          <h4>Decision Intelligence</h4>
+          <p>Turning operational data into insights that support faster, more confident decisions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND — identical to homepage -->
+  <section class="cta-band">
+    <div class="container">
+      <div class="reveal">
+        <h2>Ready to see what your operation<br />could look like with visibility?</h2>
+        <p>Book a free, no-obligation consultation. We'll listen to the problem, tell you honestly what's possible, and show you what we've built for operations like yours.</p>
+        <div class="cta-btns centered">
+          <a href="index.html#contact" class="btn-teal">Talk to us</a>
+          <a href="ourthinking.html" class="btn-outline-white">See our work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (same as homepage) -->
   <footer>
     <div class="container">
       <div class="footer-top">
@@ -430,7 +491,7 @@
           <ul>
             <li><a href="index.html">What we do</a></li>
             <li><a href="whoweare.html">Who we are</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -459,8 +520,35 @@
     </div>
   </footer>
 
-  <!-- ✅ OPTIMIZED: External JavaScript (minified in production) -->
-  <script src="js/main.js" defer></script>
-  <script src="js/form-handler.js" defer></script>
+  <!-- JavaScript (same as homepage) -->
+  <script>
+  (function() {
+    const sp       = document.getElementById('sp');
+    const nav      = document.getElementById('nav');
+    const mobBtn   = document.getElementById('mobBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    window.addEventListener('scroll', () => {
+      if (sp) {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        sp.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+      }
+    }, { passive: true });
+
+    mobBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      mobBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    }));
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  })();
+  </script>
 </body>
 </html>
