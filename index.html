@@ -1,1329 +1,806 @@
-
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Komole Industries — Africa's Industrial Operating Systems</title>
-<meta name="description" content="Komole Industries builds the enterprise software platforms that power rail, mining, energy, logistics, retail and infrastructure operations across Africa." />
-<meta property="og:title" content="Komole Industries — Africa's Industrial Operating Systems" />
-<meta property="og:description" content="A portfolio of enterprise software platforms for industrial operations across Africa." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --navy:      #0B1C30;
-    --navy-2:    #10263F;
-    --ink:       #071322;
-    --graphite:  #1E2833;
-    --white:     #FFFFFF;
-    --grey-50:   #F7F8FA;
-    --grey-100:  #EFF1F4;
-    --grey-200:  #E4E7EC;
-    --text:      #17212D;
-    --muted:     #5A6675;
-    --muted-2:   #8A93A0;
-    --line:      #E4E7EC;
-    --line-soft: #EEF0F3;
-    --accent:    #2563EB;
-    --accent-2:  #4F83F0;
-    --accent-soft: rgba(37,99,235,.08);
-    --logo-ink:  #0B1C30;
-    --logo-blue: #2F80ED;
-    --logo-blue2:#4AA3F5;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrimeChain · Operational Intelligence</title>
+  <!-- Font & basic reset -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    --bg:        var(--white);
-    --surface:   var(--white);
-    --text-c:    var(--text);
-    --muted-c:   var(--muted);
-    --line-c:    var(--line);
-    --soft-c:    var(--grey-50);
+    body {
+      background-color: #0a0a0a;
+      color: #f0f0f0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    --maxw: 1280px;
-    --gutter: clamp(20px, 4.5vw, 56px);
-    --r: 12px;
-    --r-lg: 18px;
-    --ease: cubic-bezier(.22,.7,.24,1);
-    --shadow-sm: 0 1px 2px rgba(16,32,55,.05);
-    --shadow: 0 1px 3px rgba(16,32,55,.06), 0 14px 34px -22px rgba(16,32,55,.30);
-    --shadow-lg: 0 2px 6px rgba(16,32,55,.07), 0 34px 60px -30px rgba(16,32,55,.36);
-  }
-  html[data-theme="dark"]{
-    --bg:#060F1B; --surface:#0B1B2E; --text-c:#EAF0F7; --muted-c:#9CA9B8; --line-c:rgba(255,255,255,.10);
-    --soft-c:#081525; --grey-50:#081525; --grey-100:#0C1E33; --grey-200:rgba(255,255,255,.12);
-    --line:rgba(255,255,255,.10); --line-soft:rgba(255,255,255,.07);
-    --accent:#4F83F0; --accent-2:#7BA5F5; --accent-soft:rgba(79,131,240,.14);
-    --logo-ink:#EAF0F7;
-    --shadow-sm:0 1px 2px rgba(0,0,0,.5);
-    --shadow:0 1px 3px rgba(0,0,0,.4),0 18px 40px -24px rgba(0,0,0,.8);
-    --shadow-lg:0 2px 6px rgba(0,0,0,.5),0 40px 70px -30px rgba(0,0,0,.85);
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{margin:0;background:var(--bg);color:var(--text-c);font-family:"Inter",system-ui,-apple-system,sans-serif;font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased;transition:background .35s var(--ease),color .35s var(--ease);}
-  h1,h2,h3,h4,h5{font-family:"Sora",system-ui,sans-serif;color:var(--text-c);line-height:1.1;letter-spacing:-.02em;margin:0;font-weight:700;}
-  p{margin:0;}
-  a{color:inherit;text-decoration:none;}
-  img{max-width:100%;display:block;}
-  ::selection{background:var(--accent);color:#fff;}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);}
-  .narrow{max-width:920px;}
-  .section{padding:clamp(64px,8vw,120px) 0;}
-  .soft{background:var(--soft-c);}
-  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-c);display:inline-flex;align-items:center;gap:11px;}
-  .eyebrow::before{content:"";width:24px;height:1px;background:var(--accent);}
-  .eyebrow.on-dark{color:rgba(255,255,255,.6);}
-  .lead{color:var(--muted-c);font-size:clamp(16px,1.5vw,19px);}
-  .kicker-h2{font-size:clamp(28px,3.8vw,46px);margin:18px 0 16px;letter-spacing:-.025em;}
-  .sec-head{max-width:720px;margin-bottom:clamp(36px,4.5vw,58px);}
-  .center{text-align:center;margin-left:auto;margin-right:auto;}
+    /* containers */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-  .btn{display:inline-flex;align-items:center;gap:9px;font-family:"Inter";font-weight:600;font-size:15px;padding:12px 22px;border-radius:8px;border:1px solid transparent;cursor:pointer;transition:transform .16s var(--ease),background .2s,border-color .2s,color .2s;white-space:nowrap;}
-  .btn:hover{transform:translateY(-1px);}
-  .btn .arw{transition:transform .2s var(--ease);}
-  .btn:hover .arw{transform:translateX(3px);}
-  .btn-primary{background:var(--accent);color:#fff;}
-  .btn-primary:hover{background:#1D4FD0;}
-  .btn-dark{background:var(--navy);color:#fff;}
-  .btn-dark:hover{background:#12283F;}
-  .btn-outline{background:transparent;color:var(--text-c);border-color:var(--line-c);}
-  .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
-  .btn-light{background:rgba(255,255,255,.10);color:#fff;border-color:rgba(255,255,255,.24);}
-  .btn-light:hover{background:rgba(255,255,255,.18);}
-  .btn-lg{padding:15px 28px;font-size:16px;}
-  .textlink{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14.5px;color:var(--accent);cursor:pointer;}
-  .textlink .arw{transition:transform .2s var(--ease);}
-  .textlink:hover .arw{transform:translateX(4px);}
+    /* typography */
+    .label-sm {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #888;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
 
-  header.nav{position:sticky;top:0;z-index:200;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(150%) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s;}
-  header.nav.scrolled{border-bottom-color:var(--line-c);}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px;}
-  .brand{display:flex;align-items:center;gap:11px;font-family:"Sora";font-weight:700;font-size:18px;letter-spacing:-.01em;cursor:pointer;}
-  .brand .mark{width:28px;height:28px;flex:0 0 auto;}
-  .brand b{color:var(--accent);}
-  /* brand logo lockup */
-  .logo{display:flex;align-items:center;gap:11px;cursor:pointer;text-decoration:none;}
-  .logo .mk{flex:0 0 auto;width:32px;height:34px;}
-  .logo.lg .mk{width:38px;height:41px;}
-  .logo .wm{display:flex;flex-direction:column;line-height:1;}
-  .logo .wm .row{font-family:"Sora";font-weight:800;font-size:19px;letter-spacing:-.005em;color:var(--logo-ink);}
-  .logo.lg .wm .row{font-size:21px;}
-  .logo .wm .row b{color:var(--logo-blue);font-weight:800;}
-  .logo .wm .tl{font-family:"IBM Plex Mono";font-size:7.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-c);margin-top:6px;}
-  .logo.on-dark .wm .row{color:#fff;}
-  .logo.on-dark .wm .tl{color:rgba(255,255,255,.5);}
-  .mk .mk-ink{fill:var(--logo-ink);stroke:var(--logo-ink);}
-  .mk .mk-bl{fill:var(--logo-blue);stroke:var(--logo-blue);}
-  .mk .mk-bl2{fill:var(--logo-blue2);stroke:var(--logo-blue2);}
-  .logo.on-dark .mk .mk-ink{fill:#fff;stroke:#fff;}
-  nav.primary{display:flex;align-items:center;gap:4px;}
-  .navitem{position:relative;}
-  .navitem>button,.navitem>a{background:none;border:none;font-family:"Inter";font-size:15px;font-weight:500;color:var(--muted-c);padding:9px 13px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:color .18s,background .18s;}
-  .navitem>button:hover,.navitem>a:hover,.navitem.open>button{color:var(--text-c);background:var(--grey-100);}
-  .navitem .chev{width:9px;height:9px;transition:transform .2s var(--ease);opacity:.6;}
-  .navitem.open .chev{transform:rotate(180deg);}
-  .nav-actions{display:flex;align-items:center;gap:12px;}
-  .theme-toggle{width:38px;height:38px;border-radius:8px;border:1px solid var(--line-c);background:transparent;color:var(--muted-c);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:color .2s,border-color .2s;}
-  .theme-toggle:hover{color:var(--accent);border-color:var(--accent);}
+    h1, h2, h3 {
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
 
-  .mega{position:absolute;top:calc(100% + 10px);left:0;background:var(--surface);border:1px solid var(--line-c);border-radius:14px;box-shadow:var(--shadow-lg);padding:18px;min-width:300px;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s;z-index:210;}
-  .navitem.open .mega{opacity:1;visibility:visible;transform:none;}
-  .mega.wide{min-width:640px;}
-  .mega.xwide{min-width:780px;left:auto;right:0;}
-  .mega-grid{display:grid;gap:2px 22px;}
-  .mega-grid.c2{grid-template-columns:1fr 1fr;}
-  .mega-grid.c3{grid-template-columns:1fr 1fr 1fr;}
-  .mega a.mi{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:9px;transition:background .16s;}
-  .mega a.mi:hover{background:var(--grey-100);}
-  .mega a.mi .mi-ic{width:34px;height:34px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
-  .mega a.mi .mi-t{font-weight:600;font-size:14.5px;color:var(--text-c);}
-  .mega a.mi .mi-d{font-size:12.5px;color:var(--muted-2);line-height:1.4;}
-  .mega-head{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);padding:6px 12px 10px;}
-  .mega-foot{margin-top:12px;border-top:1px solid var(--line-soft);padding:14px 12px 4px;display:flex;justify-content:space-between;align-items:center;}
+    h1 {
+      font-size: clamp(2.8rem, 10vw, 5.6rem);
+      line-height: 1.05;
+      font-weight: 600;
+    }
 
-  .menu-btn{display:none;width:40px;height:40px;border-radius:8px;border:1px solid var(--line-c);background:transparent;color:var(--text-c);cursor:pointer;align-items:center;justify-content:center;}
-  .drawer{position:fixed;inset:0;z-index:300;background:var(--bg);transform:translateX(100%);transition:transform .3s var(--ease);overflow-y:auto;padding:20px var(--gutter);display:none;}
-  .drawer.open{transform:none;}
-  .drawer .d-top{display:flex;justify-content:space-between;align-items:center;height:52px;margin-bottom:20px;}
-  .drawer details{border-bottom:1px solid var(--line-soft);}
-  .drawer summary{list-style:none;cursor:pointer;padding:15px 2px;font-family:"Sora";font-weight:600;font-size:18px;display:flex;justify-content:space-between;align-items:center;}
-  .drawer summary::-webkit-details-marker{display:none;}
-  .drawer .d-links{padding:2px 0 14px;display:grid;gap:2px;}
-  .drawer .d-links a{padding:9px 4px;color:var(--muted-c);font-size:15px;}
-  .drawer .d-links a:hover{color:var(--accent);}
+    h2 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      line-height: 1.1;
+      font-weight: 500;
+    }
 
-  .page-hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;}
-  .page-hero.light{background:var(--soft-c);color:var(--text-c);}
-  .grid-bg{position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(130% 100% at 70% 0%,#000 35%,transparent 82%);mask-image:radial-gradient(130% 100% at 70% 0%,#000 35%,transparent 82%);}
-  .page-hero-inner{position:relative;z-index:2;padding:clamp(52px,7vw,96px) 0;}
-  .page-hero h1{color:#fff;font-size:clamp(34px,5vw,60px);font-weight:800;letter-spacing:-.03em;max-width:16ch;}
-  .page-hero.light h1{color:var(--text-c);}
-  .page-hero .sub{color:rgba(255,255,255,.72);font-size:clamp(17px,1.7vw,20px);max-width:60ch;margin-top:22px;}
-  .page-hero.light .sub{color:var(--muted-c);}
-  .breadcrumb{font-family:"IBM Plex Mono";font-size:12px;letter-spacing:.06em;color:rgba(255,255,255,.5);margin-bottom:20px;}
-  .page-hero.light .breadcrumb{color:var(--muted-2);}
-  .breadcrumb a{cursor:pointer;}
-  .breadcrumb a:hover{color:#fff;}
-  .page-hero.light .breadcrumb a:hover{color:var(--accent);}
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
 
-  .grid{display:grid;gap:18px;}
-  .g2{grid-template-columns:repeat(2,1fr);}
-  .g3{grid-template-columns:repeat(3,1fr);}
-  .g4{grid-template-columns:repeat(4,1fr);}
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,80px);align-items:center;}
-  .split.a-start{align-items:start;}
+    .text-muted {
+      color: #9a9a9a;
+    }
 
-  .card{background:var(--surface);border:1px solid var(--line-c);border-radius:var(--r);padding:26px;transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .22s;position:relative;}
-  .card.hoverable:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--line);}
-  .card .ic{width:42px;height:42px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
-  .card h3{font-size:18px;margin-bottom:9px;}
-  .card p{color:var(--muted-c);font-size:15px;}
-  .card h4{font-size:16px;margin-bottom:7px;}
+    .text-glow {
+      color: #f0f0f0;
+    }
 
-  .stat{padding:4px 0;}
-  .stat .v{font-family:"Sora";font-weight:700;font-size:clamp(34px,4vw,48px);letter-spacing:-.03em;color:var(--text-c);}
-  .stat .v .u{color:var(--accent);}
-  .stat .l{color:var(--muted-c);font-size:14.5px;margin-top:4px;}
-  .stat.on-dark .v{color:#fff;} .stat.on-dark .l{color:rgba(255,255,255,.65);}
-  .stat.on-dark .v .u{color:var(--accent-2);}
+    /* buttons */
+    .btn-primary {
+      background: #f0f0f0;
+      color: #0a0a0a;
+      border: none;
+      padding: 0.9rem 2.4rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-block;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
 
-  .list-check{display:grid;gap:12px;margin:0;padding:0;}
-  .list-check li{list-style:none;display:flex;gap:12px;align-items:flex-start;color:var(--muted-c);font-size:15.5px;}
-  .list-check li::before{content:"";width:18px;height:18px;border-radius:5px;background:var(--accent-soft);flex:0 0 auto;margin-top:3px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5L20 6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:12px;}
-  ul.plain{list-style:none;margin:0;padding:0;}
+    .btn-primary:hover {
+      background: #ffffff;
+      transform: scale(1.02);
+    }
 
-  .chip{font-family:"IBM Plex Mono";font-size:12.5px;color:var(--text-c);background:var(--grey-100);border:1px solid var(--line-c);padding:6px 12px;border-radius:999px;display:inline-block;}
-  .chips{display:flex;flex-wrap:wrap;gap:9px;}
-  .tag-mono{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);}
+    .btn-outline {
+      background: transparent;
+      color: #f0f0f0;
+      border: 1px solid #3a3a3a;
+      padding: 0.9rem 2.4rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-block;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
 
-  .band-dark{background:var(--navy);color:#fff;position:relative;overflow:hidden;}
-  .band-dark h2,.band-dark h3{color:#fff;}
-  .band-dark .lead{color:rgba(255,255,255,.7);}
-  .band-dark .eyebrow{color:rgba(255,255,255,.6);}
+    .btn-outline:hover {
+      border-color: #f0f0f0;
+      background: rgba(255,255,255,0.03);
+    }
 
-  .mock{border:1px solid var(--line-c);border-radius:var(--r-lg);overflow:hidden;background:var(--surface);box-shadow:var(--shadow-lg);}
-  .mock .bar{height:38px;background:var(--grey-50);border-bottom:1px solid var(--line-c);display:flex;align-items:center;gap:7px;padding:0 14px;}
-  .mock .bar i{width:10px;height:10px;border-radius:50%;background:var(--line);display:inline-block;}
-  .mock .bar .u{margin-left:12px;font-family:"IBM Plex Mono";font-size:11px;color:var(--muted-2);}
-  .mock .body{padding:18px;display:grid;gap:14px;grid-template-columns:1fr 1fr 1fr;}
-  .mock .kpi{background:var(--grey-50);border:1px solid var(--line-soft);border-radius:10px;padding:14px;}
-  .mock .kpi .n{font-family:"Sora";font-weight:700;font-size:22px;}
-  .mock .kpi .t{font-size:11.5px;color:var(--muted-2);font-family:"IBM Plex Mono";letter-spacing:.06em;text-transform:uppercase;}
-  .mock .chart{grid-column:1 / -1;height:130px;border:1px solid var(--line-soft);border-radius:10px;background:var(--grey-50);position:relative;overflow:hidden;padding:10px;}
+    /* navigation */
+    .navbar {
+      padding: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e1e1e;
+    }
 
-  .faq details{border-bottom:1px solid var(--line-c);}
-  .faq summary{list-style:none;cursor:pointer;padding:20px 2px;font-family:"Sora";font-weight:600;font-size:18px;display:flex;justify-content:space-between;gap:16px;align-items:center;}
-  .faq summary::-webkit-details-marker{display:none;}
-  .faq summary .pm{color:var(--accent);font-size:22px;transition:transform .2s;}
-  .faq details[open] summary .pm{transform:rotate(45deg);}
-  .faq .ans{padding:0 2px 22px;color:var(--muted-c);font-size:15.5px;max-width:75ch;}
+    .logo {
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
 
-  .brandrow{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line-c);border:1px solid var(--line-c);border-radius:var(--r);overflow:hidden;}
-  .brandrow .b{background:var(--surface);padding:22px;display:flex;align-items:center;justify-content:center;font-family:"Sora";font-weight:700;font-size:17px;color:var(--muted-c);transition:color .2s,background .2s;}
-  .brandrow .b:hover{color:var(--text-c);background:var(--grey-50);}
-  .brandrow .b b{color:var(--accent);}
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      font-size: 0.9rem;
+      font-weight: 450;
+    }
 
-  .company-card{background:var(--surface);border:1px solid var(--line-c);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .22s var(--ease),box-shadow .22s,border-color .22s;cursor:pointer;}
-  .company-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--line);}
-  .company-card .cc-top{display:flex;align-items:center;justify-content:space-between;}
-  .company-card .cc-ic{width:40px;height:40px;border-radius:9px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;}
-  .company-card .cc-name{font-family:"Sora";font-weight:700;font-size:22px;}
-  .company-card .cc-name b{color:var(--accent);}
-  .company-card .cc-cat{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);border:1px solid var(--line-c);padding:4px 9px;border-radius:999px;}
-  .company-card p{color:var(--muted-c);font-size:14px;flex:1;}
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
 
-  .art{background:var(--surface);border:1px solid var(--line-c);border-radius:var(--r);overflow:hidden;transition:transform .22s var(--ease),box-shadow .22s;cursor:pointer;display:flex;flex-direction:column;}
-  .art:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
-  .art .thumb{height:158px;background:var(--navy);position:relative;overflow:hidden;}
-  .art .thumb .g{position:absolute;inset:0;opacity:.4;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px;}
-  .art .thumb .gl{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.5),transparent 70%);top:-50px;right:-40px;}
-  .art .ab{padding:20px 22px 24px;}
-  .art .cat{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
-  .art h4{font-size:18px;margin:11px 0 8px;line-height:1.28;}
-  .art p{color:var(--muted-c);font-size:14px;}
+    .nav-links a:hover {
+      color: #fff;
+    }
 
-  .cs{background:var(--surface);border:1px solid var(--line-c);border-radius:var(--r-lg);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
-  .cs .cs-media{background:var(--navy);position:relative;min-height:280px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-  .cs .cs-media .g{position:absolute;inset:0;opacity:.4;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:28px 28px;}
-  .cs .cs-body{padding:clamp(28px,4vw,44px);}
-  .cs .cs-metrics{display:flex;gap:32px;flex-wrap:wrap;margin-top:20px;}
+    .nav-cta {
+      background: transparent;
+      border: 1px solid #3a3a3a;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #f0f0f0;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
 
-  .steps{position:relative;}
-  .steps::before{content:"";position:absolute;left:19px;top:14px;bottom:14px;width:2px;background:var(--line-c);}
-  .step{display:grid;grid-template-columns:40px 1fr;gap:22px;padding:15px 0;position:relative;}
-  .step .knot{width:40px;height:40px;border-radius:50%;background:var(--surface);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:"IBM Plex Mono";font-size:13px;color:var(--accent);z-index:1;transition:.2s;}
-  .step:hover .knot{border-color:var(--accent);background:var(--accent);color:#fff;}
-  .step h4{font-size:18px;margin-bottom:4px;}
-  .step p{color:var(--muted-c);font-size:15px;max-width:62ch;}
+    .nav-cta:hover {
+      border-color: #f0f0f0;
+    }
 
-  .cta-band{background:var(--navy);color:#fff;border-radius:var(--r-lg);padding:clamp(38px,5vw,64px);position:relative;overflow:hidden;text-align:center;}
-  .cta-band h2{color:#fff;font-size:clamp(26px,3.4vw,40px);}
-  .cta-band p{color:rgba(255,255,255,.7);max-width:56ch;margin:16px auto 28px;}
-  .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+    /* hero */
+    .hero {
+      padding: 5rem 0 6rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      border-bottom: 1px solid #1a1a1a;
+    }
 
-  .field{margin-bottom:16px;}
-  .field label{display:block;font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-c);margin-bottom:7px;}
-  .field input,.field textarea,.field select{width:100%;background:var(--surface);border:1px solid var(--line-c);border-radius:8px;padding:12px 14px;color:var(--text-c);font-family:"Inter";font-size:15px;transition:border-color .2s,background .2s;}
-  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent);}
-  .field textarea{resize:vertical;min-height:110px;}
+    .hero-left .label-sm {
+      margin-bottom: 1.2rem;
+    }
 
-  footer.ft{background:var(--ink);color:rgba(255,255,255,.62);}
-  .ft-cta{border-bottom:1px solid rgba(255,255,255,.08);padding:56px 0;}
-  .ft-top{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:36px;padding:60px 0 44px;}
-  .ft h5{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:16px;}
-  .ft ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
-  .ft a{font-size:14px;color:rgba(255,255,255,.62);transition:color .18s;cursor:pointer;}
-  .ft a:hover{color:#fff;}
-  .ft .brand{color:#fff;margin-bottom:14px;}
-  .ft .about{font-size:14px;line-height:1.7;max-width:300px;margin-bottom:18px;}
-  .ft .news{display:flex;gap:8px;max-width:320px;}
-  .ft .news input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 12px;color:#fff;font-size:14px;}
-  .ft .news input::placeholder{color:rgba(255,255,255,.4);}
-  .ft-bottom{border-top:1px solid rgba(255,255,255,.08);padding:22px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.42);}
-  .ft-bottom .socials{display:flex;gap:14px;}
-  .ft-bottom .socials a:hover{color:#fff;}
+    .hero-left h1 {
+      margin-bottom: 1.8rem;
+    }
 
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
-  .reveal.in{opacity:1;transform:none;}
-  .d1{transition-delay:.05s;}.d2{transition-delay:.1s;}.d3{transition-delay:.15s;}.d4{transition-delay:.2s;}
+    .hero-left p {
+      font-size: 1.1rem;
+      color: #b0b0b0;
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+    }
 
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
 
-  @media (max-width:1080px){
-    nav.primary{display:none;}
-    .menu-btn{display:inline-flex;}
-    .drawer{display:block;}
-  }
-  @media (max-width:900px){
-    .split,.cs{grid-template-columns:1fr;}
-    .g4{grid-template-columns:repeat(2,1fr);}
-    .g3{grid-template-columns:repeat(2,1fr);}
-    .brandrow{grid-template-columns:repeat(2,1fr);}
-    .ft-top{grid-template-columns:1fr 1fr;}
-    .mock .body{grid-template-columns:1fr;}
-  }
-  @media (max-width:620px){
-    body{font-size:16px;}
-    .g2,.g3,.g4{grid-template-columns:1fr;}
-    .brandrow{grid-template-columns:1fr;}
-    .ft-top{grid-template-columns:1fr;}
-    .cs .cs-metrics{gap:20px;}
-    .nav-actions .btn{display:none;}
-  }
-  @media (prefers-reduced-motion:reduce){
-    *{animation:none!important;scroll-behavior:auto;}
-    .reveal{opacity:1;transform:none;transition:none;}
-  }
-</style>
+    /* right side - network canvas */
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: #0d0d0d;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid #222;
+    }
+
+    #networkCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .network-caption {
+      text-align: center;
+      margin-top: 1.2rem;
+      font-size: 1rem;
+      color: #aaa;
+      letter-spacing: 0.3px;
+      font-weight: 350;
+      border-top: 1px solid #1e1e1e;
+      padding-top: 1rem;
+    }
+
+    .network-caption em {
+      font-style: italic;
+      color: #ddd;
+    }
+
+    /* sections */
+    section {
+      padding: 6rem 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .section-label {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-headline {
+      margin-bottom: 2rem;
+    }
+
+    .section-sub {
+      color: #aaa;
+      font-size: 1.15rem;
+      max-width: 600px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: #111;
+      padding: 2.2rem 2rem;
+      border-radius: 24px;
+      border: 1px solid #242424;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: #444;
+    }
+
+    .card h3 {
+      margin-bottom: 0.8rem;
+    }
+
+    .card p {
+      color: #b5b5b5;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .card-number {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #777;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .manifesto-block {
+      background: #f5f5f5;
+      color: #111;
+      padding: 4rem 3rem;
+      border-radius: 32px;
+      margin: 2rem 0 1rem;
+    }
+
+    .manifesto-block h2 {
+      color: #111;
+      margin-bottom: 1.5rem;
+    }
+
+    .manifesto-block p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      line-height: 1.7;
+      color: #222;
+    }
+
+    .manifesto-block .btn-outline-dark {
+      background: transparent;
+      border: 1px solid #222;
+      color: #111;
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1.8rem;
+      transition: all 0.2s;
+    }
+
+    .manifesto-block .btn-outline-dark:hover {
+      background: #111;
+      color: #f5f5f5;
+    }
+
+    .flow-visual {
+      background: #0f0f0f;
+      border-radius: 32px;
+      padding: 3rem 2rem;
+      border: 1px solid #262626;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .flow-column {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .flow-column ul {
+      list-style: none;
+      font-size: 0.9rem;
+      color: #aaa;
+      line-height: 2.2;
+    }
+
+    .flow-column strong {
+      color: #eee;
+      font-weight: 500;
+    }
+
+    .flow-arrow {
+      font-size: 2rem;
+      color: #555;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 2.5rem;
+    }
+
+    .case-card {
+      background: #111;
+      border-radius: 20px;
+      padding: 2rem 1.8rem;
+      border: 1px solid #222;
+    }
+
+    .case-card .case-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #888;
+    }
+
+    .case-card h3 {
+      margin: 0.8rem 0 0.2rem;
+      font-size: 1.3rem;
+    }
+
+    .case-card p {
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+
+    .how-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      margin: 2.5rem 0;
+    }
+
+    .how-item {
+      text-align: center;
+      flex: 1;
+      background: #111;
+      padding: 2rem 0;
+      border-radius: 60px;
+      border: 1px solid #242424;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    .who-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.8rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .who-tags span {
+      color: #ccc;
+      font-size: 1rem;
+      font-weight: 350;
+    }
+
+    .quote-block {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .quote-block blockquote {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+      margin: 0 auto;
+      color: #eee;
+    }
+
+    .quote-block .attribution {
+      margin-top: 1.5rem;
+      color: #777;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+
+    .final-cta {
+      text-align: center;
+      padding: 5rem 0;
+    }
+
+    .final-cta h2 {
+      margin-bottom: 1rem;
+    }
+
+    .final-cta .sub {
+      color: #999;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer {
+      padding: 3rem 0 2rem;
+      border-top: 1px solid #1a1a1a;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-brand p {
+      color: #888;
+      max-width: 280px;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      color: #555;
+      font-size: 0.8rem;
+      border-top: 1px solid #1a1a1a;
+      padding-top: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .grid-3, .case-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+      .how-grid {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .flow-visual {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid-3, .case-grid {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+      .navbar {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .nav-cta {
+        margin-left: auto;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a class="logo" data-nav="/" aria-label="Komole 360 home">
-      <svg class="mk" viewBox="0 0 62 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g stroke-width="5" stroke-linecap="round"><line class="mk-ink" x1="15" y1="15" x2="14" y2="34"/><line class="mk-ink" x1="14" y1="34" x2="16" y2="52"/><line class="mk-bl" x1="14" y1="34" x2="33" y2="25"/><line class="mk-bl" x1="33" y1="25" x2="48" y2="14"/><line class="mk-ink" x1="14" y1="34" x2="31" y2="44"/><line class="mk-ink" x1="31" y1="44" x2="44" y2="52"/><line class="mk-ink" x1="44" y1="52" x2="55" y2="58" stroke-width="4"/></g><circle class="mk-ink" cx="15" cy="14" r="5.5"/><circle class="mk-bl" cx="13.5" cy="34" r="6.5"/><circle class="mk-ink" cx="16" cy="53" r="5.5"/><circle class="mk-bl2" cx="33" cy="25" r="4.5"/><circle class="mk-bl2" cx="48" cy="13" r="5.5"/><circle class="mk-bl" cx="31" cy="44" r="4.5"/><circle class="mk-ink" cx="44" cy="52" r="5.5"/><circle class="mk-ink" cx="55" cy="58" r="3.5"/></svg>
-      <span class="wm"><span class="row">KOMOLE<b>360</b></span></span>
-    </a>
-    <nav class="primary" id="primaryNav" aria-label="Primary"></nav>
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      </button>
-      <a class="btn btn-primary" data-nav="/contact">Request a Demo <span class="arw">→</span></a>
-      <button class="menu-btn" id="menuBtn" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+<!-- navigation -->
+<div class="container">
+  <nav class="navbar">
+    <div class="logo">PrimeChain</div>
+    <div class="nav-links">
+      <a href="#">Solutions</a>
+      <a href="#">Case Studies</a>
+      <a href="#">Insights</a>
+      <a href="#">Manifesto</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
     </div>
-  </div>
-</header>
-
-<div class="drawer" id="drawer">
-  <div class="d-top">
-    <a class="logo" data-nav="/" aria-label="Komole 360 home">
-      <svg class="mk" viewBox="0 0 62 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g stroke-width="5" stroke-linecap="round"><line class="mk-ink" x1="15" y1="15" x2="14" y2="34"/><line class="mk-ink" x1="14" y1="34" x2="16" y2="52"/><line class="mk-bl" x1="14" y1="34" x2="33" y2="25"/><line class="mk-bl" x1="33" y1="25" x2="48" y2="14"/><line class="mk-ink" x1="14" y1="34" x2="31" y2="44"/><line class="mk-ink" x1="31" y1="44" x2="44" y2="52"/><line class="mk-ink" x1="44" y1="52" x2="55" y2="58" stroke-width="4"/></g><circle class="mk-ink" cx="15" cy="14" r="5.5"/><circle class="mk-bl" cx="13.5" cy="34" r="6.5"/><circle class="mk-ink" cx="16" cy="53" r="5.5"/><circle class="mk-bl2" cx="33" cy="25" r="4.5"/><circle class="mk-bl2" cx="48" cy="13" r="5.5"/><circle class="mk-bl" cx="31" cy="44" r="4.5"/><circle class="mk-ink" cx="44" cy="52" r="5.5"/><circle class="mk-ink" cx="55" cy="58" r="3.5"/></svg>
-      <span class="wm"><span class="row">KOMOLE<b>360</b></span></span>
-    </a>
-    <button class="menu-btn" id="drawerClose" aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-  </div>
-  <div id="drawerBody"></div>
+    <button class="nav-cta">Book a Visibility Review</button>
+  </nav>
 </div>
 
-<main id="app"></main>
+<!-- hero -->
+<div class="container">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="label-sm">OPERATIONAL INTELLIGENCE</div>
+      <h1>Your business is already generating the answers.<br>You're just not seeing them.</h1>
+      <p>Every delivery. Every truck. Every technician. Every invoice. Every operational decision leaves behind information. Most businesses never connect those signals into a complete picture. PrimeChain helps growing businesses transform operational data into operational intelligence—so leaders can stop guessing and start seeing.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary">Book an Operational Visibility Review</a>
+        <a href="#" class="btn-outline">See How It Works</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <canvas id="networkCanvas"></canvas>
+    </div>
+  </div>
+  <div class="network-caption"><em>Intelligence isn't created. It's connected.</em></div>
+</div>
 
-<footer class="ft">
-  <div class="ft-cta wrap" style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;">
-    <div>
-      <div style="font-family:'Sora';font-weight:700;font-size:clamp(22px,3vw,30px);color:#fff;letter-spacing:-.02em;">Ready to modernise your operation?</div>
-      <div style="color:rgba(255,255,255,.6);margin-top:8px;">Talk to our team about the right platform for your industry.</div>
+<!-- SECTION 2: hidden cost -->
+<section>
+  <div class="container">
+    <div class="label-sm section-label">THE HIDDEN COST OF OPERATING BLIND</div>
+    <h2 class="section-headline">The biggest operational problems rarely announce themselves.<br>They quietly grow in the background.</h2>
+    <div class="grid-3">
+      <div class="card"><h3>Manual Work</h3><p>Hours disappear into repetitive administration. Not because your team is inefficient. Because your systems never evolved.</p></div>
+      <div class="card"><h3>Invisible Leaks</h3><p>Fuel. Time. Inventory. Delays. Rework. Margins. Most businesses only discover losses after they've accumulated.</p></div>
+      <div class="card"><h3>Delayed Decisions</h3><p>By the time reports reach leadership… the opportunity has already passed.</p></div>
     </div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <a class="btn btn-primary btn-lg" data-nav="/contact">Request a Demo <span class="arw">→</span></a>
-      <a class="btn btn-light btn-lg" data-nav="/companies">Explore Platforms</a>
+    <p style="color:#aaa; margin-top:2.5rem; font-size:1rem; border-top:1px solid #1a1a1a; padding-top:2rem;">Operational intelligence isn't about collecting more data. It's about seeing what already exists.</p>
+  </div>
+</section>
+
+<!-- SECTION 3: manifesto -->
+<section style="background:#f5f5f5; color:#111; border-bottom:1px solid #ddd;">
+  <div class="container">
+    <div class="manifesto-block">
+      <div class="label-sm" style="color:#555;">THE PRIMECHAIN MANIFESTO</div>
+      <h2 style="font-weight:500;">We believe every business deserves operational intelligence.</h2>
+      <p style="font-size:1.2rem; max-width:700px;">“Businesses don't have a data problem. They have a visibility problem. Every organisation already generates the information it needs to improve. The challenge isn't collecting more. The challenge is connecting what already exists. That's why PrimeChain exists.”</p>
+      <a href="#" class="btn-outline-dark">Read the Manifesto →</a>
     </div>
   </div>
-  <div class="wrap ft-top">
-    <div>
-      <a class="logo lg on-dark" data-nav="/" aria-label="Komole 360 home" style="margin-bottom:2px;">
-        <svg class="mk" viewBox="0 0 62 66" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g stroke-width="5" stroke-linecap="round"><line class="mk-ink" x1="15" y1="15" x2="14" y2="34"/><line class="mk-ink" x1="14" y1="34" x2="16" y2="52"/><line class="mk-bl" x1="14" y1="34" x2="33" y2="25"/><line class="mk-bl" x1="33" y1="25" x2="48" y2="14"/><line class="mk-ink" x1="14" y1="34" x2="31" y2="44"/><line class="mk-ink" x1="31" y1="44" x2="44" y2="52"/><line class="mk-ink" x1="44" y1="52" x2="55" y2="58" stroke-width="4"/></g><circle class="mk-ink" cx="15" cy="14" r="5.5"/><circle class="mk-bl" cx="13.5" cy="34" r="6.5"/><circle class="mk-ink" cx="16" cy="53" r="5.5"/><circle class="mk-bl2" cx="33" cy="25" r="4.5"/><circle class="mk-bl2" cx="48" cy="13" r="5.5"/><circle class="mk-bl" cx="31" cy="44" r="4.5"/><circle class="mk-ink" cx="44" cy="52" r="5.5"/><circle class="mk-ink" cx="55" cy="58" r="3.5"/></svg>
-        <span class="wm"><span class="row">KOMOLE<b>360</b></span><span class="tl">Building Africa's Industrial Intelligence</span></span>
-      </a>
-      <p class="about">Komole Industries builds the enterprise software platforms that power African industry — from rail and mining to energy, logistics and retail.</p>
-      <h5>Newsletter</h5>
-      <div class="news"><input type="email" placeholder="Work email" aria-label="Email" /><button class="btn btn-primary" id="nlBtn">Subscribe</button></div>
-    </div>
-    <div><h5>Products</h5><ul id="ftProducts"></ul></div>
-    <div><h5>Company</h5><ul>
-      <li><a data-nav="/about">About</a></li>
-      <li><a data-nav="/companies">Our Companies</a></li><li><a data-nav="/partners">Partners</a></li>
-      <li><a data-nav="/customers">Customers</a></li><li><a data-nav="/careers">Careers</a></li>
-    </ul></div>
-    <div><h5>Resources</h5><ul>
-      <li><a data-nav="/insights">Insights</a></li><li><a data-nav="/case-studies">Case Studies</a></li>
-      <li><a data-nav="/technology">Technology</a></li><li><a data-nav="/ai360">AI360</a></li>
-      <li><a data-nav="/support">Support</a></li>
-    </ul></div>
-    <div><h5>Ecosystem</h5><ul>
-      <li><a href="https://www.out360.co.za" target="_blank" rel="noopener">Out360 ↗</a></li>
-      <li><a data-nav="/industries">Industries</a></li><li><a data-nav="/customers">Customers</a></li>
-      <li><a data-nav="/contact">Contact</a></li>
-    </ul></div>
-  </div>
-  <div class="wrap ft-bottom">
-    <span>© 2026 Komole Industries (Pty) Ltd. All rights reserved. · 41 Sloane St, Bryanston, Sandton, Johannesburg, 2191</span>
-    <div class="socials">
-      <a href="#" aria-label="LinkedIn">LinkedIn</a><a href="#" aria-label="X">X</a><a data-nav="/support">Support</a><a href="#">Privacy</a><a href="#">Terms</a>
+</section>
+
+<!-- SECTION 4: what we build -->
+<section>
+  <div class="container">
+    <div class="label-sm section-label">WHAT WE BUILD</div>
+    <div class="grid-3">
+      <div class="card"><span class="card-number">01</span><h3>Operational Visibility</h3><p>We uncover the operational signals hidden across your business and bring them together into one trusted source of truth.</p></div>
+      <div class="card"><span class="card-number">02</span><h3>Operational Systems</h3><p>We replace manual coordination with systems designed around the way your business actually works.</p></div>
+      <div class="card"><span class="card-number">03</span><h3>Decision Intelligence</h3><p>We transform operational activity into information leaders can use to improve performance every day.</p></div>
     </div>
   </div>
+</section>
+
+<!-- SECTION 5: Every business generates -->
+<section>
+  <div class="container">
+    <h2 style="margin-bottom:0.5rem;">Every Business Generates Operational Intelligence.</h2>
+    <p style="color:#aaa; font-size:1.2rem; margin-bottom:1.5rem;">Most Businesses Never Capture It.</p>
+    <div class="flow-visual">
+      <div class="flow-column"><ul><li>Excel</li><li>WhatsApp</li><li>Paper</li><li>Emails</li><li>Phone Calls</li><li>Fuel Slips</li><li>PODs</li><li>GPS</li><li>Accounting</li></ul></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-column" style="text-align:center;"><strong style="font-size:1.4rem;">PrimeChain</strong></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-column"><ul><li>Live Dashboard</li><li>Automated Reporting</li><li>Alerts</li><li>KPIs</li><li>Forecasts</li><li>Decision Support</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: case studies -->
+<section>
+  <div class="container">
+    <div class="label-sm section-label">REAL OPERATIONS. REAL OUTCOMES.</div>
+    <div class="case-grid">
+      <div class="case-card"><span class="case-tag">Commodity Trader</span><h3>The R200,000 Fuel Leak Nobody Could See</h3><p>Fleet &amp; logistics</p></div>
+      <div class="case-card"><span class="case-tag">Fleet Operator</span><h3>The R600,000 Margin Leak Hidden Between Deliveries</h3><p>Transport &amp; distribution</p></div>
+      <div class="case-card"><span class="case-tag">Electrical Contractor</span><h3>From Paper Job Cards to Live Operations</h3><p>Field service</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: how we work -->
+<section>
+  <div class="container">
+    <div class="label-sm section-label">HOW WE WORK</div>
+    <div class="how-grid">
+      <div class="how-item">Understand</div>
+      <div class="how-item">↓ Reveal</div>
+      <div class="how-item">↓ Design</div>
+      <div class="how-item">↓ Improve</div>
+    </div>
+    <p style="color:#999; margin-top:1rem;">Technology comes last. Understanding comes first.</p>
+  </div>
+</section>
+
+<!-- SECTION 8: who we build for -->
+<section>
+  <div class="container">
+    <div class="label-sm section-label">WHO WE BUILD FOR</div>
+    <h2 style="margin-bottom:0.8rem;">Growing businesses. Complex operations.</h2>
+    <div class="who-tags">
+      <span>Multiple locations</span> <span>Mobile workforces</span> <span>Field teams</span>
+      <span>Fleet operators</span> <span>Contractors</span> <span>Manufacturers</span>
+      <span>Mining</span> <span>Utilities</span> <span>Construction</span>
+    </div>
+    <p style="color:#aaa; font-size:1.1rem; border-top:1px solid #1a1a1a; padding-top:1.5rem;">If operational complexity is slowing your business… we're built for you.</p>
+  </div>
+</section>
+
+<!-- SECTION 9: insights -->
+<section>
+  <div class="container">
+    <div class="label-sm section-label">INSIGHTS</div>
+    <h2 style="font-weight:400;">Thinking in Public.</h2>
+    <p style="color:#aaa; margin-bottom:2rem;">Stories from the work. Lessons from the field. Frameworks that help businesses operate with greater clarity.</p>
+    <div class="grid-3">
+      <div class="card"><h3>Manual Work</h3><p>Why spreadsheets fail when operations scale.</p></div>
+      <div class="card"><h3>Paperwork</h3><p>The hidden friction of paper-based workflows.</p></div>
+      <div class="card"><h3>Supply Chains</h3><p>Seeing the invisible links in your supply chain.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: quote -->
+<section style="border-bottom:1px solid #1a1a1a;">
+  <div class="container quote-block">
+    <blockquote>“Businesses don't become exceptional through more technology. They become exceptional through better understanding.”</blockquote>
+    <div class="attribution">PrimeChain Manifesto</div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section style="border-bottom: none;">
+  <div class="container final-cta">
+    <h2>Ready to see your business differently?</h2>
+    <p class="sub">The answers are already inside your operation. We'll help you connect them.</p>
+    <a href="#" class="btn-primary" style="background:#f0f0f0; color:#0a0a0a;">Book an Operational Visibility Review</a>
+    <p style="color:#666; margin-top:1.2rem; font-size:0.85rem;">No obligation. Just a conversation.</p>
+  </div>
+</section>
+
+<!-- footer -->
+<footer class="container footer">
+  <div class="footer-brand">
+    <div style="font-weight:600; font-size:1.2rem;">PrimeChain</div>
+    <p>Operational Intelligence. Because every business deserves to understand itself.</p>
+  </div>
+  <div class="footer-links">
+    <a href="#">Solutions</a><a href="#">Case Studies</a><a href="#">Insights</a>
+    <a href="#">Manifesto</a><a href="#">About</a><a href="#">Contact</a>
+    <a href="#">LinkedIn</a>
+  </div>
+  <div class="footer-copy">© PrimeChain</div>
 </footer>
 
+<!-- canvas animation -->
 <script>
-/* ============================================================
-   KOMOLE 360 — enterprise multi-page site (client router)
-   ============================================================ */
-const svg=(p,s=20)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
-const IC={
-  rail:'<path d="M8 3h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M6 8h12M9 21l3-3 3 3M9 16v0M15 16v0"/>',
-  mine:'<path d="M14 3 3 14l7 7L21 10ZM10 6l8 8"/>',
-  fleet:'<path d="M3 6h11v10H3zM14 9h4l3 4v3h-7"/><circle cx="6.5" cy="18.5" r="1.5"/><circle cx="16.5" cy="18.5" r="1.5"/>',
-  retail:'<path d="M3 9 4 4h16l1 5M4 9v11h16V9M9 20v-6h6v6"/>',
-  energy:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
-  fuel:'<path d="M4 3h8v18H4zM12 8h4l2 2v7a2 2 0 0 1-4 0v-4h-2M6 7h4"/>',
-  cargo:'<path d="M3 8 12 3l9 5-9 5zM3 8v8l9 5 9-5V8"/>',
-  property:'<path d="M4 21V9l8-6 8 6v12M9 21v-6h6v6"/>',
-  warehouse:'<path d="M3 21V8l9-5 9 5v13M7 21v-8h10v8M7 13h10"/>',
-  construction:'<path d="M2 20h20M4 20V9l6-4 6 4M6 20v-6h4v6"/>',
-  port:'<path d="M12 2v20M8 6l4-3 4 3M4 12a8 8 0 0 0 16 0M4 12h16"/>',
-  airport:'<path d="M21 15 3 9l3-2 6 1 4-4 2 1-2 4 5 2z"/>',
-  mfg:'<path d="M3 21V9l6 4V9l6 4V4l6 3v14z"/>',
-  logistics:'<path d="M3 7h13v9H3zM16 10h3l2 3v3h-5"/><circle cx="7" cy="18" r="1.5"/><circle cx="18" cy="18" r="1.5"/>',
-  terminal:'<path d="M4 4h16v12H4zM8 20h8M12 16v4"/><path d="M7 8l3 2-3 2M12 12h4"/>',
-  ai:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',
-  out:'<path d="M15 3h6v6M21 3l-9 9M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/>',
-  cloud:'<path d="M17 18a4 4 0 0 0 0-8 5 5 0 0 0-9.6-1.5A3.5 3.5 0 0 0 6 18z"/>',
-  shield:'<path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/>',
-  chart:'<path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-6"/>',
-  gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/>',
-  node:'<circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7 7 10.5 16M17 7 13.5 16M7.5 6h9"/>',
-  layers:'<path d="m12 2 9 5-9 5-9-5zM3 12l9 5 9-5M3 17l9 5 9-5"/>',
-  eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
-  bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
-  doc:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/>',
-  users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/>',
-  globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/>',
-  pin:'<path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/>',
-  briefcase:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>',
-  headset:'<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><path d="M4 14a2 2 0 0 0 2 2h1v-4H6a2 2 0 0 0-2 2ZM20 14a2 2 0 0 1-2 2h-1v-4h1a2 2 0 0 1 2 2Z"/><path d="M18 16v1a3 3 0 0 1-3 3h-3"/>',
-  play:'<circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/>',
-};
+  (function() {
+    const canvas = document.getElementById('networkCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let dots = [];
+    const NUM_DOTS = 100;
+    const CONNECTION_DIST = 120;
 
-function P(slug,name,num,cat,tagline,overview,challenges,modules,ai,benefits,stats,integrations,industries,faq){
-  return {slug,name,num,cat,tagline,overview,challenges,modules,ai,benefits,stats,integrations,industries,faq,icon:slug};
-}
-const M6=(a,b,c,d,e,f)=>[a,b,c,d,e,f];
-const PRODUCTS=[
- P('rail360','Rail','360','rail','The operating system for rail networks.',
-  'Rail360 unifies scheduling, rolling-stock management, track assets and operations control into one platform — giving train operating companies real-time visibility from the control room to the last kilometre of track.',
-  ['Fragmented systems for scheduling, assets and maintenance','Limited real-time visibility of network position and delays','Ageing infrastructure with reactive, not predictive, maintenance'],
-  M6('Network Scheduling','Rolling Stock Register','Track & Signalling Assets','Crew & Roster','Incident & Safety','Operations Control Centre'),
-  ['Delay prediction across the network','Predictive maintenance for rolling stock','Capacity & pathing optimisation','Automated regulatory reporting'],
-  ['One live view of the entire network','Fewer delays through predictive scheduling','Longer asset life, lower maintenance cost','Audit-ready safety and compliance'],
-  [['32%','Reduction in unplanned downtime'],['18%','Improvement in on-time performance'],['1','Unified control platform']],
-  ['SCADA & signalling','ERP & finance','IoT track sensors','GIS network maps'],
-  ['Rail','Logistics','Government'],
-  [['Does Rail360 work with existing signalling systems?','Yes. Rail360 integrates with SCADA and signalling infrastructure through standard industrial protocols and secure gateways.'],['Can it manage both freight and passenger operations?','Rail360 supports mixed traffic — freight, passenger and shunting — with configurable pathing and priority rules.'],['How is it deployed?','Cloud-native by default, with hybrid and on-premise options for sensitive control-room environments.']]),
- P('mine360','Mine','360','mine','Real-time intelligence for mining operations.',
-  'Mine360 connects production, mobile fleet, safety and maintenance into a single operational picture — turning cycle data into decisions that lift productivity and protect people.',
-  ['Manual production reporting and end-of-shift blind spots','Under-utilised haul fleets and unplanned equipment failure','Safety and compliance managed on paper'],
-  M6('Production & Cycle Tracking','Fleet Management System','Safety & Permits','Maintenance & Reliability','Grade Control','Shift & Production Reporting'),
-  ['Predictive maintenance for haul fleet','Cycle-time optimisation','Hazard & risk detection','Production forecasting'],
-  ['Live production against plan','Higher fleet utilisation','Fewer incidents, better compliance','Faster, data-driven shift decisions'],
-  [['24%','Increase in fleet utilisation'],['R40m+','Annual downtime avoided'],['100%','Digital safety records']],
-  ['Fleet telematics','Weighbridge','ERP','IoT sensors'],
-  ['Mining','Construction','Energy'],
-  [['Which mining methods does Mine360 support?','Both open-cut and underground operations, with configurable production models for each.'],['Does it track mobile equipment health?','Yes — telematics and sensor data feed predictive maintenance and utilisation dashboards.'],['Can it run in low-connectivity sites?','Mine360 supports edge/offline data capture with sync when connectivity is restored.']]),
- P('fleet360','Fleet','360','fleet','Fleet management, telematics and routing at scale.',
-  'Fleet360 gives you live location, utilisation, health and cost for every vehicle and driver — with route optimisation that cuts kilometres, fuel and time.',
-  ['No single view of a mixed, multi-site fleet','Rising fuel and maintenance costs','Inefficient manual routing and scheduling'],
-  M6('Live Telematics','Route Optimisation','Driver Management','Maintenance & Servicing','Fuel & Cost Control','Compliance & Licensing'),
-  ['Optimal route planning','Predictive vehicle maintenance','Driver-behaviour scoring','Fuel-anomaly detection'],
-  ['One dashboard for the whole fleet','Lower fuel and running cost','Longer vehicle life','Safer, accountable drivers'],
-  [['15%','Reduction in fuel spend'],['22%','Fewer empty kilometres'],['360°','Fleet visibility']],
-  ['GPS telematics','Fuel cards','ERP','Maintenance shops'],
-  ['Logistics','Mining','Retail'],
-  [['What vehicle types are supported?','Everything from light delivery vans to heavy haulage and specialised plant.'],['Does it integrate with fuel cards?','Yes — fuel transactions reconcile automatically against vehicle and route data.'],['Is there a driver app?','Yes, with navigation, job assignment, inspections and proof-of-delivery.']]),
- P('retail360','Retail','360','retail','Multi-store retail operations and commerce.',
-  'Retail360 runs multi-store retail end to end — inventory, point of sale, replenishment and analytics across every branch and online channel.',
-  ['Disconnected in-store and online inventory','No real-time view across branches','Stockouts and overstocks eroding margin'],
-  M6('Inventory & Replenishment','Point of Sale','Omnichannel & Online','Promotions & Pricing','Store Operations','Retail Analytics'),
-  ['Demand forecasting per store','Automated replenishment','Basket & affinity analysis','Shrinkage detection'],
-  ['One live view of stock everywhere','Fewer stockouts, less overstock','Higher basket value','Faster, smarter buying'],
-  [['12%','Uplift in stock availability'],['9%','Reduction in shrinkage'],['1','Unified retail platform']],
-  ['Payment providers','E-commerce','Accounting','Suppliers'],
-  ['Retail','Property','Logistics'],
-  [['Does Retail360 support omnichannel?','Yes — in-store and online inventory, orders and customers are unified in one platform.'],['Can it scale from a few stores to hundreds?','The platform is built for multi-store growth on a single tenant model.'],['Does it handle promotions and pricing?','Yes, with centralised pricing, promotions and store-level overrides.']]),
- P('energy360','Energy','360','energy','Generation, distribution and grid asset intelligence.',
-  'Energy360 gives utilities and generators a live view of assets, load and outages — with predictive maintenance and analytics for a resilient grid.',
-  ['Ageing distribution assets and reactive maintenance','Poor visibility of load and outages','Rising demand on constrained networks'],
-  M6('Grid Asset Register','Load & Demand','Outage Management','Predictive Maintenance','SCADA Integration','Energy Analytics'),
-  ['Load forecasting','Asset failure prediction','Outage impact modelling','Loss & anomaly detection'],
-  ['Live grid and asset visibility','Fewer, shorter outages','Longer asset life','Better demand planning'],
-  [['28%','Faster outage restoration'],['20%','Reduction in asset failures'],['24/7','Grid monitoring']],
-  ['SCADA','GIS','Metering','ERP'],
-  ['Energy','Utilities','Government'],
-  [['Does Energy360 integrate with SCADA?','Yes, through secure industrial gateways and standard protocols.'],['Can it manage both generation and distribution?','Yes — the asset and analytics model spans the full value chain.'],['Is it suitable for renewables?','Energy360 supports diverse generation sources including renewables and storage.']]),
- P('fuel360','Fuel','360','fuel','Fuel supply, dispensing and loss prevention.',
-  'Fuel360 controls the full fuel value chain — from depot and terminal to dispensing, reconciliation and theft prevention across every site.',
-  ['Fuel losses and reconciliation gaps','No real-time view of stock across sites','Manual, error-prone dip and delivery records'],
-  M6('Depot & Terminal','Dispensing & Forecourt','Stock Reconciliation','Deliveries & Logistics','Loss & Theft Alerts','Fuel Analytics'),
-  ['Consumption forecasting','Theft & anomaly detection','Delivery optimisation','Variance analysis'],
-  ['Real-time stock across sites','Reduced fuel loss and theft','Accurate automated reconciliation','Optimised deliveries'],
-  [['R25m+','Annual loss prevented'],['99.5%','Reconciliation accuracy'],['Real-time','Stock visibility']],
-  ['ATG & pumps','Fleet cards','ERP','IoT sensors'],
-  ['Fuel & LPG','Logistics','Mining'],
-  [['Does Fuel360 detect theft?','Yes — the theft-alert pipeline flags anomalies in dispensing, stock and reconciliation in real time.'],['Does it work across multiple depots and sites?','Yes, with a consolidated multi-site view and per-site controls.'],['Can it handle LPG as well as liquid fuels?','Yes, both liquid fuels and LPG are supported.']]),
- P('cargo360','Cargo','360','cargo','Freight and consignment orchestration.',
-  'Cargo360 orchestrates freight from booking to delivery — consignments, tracking, documentation and yard, connected across every mode.',
-  ['Manual consignment and documentation handling','Limited end-to-end shipment visibility','Disconnected yard and transport operations'],
-  M6('Consignment Booking','Shipment Tracking','Documentation & Customs','Yard & Depot','Billing & Rating','Cargo Analytics'),
-  ['ETA prediction','Route & mode optimisation','Exception detection','Demand forecasting'],
-  ['End-to-end shipment visibility','Faster, paperless documentation','Fewer exceptions and delays','Accurate automated billing'],
-  [['30%','Faster documentation'],['21%','Fewer delivery exceptions'],['End-to-end','Shipment visibility']],
-  ['Customs systems','Carriers','ERP','Port systems'],
-  ['Logistics','Ports','Rail'],
-  [['Is Cargo360 multi-modal?','Yes — road, rail, sea and air freight in one platform.'],['Does it handle customs documentation?','Yes, with configurable document workflows and customs integration.'],['Can customers track their shipments?','Yes, via a self-service customer portal.']]),
- P('property360','Property','360','property','Portfolio, leasing and facilities operations.',
-  'Property360 manages commercial and retail portfolios end to end — leasing, facilities, tenants and finance in one operating platform.',
-  ['Lease and tenant data spread across spreadsheets','Reactive facilities and maintenance management','Limited portfolio-level performance visibility'],
-  M6('Lease Management','Tenant & CRM','Facilities & Maintenance','Portfolio Finance','Space & Occupancy','Property Analytics'),
-  ['Lease-expiry & renewal insight','Predictive facilities maintenance','Occupancy optimisation','Arrears risk detection'],
-  ['One view of the whole portfolio','Proactive facilities management','Higher occupancy and retention','Stronger financial control'],
-  [['15%','Improvement in occupancy'],['20%','Faster maintenance response'],['1','Unified portfolio view']],
-  ['Accounting','IoT/BMS','CRM','Banking'],
-  ['Property','Retail','Government'],
-  [['Does Property360 handle both retail and commercial?','Yes — retail, commercial, industrial and mixed-use portfolios.'],['Can it manage lease renewals and rent reviews?','Yes, with automated alerts, review schedules and escalations.'],['Is there a tenant portal?','Yes, for requests, statements and communications.']]),
- P('warehouse360','Warehouse','360','warehouse','Warehouse and distribution operations.',
-  'Warehouse360 runs the modern DC — inbound, storage, picking, packing and dispatch — with real-time stock accuracy and labour optimisation.',
-  ['Low stock accuracy and slow cycle counts','Inefficient pick paths and labour','Poor visibility of throughput and bottlenecks'],
-  M6('Inbound & Putaway','Inventory & Locations','Picking & Packing','Dispatch & Outbound','Labour Management','Warehouse Analytics'),
-  ['Slotting optimisation','Pick-path optimisation','Demand-based labour planning','Throughput forecasting'],
-  ['Real-time stock accuracy','Faster, cheaper picking','Higher throughput per shift','Fewer errors and returns'],
-  [['99.8%','Stock accuracy'],['25%','Faster order picking'],['Real-time','DC visibility']],
-  ['ERP','Carriers','Scanners/RF','E-commerce'],
-  ['Warehousing','Logistics','Retail'],
-  [['Does Warehouse360 support RF scanning?','Yes, with mobile RF and barcode/QR scanning throughout the workflow.'],['Can it manage multiple warehouses?','Yes, with a multi-site network view and inter-site transfers.'],['Does it integrate with carriers?','Yes, for rate shopping, labels and tracking.']]),
- P('construction360','Construction','360','construction','Projects, plant and progress control.',
-  'Construction360 gives contractors and developers control of projects, plant, cost and progress — from programme to practical completion.',
-  ['Cost and progress tracked in disconnected spreadsheets','Poor visibility of plant utilisation','Slow, manual site reporting and RFIs'],
-  M6('Project & Programme','Cost & Budget Control','Plant & Equipment','Site Progress & Diary','Documents & RFIs','Construction Analytics'),
-  ['Cost overrun prediction','Progress forecasting','Plant utilisation optimisation','Risk & delay detection'],
-  ['Live cost and progress control','Higher plant utilisation','Faster site reporting','Fewer overruns and delays'],
-  [['18%','Reduction in cost overruns'],['30%','Faster site reporting'],['1','Project control platform']],
-  ['Accounting','QS/estimating','Plant telematics','Document mgmt'],
-  ['Construction','Property','Government'],
-  [['Does Construction360 do cost control?','Yes — budgets, commitments, variations and forecasts against actuals.'],['Can it track plant and equipment?','Yes, with utilisation, servicing and telematics integration.'],['Is there a site mobile app?','Yes, for diaries, progress, photos and RFIs.']]),
- P('port360','Port','360','port','Ports and terminals operations.',
-  'Port360 orchestrates berths, gates, yards and throughput — giving port and terminal operators a live operational picture and higher throughput.',
-  ['Congestion at gates and in the yard','Limited real-time throughput visibility','Manual berth and resource planning'],
-  M6('Berth Planning','Gate & Access','Yard Management','Vessel & Cargo Ops','Equipment & Cranes','Port Analytics'),
-  ['Berth optimisation','Congestion prediction','Equipment scheduling','Throughput forecasting'],
-  ['Higher berth and yard utilisation','Less congestion and dwell time','Better resource planning','Live throughput visibility'],
-  [['22%','Higher yard utilisation'],['19%','Reduction in dwell time'],['Live','Port operations view']],
-  ['TOS','Customs','ERP','IoT/RTLS'],
-  ['Ports','Logistics','Government'],
-  [['Does Port360 integrate with a TOS?','Yes, it complements and integrates with terminal operating systems.'],['Can it manage both container and bulk?','Yes — container, bulk and general cargo operations.'],['Does it handle gate and access control?','Yes, with automated gate, appointment and access workflows.']]),
- P('airport360','Airport','360','airport','Airport operations intelligence.',
-  'Airport360 connects airside and landside operations — resources, assets, turnaround and passenger flow — into one operational control platform.',
-  ['Siloed airside and landside systems','Limited real-time operational picture','Reactive resource and asset management'],
-  M6('Operations Control','Resource Management','Asset & Facilities','Turnaround Management','Passenger Flow','Airport Analytics'),
-  ['Turnaround prediction','Resource optimisation','Flow & congestion modelling','Asset maintenance prediction'],
-  ['One airport-wide operations view','Faster, more reliable turnarounds','Optimised resources and assets','Smoother passenger flow'],
-  [['16%','Improved on-time turnaround'],['21%','Better resource utilisation'],['A-CDM','Ready operations']],
-  ['AODB/A-CDM','BHS','ERP','IoT'],
-  ['Government','Logistics','Infrastructure'],
-  [['Does Airport360 support A-CDM?','Yes, it aligns with collaborative decision-making principles and integrates with AODB.'],['Can it manage both airside and landside?','Yes — the operational model spans both.'],['Is it suitable for regional airports?','Yes, with a modular scope that scales with airport size.']]),
- P('manufacturing360','Manufacturing','360','mfg','Plant, production and asset performance.',
-  'Manufacturing360 gives plants a live view of production, assets and quality — driving overall equipment effectiveness through connected operations.',
-  ['Limited real-time production and OEE visibility','Unplanned downtime and reactive maintenance','Quality issues detected too late'],
-  M6('Production Scheduling','OEE & Performance','Maintenance & Reliability','Quality Management','Inventory & Materials','Plant Analytics'),
-  ['OEE optimisation','Predictive maintenance','Quality-defect prediction','Demand-driven scheduling'],
-  ['Higher OEE and throughput','Less unplanned downtime','Better first-pass quality','Leaner inventory'],
-  [['14%','Improvement in OEE'],['30%','Less unplanned downtime'],['Real-time','Plant visibility']],
-  ['MES/SCADA','ERP','IoT sensors','Quality systems'],
-  ['Manufacturing','Energy','Logistics'],
-  [['Does Manufacturing360 calculate OEE?','Yes, with live availability, performance and quality metrics.'],['Can it integrate with MES and SCADA?','Yes, through standard industrial connectors.'],['Does it support discrete and process manufacturing?','Yes, with configurable production models.']]),
- P('logistics360','Logistics','360','logistics','End-to-end logistics orchestration.',
-  'Logistics360 orchestrates the full supply chain — orders, transport, warehousing and delivery — with visibility and optimisation across every leg.',
-  ['Fragmented supply-chain systems','Poor end-to-end visibility','Inefficient transport and warehousing coordination'],
-  M6('Order Management','Transport Management','Warehouse Coordination','Last-Mile Delivery','Control Tower','Logistics Analytics'),
-  ['Network optimisation','ETA prediction','Demand forecasting','Exception detection'],
-  ['End-to-end supply-chain visibility','Lower logistics cost','Faster, more reliable delivery','Proactive exception handling'],
-  [['17%','Reduction in logistics cost'],['24%','Improvement in OTIF'],['Control','Tower visibility']],
-  ['ERP','Carriers','WMS','E-commerce'],
-  ['Logistics','Retail','Warehousing'],
-  [['Is Logistics360 a control tower?','Yes — it provides end-to-end supply-chain visibility and orchestration.'],['Does it optimise the transport network?','Yes, across modes, lanes and carriers.'],['Can it manage last-mile delivery?','Yes, with routing, driver apps and proof-of-delivery.']]),
- P('terminal360','Terminal','360','terminal','Bulk and liquid terminal operations.',
-  'Terminal360 manages storage terminals end to end — tanks, movements, quality and reconciliation — with real-time inventory and loss control.',
-  ['Manual movement and stock records','Loss and reconciliation gaps','Limited real-time inventory visibility'],
-  M6('Tank & Storage','Movements & Transfers','Quality & Sampling','Reconciliation','Scheduling & Berths','Terminal Analytics'),
-  ['Inventory forecasting','Loss & anomaly detection','Movement optimisation','Demand planning'],
-  ['Real-time terminal inventory','Reduced losses','Accurate reconciliation','Optimised movements'],
-  [['99.6%','Reconciliation accuracy'],['R20m+','Annual loss prevented'],['Live','Inventory view']],
-  ['ATG/gauging','ERP','Lab systems','Logistics'],
-  ['Fuel & LPG','Ports','Logistics'],
-  [['Does Terminal360 handle liquid bulk?','Yes — fuels, chemicals and other liquid bulk products.'],['Does it do stock reconciliation?','Yes, with automated movement and inventory reconciliation.'],['Can it schedule berths and movements?','Yes, with integrated scheduling.']]),
- P('ai360','AI','360','ai','The intelligence layer across every platform.',
-  'AI360 is the decision-intelligence engine that powers every Komole platform — predictive, prescriptive and explainable intelligence embedded directly in operations.',
-  ['Data-rich operations that stay decision-poor','Black-box AI that operators cannot trust','Insights that arrive too late to act on'],
-  M6('Predictive Models','Forecasting Engine','Optimisation Engine','Computer Vision','Natural Language Queries','Decision Intelligence'),
-  ['Predictive maintenance','Demand & load forecasting','Operational optimisation','Executive insight generation'],
-  ['Faster, better decisions','Fewer failures and disruptions','Optimised resources and cost','Trusted, explainable AI'],
-  [['Explainable','Every recommendation'],['Human','Approval by design'],['Cross-platform','Intelligence layer']],
-  ['All Komole platforms','Data platform','IoT','BI tools'],
-  ['Rail','Mining','Energy'],
-  [['Is AI360 explainable?','Yes — every recommendation shows the drivers behind it, and humans stay in control of decisions.'],['Does AI360 work across all platforms?','Yes, it is the shared intelligence layer for the entire Komole ecosystem.'],['Can we bring our own models?','Yes, AI360 supports custom and bring-your-own models alongside the platform models.']]),
-];
-const PMAP=Object.fromEntries(PRODUCTS.map(p=>[p.slug,p]));
+    function resize() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      canvas.width = width * devicePixelRatio;
+      canvas.height = height * devicePixelRatio;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+    }
 
-/* ---------- DATA: industries ---------- */
-function IND(slug,name,icon,intro,challenges,solutions,products,modules,outcomes){
-  return {slug,name,icon,intro,challenges,solutions,products,modules,outcomes};
-}
-const INDUSTRIES=[
- IND('rail','Rail','rail','Rail networks are the backbone of continental trade — and they run on decades-old systems. Komole brings real-time intelligence to scheduling, assets and operations.',
-   ['Ageing infrastructure and reactive maintenance','Fragmented scheduling and asset systems','Limited network-wide operational visibility'],
-   ['Unify scheduling, rolling stock and track assets','Predict delays and equipment failures before they happen','Give the control room one live view of the network'],
-   ['rail360','cargo360','fleet360'],['Network Scheduling','Rolling Stock','Track Assets','Operations Control'],
-   [['32%','Less unplanned downtime'],['18%','Better on-time performance'],['1','Unified platform']]),
- IND('mining','Mining','mine','From pit to port, mining runs on cycle time and safety. Komole turns operational data into higher productivity and fewer incidents.',
-   ['End-of-shift blind spots on production','Under-utilised haul fleets','Paper-based safety and compliance'],
-   ['Track production and cycles in real time','Optimise fleet utilisation with AI','Digitise safety, permits and compliance'],
-   ['mine360','fleet360','fuel360'],['Production Tracking','Fleet Management','Safety & Permits','Maintenance'],
-   [['24%','Higher fleet utilisation'],['R40m+','Downtime avoided'],['100%','Digital safety']]),
- IND('energy','Energy','energy','A changing energy mix demands resilient, well-understood networks. Komole gives generators and grids the visibility to keep the lights on.',
-   ['Ageing assets and reactive maintenance','Poor visibility of load and outages','Constrained networks under rising demand'],
-   ['See every grid asset and its condition','Predict failures and forecast load','Restore outages faster with impact modelling'],
-   ['energy360','ai360','fleet360'],['Grid Assets','Load & Demand','Outage Management','Analytics'],
-   [['28%','Faster restoration'],['20%','Fewer failures'],['24/7','Monitoring']]),
- IND('fuel-lpg','Fuel & LPG','fuel','Fuel is high-value and easily lost. Komole controls the full value chain — from terminal to forecourt — and stops losses before they happen.',
-   ['Fuel losses and reconciliation gaps','No real-time stock view across sites','Manual dip and delivery records'],
-   ['Reconcile stock automatically and accurately','Detect theft and anomalies in real time','Optimise deliveries across the network'],
-   ['fuel360','terminal360','fleet360'],['Terminal','Dispensing','Reconciliation','Theft Alerts'],
-   [['R25m+','Loss prevented'],['99.5%','Recon accuracy'],['Real-time','Stock view']]),
- IND('retail','Retail','retail','Multi-store retail lives and dies on availability and margin. Komole unifies stock, sales and analytics across every branch and channel.',
-   ['Disconnected in-store and online inventory','No real-time view across branches','Stockouts and overstocks eroding margin'],
-   ['Unify stock across stores and online','Forecast demand and automate replenishment','Protect margin with shrinkage detection'],
-   ['retail360','warehouse360','logistics360'],['Inventory','Point of Sale','Omnichannel','Analytics'],
-   [['12%','Better availability'],['9%','Less shrinkage'],['1','Unified platform']]),
- IND('manufacturing','Manufacturing','mfg','Plants compete on OEE. Komole connects production, assets and quality so manufacturers run leaner, faster and more reliably.',
-   ['Limited real-time OEE visibility','Unplanned downtime','Late detection of quality issues'],
-   ['See production and OEE live','Predict maintenance before failure','Catch quality issues early with AI'],
-   ['manufacturing360','fleet360','ai360'],['Scheduling','OEE','Maintenance','Quality'],
-   [['14%','Higher OEE'],['30%','Less downtime'],['Real-time','Plant view']]),
- IND('construction','Construction','construction','Projects run on cost, programme and plant. Komole gives contractors and developers live control from mobilisation to handover.',
-   ['Cost and progress in scattered spreadsheets','Poor plant utilisation visibility','Slow, manual site reporting'],
-   ['Control cost and progress in real time','Maximise plant utilisation','Digitise site reporting and RFIs'],
-   ['construction360','fleet360','property360'],['Programme','Cost Control','Plant','Site Diary'],
-   [['18%','Fewer overruns'],['30%','Faster reporting'],['1','Control platform']]),
- IND('ports','Ports','port','Throughput is everything. Komole orchestrates berths, gates, yards and equipment for faster, less congested port operations.',
-   ['Gate and yard congestion','Limited throughput visibility','Manual berth and resource planning'],
-   ['Optimise berths and yard utilisation','Predict and prevent congestion','Schedule equipment and resources with AI'],
-   ['port360','cargo360','terminal360'],['Berth Planning','Gate & Access','Yard','Analytics'],
-   [['22%','Higher yard use'],['19%','Less dwell time'],['Live','Operations view']]),
- IND('logistics','Logistics','logistics','Supply chains are only as strong as their visibility. Komole provides an end-to-end control tower across every leg and mode.',
-   ['Fragmented supply-chain systems','Poor end-to-end visibility','Inefficient transport coordination'],
-   ['Orchestrate the full supply chain','Optimise the transport network','Handle exceptions proactively'],
-   ['logistics360','fleet360','cargo360'],['Orders','Transport','Warehouse','Control Tower'],
-   [['17%','Lower cost'],['24%','Better OTIF'],['Control','Tower view']]),
- IND('warehousing','Warehousing','warehouse','The modern DC is a precision operation. Komole drives stock accuracy, throughput and labour efficiency across every facility.',
-   ['Low stock accuracy','Inefficient pick paths and labour','Poor throughput visibility'],
-   ['Achieve real-time stock accuracy','Optimise picking and slotting','Plan labour against demand'],
-   ['warehouse360','logistics360','retail360'],['Inbound','Inventory','Picking','Dispatch'],
-   [['99.8%','Stock accuracy'],['25%','Faster picking'],['Real-time','DC view']]),
- IND('property','Property','property','Portfolios are complex and long-lived. Komole unifies leasing, facilities, tenants and finance into one operating platform.',
-   ['Lease and tenant data in spreadsheets','Reactive facilities management','Limited portfolio performance visibility'],
-   ['Manage leases and tenants in one place','Move to proactive facilities maintenance','See portfolio performance live'],
-   ['property360','construction360','retail360'],['Leasing','Tenants','Facilities','Finance'],
-   [['15%','Higher occupancy'],['20%','Faster response'],['1','Portfolio view']]),
- IND('government','Government','globe','Public assets and services demand accountability and visibility. Komole provides secure, auditable platforms for public-sector operations.',
-   ['Ageing public infrastructure','Limited operational visibility','Accountability and audit demands'],
-   ['Digitise and monitor public assets','Provide transparent, auditable operations','Plan and prioritise with data'],
-   ['rail360','energy360','property360'],['Asset Register','Operations','Audit','Analytics'],
-   [['Audit','Ready by design'],['Secure','By architecture'],['Live','Asset visibility']]),
- IND('utilities','Utilities','bolt','Utilities balance reliability, cost and rising demand. Komole brings network intelligence and predictive maintenance to service delivery.',
-   ['Ageing network assets','Reactive maintenance and outages','Rising demand on the network'],
-   ['See and score every network asset','Predict failures and plan maintenance','Restore service faster'],
-   ['energy360','fleet360','ai360'],['Network Assets','Maintenance','Outages','Analytics'],
-   [['28%','Faster restoration'],['20%','Fewer failures'],['24/7','Monitoring']]),
-];
-const IMAP=Object.fromEntries(INDUSTRIES.map(i=>[i.slug,i]));
+    function initDots() {
+      dots = [];
+      for (let i = 0; i < NUM_DOTS; i++) {
+        dots.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          radius: 1.2 + Math.random() * 2,
+        });
+      }
+    }
 
-/* ---------- DATA: technology, ai, solutions, cases, insights, people ---------- */
-const TECH=[
- ['Cloud Platform','cloud','Cloud-native, resilient and observable — deployed across regions with hybrid and on-premise options for sensitive environments.'],
- ['Artificial Intelligence','ai','Predictive and prescriptive intelligence embedded in operations, powered by AI360 and always explainable.'],
- ['Machine Learning','chart','Domain models trained on industrial data — maintenance, demand, optimisation — that improve as they learn.'],
- ['Digital Twins','layers','Live digital representations of assets and operations for simulation, monitoring and what-if analysis.'],
- ['GIS','pin','Spatial intelligence for networks, sites and assets, integrated across rail, energy and logistics platforms.'],
- ['IoT','node','Secure ingestion from sensors, telematics and industrial equipment at the edge and in the field.'],
- ['Real-Time Analytics','eye','Streaming analytics that turn operational events into decisions in seconds, not days.'],
- ['Cybersecurity','shield','Security by design — zero-trust architecture, encryption, RBAC and full audit across the platform.'],
- ['API & Integration','gear','Open APIs and connectors to ERP, SCADA, MES and legacy systems, so data flows end to end.'],
- ['Data Platform','doc','A unified operational data foundation — time-series, transactional and spatial — under one governance model.'],
- ['Automation','bolt','Digital workflows and automation that replace paper, spreadsheets and manual handoffs.'],
- ['Business Intelligence','chart','Executive-ready dashboards and reporting, from the shop floor to the board.'],
-];
-const AICAPS=[
- ['Predictive Maintenance','Anticipate equipment failures before they cause downtime.'],
- ['Predictive Scheduling','Build schedules that account for real-world constraints and risk.'],
- ['Demand Forecasting','Plan capacity, stock and resources against forecasted demand.'],
- ['Fuel Optimisation','Cut fuel cost and loss through consumption and route intelligence.'],
- ['Operational Intelligence','Turn live operational data into decisions in real time.'],
- ['Natural Language Queries','Ask your operational data questions in plain language.'],
- ['Computer Vision','Detect hazards, defects and events from camera and image data.'],
- ['Executive Insights','Board-ready intelligence, generated automatically.'],
- ['Decision Intelligence','Recommend the best next action, with the reasoning shown.'],
- ['AI Agents','Autonomous agents that monitor, alert and act within guardrails.'],
-];
-const SOLUTIONS=[
- ['Operational Control','control','Real-time visibility and command across every active operation.','eye'],
- ['Asset Management','asset','Track, maintain and maximise the lifecycle of every critical asset.','layers'],
- ['Fleet Intelligence','fleet','Live location, utilisation and health for mobile equipment.','fleet'],
- ['Safety & Compliance','shield','Incidents, permits and compliance in one auditable system.','shield'],
- ['AI & Analytics','ai','Forecasting, detection and optimisation embedded in daily work.','ai'],
- ['Enterprise Integration','gear','Connect ERP, IoT, SCADA and legacy systems into one flow.','gear'],
-];
-const CASES=[
- ['rail','Rail','National freight operator','Rail360 gave a national freight operator one live view of its network, cutting unplanned downtime and lifting on-time performance across mixed traffic.',[['32%','Less downtime'],['18%','Better OTP'],['12 wk','To pilot']]],
- ['mining','Mining','Mokala Mining Resources','Mine360 connected production, fleet and safety at a multi-pit operation, raising fleet utilisation and moving safety fully digital.',[['24%','Fleet utilisation'],['R40m','Downtime avoided'],['100%','Digital safety']]],
- ['fuel','Fuel','Regional fuel distributor','Fuel360 closed reconciliation gaps and flagged losses in real time across dozens of sites, preventing millions in annual fuel loss.',[['R25m+','Loss prevented'],['99.5%','Recon accuracy'],['40+','Sites live']]],
- ['retail','Retail','Multi-store beauty retailer','Retail360 unified inventory across stores and online, cutting stockouts and shrinkage while lifting availability and basket value.',[['12%','Availability'],['9%','Less shrinkage'],['8','Channels unified']]],
- ['property','Property','Commercial portfolio owner','Property360 replaced spreadsheets with one operating platform for leasing, facilities and finance, improving occupancy and response times.',[['15%','Occupancy'],['20%','Faster response'],['1','Portfolio view']]],
- ['logistics','Logistics','3PL provider','Logistics360 delivered an end-to-end control tower, lowering cost and improving on-time-in-full across a complex multi-modal network.',[['17%','Lower cost'],['24%','Better OTIF'],['Live','Control tower']]],
-];
-const INSIGHTS=[
- ['Technology','The case for a unified industrial platform in Africa','Why fragmented point solutions hold operations back — and what a shared foundation unlocks.'],
- ['Mining','Real-time production intelligence on the mine face','How live cycle data is reshaping fleet productivity and safety decisions.'],
- ['AI','Explainable AI for industrial decisions','Trust comes from transparency — designing AI operators can rely on.'],
- ['Rail','Digitising rail operations end to end','From scheduling to asset health, connecting the full rail value chain.'],
- ['Energy','Grid intelligence for a changing energy mix','Asset visibility and predictive maintenance for resilient distribution.'],
- ['Operations','From spreadsheets to systems of record','A practical roadmap for retiring the spreadsheets that run your operation.'],
- ['Fuel','Stopping fuel loss with real-time reconciliation','How anomaly detection turns reconciliation from monthly to instant.'],
- ['Logistics','Building a supply-chain control tower','The architecture behind end-to-end visibility and orchestration.'],
- ['Digital Transformation','A CIO playbook for industrial modernisation','Sequencing platforms, data and change for durable transformation.'],
-];
-const LEADERS=[
- ['Founder & Managing Director','Sets the vision and strategy for Komole Industries and its platform portfolio.'],
- ['Chief Technology Officer','Leads platform architecture, engineering and the AI360 intelligence layer.'],
- ['Chief Product Officer','Owns the 360 product family and its industrial roadmap.'],
- ['Chief Operating Officer','Runs delivery, customer success and enterprise operations.'],
- ['Director, Industry Solutions','Translates industry problems into platform capability.'],
- ['Director, Data & AI','Leads data platform, machine learning and decision intelligence.'],
-];
-const DEPTS=[
- ['Engineering','Backend, platform, cloud and mobile teams building the 360 platforms.'],
- ['Product & Design','Product managers and designers shaping industrial software.'],
- ['Data & AI','ML engineers and data scientists behind AI360.'],
- ['Delivery & Success','Implementation, integration and customer success.'],
- ['Sales & Partnerships','Enterprise sales and the partner ecosystem.'],
- ['Operations','Finance, people and the functions that keep us running.'],
-];
-const ROLES=[
- ['Senior Backend Engineer','Platform','JHB / Remote'],['Product Designer','Design','JHB / Remote'],
- ['Data & AI Engineer','AI360','JHB / Remote'],['Solutions Consultant','Delivery','JHB'],
- ['Frontend Engineer','Platform','Remote'],['Enterprise Account Executive','Sales','JHB'],
- ['Graduate Software Engineer','Graduate Programme','JHB'],['DevOps / SRE','Platform','Remote'],
-];
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      
+      // draw connections
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const dx = dots[i].x - dots[j].x;
+          const dy = dots[i].y - dots[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < CONNECTION_DIST) {
+            const alpha = 0.4 * (1 - dist / CONNECTION_DIST);
+            ctx.beginPath();
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.strokeStyle = `rgba(180, 180, 180, ${alpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
 
-/* ============================================================
-   UI COMPONENT HELPERS
-   ============================================================ */
-const el=(h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
-function crumbs(arr){return `<div class="breadcrumb">${arr.map((c,i)=>c[1]?`<a data-nav="${c[1]}">${c[0]}</a>`:`<span>${c[0]}</span>`).join(' <span style="opacity:.5">/</span> ')}</div>`;}
-function pageHero({dark=true,crumb,title,sub,actions=''}){
-  return `<section class="page-hero ${dark?'':'light'}">${dark?'<div class="grid-bg"></div>':''}
-    <div class="wrap page-hero-inner">
-      ${crumb?crumbs(crumb):''}
-      <h1 class="reveal">${title}</h1>
-      ${sub?`<p class="sub reveal d1">${sub}</p>`:''}
-      ${actions?`<div class="reveal d2" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:30px;">${actions}</div>`:''}
-    </div></section>`;
-}
-function secHead(eyebrow,title,sub,center=false){
-  return `<div class="sec-head ${center?'center':''}"><span class="eyebrow">${eyebrow}</span><h2 class="kicker-h2">${title}</h2>${sub?`<p class="lead">${sub}</p>`:''}</div>`;
-}
-function stat(v,l,dark=false){const m=String(v).match(/^([\d.,]+)(.*)$/);const val=m?`${m[1]}<span class="u">${m[2]}</span>`:v;return `<div class="stat ${dark?'on-dark':''}"><div class="v">${val}</div><div class="l">${l}</div></div>`;}
-function ctaBand(title,sub){
-  return `<section class="section"><div class="wrap"><div class="cta-band reveal"><div class="grid-bg"></div>
-    <div style="position:relative;z-index:2;"><h2>${title}</h2><p>${sub}</p>
-    <div class="cta-actions"><a class="btn btn-primary btn-lg" data-nav="/contact">Request a Demo <span class="arw">→</span></a><a class="btn btn-light btn-lg" data-nav="/companies">Explore Platforms</a></div>
-    </div></div></div></section>`;
-}
-function faqBlock(items){
-  return `<div class="faq">${items.map(f=>`<details><summary>${f[0]}<span class="pm">+</span></summary><div class="ans">${f[1]}</div></details>`).join('')}</div>`;
-}
-function bars(n=9,accent=false){let s='';const w=100/n;for(let i=0;i<n;i++){const h=25+Math.abs(Math.sin(i*1.3))*60;s+=`<rect x="${i*w+1.5}%" y="${100-h}%" width="${w-3}%" height="${h}%" rx="1.5" fill="${accent?'var(--accent)':'var(--accent-2)'}" opacity="${0.55+0.45*(h/85)}"/>`;}return `<svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100">${s}</svg>`;}
-function demoMock(p){
-  const k=p.stats||[['—','KPI'],['—','KPI'],['—','KPI']];
-  return `<div class="mock reveal d1"><div class="bar"><i></i><i></i><i></i><span class="u">app.komole.com/${p.slug.replace('360','')}</span></div>
-    <div class="body">
-      ${k.map(s=>`<div class="kpi"><div class="t">${s[1]}</div><div class="n">${s[0]}</div></div>`).join('')}
-      <div class="chart">${bars(10,true)}</div>
-    </div></div>`;
-}
-function iconChip(icon){return `<div class="cc-ic">${svg(IC[icon]||IC.gear,20)}</div>`;}
+      // draw dots
+      for (const d of dots) {
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#b0b0b0';
+        ctx.fill();
+        // subtle glow
+        ctx.shadowColor = 'rgba(255,255,255,0.2)';
+        ctx.shadowBlur = 6;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
 
-/* ============================================================
-   PAGE TEMPLATES
-   ============================================================ */
-function renderHome(){
-  const feat=['rail360','mine360','fuel360','energy360','retail360','logistics360'];
-  return `
-  <section class="page-hero">
-    <div class="grid-bg"></div>
-    <div class="wrap page-hero-inner" style="padding-top:clamp(64px,9vw,120px);padding-bottom:clamp(64px,9vw,120px);">
-      <span class="eyebrow on-dark reveal">Komole Industries · Enterprise Technology</span>
-      <h1 class="reveal d1" style="max-width:20ch;margin-top:22px;font-size:clamp(38px,6vw,74px);">Komole builds Africa's industrial operating systems.</h1>
-      <p class="sub reveal d2" style="max-width:62ch;">A portfolio of enterprise software platforms that plan, operate, monitor and optimise the industries that move a continent — rail, mining, energy, logistics, retail and more.</p>
-      <div class="reveal d3" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;">
-        <a class="btn btn-primary btn-lg" data-nav="/contact">Request a Demo <span class="arw">→</span></a>
-        <a class="btn btn-light btn-lg" data-nav="/companies">Explore Our Platforms</a>
-      </div>
-      <div class="reveal d4" style="margin-top:56px;display:flex;gap:38px;flex-wrap:wrap;">
-        ${stat('17','Enterprise platforms',true)}${stat('13','Industries served',true)}${stat('360°','Operational visibility',true)}
-      </div>
-    </div>
-  </section>
+      // move
+      for (const d of dots) {
+        d.x += d.vx;
+        d.y += d.vy;
+        if (d.x < 0 || d.x > width) d.vx *= -1;
+        if (d.y < 0 || d.y > height) d.vy *= -1;
+      }
 
-  <section class="section soft">
-    <div class="wrap split">
-      <div class="reveal">${secHead('Who We Are','One company. A portfolio of industrial platforms.','')}
-        <p class="lead" style="margin-bottom:22px;">Komole Industries is the parent company behind a growing family of enterprise software platforms. Each is purpose-built for a specific industry — and every one runs on a single technology foundation.</p>
-        <p style="color:var(--muted-c);margin-bottom:26px;">We don't sell generic software. We build the digital operating systems that industrial organisations run on, engineered for African infrastructure, regulation and scale.</p>
-        <a class="btn btn-dark" data-nav="/about">About Komole <span class="arw">→</span></a>
-      </div>
-      <div class="reveal d1">${demoMock({slug:'platform',stats:[['24/7','Operations'],['Real-time','Data'],['AI360','Embedded']]})}</div>
-    </div>
-  </section>
+      requestAnimationFrame(draw);
+    }
 
-  <section class="section">
-    <div class="wrap">
-      ${secHead('Industries We Transform','Built around real industrial operations.','From the mine face to the retail floor, Komole platforms are shaped by how these industries actually run.')}
-      <div class="grid g4">
-        ${INDUSTRIES.slice(0,8).map(i=>`<div class="card hoverable reveal" data-nav="/industries/${i.slug}"><div class="ic">${svg(IC[i.icon]||IC.gear,20)}</div><h3>${i.name}</h3><p>${i.intro.split('.')[0]}.</p></div>`).join('')}
-      </div>
-      <div style="margin-top:26px;"><a class="textlink" data-nav="/industries">View all industries <span class="arw">→</span></a></div>
-    </div>
-  </section>
+    function init() {
+      resize();
+      initDots();
+      draw();
+    }
 
-  <section class="section band-dark">
-    <div class="grid-bg"></div>
-    <div class="wrap" style="position:relative;z-index:2;">
-      ${secHead('The Komole Platform','One technology foundation. Every platform.','')}
-      <div class="split a-start" style="margin-top:10px;">
-        <div class="reveal"><p class="lead" style="margin-bottom:24px;">A shared enterprise platform means faster deployment, consistent security, and data that flows across your whole operation — from the field to the boardroom.</p>
-          <ul class="list-check" style="margin-bottom:28px;">
-            <li>Cloud-native, secure and observable by design</li>
-            <li>AI360 intelligence embedded across every product</li>
-            <li>Open integration with ERP, SCADA, IoT and legacy systems</li>
-            <li>Scales from a single site to a national operation</li>
-          </ul>
-          <a class="btn btn-light" data-nav="/technology">Explore the Technology <span class="arw">→</span></a>
-        </div>
-        <div class="reveal d1" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          ${['Cloud Platform','Artificial Intelligence','Data Platform','Security','Integration','Analytics'].map((m,i)=>`<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:16px;font-size:14px;font-weight:500;color:#fff;display:flex;gap:9px;align-items:center;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent-2);"></span>${m}</div>`).join('')}
-        </div>
-      </div>
-    </div>
-  </section>
+    window.addEventListener('resize', () => {
+      resize();
+      initDots();
+    });
 
-  <section class="section">
-    <div class="wrap">
-      ${secHead('Our Companies','A portfolio of enterprise platforms.','Each platform operates like an independent software company — unified by the Komole foundation.')}
-      <div class="grid g3">
-        ${feat.map(s=>{const p=PMAP[s];return `<div class="company-card reveal" data-nav="/products/${p.slug}"><div class="cc-top">${iconChip(p.icon)}<span class="cc-cat">${p.cat.toUpperCase()}</span></div><div class="cc-name">${p.name}<b>${p.num}</b></div><p>${p.tagline}</p><span class="textlink">Learn more <span class="arw">→</span></span></div>`;}).join('')}
-      </div>
-      <div style="margin-top:26px;"><a class="btn btn-outline" data-nav="/companies">View all companies <span class="arw">→</span></a></div>
-    </div>
-  </section>
-
-  <section class="section soft">
-    <div class="wrap">
-      ${secHead('Why Komole','Why organisations choose Komole.','')}
-      <div class="grid g3">
-        ${[['Industry Expertise','Built by people who understand how industry actually runs.','briefcase'],['Enterprise Architecture','Engineered for the scale and rigour large operations demand.','layers'],['Africa Focus','Designed for African infrastructure, regulation and reality.','globe'],['Secure by Design','Security, audit and access control built in from day one.','shield'],['AI Enabled','Decision intelligence embedded across every workflow.','ai'],['Integration Ready','Connects to the ERP, IoT and systems you already run.','gear']].map(w=>`<div class="card reveal"><div class="ic">${svg(IC[w[2]],20)}</div><h3>${w[0]}</h3><p>${w[1]}</p></div>`).join('')}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      ${secHead('Customer Success','Outcomes, not just software.','')}
-      ${caseCard(CASES[1])}
-      <div style="margin-top:24px;"><a class="btn btn-outline" data-nav="/case-studies">View all case studies <span class="arw">→</span></a></div>
-    </div>
-  </section>
-
-  <section class="section soft">
-    <div class="wrap">
-      ${secHead('Latest Insights','Perspectives on industrial technology.','')}
-      <div class="grid g3">${INSIGHTS.slice(0,3).map(artCard).join('')}</div>
-      <div style="margin-top:26px;"><a class="textlink" data-nav="/insights">Visit the insights centre <span class="arw">→</span></a></div>
-    </div>
-  </section>
-
-  ${ctaBand('Build your industrial operating system.','Talk to our team about the right Komole platform for your operation — and see it running on your data.')}
-  `;
-}
-
-function caseCard(c){
-  return `<div class="cs reveal"><div class="cs-media"><div class="g"></div><div style="position:relative;z-index:2;color:var(--accent-2);">${svg(IC[c[0]]||IC.gear,64)}</div></div>
-    <div class="cs-body"><span class="eyebrow">${c[1]} · Case Study</span><h3 style="font-size:clamp(22px,2.6vw,30px);margin:14px 0 12px;">${c[2]}</h3><p style="color:var(--muted-c);">${c[3]}</p>
-    <div class="cs-metrics">${c[4].map(m=>stat(m[0],m[1])).join('')}</div></div></div>`;
-}
-function artCard(a){
-  return `<div class="art reveal" data-nav="/insights"><div class="thumb"><div class="g"></div><div class="gl"></div></div><div class="ab"><span class="cat">${a[0]}</span><h4>${a[1]}</h4><p>${a[2]}</p></div></div>`;
-}
-
-function renderAbout(){
-  return pageHero({crumb:[['Home','/'],['About']],title:'Technology built for industry.',sub:'Komole Industries develops the enterprise platforms that help industrial organisations across Africa operate more intelligently.'})+`
-  <section class="section"><div class="wrap split">
-    <div class="reveal">${secHead('Our Story','From single products to an industrial platform company.','')}
-      <p class="lead" style="margin-bottom:20px;">Komole began by solving real operational problems — in retail, in fuel, in logistics — one platform at a time. What emerged was a pattern: every industry needed the same foundation of connected data, workflows and intelligence.</p>
-      <p style="color:var(--muted-c);margin-bottom:20px;">Today, Komole Industries is the parent company behind a portfolio of enterprise software platforms, each purpose-built for its industry and unified by one technology foundation and one intelligence layer, AI360.</p>
-      <p style="color:var(--muted-c);">We believe the future of African industry will be built on connected data, intelligent automation and better operational visibility — and we are building the systems to make that real.</p>
-    </div>
-    <div class="reveal d1" style="display:grid;gap:16px;">
-      <div class="card"><h4 style="color:var(--accent);font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.14em;text-transform:uppercase;">Mission</h4><p style="color:var(--muted-c);">To build world-class industrial technology that empowers African businesses to compete globally.</p></div>
-      <div class="card"><h4 style="color:var(--accent);font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.14em;text-transform:uppercase;">Vision</h4><p style="color:var(--muted-c);">To become Africa's leading industrial technology company.</p></div>
-      <div class="card"><h4 style="color:var(--accent);font-family:'IBM Plex Mono';font-size:12px;letter-spacing:.14em;text-transform:uppercase;">Values</h4><div class="chips" style="margin-top:8px;"><span class="chip">Innovation</span><span class="chip">Integrity</span><span class="chip">Excellence</span><span class="chip">Collaboration</span><span class="chip">Long-Term Thinking</span></div></div>
-    </div>
-  </div></section>
-  <section class="section soft"><div class="wrap">
-    <div style="display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between;">
-      ${stat('17','Enterprise platforms')}${stat('13','Industries served')}${stat('1','Unified technology foundation')}${stat('360°','Operational visibility')}
-    </div>
-  </div></section>
-  <section class="section"><div class="wrap">
-    ${secHead('How We Work','A proven path from discovery to continuous improvement.','Enterprise deployment done properly — structured, low-risk and built for the long term.')}
-    <div class="steps reveal">${['Discover','Design','Configure','Integrate','Deploy','Support','Continuous Improvement'].map((s,i)=>{const d=['We map your operation, systems and objectives to define the right scope.','We shape the solution architecture, workflows and success metrics with you.','We configure the platform to your processes — not the other way around.','We connect your existing ERP, SCADA, IoT and enterprise systems.','We roll out in controlled phases, with training and change support.','Dedicated enterprise support keeps your operation running.','We iterate with you as your operation and needs evolve.'][i];return `<div class="step"><div class="knot">${String(i+1).padStart(2,'0')}</div><div><h4>${s}</h4><p>${d}</p></div></div>`;}).join('')}</div>
-  </div></section>
-  ${ctaBand('Learn more about Komole.','Talk to our team about how we build and deploy industrial platforms.')}`;
-}
-
-function renderCompanies(){
-  return pageHero({crumb:[['Home','/'],['Our Companies']],title:'One parent company. A portfolio of enterprise platforms.',sub:'Komole Industries is the holding company behind a growing family of industrial software platforms — each an independent product, unified by one foundation.'})+`
-  <section class="section"><div class="wrap">
-    ${secHead('The 360 Family','Enterprise platforms, purpose-built by industry.','')}
-    <div class="grid g3">
-      ${PRODUCTS.map(p=>`<div class="company-card reveal" data-nav="/products/${p.slug}"><div class="cc-top">${iconChip(p.icon)}<span class="cc-cat">${p.cat.toUpperCase()}</span></div><div class="cc-name">${p.name}<b>${p.num}</b></div><p>${p.tagline}</p><span class="textlink">Explore ${p.name}${p.num} <span class="arw">→</span></span></div>`).join('')}
-      <div class="company-card reveal" style="border-style:dashed;" onclick="window.open('https://www.out360.co.za','_blank')"><div class="cc-top">${iconChip('out')}<span class="cc-cat">INDEPENDENT · PARTNER</span></div><div class="cc-name">Out<b>360</b></div><p>Out360 is part of the Komole ecosystem, operating with its own identity and website.</p><span class="textlink">Visit Out360 ↗</span></div>
-    </div>
-  </div></section>
-  <section class="section soft"><div class="wrap split">
-    <div class="reveal">${secHead('The Komole Model','Independent products. Shared foundation.','')}
-      <p class="lead" style="margin-bottom:20px;">Each platform is built and taken to market like an independent software company — with its own roadmap, customers and identity.</p>
-      <ul class="list-check"><li>One technology foundation across every platform</li><li>One intelligence layer — AI360 — embedded everywhere</li><li>Shared security, integration and data governance</li><li>Faster launch of new platforms as industries demand them</li></ul>
-    </div>
-    <div class="reveal d1">${demoMock({slug:'komole',stats:[['17','Platforms'],['1','Foundation'],['AI360','Everywhere']]})}</div>
-  </div></section>
-  ${ctaBand('Find the right platform for your operation.','Explore the 360 family or talk to our team about your industry.')}`;
-}
-
-function renderProduct(slug){
-  const p=PMAP[slug]; if(!p) return renderNotFound();
-  return `
-  <section class="page-hero"><div class="grid-bg"></div><div class="wrap page-hero-inner">
-    ${crumbs([['Home','/'],['Products','/companies'],[p.name+p.num]])}
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:6px;" class="reveal"><div style="width:48px;height:48px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;color:var(--accent-2);">${svg(IC[p.icon],24)}</div><span class="tag-mono" style="color:rgba(255,255,255,.55);">${p.cat.toUpperCase()} · KOMOLE PLATFORM</span></div>
-    <h1 class="reveal d1">${p.name}<span style="color:var(--accent-2)">${p.num}</span> — ${p.tagline}</h1>
-    <p class="sub reveal d2">${p.overview}</p>
-    <div class="reveal d3" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:30px;"><a class="btn btn-primary btn-lg" data-nav="/contact">Request a Demo <span class="arw">→</span></a><a class="btn btn-light btn-lg" data-nav="/companies">All Platforms</a></div>
-  </div></section>
-
-  <section class="section"><div class="wrap split">
-    <div class="reveal">${secHead('Overview','Purpose-built for '+p.cat+' operations.','')}
-      <p class="lead" style="margin-bottom:22px;">${p.overview}</p>
-      <div class="chips">${p.industries.map(i=>`<span class="chip">${i}</span>`).join('')}</div>
-    </div>
-    <div class="reveal d1">${demoMock(p)}</div>
-  </div></section>
-
-  <section class="section soft"><div class="wrap">
-    ${secHead('Industry Challenges','The problems '+p.name+p.num+' solves.','')}
-    <div class="grid g3">${p.challenges.map((c,i)=>`<div class="card reveal"><div class="tag-mono" style="color:var(--accent);margin-bottom:10px;">${String(i+1).padStart(2,'0')}</div><p style="color:var(--text-c);font-weight:500;">${c}</p></div>`).join('')}</div>
-  </div></section>
-
-  <section class="section"><div class="wrap">
-    ${secHead('Modules','Everything in one platform.','')}
-    <div class="grid g3">${p.modules.map(m=>`<div class="card hoverable reveal"><div class="ic">${svg(IC[p.icon],18)}</div><h3 style="font-size:17px;">${m}</h3></div>`).join('')}</div>
-  </div></section>
-
-  <section class="section band-dark"><div class="grid-bg"></div><div class="wrap" style="position:relative;z-index:2;">
-    ${secHead('Dashboards & Screens','See your operation, live.','')}
-    <div class="split a-start">
-      <div class="reveal"><p class="lead" style="margin-bottom:22px;">${p.name}${p.num} gives every level of your operation the view they need — from the control room to the executive dashboard.</p>
-        <div style="display:flex;gap:32px;flex-wrap:wrap;">${p.stats.map(s=>stat(s[0],s[1],true)).join('')}</div>
-      </div>
-      <div class="reveal d1"><div class="mock"><div class="bar"><i></i><i></i><i></i><span class="u">${p.slug} · operations</span></div><div class="body"><div class="kpi"><div class="t">Live</div><div class="n">${p.stats[0][0]}</div></div><div class="kpi"><div class="t">Trend</div><div class="n">${p.stats[1][0]}</div></div><div class="kpi"><div class="t">Status</div><div class="n">OK</div></div><div class="chart">${bars(12,true)}</div></div></div></div>
-    </div>
-  </div></section>
-
-  <section class="section"><div class="wrap split a-start">
-    <div class="reveal">${secHead('AI360 Inside','Intelligence built in.','Every '+p.name+p.num+' deployment includes AI360 — predictive, prescriptive and explainable.')}
-      <ul class="list-check">${p.ai.map(a=>`<li>${a}</li>`).join('')}</ul>
-      <a class="textlink" data-nav="/ai360" style="margin-top:18px;">Explore AI360 <span class="arw">→</span></a>
-    </div>
-    <div class="reveal d1">${secHead('Benefits','Outcomes you can measure.','')}
-      <ul class="list-check">${p.benefits.map(b=>`<li>${b}</li>`).join('')}</ul>
-    </div>
-  </div></section>
-
-  <section class="section soft"><div class="wrap">
-    <div class="split a-start">
-      <div class="reveal">${secHead('Integrations','Connects to what you already run.','')}
-        <div class="chips">${p.integrations.map(i=>`<span class="chip">${i}</span>`).join('')}</div>
-      </div>
-      <div class="reveal d1">${secHead('Industries Served','','')}
-        <div class="grid g3" style="gap:12px;">${p.industries.map(i=>{const ind=INDUSTRIES.find(x=>x.name===i||x.name.startsWith(i));return `<div class="card hoverable" ${ind?`data-nav="/industries/${ind.slug}"`:''}><h4 style="font-size:15px;">${i}</h4></div>`;}).join('')}</div>
-      </div>
-    </div>
-  </div></section>
-
-  <section class="section"><div class="wrap narrow">
-    ${secHead('FAQ','Common questions.','')}
-    ${faqBlock(p.faq)}
-  </div></section>
-
-  ${ctaBand('See '+p.name+p.num+' running on your data.','Request a demo and our team will configure '+p.name+p.num+' around your operation.')}`;
-}
-
-function renderIndustries(){
-  return pageHero({crumb:[['Home','/'],['Industries']],title:'Built around real industrial operations.',sub:'Komole platforms are shaped by how each industry actually runs — from the mine face to the retail floor.'})+`
-  <section class="section"><div class="wrap">
-    <div class="grid g3">${INDUSTRIES.map(i=>`<div class="card hoverable reveal" data-nav="/industries/${i.slug}"><div class="ic">${svg(IC[i.icon]||IC.gear,20)}</div><h3>${i.name}</h3><p>${i.intro.split('.')[0]}.</p><span class="textlink" style="margin-top:14px;">Explore ${i.name} <span class="arw">→</span></span></div>`).join('')}</div>
-  </div></section>
-  ${ctaBand('Transform your industry.','Find the Komole platforms built for your operation.')}`;
-}
-
-function renderIndustry(slug){
-  const i=IMAP[slug]; if(!i) return renderNotFound();
-  return `
-  <section class="page-hero"><div class="grid-bg"></div><div class="wrap page-hero-inner">
-    ${crumbs([['Home','/'],['Industries','/industries'],[i.name]])}
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:6px;" class="reveal"><div style="width:48px;height:48px;border-radius:11px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;color:var(--accent-2);">${svg(IC[i.icon]||IC.gear,24)}</div><span class="tag-mono" style="color:rgba(255,255,255,.55);">INDUSTRY</span></div>
-    <h1 class="reveal d1">${i.name}</h1>
-    <p class="sub reveal d2">${i.intro}</p>
-    <div class="reveal d3" style="margin-top:30px;"><a class="btn btn-primary btn-lg" data-nav="/contact">Request a Demo <span class="arw">→</span></a></div>
-  </div></section>
-  <section class="section"><div class="wrap split a-start">
-    <div class="reveal">${secHead('Challenges','The problems this industry faces.','')}
-      <div style="display:grid;gap:14px;">${i.challenges.map((c,n)=>`<div class="card"><div class="tag-mono" style="color:var(--accent);margin-bottom:8px;">${String(n+1).padStart(2,'0')}</div><p style="color:var(--text-c);font-weight:500;">${c}</p></div>`).join('')}</div>
-    </div>
-    <div class="reveal d1">${secHead('How Komole Solves Them','','')}
-      <ul class="list-check">${i.solutions.map(s=>`<li>${s}</li>`).join('')}</ul>
-    </div>
-  </div></section>
-  <section class="section soft"><div class="wrap">
-    ${secHead('Relevant Platforms','Komole platforms for '+i.name+'.','')}
-    <div class="grid g3">${i.products.map(s=>{const p=PMAP[s];return p?`<div class="company-card reveal" data-nav="/products/${p.slug}"><div class="cc-top">${iconChip(p.icon)}<span class="cc-cat">${p.cat.toUpperCase()}</span></div><div class="cc-name">${p.name}<b>${p.num}</b></div><p>${p.tagline}</p><span class="textlink">Learn more <span class="arw">→</span></span></div>`:'';}).join('')}</div>
-  </div></section>
-  <section class="section band-dark"><div class="grid-bg"></div><div class="wrap" style="position:relative;z-index:2;">
-    ${secHead('Customer Outcomes','What good looks like.','')}
-    <div style="display:flex;gap:40px;flex-wrap:wrap;">${i.outcomes.map(o=>stat(o[0],o[1],true)).join('')}</div>
-    <div style="margin-top:36px;"><a class="btn btn-light" data-nav="/case-studies">Read case studies <span class="arw">→</span></a></div>
-  </div></section>
-  ${ctaBand('Modernise '+i.name+' operations.','Talk to our team about the right platform for your operation.')}`;
-}
-
-function renderTechnology(){
-  return pageHero({crumb:[['Home','/'],['Technology']],title:'One technology foundation powering every platform.',sub:'A cloud-native, secure and intelligent platform beneath every Komole product — engineered for industrial scale.'})+`
-  <section class="section"><div class="wrap">
-    ${secHead('Capabilities','The Komole technology stack.','')}
-    <div class="grid g3">${TECH.map(t=>`<div class="card hoverable reveal"><div class="ic">${svg(IC[t[1]]||IC.gear,20)}</div><h3>${t[0]}</h3><p>${t[2]}</p></div>`).join('')}</div>
-  </div></section>
-  <section class="section soft"><div class="wrap">
-    ${secHead('Architecture','How it fits together.','From cloud foundation to industry experience, one coherent architecture.')}
-    <div class="reveal" style="display:grid;gap:12px;max-width:920px;">
-      ${[['Experience Layer','Rail360 · Mine360 · Fleet360 · Energy360 · Retail360 · Customer Portals'],['Platform Services','Identity · Workflow · Documents · GIS · Notifications · Reporting'],['Data & Intelligence','Data Platform · AI360 Engine · Time-Series · Enterprise Integration',true],['Cloud Foundation','Security · Audit · Scalable Cloud · Observability']].map(l=>`<div class="card" style="${l[2]?'border-color:var(--accent);background:var(--accent-soft);':''}"><div class="tag-mono" style="color:var(--accent);margin-bottom:8px;">${l[0]}</div><div style="font-family:'IBM Plex Mono';font-size:13px;color:var(--muted-c);">${l[1]}</div></div>`).join('')}
-    </div>
-  </div></section>
-  <section class="section"><div class="wrap split">
-    <div class="reveal">${secHead('Security & Trust','Enterprise-grade by design.','')}
-      <ul class="list-check"><li>Zero-trust architecture and encryption in transit and at rest</li><li>Role-based access control and full audit trails</li><li>Data governance and residency options</li><li>Resilient, observable, cloud-native operations</li></ul>
-    </div>
-    <div class="reveal d1">${secHead('Integration','Open by default.','')}
-      <ul class="list-check"><li>Open APIs and standard connectors</li><li>ERP, SCADA, MES and legacy system integration</li><li>IoT and telematics ingestion at the edge</li><li>Event streaming and webhooks</li></ul>
-    </div>
-  </div></section>
-  ${ctaBand('Go deeper on the technology.','Talk to our architects about deploying Komole in your environment.')}`;
-}
-
-function renderAI360(){
-  return `
-  <section class="page-hero"><div class="grid-bg"></div><div class="wrap page-hero-inner">
-    ${crumbs([['Home','/'],['Technology','/technology'],['AI360']])}
-    <span class="eyebrow on-dark reveal">The Komole Intelligence Layer</span>
-    <h1 class="reveal d1" style="margin-top:20px;">AI360 — artificial intelligence that supports better decisions.</h1>
-    <p class="sub reveal d2">Not automation for its own sake. AI360 is decision intelligence built for industrial reality — predictive, prescriptive, and always explainable, with humans in control.</p>
-    <div class="reveal d3" style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;"><a class="btn btn-primary btn-lg" data-nav="/contact">Request a Demo <span class="arw">→</span></a><a class="btn btn-light btn-lg" data-nav="/technology">The Platform</a></div>
-  </div></section>
-  <section class="section"><div class="wrap">
-    ${secHead('Capabilities','Intelligence across every operation.','')}
-    <div class="grid g3">${AICAPS.map((a,i)=>`<div class="card hoverable reveal"><div class="tag-mono" style="color:var(--accent);margin-bottom:10px;">${String(i+1).padStart(2,'0')}</div><h3 style="font-size:17px;">${a[0]}</h3><p>${a[1]}</p></div>`).join('')}</div>
-  </div></section>
-  <section class="section soft"><div class="wrap split">
-    <div class="reveal">${secHead('Trust by Design','Explainable, and always under human control.','')}
-      <ul class="list-check"><li>Every recommendation shows the drivers behind it</li><li>AI recommends; your people decide</li><li>Guardrails and approval workflows built in</li><li>Bring your own models alongside platform models</li></ul>
-    </div>
-    <div class="reveal d1">${demoMock({slug:'ai360',stats:[['Explainable','Always'],['Human','In control'],['Cross','Platform']]})}</div>
-  </div></section>
-  <section class="section"><div class="wrap">
-    ${secHead('Roadmap','Where AI360 is going.','')}
-    <div class="steps reveal">${[['Decision Intelligence','Prescriptive recommendations across every platform.'],['Autonomous Agents','Agents that monitor, alert and act within guardrails.'],['Natural Language Operations','Run and query your operation in plain language.'],['Cross-Platform Optimisation','Optimise across the whole enterprise, not just one platform.']].map((s,i)=>`<div class="step"><div class="knot">${String(i+1).padStart(2,'0')}</div><div><h4>${s[0]}</h4><p>${s[1]}</p></div></div>`).join('')}</div>
-  </div></section>
-  ${ctaBand('Put AI360 to work.','See predictive, explainable intelligence running on your operational data.')}`;
-}
-
-function renderSolutions(){
-  return pageHero({crumb:[['Home','/'],['Solutions']],title:'Technology that powers complex operations.',sub:'The operational disciplines industrial organisations depend on — engineered as software, across every Komole platform.'})+`
-  <section class="section"><div class="wrap">
-    <div class="grid g3">${SOLUTIONS.map(s=>`<div class="card hoverable reveal"><div class="ic">${svg(IC[s[3]]||IC.gear,20)}</div><h3>${s[0]}</h3><p>${s[2]}</p></div>`).join('')}</div>
-  </div></section>
-  <section class="section soft"><div class="wrap center narrow">${secHead('Explore by industry or platform','Two ways in.','',true)}
-    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;"><a class="btn btn-dark" data-nav="/industries">Browse Industries <span class="arw">→</span></a><a class="btn btn-outline" data-nav="/companies">Browse Platforms <span class="arw">→</span></a></div>
-  </div></section>
-  ${ctaBand('Find your solution.','Tell us about your operation and we\'ll map the right platforms and modules.')}`;
-}
-
-function renderCustomers(){
-  return pageHero({crumb:[['Home','/'],['Customers']],title:'The organisations building on Komole.',sub:'From national operators to multi-store retailers, industrial organisations run on Komole platforms.'})+`
-  <section class="section"><div class="wrap">
-    <div class="brandrow reveal">${['Rail','Mining','Fuel','Retail','Energy','Logistics','Property','Ports','Construction','Utilities'].map(b=>`<div class="b">${b}<b>360</b></div>`).join('')}</div>
-  </div></section>
-  <section class="section soft"><div class="wrap">${secHead('In their operations','Outcomes across industries.','')}
-    <div style="display:grid;gap:24px;">${CASES.slice(0,3).map(caseCard).join('')}</div>
-    <div style="margin-top:24px;"><a class="btn btn-outline" data-nav="/case-studies">All case studies <span class="arw">→</span></a></div>
-  </div></section>
-  ${ctaBand('Join them.','See what Komole can do for your operation.')}`;
-}
-
-function renderCaseStudies(){
-  return pageHero({crumb:[['Home','/'],['Case Studies']],title:'Outcomes, not just software.',sub:'Real deployments, measurable results — across rail, mining, fuel, retail, property and logistics.'})+`
-  <section class="section"><div class="wrap" style="display:grid;gap:24px;">${CASES.map(caseCard).join('')}</div></section>
-  ${ctaBand('Write the next one.','Talk to our team about the outcomes you\'re aiming for.')}`;
-}
-
-function renderPartners(){
-  return pageHero({crumb:[['Home','/'],['Partners']],title:'Build with Komole.',sub:'Technology, delivery and channel partners extending the Komole platform across Africa.'})+`
-  <section class="section"><div class="wrap">
-    <div class="grid g3">${[['Technology Partners','Integrate your systems and hardware with the Komole platform.','gear'],['Delivery Partners','Implement and support Komole platforms for enterprise customers.','users'],['Channel Partners','Take Komole platforms to market in your region and industry.','globe'],['Out360','Part of the Komole ecosystem, with its own identity and website.','out'],['ISV Partners','Build on Komole APIs and extend the platform.','node'],['Advisory Partners','Shape industrial transformation strategy with our teams.','briefcase']].map(p=>`<div class="card hoverable reveal" ${p[0]==='Out360'?`onclick="window.open('https://www.out360.co.za','_blank')"`:''}><div class="ic">${svg(IC[p[2]],20)}</div><h3>${p[0]}</h3><p>${p[1]}</p>${p[0]==='Out360'?'<span class="textlink" style="margin-top:12px;">Visit Out360 ↗</span>':''}</div>`).join('')}</div>
-  </div></section>
-  ${ctaBand('Become a partner.','Tell us how you\'d like to build with Komole.')}`;
-}
-
-function renderInsights(){
-  return pageHero({crumb:[['Home','/'],['Insights']],title:'Perspectives on industrial technology.',sub:'Articles, research and field notes on digitising African industry.'})+`
-  <section class="section"><div class="wrap">
-    <div class="chips reveal" style="margin-bottom:26px;">${['All','Articles','White Papers','Industry Reports','Research','Videos','News','Events'].map((t,i)=>`<span class="chip" style="${i===0?'background:var(--accent);color:#fff;border-color:var(--accent);':''}cursor:pointer;">${t}</span>`).join('')}</div>
-    <div class="grid g3">${INSIGHTS.map(artCard).join('')}</div>
-  </div></section>
-  <section class="section soft"><div class="wrap split">
-    <div class="reveal">${secHead('Downloads','White papers & industry reports.','')}
-      <ul class="list-check"><li>The Industrial Platform Playbook (PDF)</li><li>State of African Industrial Tech 2026 (PDF)</li><li>Explainable AI for Operations (PDF)</li></ul>
-    </div>
-    <div class="reveal d1">${secHead('Events & Webinars','Meet the team.','')}
-      <div style="display:grid;gap:12px;">${[['Industrial Intelligence Summit','Johannesburg'],['AI360 for Operations','Webinar'],['Rail Digitisation Forum','Cape Town']].map(e=>`<div class="card" style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:600;">${e[0]}</span><span class="tag-mono">${e[1]}</span></div>`).join('')}</div>
-    </div>
-  </div></section>
-  ${ctaBand('Stay ahead.','Subscribe to Komole insights and platform updates.')}`;
-}
-
-function renderCareers(){
-  return pageHero({crumb:[['Home','/'],['Careers']],title:'Build technology that moves industries.',sub:'Join a team of engineers, designers and industry specialists building the platforms that will run Africa\'s most important operations.'})+`
-  <section class="section"><div class="wrap">
-    ${secHead('Life at Komole','Craft, scale and real-world impact.','')}
-    <div class="grid g4">${[['Craft','We care about how things are built, not just that they ship.'],['Ownership','Small teams, real responsibility, visible impact.'],['Growth','Learn fast alongside senior engineers and industry experts.'],['Purpose','Your work runs real operations across the continent.']].map(v=>`<div class="card reveal"><h3 style="font-size:17px;">${v[0]}</h3><p>${v[1]}</p></div>`).join('')}</div>
-  </div></section>
-  <section class="section soft"><div class="wrap">
-    ${secHead('Departments','Where you could work.','')}
-    <div class="grid g3">${DEPTS.map(d=>`<div class="card reveal"><h3 style="font-size:17px;">${d[0]}</h3><p>${d[1]}</p></div>`).join('')}</div>
-  </div></section>
-  <section class="section"><div class="wrap">
-    ${secHead('Open Roles','Come build with us.','')}
-    <div style="display:grid;gap:12px;">${ROLES.map(r=>`<div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;"><div><div style="font-family:'Sora';font-weight:600;font-size:17px;">${r[0]}</div><div class="tag-mono" style="margin-top:4px;">${r[1]} · ${r[2]}</div></div><a class="btn btn-outline" data-nav="/contact">Apply <span class="arw">→</span></a></div>`).join('')}</div>
-    <p style="color:var(--muted-c);margin-top:20px;">Don't see your role? We\'re always keen to meet exceptional people. <a class="textlink" data-nav="/contact">Get in touch <span class="arw">→</span></a></p>
-  </div></section>
-  ${ctaBand('Apply to Komole.','Send us your details and tell us what you\'d like to build.')}`;
-}
-
-function renderContact(){
-  return pageHero({dark:false,crumb:[['Home','/'],['Contact']],title:'Let\'s talk about your operation.',sub:'Request a demo or book a meeting. We\'ll show you how the Komole platform maps to your industry.'})+`
-  <section class="section"><div class="wrap split a-start">
-    <div class="reveal">
-      <div style="display:grid;gap:18px;">
-        <div class="card" style="display:flex;gap:14px;align-items:flex-start;"><div class="ic" style="margin:0;">${svg(IC.pin,20)}</div><div><div class="tag-mono">Office</div><div style="font-weight:600;">41 Sloane St, Bryanston,<br>Sandton, Johannesburg, 2191</div></div></div>
-        <div class="card" style="display:flex;gap:14px;align-items:flex-start;"><div class="ic" style="margin:0;">${svg(IC.doc,20)}</div><div><div class="tag-mono">Email</div><div style="font-weight:600;">hello@komole.com</div></div></div>
-        <div class="card" style="display:flex;gap:14px;align-items:flex-start;"><div class="ic" style="margin:0;">${svg(IC.headset,20)}</div><div><div class="tag-mono">Support</div><div style="font-weight:600;"><a class="textlink" data-nav="/support">Visit the support centre <span class="arw">→</span></a></div></div></div>
-        <div class="card" style="display:flex;gap:14px;align-items:flex-start;"><div class="ic" style="margin:0;">${svg(IC.out,20)}</div><div><div class="tag-mono">Ecosystem</div><div style="font-weight:600;"><a class="textlink" href="https://www.out360.co.za" target="_blank" rel="noopener">Visit Out360 ↗</a></div></div></div>
-      </div>
-    </div>
-    <div class="reveal d1"><div class="card" style="padding:30px;">
-      <h3 style="margin-bottom:20px;">Request a demo</h3>
-      <div class="field"><label>Full name</label><input type="text" placeholder="Your name" /></div>
-      <div class="field"><label>Work email</label><input type="email" placeholder="you@company.com" /></div>
-      <div class="field"><label>Company</label><input type="text" placeholder="Company" /></div>
-      <div class="field"><label>Industry</label><select>${INDUSTRIES.map(i=>`<option>${i.name}</option>`).join('')}<option>Other</option></select></div>
-      <div class="field"><label>How can we help?</label><textarea placeholder="Tell us about your operation…"></textarea></div>
-      <button class="btn btn-primary" style="width:100%;justify-content:center;" id="contactBtn">Request a Demo <span class="arw">→</span></button>
-      <p style="font-size:13px;color:var(--muted-c);text-align:center;margin-top:12px;">We\'ll respond within one business day.</p>
-    </div></div>
-  </div></section>`;
-}
-
-function renderSupport(){
-  return pageHero({crumb:[['Home','/'],['Support']],title:'Enterprise support that keeps you running.',sub:'Dedicated support for every Komole platform — with the response and reliability enterprise operations demand.'})+`
-  <section class="section"><div class="wrap">
-    <div class="grid g3">${[['Help Centre','Guides, documentation and answers for every platform.','doc'],['Raise a Ticket','Log and track issues with our enterprise support team.','headset'],['System Status','Live status and incident history across Komole services.','eye'],['Onboarding','Training and enablement for your teams.','users'],['Integrations','Support for ERP, SCADA, IoT and API integrations.','gear'],['Account','Manage licences, users and configuration.','briefcase']].map(s=>`<div class="card hoverable reveal"><div class="ic">${svg(IC[s[2]],20)}</div><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('')}</div>
-  </div></section>
-  <section class="section soft"><div class="wrap narrow">${secHead('Support FAQ','Common questions.','')}
-    ${faqBlock([['What support is included?','Every enterprise deployment includes dedicated support with agreed response times, plus onboarding and enablement.'],['How do I raise an urgent issue?','Priority issues can be logged through the support centre and are routed straight to the on-call team.'],['Do you offer training?','Yes — role-based training and enablement are part of every implementation.']])}
-  </div></section>
-  ${ctaBand('Need help now?','Our team is here to keep your operation running.')}`;
-}
-
-function renderNotFound(){
-  return pageHero({crumb:[['Home','/'],['Not found']],title:'Page not found.',sub:'The page you\'re looking for doesn\'t exist. Head back home or explore our platforms.',actions:'<a class="btn btn-primary btn-lg" data-nav="/">Back home <span class="arw">→</span></a><a class="btn btn-light btn-lg" data-nav="/companies">Our platforms</a>'});
-}
-
-/* ============================================================
-   NAVIGATION CONFIG + BUILD
-   ============================================================ */
-const NAV=[
-  {label:'Solutions',mega:()=>megaList('Capabilities',SOLUTIONS.map(s=>[s[0],'/solutions',s[3],s[2]]),'c2',[['View all solutions','/solutions']])},
-  {label:'Products',mega:()=>megaProducts()},
-  {label:'Industries',mega:()=>megaList('Industries',INDUSTRIES.map(i=>[i.name,'/industries/'+i.slug,i.icon,'']),'c3',[['All industries','/industries']])},
-  {label:'Technology',mega:()=>megaList('Technology',[['Technology Platform','/technology','layers','The foundation beneath every platform'],['AI360','/ai360','ai','The intelligence layer'],['Cloud & Security','/technology','shield','Cloud-native, secure by design'],['Integration','/technology','gear','Open APIs and connectors'],['Data Platform','/technology','doc','A unified data foundation'],['Analytics & BI','/technology','chart','From shop floor to boardroom']],'c2',[['Explore technology','/technology']])},
-  {label:'Company',mega:()=>megaList('Company',[['About','/about','briefcase','Who we are'],['Our Companies','/companies','layers','The 360 portfolio'],['Partners','/partners','node','Build with us'],['Customers','/customers','globe','Who runs on Komole'],['Careers','/careers','briefcase','Join us']],'c2',[['About Komole','/about']])},
-  {label:'Resources',mega:()=>megaList('Resources',[['Insights','/insights','doc','Articles & research'],['Case Studies','/case-studies','chart','Outcomes'],['White Papers','/insights','doc','Downloads'],['News','/insights','globe','Latest news'],['Events','/insights','users','Meet the team'],['Support','/support','headset','Help & docs']],'c2',[['Insights centre','/insights']])},
-  {label:'Contact',route:'/contact'},
-];
-function megaItem(label,route,icon,desc){return `<a class="mi" data-nav="${route}">${icon?`<span class="mi-ic">${svg(IC[icon]||IC.gear,18)}</span>`:''}<span><span class="mi-t">${label}</span>${desc?`<span class="mi-d">${desc}</span>`:''}</span></a>`;}
-function megaList(head,items,cols,foot){
-  return `<div class="mega ${cols==='c3'?'wide':''}"><div class="mega-head">${head}</div><div class="mega-grid ${cols}">${items.map(i=>megaItem(i[0],i[1],i[2],i[3])).join('')}</div>${foot?`<div class="mega-foot"><a class="textlink" data-nav="${foot[0][1]}">${foot[0][0]} <span class="arw">→</span></a></div>`:''}</div>`;
-}
-function megaProducts(){
-  return `<div class="mega xwide"><div class="mega-head">The 360 Platform Family</div><div class="mega-grid c3">${PRODUCTS.map(p=>megaItem(p.name+p.num,'/products/'+p.slug,p.icon,p.cat.charAt(0).toUpperCase()+p.cat.slice(1))).join('')}</div><div class="mega-foot"><a class="textlink" data-nav="/companies">View all companies <span class="arw">→</span></a><a class="textlink" href="https://www.out360.co.za" target="_blank" rel="noopener">Visit Out360 ↗</a></div></div>`;
-}
-function buildNav(){
-  const nav=document.getElementById('primaryNav');
-  nav.innerHTML=NAV.map(n=>{
-    if(n.route) return `<div class="navitem"><a data-nav="${n.route}">${n.label}</a></div>`;
-    return `<div class="navitem"><button aria-haspopup="true">${n.label}<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></button>${n.mega()}</div>`;
-  }).join('');
-  nav.querySelectorAll('.navitem').forEach(item=>{
-    const btn=item.querySelector('button'); if(!btn) return;
-    item.addEventListener('mouseenter',()=>{closeMegas();item.classList.add('open');});
-    item.addEventListener('mouseleave',()=>item.classList.remove('open'));
-    btn.addEventListener('click',()=>{const o=item.classList.contains('open');closeMegas();if(!o)item.classList.add('open');});
-  });
-  // footer products
-  document.getElementById('ftProducts').innerHTML=['rail360','mine360','fleet360','energy360','fuel360','ai360'].map(s=>{const p=PMAP[s];return `<li><a data-nav="/products/${p.slug}">${p.name}${p.num}</a></li>`;}).join('');
-  // drawer
-  buildDrawer();
-}
-function closeMegas(){document.querySelectorAll('.navitem.open').forEach(i=>i.classList.remove('open'));}
-function buildDrawer(){
-  const groups=[
-    ['Products',PRODUCTS.map(p=>[p.name+p.num,'/products/'+p.slug]).concat([['View all companies','/companies']])],
-    ['Industries',INDUSTRIES.map(i=>[i.name,'/industries/'+i.slug])],
-    ['Technology',[['Technology Platform','/technology'],['AI360','/ai360']]],
-    ['Solutions',SOLUTIONS.map(s=>[s[0],'/solutions'])],
-    ['Company',[['About','/about'],['Our Companies','/companies'],['Partners','/partners'],['Customers','/customers'],['Careers','/careers']]],
-    ['Resources',[['Insights','/insights'],['Case Studies','/case-studies'],['Support','/support']]],
-  ];
-  document.getElementById('drawerBody').innerHTML=groups.map(g=>`<details><summary>${g[0]}<svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></summary><div class="d-links">${g[1].map(l=>`<a data-nav="${l[1]}">${l[0]}</a>`).join('')}</div></details>`).join('')
-    +`<div style="margin-top:20px;display:grid;gap:10px;"><a class="btn btn-primary" style="justify-content:center;" data-nav="/contact">Request a Demo →</a><a class="btn btn-outline" style="justify-content:center;" href="https://www.out360.co.za" target="_blank" rel="noopener">Visit Out360 ↗</a></div>`;
-}
-
-/* ============================================================
-   ROUTER
-   ============================================================ */
-const ROUTES={'/':renderHome,'/about':renderAbout,'/companies':renderCompanies,'/industries':renderIndustries,'/technology':renderTechnology,'/ai360':renderAI360,'/solutions':renderSolutions,'/customers':renderCustomers,'/case-studies':renderCaseStudies,'/partners':renderPartners,'/insights':renderInsights,'/careers':renderCareers,'/contact':renderContact,'/support':renderSupport};
-function resolve(path){
-  if(ROUTES[path]) return ROUTES[path]();
-  const pm=path.match(/^\/products\/([\w-]+)$/); if(pm) return renderProduct(pm[1]);
-  const im=path.match(/^\/industries\/([\w-]+)$/); if(im) return renderIndustry(im[1]);
-  return renderNotFound();
-}
-function currentPath(){const h=location.hash.replace(/^#/,'');return h||'/';}
-function render(){
-  const path=currentPath();
-  const app=document.getElementById('app');
-  app.innerHTML=resolve(path);
-  try{window.scrollTo(0,0);}catch(e){}
-  observeReveals();
-  wireInline();
-  closeDrawer();
-}
-function navigate(path){ if(location.hash===('#'+path)) render(); else location.hash='#'+path; }
-addEventListener('hashchange',render);
-
-/* reveal observer */
-let io;
-function observeReveals(){
-  if(typeof IntersectionObserver==='undefined'){document.querySelectorAll('.reveal').forEach(r=>r.classList.add('in'));return;}
-  if(io)io.disconnect();
-  io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
-  document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
-}
-/* wire in-page buttons rendered per view */
-function wireInline(){
-  const cb=document.getElementById('contactBtn'); if(cb) cb.addEventListener('click',()=>{cb.innerHTML='Request received ✓';cb.style.background='#16a34a';});
-}
-
-/* global click delegation for data-nav */
-document.addEventListener('click',(e)=>{
-  const t=e.target.closest('[data-nav]'); if(!t)return;
-  e.preventDefault(); navigate(t.getAttribute('data-nav')); closeMegas();
-});
-
-/* nav scroll state */
-const navEl=document.getElementById('nav');
-addEventListener('scroll',()=>navEl.classList.toggle('scrolled',scrollY>8),{passive:true});
-/* theme */
-document.getElementById('themeToggle').addEventListener('click',()=>{const c=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',c==='dark'?'light':'dark');});
-/* drawer */
-const drawer=document.getElementById('drawer');
-function openDrawer(){drawer.classList.add('open');}
-function closeDrawer(){drawer.classList.remove('open');}
-document.getElementById('menuBtn').addEventListener('click',openDrawer);
-document.getElementById('drawerClose').addEventListener('click',closeDrawer);
-document.getElementById('nlBtn').addEventListener('click',function(){this.textContent='Subscribed ✓';this.style.background='#16a34a';});
-/* close mega on outside click */
-document.addEventListener('click',(e)=>{if(!e.target.closest('.navitem'))closeMegas();});
-
-/* init */
-buildNav();
-render();
+    init();
+  })();
 </script>
+
 </body>
 </html>
