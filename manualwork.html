@@ -1,329 +1,758 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manual Work Is Costing You More Than You Think · PrimeChain</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="icon" type="image/svg+xml" href="/assets/primechain.svg" />
-  <link rel="stylesheet" href="style.css" />
-        <!-- Favicon -->
-  <link rel="icon" type="image/svg" sizes="32x32" href="/assets/primechain.svg">
-  <link rel="icon" type="image/svg" sizes="16x16" href="/assets/primechain.svg">
-  <style>
-    /* Article-specific overrides */
-    .article-body {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 4rem 0 6rem;
-    }
-    .article-body h2 {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      margin: 2.5rem 0 1rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    .article-body h3 {
-      font-size: clamp(1.2rem, 2vw, 1.5rem);
-      margin: 2rem 0 0.8rem;
-      font-weight: 600;
-    }
-    .article-body p {
-      font-size: 1rem;
-      line-height: 1.85;
-      color: var(--text);
-      margin-bottom: 1.25rem;
-      font-weight: 300;
-    }
-    .article-body p:first-of-type {
-      font-size: 1.08rem;
-      line-height: 1.9;
-      color: var(--text);
-    }
-    .article-body ul {
-      margin: 1.25rem 0 1.5rem 1.5rem;
-    }
-    .article-body ul li {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: var(--text);
-      font-weight: 300;
-      margin-bottom: 0.5rem;
-    }
-    .article-body blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      line-height: 1.5;
-      font-weight: 500;
-      color: var(--navy-mid);
-      padding: 1.5rem 0 1.5rem 2rem;
-      margin: 2rem 0;
-      border-left: 3px solid var(--gold);
-      background: var(--off);
-      padding: 1.5rem 2rem;
-    }
-    .article-body blockquote p {
-      margin-bottom: 0;
-      font-size: inherit;
-      font-weight: 500;
-      color: var(--navy-mid);
-    }
-    .article-meta {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.8rem;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .article-meta span { display: flex; align-items: center; gap: 0.4rem; }
-    .article-tag {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--teal);
-      background: var(--teal-lt);
-      padding: 0.25rem 0.9rem;
-      border-radius: 20px;
-      display: inline-block;
-    }
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--teal);
-      margin-bottom: 1.5rem;
-      transition: gap var(--ease);
-    }
-    .back-link:hover { gap: 0.75rem; }
-    .article-divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 2.5rem 0;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Every operation has a visible workflow and an invisible one. The real cost is in the work behind the work." />
+<title>The Work Behind the Work · PrimeChain</title>
 
-    @media (max-width: 768px) {
-      .article-body { padding: 2.5rem 0 4rem; }
-      .article-body blockquote { font-size: 1.2rem; padding: 1.25rem; }
-    }
-  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#101010;
+  --paper:#f5f4f0;
+  --white:#fff;
+  --muted:#676767;
+  --line:#d9d7d0;
+  --soft:#eceae4;
+  --accent:#c8a96b;
+  --max:860px;
+  --serif:"Manrope",sans-serif;
+  --sans:"DM Sans",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(var(--max),calc(100% - 64px));margin:auto}
+
+/* ---- NAVIGATION ---- */
+.nav{
+  height:82px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;
+}
+.logo{font-weight:700;font-size:1.2rem;letter-spacing:-.04em;z-index:100}
+.logo span{font-weight:400}
+
+.navlinks{
+  display:flex;gap:30px;align-items:center;font-size:.82rem;color:#4f4f4f;
+  list-style:none;margin:0;padding:0;
+}
+.navlinks li{display:inline-block}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a.active{border-bottom:2px solid var(--accent);padding-bottom:4px;color:var(--ink)}
+.navlinks .nav-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+  transition:.2s;
+}
+.navlinks .nav-cta:hover{background:var(--ink);color:var(--white)}
+
+.desktop-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+  transition:.2s;
+}
+.desktop-cta:hover{background:var(--ink);color:var(--white)}
+
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  background:transparent;border:none;padding:8px;z-index:100;
+}
+.hamburger span{
+  display:block;width:28px;height:2px;background:var(--ink);
+  transition:all 0.3s ease;border-radius:2px;transform-origin:center;
+}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+.mobile-nav-overlay{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100vh;
+  background:var(--paper);z-index:90;padding:100px 40px 40px;
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.mobile-nav-overlay.open{display:flex}
+.mobile-nav-overlay a{
+  font-family:var(--serif);font-size:2.4rem;font-weight:500;letter-spacing:-.04em;
+  color:var(--ink);transition:.2s;text-decoration:none;
+}
+.mobile-nav-overlay a:hover{color:#777}
+.mobile-nav-overlay a.active{color:var(--accent)}
+.mobile-nav-overlay .mobile-cta{
+  margin-top:16px;border:1px solid var(--ink);padding:16px 32px;
+  font-size:.82rem;font-weight:600;transition:.2s;
+}
+.mobile-nav-overlay .mobile-cta:hover{background:var(--ink);color:var(--white)}
+
+/* ---- ARTICLE STYLES ---- */
+.article-hero{
+  padding:92px 0 48px;border-bottom:1px solid var(--line);
+}
+.article-hero .breadcrumb{
+  font-size:.72rem;color:#999;margin-bottom:24px;display:flex;align-items:center;gap:8px;
+}
+.article-hero .breadcrumb a{color:#777;transition:.2s}
+.article-hero .breadcrumb a:hover{color:var(--ink)}
+.article-hero .breadcrumb .sep{color:#ccc}
+.article-hero .article-tag{
+  font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;
+  color:var(--accent);font-weight:700;display:inline-block;margin-bottom:16px;
+}
+.article-hero h1{
+  font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,4.8rem);
+  line-height:1.05;letter-spacing:-.055em;font-weight:500;max-width:780px;
+}
+.article-hero .article-meta{
+  display:flex;gap:24px;margin-top:24px;font-size:.82rem;color:#777;
+  align-items:center;flex-wrap:wrap;
+}
+.article-hero .article-meta .divider{color:#ddd}
+.article-hero .article-meta .author{font-weight:600;color:var(--ink)}
+
+.article-body{
+  padding:60px 0 80px;background:var(--white);
+}
+.article-body .content{
+  max-width:720px;margin:0 auto;
+}
+.article-body .content p{
+  font-size:1.05rem;color:#444;line-height:1.85;margin-bottom:1.5rem;
+}
+.article-body .content h2{
+  font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:500;letter-spacing:-.04em;margin:3rem 0 1.2rem;line-height:1.15;
+}
+.article-body .content h3{
+  font-family:var(--serif);font-size:1.4rem;font-weight:500;letter-spacing:-.03em;
+  margin:2.4rem 0 1rem;line-height:1.2;
+}
+.article-body .content blockquote{
+  border-left:4px solid var(--accent);padding:1.5rem 2rem;margin:2rem 0;
+  background:var(--paper);font-family:var(--serif);font-size:1.3rem;
+  font-weight:500;line-height:1.5;letter-spacing:-.02em;
+}
+.article-body .content blockquote em{font-style:italic;color:#999}
+.article-body .content .pull-quote{
+  font-family:var(--serif);font-size:clamp(1.6rem,2.8vw,2.4rem);
+  font-weight:500;letter-spacing:-.04em;line-height:1.2;
+  padding:2rem 0;border-top:2px solid var(--line);border-bottom:2px solid var(--line);
+  margin:2.5rem 0;
+}
+.article-body .content .pull-quote em{font-style:italic;color:#999}
+.article-body .content ul{
+  margin:1.2rem 0 1.8rem 1.5rem;list-style:none;
+}
+.article-body .content ul li{
+  padding-left:1.5rem;position:relative;margin-bottom:0.6rem;font-size:1.02rem;color:#444;
+}
+.article-body .content ul li::before{
+  content:"—";position:absolute;left:0;color:var(--accent);font-weight:600;
+}
+.article-body .content hr{
+  border:none;border-top:1px solid var(--line);margin:3rem 0;
+}
+
+/* ---- BACK TO THINKING ---- */
+.back-link{
+  padding:40px 0 60px;background:var(--paper);
+}
+.back-link .back-inner{
+  max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px;
+  font-size:.82rem;color:#777;transition:.2s;
+}
+.back-link .back-inner:hover{color:var(--ink)}
+.back-link .back-inner .arrow{font-size:1rem}
+
+/* ---- RELATED ARTICLES ---- */
+.related{
+  background:var(--paper);padding:60px 0 80px;border-top:1px solid var(--line);
+}
+.related .related-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  max-width:720px;margin:32px auto 0;border:1px solid var(--line);
+}
+.related .rel-card{
+  background:var(--paper);padding:28px 24px;min-height:160px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.related .rel-card small{
+  font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:#999;font-weight:700;
+}
+.related .rel-card h4{
+  font-family:var(--serif);font-size:1.1rem;font-weight:500;letter-spacing:-.03em;
+  margin:12px 0 8px;line-height:1.2;
+}
+.related .rel-card p{color:#666;font-size:.82rem;line-height:1.6}
+.related .rel-card .rel-link{font-size:.7rem;font-weight:600;color:#777;margin-top:8px;display:inline-block}
+.related .rel-card .rel-link:hover{color:var(--ink)}
+
+/* ---- CTA ---- */
+.cta-band{background:var(--ink);color:var(--white);border-bottom:0;padding:0}
+.cta-band .cta-inner{
+  padding:80px 0;display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:end;
+}
+.cta-band h2{
+  font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.8rem);
+  line-height:.95;letter-spacing:-.075em;font-weight:500;
+}
+.cta-band p{color:#aaa;max-width:440px;font-size:1rem;line-height:1.7;margin-bottom:26px}
+.cta-band .btn.primary{background:var(--white);color:var(--ink);border-color:var(--white)}
+.cta-band .btn.primary:hover{background:#ddd}
+
+/* ---- FOOTER ---- */
+footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1px solid #292929}
+.footer-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.footer-brand p{color:#777;max-width:310px;font-size:.8rem;margin-top:8px}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap;font-size:.75rem;color:#aaa}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid #292929;margin-top:35px;padding-top:17px;color:#666;font-size:.68rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:900px){
+  .container{width:min(var(--max),calc(100% - 40px))}
+  .navlinks{display:none}
+  .desktop-cta{display:none}
+  .hamburger{display:flex}
+  .cta-band .cta-inner{grid-template-columns:1fr;gap:40px}
+  .related .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .container{width:calc(100% - 32px)}
+  .nav{height:72px}
+  .article-hero{padding:65px 0 32px}
+  .article-hero h1{font-size:2.6rem}
+  .article-body{padding:40px 0 60px}
+  .article-body .content p{font-size:.98rem}
+  .article-body .content blockquote{padding:1.2rem 1.5rem;font-size:1.1rem}
+  .article-body .content .pull-quote{font-size:1.4rem}
+  .cta-band .cta-inner{padding:60px 0}
+  .mobile-nav-overlay a{font-size:1.8rem}
+}
+</style>
 </head>
 <body>
-<div class="sp" id="sp"></div>
 
-<!-- navigation -->
-  <nav id="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="logo">
-        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
-      </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="on">Home</a></li>
-        <li><a href="whoweare.html">Who we are</a></li>
-        <li><a href="ourthinking.html">Our thinking</a></li>
-        <li><a href="#contact" class="nav-cta">Talk to us</a></li>
-      </ul>
-      <button class="mob-btn" id="mobBtn" aria-label="Menu">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-  </nav>
-
-<!-- hero -->
-<section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="hero-label">Article</div>
-    <h1>The Work That Happens <br /><em>After the Work Is Done</em></h1>
-    <p>Manual work is costing you more than you think — and it's not just the time.</p>
-  </div>
-</section>
-
-<!-- article body -->
+<!-- ============================================================ -->
+<!-- NAVIGATION                                                    -->
+<!-- ============================================================ -->
 <div class="container">
-  <div class="article-body">
-    <a href="articles.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Our thinking</a>
-
-    <div class="article-meta">
-      <span class="article-tag">Operations &amp; Admin</span>
-      <span><i class="fas fa-clock"></i> 5 min read</span>
-    </div>
-
-    <p>It is Thursday evening. Your crew finished the last installation at 16:30. 100 meters replaced. 100 properties ticked off the work order. 100 more completed against this month's LOI.</p>
-
-    <p>By any measure, a productive day.</p>
-
-    <p>But your operations coordinator is still at the office at 20:00, and she is not chasing a customer problem or resolving a billing dispute. She is opening a Word document, pulling up the day's job cards, downloading photos from a WhatsApp group, resizing images, typing in meter serial numbers that were already captured on the field sheet, and preparing 100 completion records that need to be ready before tomorrow morning's dispatch.</p>
-
-    <p>She will do this again tomorrow night. And the night after. Every week, without fail, because the documentation cannot wait and there is no other time to do it.</p>
-
-    <p>Your business completed 100 installations today. It also completed 1000 minutes of work that nobody is billing for, nobody is improving, and nobody is questioning — because it has always been done this way.</p>
-
-    <h2>The Work Behind the Work</h2>
-
-    <p>Every technical contracting business has two workflows running simultaneously.</p>
-
-    <p>The first is the work you sell: installations, inspections, repairs, replacements. The work your technicians were trained for. The work your clients are paying you to do. This is the visible workflow — the one that shows up on your LOI, your invoices, and your revenue reports.</p>
-
-    <p>The second is the work that supports the first: job cards, completion certificates, compliance reports, photo documentation, work order reconciliation, SLA reporting to the utility entity or client. This is the invisible workflow — and for most contractors operating in the municipal and utility sector, it is consuming a disproportionate share of the business's total capacity.</p>
-
-    <p>The problem is not that this administrative work is unnecessary. The documentation is real, the compliance requirements are legitimate, and the audit trail genuinely matters. A contractor who cannot produce complete, accurate job cards for every installation is a contractor who cannot get paid, cannot renew a contract, and cannot defend themselves when a dispute arises.</p>
-
-    <p>The problem is how the work gets done. And more specifically, when.</p>
-
-    <h2>The After-Hours Tax</h2>
-
-    <p>Here is what the invisible workflow actually costs, in a business completing high volumes of municipal meter installations.</p>
-
-    <p>A single job card — properly assembled with old meter reading, new meter reading, installation photos, technician signature, account number, and physical address — takes approximately five minutes to produce manually. On paper, five minutes sounds negligible.</p>
-
-    <p>But five minutes multiplied by 100 installations per week is 500 minutes. More than eight hours of work. A full business day, every week, consumed entirely by assembling information that was already captured in the field and already exists in the internal system.</p>
-
-    <p>That eight hours cannot be done during the working day because the working day is occupied with operations: scheduling, dispatch, customer calls, field coordination, invoicing. So it gets pushed. To evenings. To weekends. To the margins of the personal time of people who are already working full days.</p>
-
-    <p>This is what we call the after-hours tax. It does not appear on any cost report. It does not show up in your hourly rate calculations. It is invisible in your financials. But it is real, and it is being paid every week by your team — in time, in energy, and eventually in morale.</p>
-
-    <h2>The Growth Ceiling Nobody Talks About</h2>
-
-    <p>The after-hours tax is uncomfortable but survivable at current volumes. What makes it a strategic problem is what happens when you try to grow.</p>
-
-    <p>Utility entities and municipalities expand their programs. More meters to replace, more properties to inspect, more installations per month than the previous contract period. This is the opportunity your business has been working toward.</p>
-
-    <p>But when the client asks whether you can handle 30% more volume, the honest answer — the one that does not get said out loud — is: not without either hiring someone specifically to do paperwork, or accepting that your operations team will be working until 10 PM every night instead of 8.</p>
-
-    <p>Neither answer is acceptable. Hiring a full-time administrator to produce documentation makes the margins on the expanded contract unworkable. And expecting your existing team to absorb the additional burden on top of what they are already carrying is not a strategy — it is a morale problem waiting to become a retention problem.</p>
-
-    <p>So the contractor does one of two things. They decline the expanded volume, which means leaving a contract they have already won on the table. Or they say yes, absorb the additional administrative burden across an already-stretched team, and watch quality and morale decline together.</p>
-
-    <p>This is the growth ceiling that manual documentation creates. Not a shortage of technicians. Not a shortage of equipment. Not a shortage of client demand. A shortage of administrative capacity — for work that should not require capacity at all.</p>
-
-    <h2>Where the Time Actually Goes</h2>
-
-    <p>Let us be specific about what manual job card production actually involves, because the friction is often invisible to the people responsible for it.</p>
-
-    <p>80% of the information on a completed job card existed before fieldwork started. The customer's name, account number, physical address, assigned meter serial number, work order number, and scheduled installation date are all in the internal system from the moment the work order is received. They were captured when the job was scheduled. They are digital, accurate, and accessible.</p>
-
-    <p>The remaining 20% — the old meter reading, the new meter reading, the installation photographs, the completion timestamp, any site-specific notes — is captured in the field by the technician. It is also captured digitally: readings written on a field sheet or sent via WhatsApp, photographs taken on a smartphone.</p>
-
-    <p>Everything is digital at the point of origin. Nothing requires manual transcription.</p>
-
-    <p>And yet the job card assembly process requires someone to: open a Word template, type in the customer details from the system, type in the meter details from the system, navigate to WhatsApp or email to find the photos, download each photo individually, resize it to fit the template, insert it into the correct section, add the field readings, format the document, save it, and print three copies.</p>
-
-    <p>Every piece of information that person is handling was already digital somewhere else. Every minute they spend on that task is time spent moving data from one place to another, not creating value, not solving a problem, not doing anything that requires human judgment or expertise.</p>
-
-    <blockquote>
-      <p>This is what Lean practitioners call non-value-adding work. The output — the completed job card — has value. The process of manually producing it does not.</p>
-    </blockquote>
-
-    <h2>What Changes When You Automate It</h2>
-
-    <p>The job card does not disappear. The compliance requirement does not disappear. The utility entity still needs complete, accurate documentation for every installation. The audit trail still needs to exist.</p>
-
-    <p>What changes is who — or what — produces it.</p>
-
-    <p>When field data capture is connected directly to documentation generation, the job card becomes a by-product of the installation rather than a separate administrative task. The technician completes the installation, captures the readings and photographs through a structured process, and the documentation is generated automatically: pre-populated with the 80% that was already in the system, merged with the 20% captured in the field, formatted consistently, and ready to file.</p>
-
-    <p>No one types customer details. No one downloads and resizes photographs. No one opens a Word template at 8 PM on a Thursday.</p>
-
-    <p>The documentation still exists. It is more accurate and more consistent than the manually-produced version, because it draws directly from system data rather than relying on transcription. It is available immediately rather than hours or days after the fieldwork. And it costs, in terms of staff time, effectively nothing.</p>
-
-    <p>The operations coordinator who was working until 20:00 three nights a week is now available to do things that actually require her: managing exceptions, coordinating complex jobs, building the client relationship, improving the scheduling process.</p>
-
-    <p>The business that was turning down expanded contracts because of documentation capacity can say yes — because the documentation scales with the volume automatically, not linearly with headcount.</p>
-
-    <h2>The Question Worth Asking</h2>
-
-    <p>Think about the administrative work in your contracting business right now — not just job cards, but all of it. Completion certificates, SLA reports, compliance documentation, reconciliation reports for the client.</p>
-
-    <p>For each piece of documentation, ask two questions.</p>
-
-    <ul>
-      <li>First: what percentage of the information in this document already exists somewhere in our systems before the fieldwork happens?</li>
-      <li>Second: what would change if this document generated itself automatically the moment the fieldwork was completed — same information, same format, no manual assembly?</li>
-    </ul>
-
-    <p>If the honest answer to the first question is more than 50%, and the honest answer to the second question is "nothing except the time we spend on it" — then you have found an after-hours tax that does not need to be paid.</p>
-
-    <p>The work behind the work is real. But it does not have to be manual.</p>
-
-    <hr class="article-divider" />
-
-    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 1rem 0;">
-      <a href="articles.html" class="arrow-link"><i class="fas fa-arrow-left"></i> All articles</a>
-      <a href="article-fleet-dashboard.html" class="arrow-link">Next article <i class="fas fa-arrow-right"></i></a>
-    </div>
-  </div>
+<nav class="nav">
+  <a class="logo" href="index.html">Prime<span>Chain</span></a>
+  
+  <ul class="navlinks" id="navLinks">
+    <li><a href="index.html#solutions">What We Do</a></li>
+    <li><a href="whoweare.html">Who We Are</a></li>
+    <li><a href="ourthinking.html" class="active">Our Thinking</a></li>
+    <li><a href="manifesto.html">Manifesto</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Talk to Us</a></li>
+  </ul>
+  
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  
+  <a class="desktop-cta" href="index.html#contact">Talk to PrimeChain <span>↗</span></a>
+</nav>
 </div>
 
-<!-- cta -->
-<section class="cta-band">
-  <div class="container">
-    <div class="reveal">
-      <h2>Recognise this problem?</h2>
-      <p>If manual documentation is holding your operation back, we can help you automate it.</p>
-      <div class="cta-btns centered">
-        <a href="index.html#contact" class="btn-teal">Talk to us</a>
-        <a href="our-story.html" class="btn-outline-white">Our story</a>
-      </div>
-    </div>
+<!-- Mobile Overlay -->
+<div class="mobile-nav-overlay" id="mobileOverlay">
+  <a href="index.html">Home</a>
+  <a href="whoweare.html">Who We Are</a>
+  <a href="ourthinking.html" class="active">Our Thinking</a>
+  <a href="manifesto.html">Manifesto</a>
+  <a href="index.html#contact" class="mobile-cta">Talk to Us ↗</a>
+</div>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- ARTICLE HERO                                                  -->
+<!-- ============================================================ -->
+<section class="article-hero">
+<div class="container">
+  <div class="breadcrumb">
+    <a href="ourthinking.html">Our Thinking</a>
+    <span class="sep">/</span>
+    <span>Field Note</span>
   </div>
+  <span class="article-tag">Field Note</span>
+  <h1>The Work Behind the Work</h1>
+  <div class="article-meta">
+    <span class="author">PrimeChain</span>
+    <span class="divider">·</span>
+    <span>Operations &amp; Admin</span>
+    <span class="divider">·</span>
+    <span>5 min read</span>
+  </div>
+</div>
 </section>
 
-<!-- footer -->
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
-        <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets.</p>
-      </div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="our-story.html">Our Story</a></li><li><a href="services.html">Services</a></li><li><a href="index.html#contact">Contact</a></li></ul></div>
-      <div class="footer-col"><h5>Work</h5><ul><li><a href="case-studies.html">Case Studies</a></li><li><a href="articles.html">Articles</a></li><li><a href="cost-calculator.html">Cost Calculator</a></li></ul></div>
-      <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">LinkedIn</a></li><li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li><li><a href="#">Johannesburg, SA</a></li></ul></div>
+<!-- ============================================================ -->
+<!-- ARTICLE BODY                                                  -->
+<!-- ============================================================ -->
+<section class="article-body">
+<div class="container">
+  <div class="content">
+    
+    <p><strong>Your business doesn't just perform the work. It spends hours documenting, reconciling and reporting it afterwards.</strong></p>
+
+    <p>The job is finished.</p>
+    <p>The truck has returned.</p>
+    <p>The technician has left the site.</p>
+    <p>The delivery has been completed.</p>
+    <p>The customer has received the service.</p>
+
+    <p>From the outside, the work is done.</p>
+
+    <p>But inside the business, another workflow begins.</p>
+
+    <ul>
+      <li>Someone has to update the spreadsheet.</li>
+      <li>Someone has to find the paperwork.</li>
+      <li>Someone has to download the photographs.</li>
+      <li>Someone has to reconcile what happened in the field with what was scheduled.</li>
+      <li>Someone has to prepare the completion report.</li>
+      <li>Someone has to check that the quantities match.</li>
+      <li>Someone has to send the documentation to the client.</li>
+      <li>Someone has to correct the missing information.</li>
+    </ul>
+
+    <p>And someone will probably do all of it again tomorrow.</p>
+
+    <p>This is <strong>the work behind the work</strong>.</p>
+
+    <p>It doesn't generate another invoice.</p>
+    <p>It doesn't move another load.</p>
+    <p>It doesn't install another meter.</p>
+    <p>It doesn't complete another job.</p>
+
+    <p>But it consumes real people, real hours and real capacity.</p>
+
+    <p>And because it happens after the operational work is complete, it is remarkably easy to underestimate.</p>
+
+    <hr>
+
+    <h2>Every operation has a visible workflow</h2>
+
+    <p>The visible workflow is easy to understand.</p>
+
+    <ul>
+      <li>A technician installs something.</li>
+      <li>A driver delivers something.</li>
+      <li>A contractor completes a job.</li>
+      <li>A warehouse dispatches an order.</li>
+      <li>A maintenance team repairs equipment.</li>
+    </ul>
+
+    <p>This is the work customers pay for.</p>
+    <p>It is measured.</p>
+    <p>It appears on invoices.</p>
+    <p>It contributes directly to revenue.</p>
+
+    <p>But around every one of these activities sits another workflow.</p>
+
+    <ul>
+      <li>The information has to be captured.</li>
+      <li>The work has to be documented.</li>
+      <li>The records have to be reconciled.</li>
+      <li>The client has to be updated.</li>
+      <li>The performance has to be reported.</li>
+      <li>The exceptions have to be investigated.</li>
+      <li>The accounts have to be supported.</li>
+    </ul>
+
+    <p>This second workflow is rarely designed with the same care as the first.</p>
+    <p>It simply grows around the operation.</p>
+    <p>And that is where the problem starts.</p>
+
+    <hr>
+
+    <h2>The invisible workload</h2>
+
+    <p>Consider what happens after a field job.</p>
+
+    <p>The technician captures information on site.</p>
+
+    <ul>
+      <li>Perhaps it is written on a form.</li>
+      <li>Perhaps it is entered into a phone.</li>
+      <li>Perhaps photographs are taken.</li>
+      <li>Perhaps a customer signs something.</li>
+      <li>Perhaps the information arrives through WhatsApp.</li>
+    </ul>
+
+    <p>The job is complete.</p>
+    <p>But the information is now scattered across several places.</p>
+
+    <p>Someone in the office has to bring it back together.</p>
+
+    <p>They may have to copy information from one system into another.</p>
+    <p>Download attachments.</p>
+    <p>Rename files.</p>
+    <p>Update spreadsheets.</p>
+    <p>Create documents.</p>
+    <p>Check that numbers match.</p>
+    <p>Chase missing information.</p>
+    <p>And eventually produce a report that says:</p>
+
+    <blockquote>This is what happened.</blockquote>
+
+    <p>The irony is that the business already knew what happened.</p>
+    <p>The information was captured when the work happened.</p>
+    <p>The administrative process simply reconstructed it afterwards.</p>
+
+    <hr>
+
+    <h2>The multiplication effect</h2>
+
+    <p>One job isn't the problem.</p>
+    <p>One delivery.</p>
+    <p>One installation.</p>
+    <p>One inspection.</p>
+    <p>One repair.</p>
+    <p>One invoice.</p>
+
+    <p>The problem appears when the operation scales.</p>
+
+    <p>Ten jobs become 100.</p>
+    <p>100 become 1,000.</p>
+
+    <p>A few minutes of administration becomes hundreds of hours.</p>
+
+    <p>And because the administrative work is usually distributed across several people and several systems, nobody sees the total cost.</p>
+
+    <ul>
+      <li>One person updates the spreadsheet.</li>
+      <li>Another prepares the report.</li>
+      <li>Someone else reconciles the records.</li>
+      <li>A manager checks the exceptions.</li>
+      <li>An administrator follows up missing documents.</li>
+    </ul>
+
+    <p>Individually, none of these activities look particularly expensive.</p>
+    <p>Together, they become a second operation.</p>
+
+    <div class="pull-quote">
+      A shadow operation running alongside the real one.
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
-      <div class="social">
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
+
+    <hr>
+
+    <h2>The business starts hiring around the problem</h2>
+
+    <p>This is where things get interesting.</p>
+
+    <p>When administrative work increases, the obvious solution is usually:</p>
+
+    <blockquote>Hire someone.</blockquote>
+
+    <p>More volume?</p>
+    <p>Hire another administrator.</p>
+    <p>More reporting?</p>
+    <p>Add another coordinator.</p>
+    <p>More reconciliation?</p>
+    <p>Give it to someone else.</p>
+
+    <p>The business grows by adding people to manage the consequences of growth.</p>
+
+    <p>And for a while, it works.</p>
+    <p>Until the next increase in volume.</p>
+    <p>Then the cycle starts again.</p>
+
+    <ul>
+      <li>More work.</li>
+      <li>More records.</li>
+      <li>More administration.</li>
+      <li>More people.</li>
+    </ul>
+
+    <p>This isn't always a people problem.</p>
+    <p>Sometimes it is a <strong>workflow problem</strong>.</p>
+
+    <hr>
+
+    <h2>The information already exists</h2>
+
+    <p>This is the part worth examining.</p>
+
+    <p>Before creating another report, ask:</p>
+
+    <blockquote>Where did the information in this report come from?</blockquote>
+
+    <p>Before updating another spreadsheet:</p>
+
+    <blockquote>Where did these numbers originate?</blockquote>
+
+    <p>Before asking someone to prepare another document:</p>
+
+    <blockquote>Was this information already captured when the work happened?</blockquote>
+
+    <p>Often, the answer is yes.</p>
+
+    <p>The information exists.</p>
+    <p>The problem is that it exists in different places.</p>
+
+    <ul>
+      <li>The job exists in the work-order system.</li>
+      <li>The completion exists in a field form.</li>
+      <li>The photograph exists on a phone.</li>
+      <li>The delivery exists in a POD.</li>
+      <li>The fuel transaction exists in a slip.</li>
+      <li>The payment exists in accounting.</li>
+      <li>The location exists in GPS.</li>
+    </ul>
+
+    <p>Each individual record is useful.</p>
+    <p>But until they are connected, the business still needs people to reconstruct the story.</p>
+
+    <hr>
+
+    <h2>The opportunity isn't simply automation</h2>
+
+    <p>This is where the conversation about automation often goes wrong.</p>
+
+    <p>The answer isn't:</p>
+
+    <blockquote>"Let's automate the spreadsheet."</blockquote>
+
+    <p>The better question is:</p>
+
+    <blockquote>"Why does the spreadsheet need to exist in the first place?"</blockquote>
+
+    <p>If information is captured at the point where the work happens, it should be able to flow into the next stage of the process without being manually recreated.</p>
+
+    <ul>
+      <li>The completed job should create the record.</li>
+      <li>The record should create the documentation.</li>
+      <li>The documentation should support the report.</li>
+      <li>The report should create visibility.</li>
+      <li>And visibility should support a decision.</li>
+    </ul>
+
+    <p>The objective isn't to eliminate administration.</p>
+    <p>It is to eliminate <strong>unnecessary movement of information.</strong></p>
+
+    <hr>
+
+    <h2>What happens when the workflow is connected?</h2>
+
+    <p>The work remains.</p>
+    <p>The records remain.</p>
+    <p>The compliance requirements remain.</p>
+    <p>The client still receives the documentation they need.</p>
+
+    <p>But the process changes.</p>
+
+    <ul>
+      <li>Information is captured once.</li>
+      <li>It is structured once.</li>
+      <li>And then it can be reused across the operation.</li>
+    </ul>
+
+    <p>The business stops asking people to repeatedly reconstruct what already happened.</p>
+    <p>Instead, the system carries the information forward.</p>
+
+    <p>That changes the economics of growth.</p>
+
+    <p>Because when volume increases, the business doesn't necessarily need the same increase in administrative effort.</p>
+    <p>The operation can handle more work without creating a proportionate amount of paperwork.</p>
+
+    <div class="pull-quote">
+      The work scales. The administration doesn't have to.
+    </div>
+
+    <hr>
+
+    <h2>The question worth asking</h2>
+
+    <p>Look at the last piece of operational reporting your business produced.</p>
+    <p>Then work backwards.</p>
+
+    <ul>
+      <li>Where did each piece of information come from?</li>
+      <li>How many systems were involved?</li>
+      <li>How many people touched it?</li>
+      <li>How many times was the same information re-entered?</li>
+      <li>How many times was something checked because nobody completely trusted the previous step?</li>
+      <li>And how long did it take from the moment the work happened to the moment the business could see what happened?</li>
+    </ul>
+
+    <p>That last question is particularly important.</p>
+    <p>Because operational visibility isn't just about having information.</p>
+    <p>It is about <strong>how quickly and reliably information can move from the operation to the decision-maker.</strong></p>
+
+    <hr>
+
+    <h2>The work behind the work is real.</h2>
+
+    <p>But it doesn't all need to be manual.</p>
+
+    <p>The objective isn't to replace the people doing the work.</p>
+    <p>It is to give them systems that allow information to move with the work.</p>
+
+    <p>Because your business should not have to perform the same job twice:</p>
+
+    <blockquote>
+      once in the field,<br>
+      and again in the office.
+    </blockquote>
+
+    <p>And when your business grows, the question shouldn't be:</p>
+
+    <blockquote>
+      "How many more people do we need to keep up with the paperwork?"
+    </blockquote>
+
+    <p>It should be:</p>
+
+    <div class="pull-quote">
+      How much of this work should still exist at all?
+    </div>
+
+    <p>That is where operational intelligence begins.</p>
+
+    <p><strong>The information already exists.</strong></p>
+    <p><strong>The advantage comes from connecting it.</strong></p>
+
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BACK TO THINKING                                              -->
+<!-- ============================================================ -->
+<section class="back-link">
+<div class="container">
+  <a href="ourthinking.html" class="back-inner">
+    <span class="arrow">←</span>
+    Back to Our Thinking
+  </a>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- RELATED ARTICLES                                              -->
+<!-- ============================================================ -->
+<section class="related">
+<div class="container">
+  <h3 style="font-family:var(--serif);font-size:1.6rem;font-weight:500;letter-spacing:-.04em;text-align:center;max-width:720px;margin:0 auto;">More from Our Thinking</h3>
+  <div class="related-grid">
+    
+    <article class="rel-card">
+      <div>
+        <small>Case Study</small>
+        <h4>The R600,000 Margin Leak Hidden Between Deliveries</h4>
+        <p>Revenue was being generated. Trips were being completed. But margin was disappearing.</p>
       </div>
+      <a href="#" class="rel-link">Read →</a>
+    </article>
+    
+    <article class="rel-card">
+      <div>
+        <small>Field Note</small>
+        <h4>Your Supply Chain Knows More Than You Think</h4>
+        <p>The data you need is already being generated. The problem isn't data—it's connecting the signals.</p>
+      </div>
+      <a href="#" class="rel-link">Read →</a>
+    </article>
+    
+    <article class="rel-card">
+      <div>
+        <small>Framework</small>
+        <h4>The Operational Visibility Framework</h4>
+        <p>Understanding what's happening across your operation—in real time, not after the fact.</p>
+      </div>
+      <a href="#" class="rel-link">Read →</a>
+    </article>
+    
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CTA                                                           -->
+<!-- ============================================================ -->
+<section class="cta-band">
+<div class="container cta-inner">
+  <div><h2>Ready to see what your operation could look like?</h2></div>
+  <div>
+    <p>The answers are already inside your operation. We'll help you connect them.</p>
+    <a class="btn primary" href="index.html#contact">Talk to us about your operation ↗</a>
+  </div>
+</div>
+</section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer>
+<div class="container">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <strong>PrimeChain</strong>
+      <p>Operational Intelligence. Because every business deserves to understand itself.</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#solutions">What We Do</a>
+      <a href="whoweare.html">Who We Are</a>
+      <a href="ourthinking.html">Our Thinking</a>
+      <a href="manifesto.html">Manifesto</a>
+      <a href="index.html#contact">Contact</a>
     </div>
   </div>
+  <div class="footer-bottom">
+    <span>© PrimeChain</span>
+    <span>Operational Intelligence</span>
+  </div>
+</div>
 </footer>
 
+<!-- ============================================================ -->
+<!-- JAVASCRIPT                                                    -->
+<!-- ============================================================ -->
 <script>
-  const sp = document.getElementById('sp');
-  const nav = document.getElementById('nav');
-  const mobBtn = document.getElementById('mobBtn');
-  const navLinks = document.getElementById('navLinks');
-
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-    const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    sp.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-  });
-
-  mobBtn.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    mobBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-  });
-  document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
-  }));
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// Mobile Hamburger Menu
+(function() {
+  const hamburger = document.getElementById('hamburger');
+  const overlay = document.getElementById('mobileOverlay');
+  
+  if (hamburger && overlay) {
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      overlay.classList.toggle('open');
+      document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+    });
+    
+    overlay.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+})();
 </script>
+
 </body>
 </html>
