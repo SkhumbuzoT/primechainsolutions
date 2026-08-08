@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="PrimeChain helps growing businesses turn fragmented operational data into visibility, control and better decisions." />
-<title>Who We Are · PrimeChain</title>
+<meta name="description" content="Insights, case studies, and hard-won lessons from building operational visibility for growing businesses." />
+<title>Our Thinking · PrimeChain</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,12 +56,12 @@ a{color:inherit;text-decoration:none}
 }
 .navlinks .nav-cta:hover{background:var(--ink);color:var(--white)}
 
-.navcta{
+.desktop-cta{
   display:inline-flex;align-items:center;gap:12px;
   border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
   transition:.2s;
 }
-.navcta:hover{background:var(--ink);color:var(--white)}
+.desktop-cta:hover{background:var(--ink);color:var(--white)}
 
 /* Hamburger */
 .hamburger{
@@ -123,103 +123,112 @@ a{color:inherit;text-decoration:none}
 section{padding:105px 0;border-bottom:1px solid var(--line)}
 .section-grid{display:grid;grid-template-columns:1fr 2fr;gap:70px}
 
-/* ---- HERO: ACT 1 — THE BELIEF ---- */
-.hero-belief{padding:92px 0 74px;border-bottom:1px solid var(--line)}
-.hero-belief .hero-grid{
+/* ---- PAGE HERO ---- */
+.page-hero{padding:92px 0 74px;border-bottom:1px solid var(--line)}
+.page-hero .hero-grid{
   display:grid;grid-template-columns:1.08fr .92fr;gap:82px;align-items:end;
 }
-.hero-belief h1{
+.page-hero h1{
   font-family:var(--serif);font-size:clamp(3.6rem,7.2vw,6.8rem);
   line-height:.98;letter-spacing:-.075em;font-weight:500;max-width:850px;
 }
-.hero-belief h1 em{font-style:normal;color:#777}
-.hero-belief .hero-copy{max-width:480px;margin-left:auto;padding-bottom:7px}
-.hero-belief .hero-copy p{font-size:1.03rem;color:#4f4f4f;line-height:1.75}
-.hero-belief .hero-copy p + p{margin-top:18px}
+.page-hero h1 em{font-style:normal;color:#777}
+.page-hero .hero-copy{max-width:480px;margin-left:auto;padding-bottom:7px}
+.page-hero .hero-copy p{font-size:1.03rem;color:#4f4f4f;line-height:1.75}
 
-/* ---- ACT 2: WHAT WE BELIEVE ---- */
-.beliefs{background:var(--white)}
-.belief-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:58px;
-  border-top:1px solid var(--line);padding-top:58px;
+/* ---- CATEGORY FILTER (static visual) ---- */
+.category-filter{
+  display:flex;gap:8px;flex-wrap:wrap;margin-top:48px;padding:12px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
 }
-.belief-item{padding:0}
-.belief-item .num{
-  font-size:.68rem;letter-spacing:.14em;color:#999;font-weight:700;display:block;margin-bottom:20px;
+.category-filter span{
+  font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;
+  padding:6px 16px;border:1px solid var(--line);color:#777;font-weight:600;
+  transition:.2s;cursor:default;
 }
-.belief-item h3{
-  font-family:var(--serif);font-size:1.45rem;font-weight:500;letter-spacing:-.04em;margin-bottom:12px;
-}
-.belief-item p{font-size:.94rem;color:#626262;line-height:1.7}
-.belief-item.full{grid-column:span 2;border-top:1px solid var(--line);padding-top:40px}
-.belief-item.full p{max-width:720px}
+.category-filter span.active{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.category-filter span:not(.active):hover{background:var(--white)}
 
-/* ---- ACT 3: THE PRIMECHAIN PERSPECTIVE ---- */
-.perspective{background:var(--paper)}
-.perspective-layout{
-  display:grid;grid-template-columns:1fr 1fr;gap:70px;margin-top:48px;align-items:start;
+/* ---- FEATURED CASE STUDY ---- */
+.featured-case{background:var(--white)}
+.featured-layout{
+  display:grid;grid-template-columns:1.2fr .8fr;gap:60px;margin-top:48px;
+  background:var(--paper);padding:48px;border:1px solid var(--line);
 }
-.perspective-left h2{
-  font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.8rem);
-  line-height:1.02;letter-spacing:-.065em;font-weight:500;
+.featured-case .case-tag{
+  font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;
+  color:#888;font-weight:700;display:block;margin-bottom:16px;
 }
-.perspective-left p{color:#555;font-size:1.05rem;line-height:1.75;margin-top:24px}
-.perspective-steps{display:flex;flex-direction:column;gap:0}
-.perspective-step{
-  display:grid;grid-template-columns:60px 1fr;gap:20px;
-  padding:22px 0;border-bottom:1px solid var(--line);align-items:center;
+.featured-case h2{
+  font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.4rem);
+  line-height:1.05;letter-spacing:-.055em;font-weight:500;
 }
-.perspective-step:first-child{border-top:1px solid var(--line)}
-.perspective-step .step-num{
-  font-family:var(--serif);font-size:1.8rem;font-weight:500;color:#bbb;letter-spacing:-.05em;
+.featured-case .case-desc{color:#555;font-size:.95rem;line-height:1.75;margin:18px 0 24px}
+.featured-case .case-stats{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding-top:20px;border-top:1px solid var(--line);
 }
-.perspective-step .step-label{font-size:.9rem;font-weight:500;color:var(--ink)}
+.featured-case .case-stat strong{
+  font-family:var(--serif);font-size:1.8rem;font-weight:500;letter-spacing:-.05em;display:block;
+}
+.featured-case .case-stat span{color:#777;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.featured-case .case-right{padding-top:8px}
+.featured-case .case-right .quote{
+  font-family:var(--serif);font-size:1.4rem;line-height:1.4;font-weight:500;letter-spacing:-.03em;
+  border-left:3px solid var(--accent);padding-left:24px;margin-bottom:24px;
+}
+.featured-case .case-right .quote em{font-style:italic;color:#999}
+.featured-case .case-right .meta-note{
+  color:#777;font-size:.78rem;line-height:1.6;margin-top:16px;
+}
 
-/* ---- ACT 4: WHAT MAKES US DIFFERENT ---- */
-.different{background:var(--white)}
-.different-grid{
+/* ---- THINKING GRID ---- */
+.thinking-grid-section{background:var(--paper)}
+.thinking-grid{
   display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
-  margin-top:58px;border:1px solid var(--line);
+  margin-top:48px;border:1px solid var(--line);
 }
-.different-card{
-  background:var(--white);padding:36px 32px;min-height:220px;
+.thinking-card{
+  background:var(--paper);padding:32px 28px;min-height:260px;
+  display:flex;flex-direction:column;justify-content:space-between;
 }
-.different-card .icon{font-size:1.8rem;font-weight:300;color:#bbb;display:block;margin-bottom:20px}
-.different-card h3{
+.thinking-card .card-tag{
+  font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;
+  color:#999;font-weight:700;display:block;margin-bottom:14px;
+}
+.thinking-card .card-tag.case{color:var(--accent)}
+.thinking-card .card-tag.field{color:#1a7a6b}
+.thinking-card .card-tag.framework{color:#7a5a1a}
+.thinking-card h3{
+  font-family:var(--serif);font-size:1.35rem;font-weight:500;letter-spacing:-.04em;
+  line-height:1.2;margin-bottom:10px;
+}
+.thinking-card p{color:#666;font-size:.88rem;line-height:1.7;flex:1}
+.thinking-card .card-foot{
+  display:flex;justify-content:space-between;align-items:center;margin-top:20px;
+  padding-top:16px;border-top:1px solid var(--line);
+}
+.thinking-card .card-foot .meta{font-size:.7rem;color:#999}
+.thinking-card .card-foot .arrow{
+  font-size:.85rem;font-weight:600;transition:.2s;display:inline-flex;align-items:center;gap:6px;
+}
+.thinking-card .card-foot .arrow:hover{color:var(--ink)}
+
+/* ---- FRAMEWORKS SECTION ---- */
+.frameworks{background:var(--white)}
+.framework-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:48px;
+}
+.framework-item{
+  padding:28px 24px;border-bottom:3px solid var(--line);transition:.2s;
+}
+.framework-item:hover{border-bottom-color:var(--accent)}
+.framework-item .num{
+  font-size:.65rem;color:#999;letter-spacing:.14em;font-weight:700;display:block;margin-bottom:16px;
+}
+.framework-item h3{
   font-family:var(--serif);font-size:1.25rem;font-weight:500;letter-spacing:-.04em;margin-bottom:10px;
 }
-.different-card p{color:#666;font-size:.88rem;line-height:1.7}
-
-/* ---- ACT 5: WHO WE SERVE ---- */
-.serve{background:var(--paper)}
-.serve-characteristics{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;
-}
-.serve-char{padding:20px 0;border-bottom:2px solid var(--line)}
-.serve-char strong{display:block;font-family:var(--serif);font-size:1.1rem;font-weight:500;letter-spacing:-.03em}
-.serve-char span{color:#777;font-size:.85rem}
-.serve-list{
-  display:flex;flex-wrap:wrap;gap:0;margin-top:40px;
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;
-}
-.serve-list span{padding:8px 28px 8px 0;margin-right:24px;font-size:.9rem;color:#555}
-
-/* ---- ACT 6: THE MANIFESTO CLIMAX ---- */
-.manifesto-climax{
-  background:var(--ink);color:var(--white);border-bottom:1px solid #353535;
-}
-.manifesto-climax .climax-layout{
-  display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;padding:105px 0;
-}
-.manifesto-climax .kicker{color:#999}
-.manifesto-climax .big-quote{
-  font-family:var(--serif);font-size:clamp(3.2rem,6vw,6.2rem);
-  line-height:1;letter-spacing:-.075em;font-weight:500;
-}
-.manifesto-climax .big-quote em{font-style:normal;color:#858585}
-.manifesto-climax .climax-copy{color:#b7b7b7;font-size:1rem;line-height:1.8;margin-top:28px;max-width:560px}
-.manifesto-climax .link{color:#fff;border-color:#555}
-.manifesto-climax .link:hover{border-color:#fff;color:#fff}
+.framework-item p{color:#666;font-size:.88rem;line-height:1.7}
 
 /* ---- CTA BAND ---- */
 .cta-band{background:var(--ink);color:var(--white);border-bottom:0;padding:0}
@@ -244,34 +253,32 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 
 /* ---- RESPONSIVE ---- */
 @media(max-width:1024px){
-  .hero-belief .hero-grid,
-  .perspective-layout,
-  .cta-band .cta-inner{grid-template-columns:1fr;gap:48px}
-  .hero-belief .hero-copy{margin:0}
-  .manifesto-climax .climax-layout{grid-template-columns:1fr;gap:40px}
+  .page-hero .hero-grid{grid-template-columns:1fr;gap:38px}
+  .page-hero .hero-copy{margin:0}
+  .featured-layout{grid-template-columns:1fr;gap:40px;padding:32px}
+  .thinking-grid{grid-template-columns:1fr 1fr}
+  .framework-grid{grid-template-columns:1fr 1fr}
+  .cta-band .cta-inner{grid-template-columns:1fr;gap:40px}
 }
 @media(max-width:900px){
   .container{width:min(var(--max),calc(100% - 40px))}
   .navlinks{display:none}
-  .navcta{display:none}
+  .desktop-cta{display:none}
   .hamburger{display:flex}
-  .belief-grid{grid-template-columns:1fr}
-  .belief-item.full{grid-column:span 1}
-  .different-grid{grid-template-columns:1fr}
-  .serve-characteristics{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
   .container{width:calc(100% - 32px)}
   .nav{height:72px}
-  .hero-belief{padding:65px 0 55px}
-  .hero-belief h1{font-size:3.45rem}
+  .page-hero{padding:65px 0 55px}
+  .page-hero h1{font-size:3.45rem}
   section{padding:75px 0}
   .section-grid{grid-template-columns:1fr;gap:28px}
-  .serve-characteristics{grid-template-columns:1fr}
-  .serve-list span{padding:8px 16px 8px 0;margin-right:12px;font-size:.82rem}
+  .featured-layout{padding:24px}
+  .thinking-grid{grid-template-columns:1fr}
+  .framework-grid{grid-template-columns:1fr}
+  .featured-case .case-stats{grid-template-columns:1fr}
   .cta-band .cta-inner{padding:80px 0}
-  .different-card{padding:28px 24px}
-  .manifesto-climax .big-quote{font-size:2.8rem}
+  .featured-case .case-right .quote{font-size:1.2rem;padding-left:16px}
   .mobile-nav-overlay a{font-size:1.8rem}
 }
 </style>
@@ -287,193 +294,196 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
   
   <ul class="navlinks" id="navLinks">
     <li><a href="index.html#solutions">What We Do</a></li>
-    <li><a href="whoweare.html" class="active">Who We Are</a></li>
-    <li><a href="ourthinking.html">Our Thinking</a></li>
-    <li><a href="manifesto.html">Manifesto</a></li>
-    <li><a href="index.html#contact" class="nav-cta">Talk to Us</a></li>
+    <li><a href="whoweare.html">Who We Are</a></li>
+    <li><a href="ourthinking.html" class="active">Our Thinking</a></li>
   </ul>
   
   <button class="hamburger" id="hamburger" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
   
-  <a class="navcta" href="index.html#contact">Talk to PrimeChain <span>↗</span></a>
+  <a class="desktop-cta" href="index.html#contact">Talk to PrimeChain <span>↗</span></a>
 </nav>
 </div>
 
 <!-- Mobile Overlay -->
 <div class="mobile-nav-overlay" id="mobileOverlay">
   <a href="index.html">Home</a>
-  <a href="whoweare.html" class="active">Who We Are</a>
-  <a href="ourthinking.html">Our Thinking</a>
-  <a href="manifesto.html">Manifesto</a>
+  <a href="whoweare.html">Who We Are</a>
+  <a href="ourthinking.html" class="active">Our Thinking</a>
   <a href="index.html#contact" class="mobile-cta">Talk to Us ↗</a>
 </div>
 
 <main>
 
 <!-- ============================================================ -->
-<!-- ACT 1 — THE BELIEF                                           -->
+<!-- PAGE HERO                                                    -->
 <!-- ============================================================ -->
-<section class="hero-belief">
+<section class="page-hero">
 <div class="container">
-  <div class="kicker">Why PrimeChain exists</div>
+  <div class="kicker">Our Thinking</div>
   <div class="hero-grid">
     <div>
-      <h1>Businesses don't have a data problem.<br><em>They have a visibility problem.</em></h1>
+      <h1>Here's the evidence.<br><em>From the work.</em></h1>
     </div>
     <div class="hero-copy">
-      <p>Every day, businesses generate thousands of operational events. Vehicles complete trips. Technicians complete jobs. Orders are fulfilled. Inventory moves. Customers are served.</p>
-      <p>Yet for many growing businesses, these activities remain disconnected across spreadsheets, paperwork, messaging apps, and multiple systems. The information exists—but the business never sees the complete picture.</p>
-      <p><strong>PrimeChain exists to close that gap.</strong></p>
+      <p>Stories, frameworks, and hard-won lessons from helping businesses make their operations visible. What we've seen. What we've learned. What we know works.</p>
+    </div>
+  </div>
+  <!-- Category filter (static visual) -->
+  <div class="category-filter">
+    <span class="active">All</span>
+    <span>Case Studies</span>
+    <span>Field Notes</span>
+    <span>Frameworks</span>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FEATURED CASE STUDY                                          -->
+<!-- ============================================================ -->
+<section class="featured-case">
+<div class="container">
+  <div class="kicker">Featured case study</div>
+  <div class="featured-layout">
+    <div class="case-left">
+      <span class="case-tag">Commodity Trader · Fleet Operations</span>
+      <h2>The R200,000 Fuel Leak Nobody Could See</h2>
+      <p class="case-desc">The refill data existed. The load records existed. They lived in entirely separate places and were never brought together. Once connected, the losses became impossible to ignore.</p>
+      <div class="case-stats">
+        <div class="case-stat"><strong>R200k+</strong><span>Identified leakage</span></div>
+        <div class="case-stat"><strong>20–38</strong><span>Vehicles analysed</span></div>
+      </div>
+    </div>
+    <div class="case-right">
+      <div class="quote">
+        "The data was there all along.<br><em>We just couldn't see it.</em>"
+      </div>
+      <a class="link" href="#" style="margin-top:0;">Read the full case study →</a>
+      <p class="meta-note">What we found: disconnected fuel records, manual reconciliation, and a pattern of losses that had been growing for months.</p>
     </div>
   </div>
 </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- ACT 2 — WHAT WE BELIEVE                                      -->
+<!-- THINKING GRID                                                -->
 <!-- ============================================================ -->
-<section class="beliefs">
+<section class="thinking-grid-section">
 <div class="container">
   <div class="section-grid">
-    <div><div class="kicker">01 — What we believe</div></div>
+    <div><div class="kicker">Field notes &amp; case studies</div></div>
     <div>
-      <h2 class="section-title">Five principles that guide everything we do.</h2>
+      <h2 class="section-title">What we've learned from doing the work.</h2>
     </div>
   </div>
-  <div class="belief-grid">
-    <article class="belief-item">
+  <div class="thinking-grid">
+    <!-- Card 1 -->
+    <article class="thinking-card">
+      <div>
+        <span class="card-tag field">Field Note</span>
+        <h3>Manual Work Is Costing You More Than You Think</h3>
+        <p>Every hour spent moving information from one place to another is an operational tax. The real cost isn't just time—it's the decisions that never happen.</p>
+      </div>
+      <div class="card-foot">
+        <span class="meta">5 min read</span>
+        <a href="work-behind-the-work.html" class="arrow">Read →</a>
+      </div>
+    </article>
+    <!-- Card 2 -->
+    <article class="thinking-card">
+      <div>
+        <span class="card-tag case">Case Study</span>
+        <h3>The R600,000 Margin Leak Hidden Between Deliveries</h3>
+        <p>Revenue was being generated. Trips were being completed. But margin was disappearing between the lines. No centralised view meant nobody could see it.</p>
+      </div>
+      <div class="card-foot">
+        <span class="meta">Transport · 20 vehicles</span>
+        <a href="#" class="arrow">Read →</a>
+      </div>
+    </article>
+    <!-- Card 3 -->
+    <article class="thinking-card">
+      <div>
+        <span class="card-tag field">Field Note</span>
+        <h3>Your Supply Chain Knows More Than You Think</h3>
+        <p>The data you need to make better operational decisions is already being generated. The problem isn't data—it's connecting the signals.</p>
+      </div>
+      <div class="card-foot">
+        <span class="meta">6 min read</span>
+        <a href="supply-chain-intelligence.html" class="arrow">Read →</a>
+      </div>
+    </article>
+    <!-- Card 4 -->
+    <article class="thinking-card">
+      <div>
+        <span class="card-tag case">Case Study</span>
+        <h3>2,000 Admin Hours Eliminated</h3>
+        <p>1,000 job cards produced by hand every month. 10 minutes per card. We eliminated 24,000 hours of admin and R60k in printing costs annually.</p>
+      </div>
+      <div class="card-foot">
+        <span class="meta">Field Service</span>
+        <a href="#" class="arrow">Read →</a>
+      </div>
+    </article>
+    <!-- Card 5 -->
+    <article class="thinking-card">
+      <div>
+        <span class="card-tag field">Field Note</span>
+        <h3>Paperwork Is an Operational System</h3>
+        <p>Not just administration. Not just paperwork. The information created by paperwork is part of the operating system—and it's talking to you.</p>
+      </div>
+      <div class="card-foot">
+        <span class="meta">5 min read</span>
+        <a href="paperwork-intelligence.html" class="arrow">Read →</a>
+      </div>
+    </article>
+    <!-- Card 6 -->
+    <article class="thinking-card">
+      <div>
+        <span class="card-tag case">Case Study</span>
+        <h3>Real-Time Field Tracking</h3>
+        <p>No live view of field teams. Work logged manually. We timestamped every action, shifted reporting to daily, and resolved disputes with verifiable records.</p>
+      </div>
+      <div class="card-foot">
+        <span class="meta">Electrical Contractor</span>
+        <a href="#" class="arrow">Read →</a>
+      </div>
+    </article>
+  </div>
+  <div style="text-align:center;margin-top:48px;">
+    <a class="link" href="#" style="margin-top:0;">View all thinking →</a>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FRAMEWORKS SECTION                                           -->
+<!-- ============================================================ -->
+<section class="frameworks">
+<div class="container">
+  <div class="section-grid">
+    <div><div class="kicker">Frameworks we use</div></div>
+    <div>
+      <h2 class="section-title">How we think about operational problems.</h2>
+    </div>
+  </div>
+  <div class="framework-grid">
+    <div class="framework-item">
       <span class="num">01</span>
-      <h3>Complexity should be understood before it's automated.</h3>
-      <p>We don't believe technology fixes poorly understood operations. We first understand the workflow, the information moving through it, and where control is being lost.</p>
-    </article>
-    <article class="belief-item">
+      <h3>The Operational Visibility Framework</h3>
+      <p>Understanding what's happening across your operation—in real time, not after the fact.</p>
+    </div>
+    <div class="framework-item">
       <span class="num">02</span>
-      <h3>The answer is usually already inside the business.</h3>
-      <p>We don't begin by asking what software to buy. We ask what information already exists—and why isn't it connected?</p>
-    </article>
-    <article class="belief-item">
+      <h3>The Leak Detection Matrix</h3>
+      <p>Identifying where value is quietly leaving your business—fuel, time, inventory, margin.</p>
+    </div>
+    <div class="framework-item">
       <span class="num">03</span>
-      <h3>Systems should fit the operation.</h3>
-      <p>Growing businesses don't need miniature versions of enterprise software. They need systems that reflect the way their people actually work.</p>
-    </article>
-    <article class="belief-item">
-      <span class="num">04</span>
-      <h3>Visibility should lead to action.</h3>
-      <p>A dashboard that nobody acts on isn't intelligence. The purpose of visibility is better decisions.</p>
-    </article>
-    <article class="belief-item full">
-      <span class="num">05</span>
-      <h3>Technology is the enabler, not the product.</h3>
-      <p>PrimeChain is not a software company. We are an operational intelligence firm. Technology is a toolkit—not the outcome. The outcome is a business that understands itself.</p>
-    </article>
-  </div>
-</div>
-</section>
-
-<!-- ============================================================ -->
-<!-- ACT 3 — THE PRIMECHAIN PERSPECTIVE                           -->
-<!-- ============================================================ -->
-<section class="perspective">
-<div class="container">
-  <div class="kicker">02 — The PrimeChain perspective</div>
-  <div class="perspective-layout">
-    <div class="perspective-left">
-      <h2>We don't start with software.<br>We start with operations.</h2>
-      <p>Every engagement follows the same principle: understand the operation first, then design the system that fits it. Technology comes last—because it should serve the people doing the work.</p>
-    </div>
-    <div class="perspective-steps">
-      <div class="perspective-step"><span class="step-num">01</span><span class="step-label">Observe how the operation actually works</span></div>
-      <div class="perspective-step"><span class="step-num">02</span><span class="step-label">Understand the flow of information</span></div>
-      <div class="perspective-step"><span class="step-num">03</span><span class="step-label">Connect the disconnected signals</span></div>
-      <div class="perspective-step"><span class="step-num">04</span><span class="step-label">Structure data around decisions</span></div>
-      <div class="perspective-step"><span class="step-num">05</span><span class="step-label">Automate what's repetitive</span></div>
-      <div class="perspective-step"><span class="step-num">06</span><span class="step-label">Measure, improve, measure again</span></div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ============================================================ -->
-<!-- ACT 4 — WHAT MAKES US DIFFERENT                              -->
-<!-- ============================================================ -->
-<section class="different">
-<div class="container">
-  <div class="section-grid">
-    <div><div class="kicker">03 — What makes us different</div></div>
-    <div>
-      <h2 class="section-title">A different starting point.</h2>
-    </div>
-  </div>
-  <div class="different-grid">
-    <article class="different-card">
-      <span class="icon">01</span>
-      <h3>Most technology companies start with the technology.</h3>
-      <p>They sell software and try to fit your business into it. That's backward.</p>
-    </article>
-    <article class="different-card">
-      <span class="icon">02</span>
-      <h3>Most consultants start with recommendations.</h3>
-      <p>They diagnose from a distance and prescribe solutions before they understand the reality.</p>
-    </article>
-    <article class="different-card">
-      <span class="icon">03</span>
-      <h3>PrimeChain starts with the operation.</h3>
-      <p>We combine operational understanding, supply chain thinking, process improvement, data and technology to build systems around the way your business actually works.</p>
-    </article>
-  </div>
-</div>
-</section>
-
-<!-- ============================================================ -->
-<!-- ACT 5 — WHO WE SERVE                                         -->
-<!-- ============================================================ -->
-<section class="serve">
-<div class="container">
-  <div class="section-grid">
-    <div><div class="kicker">04 — Who we serve</div></div>
-    <div>
-      <h2 class="section-title">Built for businesses that have outgrown spreadsheets.</h2>
-      <p class="section-intro" style="margin-top:28px">You don't need enterprise software. You need to understand your operation.</p>
-    </div>
-  </div>
-  <div class="serve-characteristics">
-    <div class="serve-char"><strong>Multiple locations</strong><span>Operations across sites that need coordination</span></div>
-    <div class="serve-char"><strong>Mobile teams</strong><span>Field staff, technicians, and drivers in motion</span></div>
-    <div class="serve-char"><strong>High transaction volumes</strong><span>Orders, deliveries, jobs, invoices in large numbers</span></div>
-    <div class="serve-char"><strong>Manual administration</strong><span>Spreadsheets and paperwork that are consuming time</span></div>
-    <div class="serve-char"><strong>Disconnected systems</strong><span>Information that lives in silos and doesn't talk</span></div>
-    <div class="serve-char"><strong>Operational leakage</strong><span>Fuel, time, inventory, margin—disappearing quietly</span></div>
-  </div>
-  <div class="serve-list">
-    <span>Transport &amp; Logistics</span>
-    <span>Field Service</span>
-    <span>Contractors</span>
-    <span>Manufacturing</span>
-    <span>Mining</span>
-    <span>Utilities</span>
-    <span>Construction</span>
-    <span>Commodity Trading</span>
-    <span>Fleet Operations</span>
-  </div>
-</div>
-</section>
-
-<!-- ============================================================ -->
-<!-- ACT 6 — THE MANIFESTO CLIMAX                                 -->
-<!-- ============================================================ -->
-<section class="manifesto-climax">
-<div class="container">
-  <div class="climax-layout">
-    <div>
-      <div class="kicker">05 — The PrimeChain Manifesto</div>
-      <div class="big-quote">Businesses don't have a data problem.<br><em>They have a visibility problem.</em></div>
-    </div>
-    <div>
-      <p class="climax-copy">Every organisation already generates the information it needs to improve. The challenge isn't collecting more. The challenge is connecting what already exists.</p>
-      <p class="climax-copy" style="margin-top:18px">That's why PrimeChain exists. To help growing businesses see what their operations are already telling them—and act on it.</p>
-      <a class="link" href="manifesto.html">Read the full Manifesto →</a>
+      <h3>The Decision Intelligence Loop</h3>
+      <p>Turning operational data into decisions that improve performance, not just reports that describe the past.</p>
     </div>
   </div>
 </div>
@@ -484,10 +494,10 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 <!-- ============================================================ -->
 <section class="cta-band">
 <div class="container cta-inner">
-  <div><h2>Let's apply it to your business.</h2></div>
+  <div><h2>Recognise any of these problems?</h2></div>
   <div>
-    <p>The answers are already inside your operation. We'll help you connect them. Start with an Operational Visibility Review—no obligation, just a conversation.</p>
-    <a class="btn primary" href="index.html#contact">Book an Operational Visibility Review ↗</a>
+    <p>If your operation is dealing with poor visibility, manual workflows, or disconnected data—there's a good chance we have solved something similar.</p>
+    <a class="btn primary" href="index.html#contact">Talk to us about your operation ↗</a>
   </div>
 </div>
 </section>
@@ -508,7 +518,6 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
       <a href="index.html#solutions">What We Do</a>
       <a href="whoweare.html">Who We Are</a>
       <a href="ourthinking.html">Our Thinking</a>
-      <a href="manifesto.html">Manifesto</a>
       <a href="index.html#contact">Contact</a>
     </div>
   </div>
