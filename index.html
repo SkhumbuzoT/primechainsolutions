@@ -37,18 +37,63 @@ a{color:inherit;text-decoration:none}
 .nav{
   height:82px;border-bottom:1px solid var(--line);
   display:flex;align-items:center;justify-content:space-between;
+  position:relative;
 }
-.logo{font-weight:700;font-size:1.2rem;letter-spacing:-.04em}
+.logo{font-weight:700;font-size:1.2rem;letter-spacing:-.04em;z-index:100}
 .logo span{font-weight:400}
-.navlinks{display:flex;gap:30px;align-items:center;font-size:.82rem;color:#4f4f4f}
+
+.navlinks{
+  display:flex;gap:30px;align-items:center;font-size:.82rem;color:#4f4f4f;
+  list-style:none;margin:0;padding:0;
+}
+.navlinks li{display:inline-block}
 .navlinks a:hover{color:var(--ink)}
 .navlinks a.active{border-bottom:2px solid var(--accent);padding-bottom:4px;color:var(--ink)}
-.navcta{
+.navlinks .nav-cta{
   display:inline-flex;align-items:center;gap:12px;
   border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
   transition:.2s;
 }
-.navcta:hover{background:var(--ink);color:var(--white)}
+.navlinks .nav-cta:hover{background:var(--ink);color:var(--white)}
+
+.desktop-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+  transition:.2s;
+}
+.desktop-cta:hover{background:var(--ink);color:var(--white)}
+
+/* Hamburger */
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  background:transparent;border:none;padding:8px;z-index:100;
+}
+.hamburger span{
+  display:block;width:28px;height:2px;background:var(--ink);
+  transition:all 0.3s ease;border-radius:2px;transform-origin:center;
+}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* Mobile Overlay */
+.mobile-nav-overlay{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100vh;
+  background:var(--paper);z-index:90;padding:100px 40px 40px;
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.mobile-nav-overlay.open{display:flex}
+.mobile-nav-overlay a{
+  font-family:var(--serif);font-size:2.4rem;font-weight:500;letter-spacing:-.04em;
+  color:var(--ink);transition:.2s;text-decoration:none;
+}
+.mobile-nav-overlay a:hover{color:#777}
+.mobile-nav-overlay a.active{color:var(--accent)}
+.mobile-nav-overlay .mobile-cta{
+  margin-top:16px;border:1px solid var(--ink);padding:16px 32px;
+  font-size:.82rem;font-weight:600;transition:.2s;
+}
+.mobile-nav-overlay .mobile-cta:hover{background:var(--ink);color:var(--white)}
 
 /* ---- Shared Components ---- */
 .kicker{
@@ -107,7 +152,7 @@ section{padding:105px 0;border-bottom:1px solid var(--line)}
 .problem h3{font-family:var(--serif);font-size:1.55rem;font-weight:500;letter-spacing:-.04em;margin:36px 0 12px}
 .problem p{font-size:.94rem;color:#626262;line-height:1.7}
 
-/* ---- PROOF / CASE STUDY (dark) ---- */
+/* ---- PROOF (dark) ---- */
 .proof{background:var(--ink);color:var(--white);padding:0}
 .proof .section-grid{padding:105px 0}
 .proof .kicker{color:#999}
@@ -171,7 +216,7 @@ section{padding:105px 0;border-bottom:1px solid var(--line)}
 .step h3{font-family:var(--serif);font-size:1.35rem;font-weight:500;margin:38px 0 10px;letter-spacing:-.04em}
 .step p{font-size:.82rem;color:#666;line-height:1.65}
 
-/* ---- WHO WE ARE TEASER (NEW) ---- */
+/* ---- WHO WE ARE TEASER ---- */
 .who-teaser{background:var(--white)}
 .who-teaser .teaser-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:48px;
@@ -222,7 +267,7 @@ section{padding:105px 0;border-bottom:1px solid var(--line)}
 .insight p{color:#666;font-size:.85rem;line-height:1.65}
 .insight .insight-link{font-size:.7rem;font-weight:600;color:#777;margin-top:12px;display:inline-block}
 
-/* ---- CTA BAND ---- */
+/* ---- CTA ---- */
 .cta-band{background:var(--ink);color:var(--white);border-bottom:0;padding:0}
 .cta-band .cta-inner{
   padding:115px 0;display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:end;
@@ -253,6 +298,8 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 @media(max-width:900px){
   .container{width:min(var(--max),calc(100% - 40px))}
   .navlinks{display:none}
+  .desktop-cta{display:none}
+  .hamburger{display:flex}
   .hero-note{grid-template-columns:repeat(2,1fr)}
   .metric:nth-child(2){border-right:0}
   .problem-grid{grid-template-columns:1fr}
@@ -271,7 +318,6 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 @media(max-width:600px){
   .container{width:calc(100% - 32px)}
   .nav{height:72px}
-  .navcta{padding:10px 12px;font-size:.7rem}
   .hero{padding:65px 0 55px}
   .hero h1{font-size:3.45rem}
   section{padding:75px 0}
@@ -281,37 +327,55 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
   .metric span{font-size:.58rem}
   .cta-band .cta-inner{padding:80px 0}
   .manifesto-teaser .big-quote{font-size:2.6rem}
+  .mobile-nav-overlay a{font-size:1.8rem}
 }
 </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
+<!-- ============================================================ -->
+<!-- NAVIGATION                                                    -->
+<!-- ============================================================ -->
 <div class="container">
 <nav class="nav">
   <a class="logo" href="index.html">Prime<span>Chain</span></a>
-  <div class="navlinks">
-    <a href="#solutions">What We Do</a>
-    <a href="whoweare.html">Who We Are</a>
-    <a href="ourthinking.html">Our Thinking</a>
-    <a href="manifesto.html">Manifesto</a>
-    <a href="#contact">Talk to Us</a>
-  </div>
-  <a class="navcta" href="#contact">Talk to PrimeChain <span>↗</span></a>
+  
+  <ul class="navlinks" id="navLinks">
+    <li><a href="#solutions">What We Do</a></li>
+    <li><a href="whoweare.html">Who We Are</a></li>
+    <li><a href="ourthinking.html">Our Thinking</a></li>
+    <li><a href="manifesto.html">Manifesto</a></li>
+    <li><a href="#contact" class="nav-cta">Talk to Us</a></li>
+  </ul>
+  
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  
+  <a class="desktop-cta" href="#contact">Talk to PrimeChain <span>↗</span></a>
 </nav>
+</div>
+
+<!-- Mobile Overlay -->
+<div class="mobile-nav-overlay" id="mobileOverlay">
+  <a href="index.html" class="active">Home</a>
+  <a href="whoweare.html">Who We Are</a>
+  <a href="ourthinking.html">Our Thinking</a>
+  <a href="manifesto.html">Manifesto</a>
+  <a href="index.html#contact" class="mobile-cta">Talk to Us ↗</a>
 </div>
 
 <main>
 
 <!-- ============================================================ -->
-<!-- HERO — "Here's the problem."                                 -->
+<!-- HERO                                                          -->
 <!-- ============================================================ -->
 <section class="hero">
 <div class="container">
   <div class="kicker">Operational Intelligence</div>
   <div class="hero-grid">
     <div>
-      <h1>Your business is already generating the answers.<br><em>You just can't see them.</em></h1>
+      <h1>Your business is already generating the answers.<br><em>You're just not seeing them.</em></h1>
     </div>
     <div class="hero-copy">
       <p>Every delivery. Every truck. Every technician. Every invoice. Every operational decision leaves behind information. PrimeChain connects those signals into a complete picture—so leaders can stop guessing and start seeing.</p>
@@ -351,7 +415,7 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 </section>
 
 <!-- ============================================================ -->
-<!-- PROOF — "Here's what we've found."                           -->
+<!-- PROOF                                                         -->
 <!-- ============================================================ -->
 <section class="proof" id="solutions">
 <div class="container">
@@ -375,7 +439,7 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 </section>
 
 <!-- ============================================================ -->
-<!-- SERVICES — "What we do"                                      -->
+<!-- SERVICES                                                      -->
 <!-- ============================================================ -->
 <section class="services">
 <div class="container">
@@ -395,7 +459,7 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 </section>
 
 <!-- ============================================================ -->
-<!-- FLOW — "The connected operation"                             -->
+<!-- FLOW                                                          -->
 <!-- ============================================================ -->
 <section class="flow">
 <div class="container">
@@ -428,7 +492,7 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 </section>
 
 <!-- ============================================================ -->
-<!-- CASE STUDIES — "Real operations. Real outcomes."             -->
+<!-- CASE STUDIES                                                  -->
 <!-- ============================================================ -->
 <section class="cases">
 <div class="container">
@@ -448,7 +512,7 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 </section>
 
 <!-- ============================================================ -->
-<!-- METHOD — "The PrimeChain method"                             -->
+<!-- METHOD                                                        -->
 <!-- ============================================================ -->
 <section class="method" id="method">
 <div class="container">
@@ -469,7 +533,7 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 </section>
 
 <!-- ============================================================ -->
-<!-- WHO WE ARE TEASER — "Here's what we believe."                -->
+<!-- WHO WE ARE TEASER                                             -->
 <!-- ============================================================ -->
 <section class="who-teaser">
 <div class="container">
@@ -501,7 +565,7 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 </section>
 
 <!-- ============================================================ -->
-<!-- MANIFESTO TEASER — "Here's what we stand for."               -->
+<!-- MANIFESTO TEASER                                              -->
 <!-- ============================================================ -->
 <section class="manifesto-teaser" id="manifesto">
 <div class="container">
@@ -519,7 +583,7 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 </section>
 
 <!-- ============================================================ -->
-<!-- INSIGHTS TEASER — "Here's the evidence."                     -->
+<!-- INSIGHTS TEASER                                               -->
 <!-- ============================================================ -->
 <section class="insights-teaser" id="insights">
 <div class="container">
@@ -563,7 +627,7 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 </section>
 
 <!-- ============================================================ -->
-<!-- CTA — "Let's apply it to your business."                     -->
+<!-- CTA                                                           -->
 <!-- ============================================================ -->
 <section class="cta-band" id="contact">
 <div class="container cta-inner">
@@ -601,6 +665,41 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
   </div>
 </div>
 </footer>
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT                                                    -->
+<!-- ============================================================ -->
+<script>
+// Mobile Hamburger Menu
+(function() {
+  const hamburger = document.getElementById('hamburger');
+  const overlay = document.getElementById('mobileOverlay');
+  
+  if (hamburger && overlay) {
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      overlay.classList.toggle('open');
+      document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+    });
+    
+    overlay.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
