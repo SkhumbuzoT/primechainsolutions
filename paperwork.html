@@ -1,344 +1,881 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unlocking Hidden Business Insights in Your Paperwork · PrimeChain</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="icon" type="image/svg+xml" href="/assets/primechain.svg" />
-  <link rel="stylesheet" href="style.css" />
-        <!-- Favicon -->
-  <link rel="icon" type="image/svg" sizes="32x32" href="/assets/primechain.svg">
-  <link rel="icon" type="image/svg" sizes="16x16" href="/assets/primechain.svg">
-  <style>
-    .article-body {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 4rem 0 6rem;
-    }
-    .article-body h2 {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      margin: 2.5rem 0 1rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    .article-body h3 {
-      font-size: clamp(1.2rem, 2vw, 1.5rem);
-      margin: 2rem 0 0.8rem;
-      font-weight: 600;
-    }
-    .article-body p {
-      font-size: 1rem;
-      line-height: 1.85;
-      color: var(--text);
-      margin-bottom: 1.25rem;
-      font-weight: 300;
-    }
-    .article-body p:first-of-type {
-      font-size: 1.08rem;
-      line-height: 1.9;
-      color: var(--text);
-    }
-    .article-body ul {
-      margin: 1.25rem 0 1.5rem 1.5rem;
-    }
-    .article-body ul li {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: var(--text);
-      font-weight: 300;
-      margin-bottom: 0.5rem;
-    }
-    .article-body blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      line-height: 1.5;
-      font-weight: 500;
-      color: var(--navy-mid);
-      padding: 1.5rem 0 1.5rem 2rem;
-      margin: 2rem 0;
-      border-left: 3px solid var(--gold);
-      background: var(--off);
-      padding: 1.5rem 2rem;
-    }
-    .article-body blockquote p {
-      margin-bottom: 0;
-      font-size: inherit;
-      font-weight: 500;
-      color: var(--navy-mid);
-    }
-    .article-meta {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.8rem;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .article-meta span { display: flex; align-items: center; gap: 0.4rem; }
-    .article-tag {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--teal);
-      background: var(--teal-lt);
-      padding: 0.25rem 0.9rem;
-      border-radius: 20px;
-      display: inline-block;
-    }
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--teal);
-      margin-bottom: 1.5rem;
-      transition: gap var(--ease);
-    }
-    .back-link:hover { gap: 0.75rem; }
-    .article-divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 2.5rem 0;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Most businesses are sitting on months or years of operational intelligence — locked inside job cards, delivery notes, fuel slips, invoices and stock sheets." />
+<title>Your Paperwork Is Telling You More Than You Think · PrimeChain</title>
 
-    @media (max-width: 768px) {
-      .article-body { padding: 2.5rem 0 4rem; }
-      .article-body blockquote { font-size: 1.2rem; padding: 1.25rem; }
-    }
-  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#101010;
+  --paper:#f5f4f0;
+  --white:#fff;
+  --muted:#676767;
+  --line:#d9d7d0;
+  --soft:#eceae4;
+  --accent:#c8a96b;
+  --max:860px;
+  --serif:"Manrope",sans-serif;
+  --sans:"DM Sans",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(var(--max),calc(100% - 64px));margin:auto}
+
+/* ---- NAVIGATION ---- */
+.nav{
+  height:82px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;
+}
+.logo{font-weight:700;font-size:1.2rem;letter-spacing:-.04em;z-index:100}
+.logo span{font-weight:400}
+
+.navlinks{
+  display:flex;gap:30px;align-items:center;font-size:.82rem;color:#4f4f4f;
+  list-style:none;margin:0;padding:0;
+}
+.navlinks li{display:inline-block}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a.active{border-bottom:2px solid var(--accent);padding-bottom:4px;color:var(--ink)}
+.navlinks .nav-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+  transition:.2s;
+}
+.navlinks .nav-cta:hover{background:var(--ink);color:var(--white)}
+
+.desktop-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+  transition:.2s;
+}
+.desktop-cta:hover{background:var(--ink);color:var(--white)}
+
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  background:transparent;border:none;padding:8px;z-index:100;
+}
+.hamburger span{
+  display:block;width:28px;height:2px;background:var(--ink);
+  transition:all 0.3s ease;border-radius:2px;transform-origin:center;
+}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+.mobile-nav-overlay{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100vh;
+  background:var(--paper);z-index:90;padding:100px 40px 40px;
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.mobile-nav-overlay.open{display:flex}
+.mobile-nav-overlay a{
+  font-family:var(--serif);font-size:2.4rem;font-weight:500;letter-spacing:-.04em;
+  color:var(--ink);transition:.2s;text-decoration:none;
+}
+.mobile-nav-overlay a:hover{color:#777}
+.mobile-nav-overlay a.active{color:var(--accent)}
+.mobile-nav-overlay .mobile-cta{
+  margin-top:16px;border:1px solid var(--ink);padding:16px 32px;
+  font-size:.82rem;font-weight:600;transition:.2s;
+}
+.mobile-nav-overlay .mobile-cta:hover{background:var(--ink);color:var(--white)}
+
+/* ---- ARTICLE STYLES ---- */
+.article-hero{
+  padding:92px 0 48px;border-bottom:1px solid var(--line);
+}
+.article-hero .breadcrumb{
+  font-size:.72rem;color:#999;margin-bottom:24px;display:flex;align-items:center;gap:8px;
+}
+.article-hero .breadcrumb a{color:#777;transition:.2s}
+.article-hero .breadcrumb a:hover{color:var(--ink)}
+.article-hero .breadcrumb .sep{color:#ccc}
+.article-hero .article-tag{
+  font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;
+  color:var(--accent);font-weight:700;display:inline-block;margin-bottom:16px;
+}
+.article-hero h1{
+  font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,4.8rem);
+  line-height:1.05;letter-spacing:-.055em;font-weight:500;max-width:780px;
+}
+.article-hero .article-meta{
+  display:flex;gap:24px;margin-top:24px;font-size:.82rem;color:#777;
+  align-items:center;flex-wrap:wrap;
+}
+.article-hero .article-meta .divider{color:#ddd}
+.article-hero .article-meta .author{font-weight:600;color:var(--ink)}
+
+.article-body{
+  padding:60px 0 80px;background:var(--white);
+}
+.article-body .content{
+  max-width:720px;margin:0 auto;
+}
+.article-body .content p{
+  font-size:1.05rem;color:#444;line-height:1.85;margin-bottom:1.5rem;
+}
+.article-body .content h2{
+  font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:500;letter-spacing:-.04em;margin:3rem 0 1.2rem;line-height:1.15;
+}
+.article-body .content h3{
+  font-family:var(--serif);font-size:1.4rem;font-weight:500;letter-spacing:-.03em;
+  margin:2.4rem 0 1rem;line-height:1.2;
+}
+.article-body .content blockquote{
+  border-left:4px solid var(--accent);padding:1.5rem 2rem;margin:2rem 0;
+  background:var(--paper);font-family:var(--serif);font-size:1.3rem;
+  font-weight:500;line-height:1.5;letter-spacing:-.02em;
+}
+.article-body .content blockquote em{font-style:italic;color:#999}
+.article-body .content .pull-quote{
+  font-family:var(--serif);font-size:clamp(1.6rem,2.8vw,2.4rem);
+  font-weight:500;letter-spacing:-.04em;line-height:1.2;
+  padding:2rem 0;border-top:2px solid var(--line);border-bottom:2px solid var(--line);
+  margin:2.5rem 0;
+}
+.article-body .content .pull-quote em{font-style:italic;color:#999}
+.article-body .content ul{
+  margin:1.2rem 0 1.8rem 1.5rem;list-style:none;
+}
+.article-body .content ul li{
+  padding-left:1.5rem;position:relative;margin-bottom:0.6rem;font-size:1.02rem;color:#444;
+}
+.article-body .content ul li::before{
+  content:"—";position:absolute;left:0;color:var(--accent);font-weight:600;
+}
+.article-body .content hr{
+  border:none;border-top:1px solid var(--line);margin:3rem 0;
+}
+.article-body .content .highlight-box{
+  background:var(--paper);padding:2rem 2.5rem;margin:2.5rem 0;border-left:4px solid var(--accent);
+}
+.article-body .content .highlight-box p:last-child{margin-bottom:0}
+.article-body .content .highlight-box .label{
+  font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;
+  color:var(--accent);font-weight:700;display:block;margin-bottom:8px;
+}
+
+/* ---- BACK TO THINKING ---- */
+.back-link{
+  padding:40px 0 60px;background:var(--paper);
+}
+.back-link .back-inner{
+  max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px;
+  font-size:.82rem;color:#777;transition:.2s;
+}
+.back-link .back-inner:hover{color:var(--ink)}
+.back-link .back-inner .arrow{font-size:1rem}
+
+/* ---- RELATED ARTICLES ---- */
+.related{
+  background:var(--paper);padding:60px 0 80px;border-top:1px solid var(--line);
+}
+.related .related-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  max-width:720px;margin:32px auto 0;border:1px solid var(--line);
+}
+.related .rel-card{
+  background:var(--paper);padding:28px 24px;min-height:160px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.related .rel-card small{
+  font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:#999;font-weight:700;
+}
+.related .rel-card h4{
+  font-family:var(--serif);font-size:1.1rem;font-weight:500;letter-spacing:-.03em;
+  margin:12px 0 8px;line-height:1.2;
+}
+.related .rel-card p{color:#666;font-size:.82rem;line-height:1.6}
+.related .rel-card .rel-link{font-size:.7rem;font-weight:600;color:#777;margin-top:8px;display:inline-block}
+.related .rel-card .rel-link:hover{color:var(--ink)}
+
+/* ---- CTA ---- */
+.cta-band{background:var(--ink);color:var(--white);border-bottom:0;padding:0}
+.cta-band .cta-inner{
+  padding:80px 0;display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:end;
+}
+.cta-band h2{
+  font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.8rem);
+  line-height:.95;letter-spacing:-.075em;font-weight:500;
+}
+.cta-band p{color:#aaa;max-width:440px;font-size:1rem;line-height:1.7;margin-bottom:26px}
+.cta-band .btn.primary{background:var(--white);color:var(--ink);border-color:var(--white)}
+.cta-band .btn.primary:hover{background:#ddd}
+
+/* ---- FOOTER ---- */
+footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1px solid #292929}
+.footer-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.footer-brand p{color:#777;max-width:310px;font-size:.8rem;margin-top:8px}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap;font-size:.75rem;color:#aaa}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid #292929;margin-top:35px;padding-top:17px;color:#666;font-size:.68rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:900px){
+  .container{width:min(var(--max),calc(100% - 40px))}
+  .navlinks{display:none}
+  .desktop-cta{display:none}
+  .hamburger{display:flex}
+  .cta-band .cta-inner{grid-template-columns:1fr;gap:40px}
+  .related .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .container{width:calc(100% - 32px)}
+  .nav{height:72px}
+  .article-hero{padding:65px 0 32px}
+  .article-hero h1{font-size:2.6rem}
+  .article-body{padding:40px 0 60px}
+  .article-body .content p{font-size:.98rem}
+  .article-body .content blockquote{padding:1.2rem 1.5rem;font-size:1.1rem}
+  .article-body .content .pull-quote{font-size:1.4rem}
+  .article-body .content .highlight-box{padding:1.5rem}
+  .cta-band .cta-inner{padding:60px 0}
+  .mobile-nav-overlay a{font-size:1.8rem}
+}
+</style>
 </head>
 <body>
-<div class="sp" id="sp"></div>
 
- <nav id="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="logo">
-        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
-      </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="whoweare.html">Who we are</a></li>
-        <li><a href="ourthinking.html" class="on">Our thinking</a></li>
-        <li><a href="index.html#contact" class="nav-cta">Talk to us</a></li>
-      </ul>
-      <button class="mob-btn" id="mobBtn" aria-label="Menu">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-  </nav>
+<!-- ============================================================ -->
+<!-- NAVIGATION                                                    -->
+<!-- ============================================================ -->
+<div class="container">
+<nav class="nav">
+  <a class="logo" href="index.html">Prime<span>Chain</span></a>
+  
+  <ul class="navlinks" id="navLinks">
+    <li><a href="index.html#solutions">What We Do</a></li>
+    <li><a href="whoweare.html">Who We Are</a></li>
+    <li><a href="ourthinking.html" class="active">Our Thinking</a></li>
+    <li><a href="manifesto.html">Manifesto</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Talk to Us</a></li>
+  </ul>
+  
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  
+  <a class="desktop-cta" href="index.html#contact">Talk to PrimeChain <span>↗</span></a>
+</nav>
+</div>
 
-<section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="hero-label">Article</div>
-    <h1>Unlocking Hidden Business Insights <br /><em>in Your Paperwork</em></h1>
-    <p>Most businesses are sitting on months of operational intelligence — locked inside job cards, delivery notes, and stock sheets.</p>
+<!-- Mobile Overlay -->
+<div class="mobile-nav-overlay" id="mobileOverlay">
+  <a href="index.html">Home</a>
+  <a href="whoweare.html">Who We Are</a>
+  <a href="ourthinking.html" class="active">Our Thinking</a>
+  <a href="manifesto.html">Manifesto</a>
+  <a href="index.html#contact" class="mobile-cta">Talk to Us ↗</a>
+</div>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- ARTICLE HERO                                                  -->
+<!-- ============================================================ -->
+<section class="article-hero">
+<div class="container">
+  <div class="breadcrumb">
+    <a href="ourthinking.html">Our Thinking</a>
+    <span class="sep">/</span>
+    <span>Field Note</span>
   </div>
+  <span class="article-tag">Data &amp; Insights</span>
+  <h1>Your Paperwork Is Telling You More Than You Think</h1>
+  <div class="article-meta">
+    <span class="author">PrimeChain</span>
+    <span class="divider">·</span>
+    <span>Data &amp; Insights</span>
+    <span class="divider">·</span>
+    <span>5 min read</span>
+  </div>
+</div>
 </section>
 
+<!-- ============================================================ -->
+<!-- ARTICLE BODY                                                  -->
+<!-- ============================================================ -->
+<section class="article-body">
 <div class="container">
-  <div class="article-body">
-    <a href="articles.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Our thinking</a>
+  <div class="content">
+    
+    <p><strong>Most businesses are sitting on months or years of operational intelligence — locked inside job cards, delivery notes, fuel slips, invoices and stock sheets.</strong></p>
 
-    <div class="article-meta">
-      <span class="article-tag">Data &amp; Insights</span>
-      <span><i class="fas fa-clock"></i> 5 min read</span>
+    <p>There is a truck somewhere in South Africa right now that has been running for decades.</p>
+
+    <p>Over its life, it has generated thousands of documents.</p>
+
+    <ul>
+      <li>Fuel slips.</li>
+      <li>Delivery notes.</li>
+      <li>Weighbridge tickets.</li>
+      <li>Service records.</li>
+      <li>Maintenance invoices.</li>
+      <li>Toll receipts.</li>
+      <li>Driver records.</li>
+      <li>Proofs of delivery.</li>
+    </ul>
+
+    <p>Every document contains a small piece of the story.</p>
+
+    <ul>
+      <li>Where it went.</li>
+      <li>What it carried.</li>
+      <li>How much fuel it used.</li>
+      <li>How long the trip took.</li>
+      <li>What it cost to keep running.</li>
+      <li>What it earned.</li>
+      <li>What went wrong.</li>
+    </ul>
+
+    <p>And yet, in most businesses, those documents are simply filed.</p>
+
+    <p>The information is preserved.</p>
+    <p>But the intelligence is lost.</p>
+
+    <p>Because the real value isn't in any single document.</p>
+
+    <div class="pull-quote">
+      It is in the connections between them.
     </div>
 
-    <p>There is a truck somewhere in South Africa right now that has been running since 1994.</p>
-
-    <p>It left the dealership in Boksburg with 0 kilometres on the clock, a clean service book, and a registration that got stamped onto every document it would ever generate for the next thirty years.</p>
-
-    <p>In those thirty years, that truck has crossed Van Reenen's Pass more times than anyone can count. It has queued at Beit Bridge in the heat. It has loaded coal at Witbank and iron ore at Sishen. It has refuelled at truck stops from Harrismith to Musina. It has been serviced, repaired, re-tyred, and kept running by people who understood engines but never thought much about the paper trail left behind.</p>
-
-    <p>And that paper trail — that is where the real story is.</p>
+    <hr>
 
     <h2>Every Document Is a Memory</h2>
 
-    <p>Think about everything that truck has generated over three decades.</p>
+    <p>Think about the paperwork your business generates every day.</p>
 
-    <p>A registration certificate, stamped the day it was purchased. A service record every fifteen to twenty thousand kilometres — oil, filters, brake pads, clutch plates, injectors. A roadworthy certificate every time it changed hands or went for inspection. Toll receipts on every major route: the N3, the N1, the N4. Fuel slips at every fill-up, recording the volume, the price, the date, the location. Loading tickets at every colliery, every mine, every depot — tonnes loaded, time in, time out. Weighbridge tickets confirming the gross vehicle mass. Proof of delivery documents signed at every offloading point. Driver assignment records, linking the vehicle to the person behind the wheel. Traffic fines. Cross-border permits. Maintenance invoices from the roadside mechanic who kept it moving when something went wrong in the Limpopo heat.</p>
+    <ul>
+      <li>A job card records what was done.</li>
+      <li>A delivery note records what moved.</li>
+      <li>A fuel slip records what was consumed.</li>
+      <li>An invoice records what was charged.</li>
+      <li>A maintenance invoice records what was repaired.</li>
+      <li>A stock sheet records what came in and went out.</li>
+      <li>A timesheet records who performed the work and how long it took.</li>
+    </ul>
 
-    <p>Every single one of those documents has one thing in common: the truck's registration number.</p>
+    <p>Individually, these documents are administrative records.</p>
+    <p>Together, they are something much more valuable.</p>
 
-    <p>That number — let's call it BFN123 — is on all of it. Thirty years of operational history, connected by eleven characters on a licence disc.</p>
+    <p><strong>They are a record of how your business actually operates.</strong></p>
 
-    <p>The truck knows which routes were punishing and which were kind. It knows which loads caused the most wear. It knows which drivers were gentle with the clutch and which ones weren't. It knows where the money was made and where it quietly leaked away.</p>
+    <p>The problem is that businesses usually organise them by <strong>document type</strong>.</p>
 
-    <p>The truck has been trying to tell you this story for three decades.</p>
+    <ul>
+      <li>Fuel slips go in one folder.</li>
+      <li>Invoices go somewhere else.</li>
+      <li>Delivery notes are filed separately.</li>
+      <li>Job cards live in another system.</li>
+    </ul>
 
-    <p>Nobody was listening.</p>
+    <p>The documents are preserved.</p>
+    <p>But the relationships between them disappear.</p>
+    <p>And that is where the intelligence gets lost.</p>
 
-    <h2>Why Nobody Listened</h2>
+    <hr>
 
-    <p>It is not because the documents disappeared. Most of them are still somewhere — in a filing cabinet, in a cardboard box, in a folder on someone's desk, photographed on a phone and never looked at again.</p>
+    <h2>The Data Exists. It Just Doesn't Connect.</h2>
 
-    <p>The problem is not that the data does not exist. The problem is that it was never connected.</p>
+    <p>Imagine a delivery business.</p>
 
-    <p>The service record sat in one file. The fuel slips were in another. The loading tickets were with the operations coordinator. The invoices were with the bookkeeper. The driver logs were with the dispatcher. Each document lived in its own silo, telling its own fragment of the story, never combined with the others into something that actually meant anything.</p>
+    <p>The delivery note tells you that a load was completed.</p>
+    <p>The fuel slip tells you what the vehicle consumed.</p>
+    <p>The driver's record tells you how long the trip took.</p>
+    <p>The invoice tells you what the customer paid.</p>
+    <p>The maintenance record tells you what the vehicle cost to keep on the road.</p>
 
-    <p>This is how most transport and logistics businesses manage their paperwork: by category, not by connection. File the fuel slips together. File the delivery notes together. File the invoices together. Audit-ready, yes. Intelligence-ready, no.</p>
+    <p>None of those documents, on their own, tells you whether the trip was profitable.</p>
 
-    <p>And the result is that the most honest record of how that truck performed — what it cost per kilometre over its lifetime, which routes were it down the fastest, which periods were most profitable, which drivers produced the best fuel economy — is sitting in fragments across a dozen folders, invisible and unutilised.</p>
+    <p>But connect them.</p>
 
-    <h2>The Registration Number Is the Key</h2>
+    <p>Suddenly you can ask:</p>
 
-    <p>Here is the shift that changes everything, and it is simpler than it sounds.</p>
+    <ul>
+      <li><strong>What did this trip earn?</strong></li>
+      <li><strong>What did it cost?</strong></li>
+      <li><strong>How much fuel did it consume?</strong></li>
+      <li><strong>How long did it take?</strong></li>
+      <li><strong>Which vehicle performed it?</strong></li>
+      <li><strong>Which driver was operating it?</strong></li>
+      <li><strong>Which route was involved?</strong></li>
+    </ul>
 
-    <p>Every document related to BFN123 has that registration number on it. That number is what data people call a primary key — the common thread that runs through every record, the thing that lets you say: all of these documents belong to the same story.</p>
+    <p>The paperwork hasn't changed.</p>
+    <p>No new operational event has occurred.</p>
 
-    <p>Once you recognise that, the filing logic changes entirely. Instead of asking "where do I put this fuel slip?" you ask "how do I connect this fuel slip to the trip it belongs to?"</p>
+    <p>You've simply connected information that was already there.</p>
+    <p>And that connection creates a completely different level of understanding.</p>
 
-    <p>The delivery note for Trip 2847 tells you: 34 tonnes of coal, loaded at Witbank 06:00, delivered Richards Bay 13:30. That is seven and a half hours and roughly 370 kilometres.</p>
+    <hr>
 
-    <p>The fuel slip for BFN123 on that same date tells you: 180 litres at R24 per litre, filled at Richards Bay at 14:00. That is R4,320 in fuel for that trip.</p>
+    <h2>This Isn't Just a Fleet Problem</h2>
 
-    <p>The invoice for the same trip tells you: R18,500 charged to the client.</p>
+    <p>The same pattern exists almost everywhere.</p>
 
-    <p>The driver timesheet tells you: nine hours, including loading and offloading time.</p>
+    <p><strong>A field-service business has:</strong></p>
+    <ul>
+      <li>work orders;</li>
+      <li>job cards;</li>
+      <li>technician records;</li>
+      <li>photographs;</li>
+      <li>parts issued;</li>
+      <li>invoices;</li>
+      <li>customer sign-offs.</li>
+    </ul>
 
-    <p>Connect those four documents — matched by registration number and date — and you have something that none of them could tell you individually:</p>
+    <p><strong>A construction company has:</strong></p>
+    <ul>
+      <li>purchase orders;</li>
+      <li>delivery notes;</li>
+      <li>site records;</li>
+      <li>timesheets;</li>
+      <li>material issues;</li>
+      <li>subcontractor invoices;</li>
+      <li>progress certificates.</li>
+    </ul>
 
-    <p>Revenue: R18,500. Fuel cost: R4,320. Driver cost at R80 per hour: R720. Total direct cost: R5,040. Gross profit: R13,460. Margin: 72.8%.</p>
+    <p><strong>A distributor has:</strong></p>
+    <ul>
+      <li>sales orders;</li>
+      <li>picking records;</li>
+      <li>delivery notes;</li>
+      <li>stock movements;</li>
+      <li>invoices;</li>
+      <li>returns.</li>
+    </ul>
 
-    <p>That is one trip. One day. One data point in thirty years of that truck's life.</p>
+    <p><strong>A maintenance business has:</strong></p>
+    <ul>
+      <li>service requests;</li>
+      <li>work orders;</li>
+      <li>technician reports;</li>
+      <li>parts usage;</li>
+      <li>labour hours;</li>
+      <li>invoices.</li>
+    </ul>
 
-    <p>Now imagine doing that across every trip for a year. Across every truck in your fleet. Across every route, every client, every driver.</p>
+    <p>Different industries.</p>
+    <p>Different documents.</p>
 
-    <p>Suddenly you are not looking at a pile of documents. You are looking at a map of your entire operation — where the money is made, where it leaks, which trucks earn their keep and which ones are costing more than they contribute.</p>
-
-    <h2>What the Documents Are Actually Saying</h2>
-
-    <p>The documents your operation generates every day are not admin. They are testimony.</p>
-
-    <p>The fuel slip is not a receipt to file and forget. It is evidence of an operational cost event tied to a specific vehicle on a specific day. Connected to the trip it belongs to, it tells you whether that truck's consumption is in line with the fleet average, whether this route is more fuel-intensive than others, and whether something has changed mechanically that is worth investigating before it becomes expensive.</p>
-
-    <p>The delivery note is not just proof that something moved. It is a timestamp on a chain of events — loading time, departure time, arrival time, tonnes delivered. Connected to a weighbridge ticket and a driver log, it tells you how long that trip actually took versus how long it should have taken, where time was lost, and whether the delay was at the mine, on the road, or at the offloading point.</p>
-
-    <p>The maintenance invoice is not just a payment to process. It is a data point in the reliability story of that vehicle. Connected to the kilometre reading at the time of service, the route that truck runs, and the load profile it carries, it tells you whether that vehicle is being maintained appropriately for the work it is doing — or whether the cost per kilometre is quietly climbing toward replacement territory.</p>
-
-    <p>Each document is a sentence. Connected, they form a chapter. Accumulated over months and years, they become the complete operational biography of your fleet.</p>
-
-    <h2>The Newcastle to Richards Bay Trip — Told in Full</h2>
-
-    <p>Let us make this concrete.</p>
-
-    <p>BFN123 runs the Newcastle to Richards Bay corridor regularly. Over six months, you have delivery notes, fuel slips, invoices, and timesheets for every trip. You connect them by registration number and date. Here is what the data reveals:</p>
-
-    <p>Average fuel consumption is 0.49 km per litre — but on four specific trips it dropped to 0.41 km per litre. Those four trips all have the same driver name on the timesheet. You now have a specific, evidence-based conversation to have about driving behaviour — not an accusation, not a guess, just the numbers.</p>
-
-    <p>Average trip time is 8.2 hours. But trips scheduled on Fridays average 10.1 hours. The delay is consistently at the Richards Bay offloading point, between 15:00 and 17:00. You adjust Friday scheduling to arrive before 13:00 or after 18:00. The problem disappears.</p>
-
-    <p>The margin on this route is 71% on average — but in three months it dropped to 58%. You trace it back: diesel prices increased 11% in that period, but the rate you were charging the client had not been reviewed in fourteen months. You now have the data to support a rate conversation. Not an appeal to a vague sense that costs have gone up, but a specific margin analysis showing what the route was earning then and what it is earning now.</p>
-
-    <p>None of this intelligence came from a new system. It came from documents you were already generating. The only difference was connecting them.</p>
-
-    <h2>The Truck That Retired Without Telling Its Story</h2>
-
-    <p>There is a harder version of this story.</p>
-
-    <p>When BFN123 eventually gets sold or scrapped, its full operational history — what it really cost per kilometre to run, which years were profitable, what maintenance was predictive versus reactive, how its fuel efficiency changed as it aged — that history exists in fragments across thirty years of paperwork.</p>
-
-    <p>For most businesses, when the truck goes, the story goes with it. Nobody ever assembled it. Nobody ever read it. The next truck starts its life with zero institutional memory of what the previous one taught.</p>
-
-    <p>The operator who connects their documents systematically builds something different: a living record that survives beyond any individual vehicle. When the new truck arrives, you already know which routes are punishing on fuel, which loads cause the most wear, which clients consistently create delays that are worth pricing into your rate. You are not starting from scratch. You are starting from thirty years of evidence.</p>
-
-    <p>That is what paperwork intelligence means in practice. Not reports. Not analytics. Just the discipline of connecting what you already have — so the trucks that come after BFN123 benefit from everything it learned.</p>
-
-    <h2>Where to Start</h2>
-
-    <p>You do not need a system. You need a structure.</p>
-
-    <p>Pick one vehicle and one document type — fuel slips are the easiest. For two weeks, capture every fuel slip for that vehicle consistently: date, litres, cost, location. That is four fields. It takes thirty seconds per entry.</p>
-
-    <p>After two weeks, add the second document type — delivery notes for the same vehicle. Four fields: date, route, tonnes, departure time.</p>
-
-    <p>Match them by date. You now have, for every trip in those two weeks, both the load delivered and the fuel consumed. Calculate consumption per trip. Look at whether it varies. Ask why.</p>
-
-    <p>That is the beginning of reading your paperwork.</p>
-
-    <p>Within a month, add invoices. Now you have revenue, cost, and load in one row. You can see margin per trip.</p>
-
-    <p>Within three months, you will know things about your operation that you currently only guess at.</p>
-
-    <p>Within a year, your paperwork will be telling you the full story — truck by truck, route by route, driver by driver — with the same clarity that BFN123 could have offered all along, if anyone had ever thought to listen.</p>
-
-    <hr class="article-divider" />
-
-    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 1rem 0;">
-      <a href="articles.html" class="arrow-link"><i class="fas fa-arrow-left"></i> All articles</a>
-      <a href="article-dashboard.html" class="arrow-link">Next article <i class="fas fa-arrow-right"></i></a>
+    <div class="pull-quote">
+      The same underlying problem.
     </div>
+
+    <p>The business is generating information at every step.</p>
+    <p>But the information often lives in separate places, owned by different people and used for different purposes.</p>
+
+    <p>So the business sees individual transactions.</p>
+    <p>It struggles to see the system.</p>
+
+    <hr>
+
+    <h2>The Document Is Not the Insight</h2>
+
+    <p>This distinction matters.</p>
+
+    <p>A fuel slip isn't intelligence.</p>
+    <p>It is evidence of a transaction.</p>
+
+    <p>A job card isn't intelligence.</p>
+    <p>It is evidence of work performed.</p>
+
+    <p>A delivery note isn't intelligence.</p>
+    <p>It is evidence that something moved.</p>
+
+    <p>The intelligence emerges when those records are connected to the other events around them.</p>
+
+    <ul>
+      <li>A fuel slip connected to a vehicle and a trip can tell you about fuel efficiency.</li>
+      <li>A job card connected to labour, parts and billing can tell you about job profitability.</li>
+      <li>A delivery note connected to loading time, travel time and offloading time can tell you where a route is losing capacity.</li>
+      <li>A stock movement connected to sales can reveal where inventory is accumulating or disappearing.</li>
+    </ul>
+
+    <div class="pull-quote">
+      The insight isn't inside the document.<br>
+      <em>It is in the relationship between documents.</em>
+    </div>
+
+    <hr>
+
+    <h2>The Hidden Key</h2>
+
+    <p>Usually, there is already something connecting the records.</p>
+
+    <p>It might be:</p>
+
+    <ul>
+      <li>A vehicle registration.</li>
+      <li>A work-order number.</li>
+      <li>A customer account.</li>
+      <li>An invoice number.</li>
+      <li>A delivery reference.</li>
+      <li>A purchase order.</li>
+      <li>A job number.</li>
+      <li>A stock code.</li>
+      <li>A date and location.</li>
+    </ul>
+
+    <p>These identifiers are easy to overlook because they were never designed as analytics tools.</p>
+    <p>But they can become the threads that connect the operation.</p>
+
+    <p>Take a vehicle registration.</p>
+    <p>It might appear on:</p>
+
+    <ul>
+      <li>Fuel slips.</li>
+      <li>Delivery records.</li>
+      <li>Maintenance records.</li>
+      <li>Driver logs.</li>
+      <li>Toll records.</li>
+      <li>Trip records.</li>
+      <li>Invoices.</li>
+    </ul>
+
+    <p>The registration number is not just an identifier.</p>
+
+    <div class="pull-quote">
+      It can become the spine of the vehicle's operational history.
+    </div>
+
+    <p>The same principle applies to a job number, customer number or delivery reference.</p>
+
+    <p>Once you recognise the common thread, the paperwork stops looking like separate documents.</p>
+    <p>It starts looking like a connected dataset.</p>
+
+    <hr>
+
+    <h2>What the Paperwork Can Tell You</h2>
+
+    <p>Once records are connected, questions that previously required guesswork become measurable.</p>
+
+    <ul>
+      <li>Which vehicles are actually profitable?</li>
+      <li>Which routes consistently consume more fuel?</li>
+      <li>Which customers create the longest delays?</li>
+      <li>Which jobs take longer than they should?</li>
+      <li>Which technicians are spending excessive time on administration?</li>
+      <li>Which products move quickly?</li>
+      <li>Where is stock sitting too long?</li>
+      <li>Which contracts generate revenue but little margin?</li>
+      <li>Which maintenance costs are increasing?</li>
+      <li>Where are operational exceptions occurring repeatedly?</li>
+    </ul>
+
+    <p>These aren't necessarily questions that require sophisticated artificial intelligence.</p>
+
+    <p>Often, the business already has enough information to answer them.</p>
+    <p>The challenge is that nobody has connected it.</p>
+
+    <hr>
+
+    <h2>From Records to Operational Intelligence</h2>
+
+    <p>There is a progression here.</p>
+
+    <div class="highlight-box">
+      <span class="label">The Intelligence Progression</span>
+      <p><strong>Documents</strong><br>
+      ↓<br>
+      <strong>Structured records</strong><br>
+      ↓<br>
+      <strong>Connected information</strong><br>
+      ↓<br>
+      <strong>Patterns</strong><br>
+      ↓<br>
+      <strong>Insights</strong><br>
+      ↓<br>
+      <strong>Decisions</strong></p>
+    </div>
+
+    <p>The first step isn't artificial intelligence.</p>
+    <p>It isn't a sophisticated dashboard.</p>
+    <p>It isn't even automation.</p>
+
+    <p>It is simply <strong>structure</strong>.</p>
+
+    <p>Take the information you already generate and give it enough consistency that different records can be connected.</p>
+
+    <p>Once you can connect the records, you can start asking better questions.</p>
+    <p>Once you can ask better questions, you can identify patterns.</p>
+    <p>And once patterns become visible, the business can make better decisions.</p>
+
+    <p>That is where paperwork becomes intelligence.</p>
+
+    <hr>
+
+    <h2>The Cost of Not Looking</h2>
+
+    <p>There is another side to this.</p>
+
+    <p>When paperwork remains disconnected, businesses make decisions using incomplete information.</p>
+
+    <ul>
+      <li>A fleet manager knows fuel costs are rising, but doesn't know which routes are responsible.</li>
+      <li>An operations manager knows jobs are taking longer, but doesn't know where the time is going.</li>
+      <li>A business owner knows margins feel tighter, but cannot see which customers or contracts are causing it.</li>
+      <li>A warehouse manager knows stock is moving slowly, but cannot easily identify where capital is being trapped.</li>
+    </ul>
+
+    <p>The information exists.</p>
+    <p>But because it is fragmented, the business is forced to operate on experience, instinct and averages.</p>
+
+    <p>Those things have value.</p>
+    <p>But they are not a substitute for evidence.</p>
+
+    <hr>
+
+    <h2>You Don't Need to Digitise Everything</h2>
+
+    <p>This is where businesses often overcomplicate the problem.</p>
+
+    <p>They assume they need a new ERP.</p>
+    <p>A massive data warehouse.</p>
+    <p>A sophisticated analytics platform.</p>
+    <p>A complete digital transformation programme.</p>
+
+    <p>Not necessarily.</p>
+
+    <p>Start with one question.</p>
+
+    <div class="pull-quote">
+      What do you wish you knew about your operation?
+    </div>
+
+    <p>Then work backwards.</p>
+
+    <ul>
+      <li>What information would answer that question?</li>
+      <li>Where does that information currently live?</li>
+      <li>What identifiers connect those records?</li>
+      <li>How consistently are they captured?</li>
+      <li>Can the records be brought together?</li>
+    </ul>
+
+    <p>Start there.</p>
+
+    <p>You don't need to digitise the entire business to discover something valuable.</p>
+    <p>You need to connect enough of the right information to answer a meaningful question.</p>
+
+    <hr>
+
+    <h2>Your Paperwork Has a Memory</h2>
+
+    <p>Every business leaves a trail.</p>
+
+    <ul>
+      <li>Every job.</li>
+      <li>Every delivery.</li>
+      <li>Every transaction.</li>
+      <li>Every repair.</li>
+      <li>Every payment.</li>
+      <li>Every movement.</li>
+      <li>Every exception.</li>
+    </ul>
+
+    <p>Over time, that trail becomes a record of how the organisation actually behaves.</p>
+
+    <p>Most businesses treat that record as paperwork.</p>
+    <p>The opportunity is to treat it as <strong>institutional memory</strong>.</p>
+
+    <p>Because when the information is connected, the business can learn from what it has already experienced.</p>
+
+    <ul>
+      <li>A vehicle can teach you which routes cost more.</li>
+      <li>A job can teach you where the process breaks down.</li>
+      <li>A customer can teach you where margin disappears.</li>
+      <li>A stock movement can teach you where capital is being trapped.</li>
+    </ul>
+
+    <p>The business doesn't need to remember everything.</p>
+
+    <div class="pull-quote">
+      The system can remember for it.
+    </div>
+
+    <hr>
+
+    <h2>Start Listening to What Your Business Already Knows</h2>
+
+    <p>Before buying another system, look at the information you already have.</p>
+
+    <p>Pick one process.</p>
+    <p>Pick one identifier.</p>
+    <p>Pick one question you want answered.</p>
+
+    <p>Then connect the records.</p>
+
+    <p>You may discover that the answer isn't somewhere outside your business.</p>
+    <p>It has been sitting in your paperwork all along.</p>
+
+    <ul>
+      <li>Waiting to be connected.</li>
+      <li>Waiting to be read.</li>
+      <li>Waiting to become useful.</li>
+    </ul>
+
+    <div class="pull-quote">
+      The data already exists.<br>
+      <em>The opportunity is to connect it.</em>
+    </div>
+
+    <p>And once you can connect it, your paperwork stops being a record of what happened.</p>
+
+    <div class="pull-quote">
+      It becomes a source of intelligence about what to do next.
+    </div>
+
+    <hr>
+
+    <div style="background:var(--paper);padding:2rem;border-left:4px solid var(--ink);margin-top:2.5rem;">
+      <p style="font-size:0.95rem;margin-bottom:0.5rem;font-weight:600;color:var(--ink);">PrimeChain</p>
+      <p style="font-size:0.95rem;color:#555;margin-bottom:0;"><em>Operational Intelligence.</em><br>We help growing businesses turn the information already being generated across their operations into visibility, insight and better decisions.</p>
+    </div>
+
   </div>
 </div>
-
-<section class="cta-band">
-  <div class="container">
-    <div class="reveal">
-      <h2>Ready to read your paperwork?</h2>
-      <p>We help you connect the dots that already exist in your operation.</p>
-      <div class="cta-btns centered">
-        <a href="index.html#contact" class="btn-teal">Talk to us</a>
-        <a href="our-story.html" class="btn-outline-white">Our story</a>
-      </div>
-    </div>
-  </div>
 </section>
 
+<!-- ============================================================ -->
+<!-- BACK TO THINKING                                              -->
+<!-- ============================================================ -->
+<section class="back-link">
+<div class="container">
+  <a href="ourthinking.html" class="back-inner">
+    <span class="arrow">←</span>
+    Back to Our Thinking
+  </a>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- RELATED ARTICLES                                              -->
+<!-- ============================================================ -->
+<section class="related">
+<div class="container">
+  <h3 style="font-family:var(--serif);font-size:1.6rem;font-weight:500;letter-spacing:-.04em;text-align:center;max-width:720px;margin:0 auto;">More from Our Thinking</h3>
+  <div class="related-grid">
+    
+    <article class="rel-card">
+      <div>
+        <small>Field Note</small>
+        <h4>The Work Behind the Work</h4>
+        <p>Your business doesn't just perform the work. It spends hours documenting, reconciling and reporting it afterwards.</p>
+      </div>
+      <a href="work-behind-the-work.html" class="rel-link">Read →</a>
+    </article>
+    
+    <article class="rel-card">
+      <div>
+        <small>Case Study</small>
+        <h4>The R600,000 Margin Leak Hidden Between Deliveries</h4>
+        <p>Revenue was being generated. Trips were being completed. But margin was disappearing.</p>
+      </div>
+      <a href="#" class="rel-link">Read →</a>
+    </article>
+    
+    <article class="rel-card">
+      <div>
+        <small>Framework</small>
+        <h4>The Operational Visibility Framework</h4>
+        <p>Understanding what's happening across your operation—in real time, not after the fact.</p>
+      </div>
+      <a href="#" class="rel-link">Read →</a>
+    </article>
+    
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CTA                                                           -->
+<!-- ============================================================ -->
+<section class="cta-band">
+<div class="container cta-inner">
+  <div><h2>Ready to see what your operation could look like?</h2></div>
+  <div>
+    <p>The answers are already inside your operation. We'll help you connect them.</p>
+    <a class="btn primary" href="index.html#contact">Talk to us about your operation ↗</a>
+  </div>
+</div>
+</section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
 <footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="/assets/primechain.svg" alt="PrimeChain Solutions" />
-        <p>Building operational visibility and automation systems for businesses that have outgrown spreadsheets.</p>
-      </div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="our-story.html">Our Story</a></li><li><a href="services.html">Services</a></li><li><a href="index.html#contact">Contact</a></li></ul></div>
-      <div class="footer-col"><h5>Work</h5><ul><li><a href="case-studies.html">Case Studies</a></li><li><a href="articles.html">Articles</a></li><li><a href="cost-calculator.html">Cost Calculator</a></li></ul></div>
-      <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">LinkedIn</a></li><li><a href="mailto:hello@primechainsolutions.co.za">Email Us</a></li><li><a href="#">Johannesburg, SA</a></li></ul></div>
+<div class="container">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <strong>PrimeChain</strong>
+      <p>Operational Intelligence. Because every business deserves to understand itself.</p>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 PrimeChain Solutions. All rights reserved.</p>
-      <div class="social">
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="mailto:hello@primechainsolutions.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      </div>
+    <div class="footer-links">
+      <a href="index.html#solutions">What We Do</a>
+      <a href="whoweare.html">Who We Are</a>
+      <a href="ourthinking.html">Our Thinking</a>
+      <a href="manifesto.html">Manifesto</a>
+      <a href="index.html#contact">Contact</a>
     </div>
   </div>
+  <div class="footer-bottom">
+    <span>© PrimeChain</span>
+    <span>Operational Intelligence</span>
+  </div>
+</div>
 </footer>
 
+<!-- ============================================================ -->
+<!-- JAVASCRIPT                                                    -->
+<!-- ============================================================ -->
 <script>
-  const sp = document.getElementById('sp');
-  const nav = document.getElementById('nav');
-  const mobBtn = document.getElementById('mobBtn');
-  const navLinks = document.getElementById('navLinks');
-
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-    const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    sp.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-  });
-
-  mobBtn.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    mobBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-  });
-  document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
-  }));
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// Mobile Hamburger Menu
+(function() {
+  const hamburger = document.getElementById('hamburger');
+  const overlay = document.getElementById('mobileOverlay');
+  
+  if (hamburger && overlay) {
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      overlay.classList.toggle('open');
+      document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+    });
+    
+    overlay.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+})();
 </script>
+
 </body>
 </html>
