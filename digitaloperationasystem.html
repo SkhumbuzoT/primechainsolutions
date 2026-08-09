@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="From 10 Minutes of Paperwork to a Digital Operational System. Electrical Contractor — Municipal Meter Replacement Programme." />
+<title>From 10 Minutes of Paperwork to a Digital System · PrimeChain</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#101010;
+  --paper:#f5f4f0;
+  --white:#fff;
+  --muted:#676767;
+  --line:#d9d7d0;
+  --soft:#eceae4;
+  --accent:#c8a96b;
+  --max:860px;
+  --serif:"Manrope",sans-serif;
+  --sans:"DM Sans",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(var(--max),calc(100% - 64px));margin:auto}
+
+/* ---- NAVIGATION ---- */
+.nav{
+  height:82px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;
+}
+.logo{font-weight:700;font-size:1.2rem;letter-spacing:-.04em;z-index:100}
+.logo span{font-weight:400}
+
+.navlinks{
+  display:flex;gap:30px;align-items:center;font-size:.82rem;color:#4f4f4f;
+  list-style:none;margin:0;padding:0;
+}
+.navlinks li{display:inline-block}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a.active{border-bottom:2px solid var(--accent);padding-bottom:4px;color:var(--ink)}
+.navlinks .nav-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+  transition:.2s;
+}
+.navlinks .nav-cta:hover{background:var(--ink);color:var(--white)}
+
+.desktop-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+  transition:.2s;
+}
+.desktop-cta:hover{background:var(--ink);color:var(--white)}
+
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  background:transparent;border:none;padding:8px;z-index:100;
+}
+.hamburger span{
+  display:block;width:28px;height:2px;background:var(--ink);
+  transition:all 0.3s ease;border-radius:2px;transform-origin:center;
+}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+.mobile-nav-overlay{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100vh;
+  background:var(--paper);z-index:90;padding:100px 40px 40px;
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.mobile-nav-overlay.open{display:flex}
+.mobile-nav-overlay a{
+  font-family:var(--serif);font-size:2.4rem;font-weight:500;letter-spacing:-.04em;
+  color:var(--ink);transition:.2s;text-decoration:none;
+}
+.mobile-nav-overlay a:hover{color:#777}
+.mobile-nav-overlay a.active{color:var(--accent)}
+.mobile-nav-overlay .mobile-cta{
+  margin-top:16px;border:1px solid var(--ink);padding:16px 32px;
+  font-size:.82rem;font-weight:600;transition:.2s;
+}
+.mobile-nav-overlay .mobile-cta:hover{background:var(--ink);color:var(--white)}
+
+/* ---- ARTICLE STYLES ---- */
+.article-hero{
+  padding:92px 0 48px;border-bottom:1px solid var(--line);
+}
+.article-hero .breadcrumb{
+  font-size:.72rem;color:#999;margin-bottom:24px;display:flex;align-items:center;gap:8px;
+}
+.article-hero .breadcrumb a{color:#777;transition:.2s}
+.article-hero .breadcrumb a:hover{color:var(--ink)}
+.article-hero .breadcrumb .sep{color:#ccc}
+.article-hero .article-tag{
+  font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;
+  color:var(--accent);font-weight:700;display:inline-block;margin-bottom:16px;
+}
+.article-hero h1{
+  font-family:var(--serif);font-size:clamp(2.6rem,5.5vw,4.8rem);
+  line-height:1.05;letter-spacing:-.055em;font-weight:500;max-width:780px;
+}
+.article-hero h1 em{font-style:italic;color:#777}
+.article-hero .article-meta{
+  display:flex;gap:24px;margin-top:24px;font-size:.82rem;color:#777;
+  align-items:center;flex-wrap:wrap;
+}
+.article-hero .article-meta .divider{color:#ddd}
+.article-hero .article-meta .author{font-weight:600;color:var(--ink)}
+
+.article-body{
+  padding:60px 0 80px;background:var(--white);
+}
+.article-body .content{
+  max-width:720px;margin:0 auto;
+}
+.article-body .content p{
+  font-size:1.05rem;color:#444;line-height:1.85;margin-bottom:1.5rem;
+}
+.article-body .content h2{
+  font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:500;letter-spacing:-.04em;margin:3rem 0 1.2rem;line-height:1.15;
+}
+.article-body .content h3{
+  font-family:var(--serif);font-size:1.4rem;font-weight:500;letter-spacing:-.03em;
+  margin:2.4rem 0 1rem;line-height:1.2;
+}
+.article-body .content blockquote{
+  border-left:4px solid var(--accent);padding:1.5rem 2rem;margin:2rem 0;
+  background:var(--paper);font-family:var(--serif);font-size:1.3rem;
+  font-weight:500;line-height:1.5;letter-spacing:-.02em;
+}
+.article-body .content blockquote em{font-style:italic;color:#999}
+.article-body .content .pull-quote{
+  font-family:var(--serif);font-size:clamp(1.6rem,2.8vw,2.4rem);
+  font-weight:500;letter-spacing:-.04em;line-height:1.2;
+  padding:2rem 0;border-top:2px solid var(--line);border-bottom:2px solid var(--line);
+  margin:2.5rem 0;
+}
+.article-body .content .pull-quote em{font-style:italic;color:#999}
+.article-body .content ul{
+  margin:1.2rem 0 1.8rem 1.5rem;list-style:none;
+}
+.article-body .content ul li{
+  padding-left:1.5rem;position:relative;margin-bottom:0.6rem;font-size:1.02rem;color:#444;
+}
+.article-body .content ul li::before{
+  content:"—";position:absolute;left:0;color:var(--accent);font-weight:600;
+}
+.article-body .content hr{
+  border:none;border-top:1px solid var(--line);margin:3rem 0;
+}
+.article-body .content .highlight-box{
+  background:var(--paper);padding:2rem 2.5rem;margin:2.5rem 0;border-left:4px solid var(--accent);
+}
+.article-body .content .highlight-box p:last-child{margin-bottom:0}
+.article-body .content .highlight-box .label{
+  font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;
+  color:var(--accent);font-weight:700;display:block;margin-bottom:8px;
+}
+.article-body .content .data-table{
+  width:100%;border-collapse:collapse;margin:2rem 0;font-size:0.95rem;
+}
+.article-body .content .data-table th{
+  background:var(--paper);text-align:left;padding:10px 12px;font-weight:600;border-bottom:2px solid var(--line);
+}
+.article-body .content .data-table td{
+  padding:10px 12px;border-bottom:1px solid var(--soft);
+}
+.article-body .content .data-table tr:last-child td{border-bottom:none}
+.article-body .content .data-table .variance{color:#b33;font-weight:500}
+
+/* ---- BACK TO THINKING ---- */
+.back-link{
+  padding:40px 0 60px;background:var(--paper);
+}
+.back-link .back-inner{
+  max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px;
+  font-size:.82rem;color:#777;transition:.2s;
+}
+.back-link .back-inner:hover{color:var(--ink)}
+.back-link .back-inner .arrow{font-size:1rem}
+
+/* ---- RELATED ARTICLES ---- */
+.related{
+  background:var(--paper);padding:60px 0 80px;border-top:1px solid var(--line);
+}
+.related .related-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  max-width:720px;margin:32px auto 0;border:1px solid var(--line);
+}
+.related .rel-card{
+  background:var(--paper);padding:28px 24px;min-height:160px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.related .rel-card small{
+  font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:#999;font-weight:700;
+}
+.related .rel-card h4{
+  font-family:var(--serif);font-size:1.1rem;font-weight:500;letter-spacing:-.03em;
+  margin:12px 0 8px;line-height:1.2;
+}
+.related .rel-card p{color:#666;font-size:.82rem;line-height:1.6}
+.related .rel-card .rel-link{font-size:.7rem;font-weight:600;color:#777;margin-top:8px;display:inline-block}
+.related .rel-card .rel-link:hover{color:var(--ink)}
+
+/* ---- CTA ---- */
+.cta-band{background:var(--ink);color:var(--white);border-bottom:0;padding:0}
+.cta-band .cta-inner{
+  padding:80px 0;display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:end;
+}
+.cta-band h2{
+  font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.8rem);
+  line-height:.95;letter-spacing:-.075em;font-weight:500;
+}
+.cta-band p{color:#aaa;max-width:440px;font-size:1rem;line-height:1.7;margin-bottom:26px}
+.cta-band .btn.primary{background:var(--white);color:var(--ink);border-color:var(--white)}
+.cta-band .btn.primary:hover{background:#ddd}
+
+/* ---- FOOTER ---- */
+footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1px solid #292929}
+.footer-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.footer-brand p{color:#777;max-width:310px;font-size:.8rem;margin-top:8px}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap;font-size:.75rem;color:#aaa}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid #292929;margin-top:35px;padding-top:17px;color:#666;font-size:.68rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:900px){
+  .container{width:min(var(--max),calc(100% - 40px))}
+  .navlinks{display:none}
+  .desktop-cta{display:none}
+  .hamburger{display:flex}
+  .cta-band .cta-inner{grid-template-columns:1fr;gap:40px}
+  .related .related-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .container{width:calc(100% - 32px)}
+  .nav{height:72px}
+  .article-hero{padding:65px 0 32px}
+  .article-hero h1{font-size:2.6rem}
+  .article-body{padding:40px 0 60px}
+  .article-body .content p{font-size:.98rem}
+  .article-body .content blockquote{padding:1.2rem 1.5rem;font-size:1.1rem}
+  .article-body .content .pull-quote{font-size:1.4rem}
+  .article-body .content .highlight-box{padding:1.5rem}
+  .cta-band .cta-inner{padding:60px 0}
+  .mobile-nav-overlay a{font-size:1.8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- NAVIGATION                                                    -->
+<!-- ============================================================ -->
+<div class="container">
+<nav class="nav">
+  <a class="logo" href="index.html">Prime<span>Chain</span></a>
+  
+  <ul class="navlinks" id="navLinks">
+    <li><a href="#solutions">What We Do</a></li>
+    <li><a href="whoweare.html">Who We Are</a></li>
+    <li><a href="ourthinking.html">Our Thinking</a></li>
+  </ul>
+  
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  
+  <a class="desktop-cta" href="#contact">Talk to PrimeChain <span>↗</span></a>
+</nav>
+</div>
+
+<!-- Mobile Overlay -->
+<div class="mobile-nav-overlay" id="mobileOverlay">
+  <a href="index.html" class="active">Home</a>
+  <a href="whoweare.html">Who We Are</a>
+  <a href="ourthinking.html">Our Thinking</a>
+</div>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- ARTICLE HERO                                                  -->
+<!-- ============================================================ -->
+<section class="article-hero">
+<div class="container">
+  <div class="breadcrumb">
+    <a href="ourthinking.html">Our Thinking</a>
+    <span class="sep">/</span>
+    <span>Field Operations</span>
+  </div>
+  <span class="article-tag">Electrical Contractor — Municipal Meter Replacement</span>
+  <h1>From 10 Minutes of Paperwork to a <em>Digital Operational System</em></h1>
+  <div class="article-meta">
+    <span class="author">PrimeChain</span>
+    <span class="divider">·</span>
+    <span>Municipal Meter Replacement Programme</span>
+    <span class="divider">·</span>
+    <span>7 min read</span>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ARTICLE BODY                                                  -->
+<!-- ============================================================ -->
+<section class="article-body">
+<div class="container">
+  <div class="content">
+
+    <p>The problem wasn't the job card. It was the process behind it.</p>
+
+    <p>A growing electrical contractor was completing thousands of municipal meter replacements every month.</p>
+
+    <p>The work itself was running well. Technicians were productive. Demand was growing. The contract was commercially viable.</p>
+
+    <p>But behind the field operation, administration was quietly becoming the constraint.</p>
+
+    <p>Every completed installation required a job card containing installation details, meter readings, photographic evidence, timestamps and technician sign-off.</p>
+
+    <p>The information already existed.</p>
+
+    <div class="pull-quote">
+      But the business was still rebuilding it by hand.
+    </div>
+
+    <hr>
+
+    <h2>The situation</h2>
+
+    <p>The contractor was operating under a utility entity mandate to perform high-volume municipal meter replacements.</p>
+
+    <p>Work orders arrived electronically and contained much of the information required for each job.</p>
+
+    <p>Technicians then performed the installation in the field and generated the remaining information:</p>
+
+    <ul>
+      <li>Old meter reading</li>
+      <li>New meter number</li>
+      <li>New meter reading</li>
+      <li>Installation photographs</li>
+      <li>Date and time</li>
+      <li>Technician</li>
+      <li>Installation status</li>
+      <li>Notes and exceptions</li>
+    </ul>
+
+    <p>In theory, producing the completed job card should have been straightforward.</p>
+
+    <p>In practice, the process looked very different.</p>
+
+    <p>After the technician completed an installation, administration had to reconstruct the job.</p>
+
+    <ul>
+      <li>Data was extracted from source files.</li>
+      <li>Information was copied manually across approximately 12 fields.</li>
+      <li>Photographs were located and printed.</li>
+      <li>Documents were assembled.</li>
+      <li>Pages were attached.</li>
+    </ul>
+
+    <p>The completed job card was then prepared for submission.</p>
+    <p>And the process started again.</p>
+
+    <p>Approximately 1,000 job cards were being produced every month.</p>
+
+    <hr>
+
+    <h2>The real problem</h2>
+
+    <p>At first glance, this looked like a paperwork problem.</p>
+    <p>It wasn't.</p>
+
+    <p>The deeper problem was that the business was treating an operational event as a document-production exercise.</p>
+
+    <p>The installation had already happened.<br>
+    The information already existed.</p>
+
+    <p>But instead of maintaining a single operational record throughout the process, the business was recreating that record afterwards.</p>
+
+    <p>Approximately 80% of the information required on the final job card was already available before the technician even started the work.</p>
+
+    <p>Yet administration was still manually entering it again.</p>
+
+    <div class="pull-quote">
+      The system was effectively doing this:<br>
+      Work happens → information is scattered → administration reconstructs the work → document is created.
+    </div>
+
+    <p>That created unnecessary work at every stage.</p>
+
+    <hr>
+
+    <h2>The cost of the old process</h2>
+
+    <p>Each job card took approximately 10 minutes to complete manually.</p>
+    <p>At 1,000 job cards per month, that represented:</p>
+
+    <div class="highlight-box">
+      <span class="label">Manual Effort</span>
+      <p><strong>10,000 minutes</strong><br>
+      or approximately <strong>167 administrative hours</strong> every month.</p>
+    </div>
+
+    <p>At an estimated direct processing cost of R9 per job card, the business was spending approximately:</p>
+
+    <div class="highlight-box">
+      <span class="label">Direct Cost</span>
+      <p><strong>R9,000 per month</strong><br>
+      or <strong>R108,000 per year</strong> on the manual production of job cards alone.</p>
+    </div>
+
+    <p>But the R108,000 was only part of the problem.</p>
+    <p>The bigger cost was <strong>capacity</strong>.</p>
+
+    <p>Administrative staff were spending working hours reconstructing information that had already been captured elsewhere.</p>
+
+    <p>The process also created opportunities for:</p>
+
+    <ul>
+      <li>Data-entry errors</li>
+      <li>Missing photographs</li>
+      <li>Incorrect meter information</li>
+      <li>Incomplete job cards</li>
+      <li>Delayed submissions</li>
+      <li>Rework</li>
+      <li>After-hours administration</li>
+      <li>Difficulty tracking outstanding work</li>
+      <li>Limited visibility of field productivity</li>
+    </ul>
+
+    <p>As volumes increased, administration increased with them.</p>
+
+    <div class="pull-quote">
+      More work meant proportionally more paperwork.<br>
+      That was the scalability problem.
+    </div>
+
+    <hr>
+
+    <h2>The PrimeChain diagnosis</h2>
+
+    <p>We didn't start by asking:<br>
+    <em>"How do we automate the job card?"</em></p>
+
+    <p>We started with a different question:</p>
+
+    <div class="pull-quote">
+      <em>"Why are we creating the job card after the work has already happened?"</em>
+    </div>
+
+    <p>That changed the entire approach.</p>
+
+    <p>The job card wasn't the primary business record.<br>
+    The <strong>installation</strong> was.</p>
+
+    <p>The system therefore needed to capture the installation as an operational event, rather than reconstructing it afterwards as a document.</p>
+
+    <p>That led to a simple principle:</p>
+
+    <div class="highlight-box">
+      <span class="label">Core Principle</span>
+      <p><strong>Create the operational record once, update it where the work happens, and generate the documents from that record.</strong></p>
+    </div>
+
+    <hr>
+
+    <h2>Redesigning the operation</h2>
+
+    <p>The old process was centred around documents.<br>
+    The new process was centred around the job.</p>
+
+    <p>Instead of starting with a blank job card after installation, each work order became a digital job record from the beginning.</p>
+
+    <h3>01 — Work enters the system</h3>
+    <p>Work orders received from the utility are loaded into the operational system.<br>
+    Known information is captured once.<br>
+    There is no reason for administration to type the same information again later.</p>
+
+    <h3>02 — The job is assigned</h3>
+    <p>Jobs are allocated to technicians through the operational interface.<br>
+    Management can see what has been assigned, what is outstanding and what has been completed.</p>
+
+    <h3>03 — The technician works from the digital job</h3>
+    <p>The technician accesses the assigned job from a mobile application.<br>
+    Instead of completing paperwork and handing it back to administration, the technician captures the information generated by the work itself.</p>
+
+    <h3>04 — Evidence is captured at source</h3>
+    <p>Meter readings, meter numbers, photographs, notes and installation status are recorded while the technician is at the site.<br>
+    The information is associated directly with the job.<br>
+    There is no later reconstruction.</p>
+
+    <h3>05 — The operational record is completed</h3>
+    <p>Once the technician submits the work, the system has the information required to understand what happened.</p>
+
+    <p>The job now has:</p>
+    <ul>
+      <li>The original work order</li>
+      <li>The assigned technician</li>
+      <li>Field information</li>
+      <li>Installation details</li>
+      <li>Photographic evidence</li>
+      <li>Status</li>
+      <li>Timestamp</li>
+      <li>Notes</li>
+    </ul>
+
+    <p>The business has a structured operational record rather than a collection of paperwork.</p>
+
+    <h3>06 — Documents become an output</h3>
+    <p>The job card no longer needs to be assembled manually.<br>
+    The system uses the operational record to generate the required documentation.</p>
+
+    <div class="pull-quote">
+      The document is now an output of the operation, not the place where the operation is recorded.
+    </div>
+
+    <hr>
+
+    <h2>The technology behind the system</h2>
+
+    <p>The technology was selected around the operating model rather than the other way around.</p>
+
+    <ul>
+      <li><strong>Mobile field application</strong> — A mobile application gives technicians access to their assigned work and allows information to be captured at the point where the work happens.</li>
+      <li><strong>Operational database</strong> — A central database stores the work orders, job executions, technician information, installation details and supporting evidence in a structured format.</li>
+      <li><strong>Management interface</strong> — A web-based operational interface gives administrators and managers visibility over assignments, progress, completed work and exceptions.</li>
+      <li><strong>Automation</strong> — Automated processes handle repetitive tasks such as document generation, validation and information processing.</li>
+    </ul>
+
+    <p>The important point is not the individual technologies.<br>
+    The technology simply makes the operating model possible.</p>
+
+    <hr>
+
+    <h2>From paperwork to operational intelligence</h2>
+
+    <p>The immediate objective was to eliminate unnecessary administration.</p>
+
+    <p>But once the business had a structured operational record, something more valuable became possible.</p>
+
+    <p>The same information used to produce a job card could now be used to understand the operation.</p>
+
+    <p>Management could begin asking:</p>
+
+    <ul>
+      <li>How many installations were completed today?</li>
+      <li>How many jobs are outstanding?</li>
+      <li>Which technicians are carrying the largest workload?</li>
+      <li>Which jobs are missing information?</li>
+      <li>Which installations require attention?</li>
+      <li>How long does a job take from assignment to completion?</li>
+      <li>How much work can the existing team handle?</li>
+    </ul>
+
+    <p>The business had moved from asking:<br>
+    <em>"Where is the job card?"</em><br>
+    to asking:<br>
+    <em>"What is happening across the operation?"</em></p>
+
+    <div class="pull-quote">
+      That is the difference between digitising paperwork and creating operational visibility.
+    </div>
+
+    <hr>
+
+    <h2>The result</h2>
+
+    <p>The transformation changed the role of administration.</p>
+
+    <p>Instead of spending hours reconstructing completed work, the team could focus on managing the operation.</p>
+
+    <p>The process moved from:</p>
+
+    <div class="pull-quote" style="border-top-color:var(--accent);border-bottom-color:var(--accent);">
+      Manual reconstruction → Digital capture
+    </div>
+
+    <p>From:</p>
+
+    <div class="pull-quote" style="border-top-color:var(--accent);border-bottom-color:var(--accent);">
+      Documents → Operational records
+    </div>
+
+    <p>From:</p>
+
+    <div class="pull-quote" style="border-top-color:var(--accent);border-bottom-color:var(--accent);">
+      After-the-fact reporting → Operational visibility
+    </div>
+
+    <p>And from:</p>
+
+    <div class="pull-quote" style="border-top-color:var(--accent);border-bottom-color:var(--accent);">
+      More work = more administration → More work without the same increase in administrative burden.
+    </div>
+
+    <p>The system also created a foundation for measuring productivity, quality, turnaround time and operational exceptions.</p>
+
+    <hr>
+
+    <h2>What actually changed?</h2>
+
+    <table class="data-table">
+      <thead><tr><th>Before</th><th>After</th></tr></thead>
+      <tbody>
+        <tr><td>Work orders in source files</td><td>Digital operational records</td></tr>
+        <tr><td>Information copied repeatedly</td><td>Information captured once</td></tr>
+        <tr><td>Paper-based field process</td><td>Mobile field capture</td></tr>
+        <tr><td>Photos manually handled</td><td>Evidence attached to the job</td></tr>
+        <tr><td>Job cards assembled manually</td><td>Documents generated automatically</td></tr>
+        <tr><td>Reporting after the fact</td><td>Operational visibility</td></tr>
+        <tr><td>Administration reconstructs work</td><td>System records work</td></tr>
+        <tr><td>More volume creates more admin</td><td>Capacity can scale more efficiently</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>The bigger lesson</h2>
+
+    <p>The lesson wasn't that job cards should be automated.</p>
+
+    <p>It was that the business was recording the same operational event multiple times.</p>
+
+    <p>Once that became visible, the solution became much clearer.</p>
+
+    <ul>
+      <li>The technician shouldn't create information for administration.<br>
+      <strong>The technician should create the operational record.</strong></li>
+      <li>Administration shouldn't reconstruct what happened in the field.<br>
+      <strong>The system should already know what happened.</strong></li>
+      <li>And the job card shouldn't be the system of record.<br>
+      <strong>It should simply be one of the outputs of the system.</strong></li>
+    </ul>
+
+    <hr>
+
+    <h2>PrimeChain Perspective</h2>
+
+    <p>Growing businesses often reach a point where their operations become more complex than their systems.</p>
+
+    <p>The spreadsheets still work.<br>
+    The WhatsApp groups still work.<br>
+    The paperwork still gets completed.<br>
+    People compensate for the gaps.</p>
+
+    <p>Until suddenly they don't.</p>
+
+    <p>The warning sign is rarely that a process has completely failed.<br>
+    It's that good people are spending increasing amounts of time keeping the process together manually.</p>
+
+    <p>That's where we look.</p>
+
+    <ul>
+      <li>We don't start with software.</li>
+      <li>We start with the operation.</li>
+    </ul>
+
+    <p>We find where information is being duplicated, where work is being reconstructed, where visibility is being lost and where manual effort is creating a constraint on growth.</p>
+
+    <p>Then we design the simplest operational system capable of removing that constraint.</p>
+
+    <div class="pull-quote">
+      The goal isn't more technology.<br>
+      The goal is a business that can see, control and improve the way it operates.
+    </div>
+
+    <div style="background:var(--paper);padding:2rem;border-left:4px solid var(--ink);margin-top:2.5rem;">
+      <p style="font-size:0.95rem;margin-bottom:0.5rem;font-weight:600;color:var(--ink);">Because every operation deserves to be recorded once — and understood continuously.</p>
+      <p style="font-size:0.95rem;color:#555;margin-bottom:0;">— PrimeChain</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BACK TO THINKING                                              -->
+<!-- ============================================================ -->
+<section class="back-link">
+<div class="container">
+  <a href="ourthinking.html" class="back-inner">
+    <span class="arrow">←</span>
+    Back to Our Thinking
+  </a>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- RELATED ARTICLES                                              -->
+<!-- ============================================================ -->
+<section class="related">
+<div class="container">
+  <h3 style="font-family:var(--serif);font-size:1.6rem;font-weight:500;letter-spacing:-.04em;text-align:center;max-width:720px;margin:0 auto;">More from Our Thinking</h3>
+  <div class="related-grid">
+    
+    <article class="rel-card">
+      <div>
+        <small>Transport &amp; Logistics</small>
+        <h4>They Knew What They Were Charging. They Didn't Know What It Cost.</h4>
+        <p>A growing transport operation was moving more trucks, more loads and more kilometres. But profitability was invisible.</p>
+      </div>
+      <a href="fleet-profitability.html" class="rel-link">Read →</a>
+    </article>
+    
+    <article class="rel-card">
+      <div>
+        <small>Supply Chain</small>
+        <h4>Your Supply Chain Knows More Than You Think</h4>
+        <p>Every work order, delivery note and stock movement is evidence. The question is whether you can see it.</p>
+      </div>
+      <a href="supplychain.html" class="rel-link">Read →</a>
+    </article>
+    
+    <article class="rel-card">
+      <div>
+        <small>Case Study</small>
+        <h4>The R600,000 Margin Leak Hidden Between Deliveries</h4>
+        <p>Revenue was being generated. Trips were being completed. But margin was disappearing.</p>
+      </div>
+      <a href="#" class="rel-link">Read →</a>
+    </article>
+    
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CTA                                                           -->
+<!-- ============================================================ -->
+<section class="cta-band">
+<div class="container cta-inner">
+  <div><h2>Ready to see what your operation could look like?</h2></div>
+  <div>
+    <p>The answers are already inside your operation. We'll help you connect them.</p>
+    <a class="btn primary" href="index.html#contact">Talk to us about your operation ↗</a>
+  </div>
+</div>
+</section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
+<footer>
+<div class="container">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <strong>PrimeChain</strong>
+      <p>Operational Intelligence. Because every business deserves to understand itself.</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#solutions">What We Do</a>
+      <a href="whoweare.html">Who We Are</a>
+      <a href="ourthinking.html">Our Thinking</a>
+      <a href="manifesto.html">Manifesto</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© PrimeChain</span>
+    <span>Operational Intelligence</span>
+  </div>
+</div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT                                                    -->
+<!-- ============================================================ -->
+<script>
+(function() {
+  const hamburger = document.getElementById('hamburger');
+  const overlay = document.getElementById('mobileOverlay');
+  
+  if (hamburger && overlay) {
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      overlay.classList.toggle('open');
+      document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+    });
+    
+    overlay.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
