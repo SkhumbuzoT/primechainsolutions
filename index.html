@@ -1,630 +1,658 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PrimeChain helps growing businesses turn fragmented operational data into visibility, control and better decisions." />
-  <title>PrimeChain — Operational Intelligence</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #f5f4f0; color: #101010;
-      font-family: 'DM Sans', sans-serif;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1240px, calc(100% - 64px)); margin: auto; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="PrimeChain helps growing businesses turn fragmented operational data into visibility, control and better decisions." />
+<title>PrimeChain — Operational Intelligence</title>
 
-    /* ---- navigation ---- */
-    .nav {
-      height: 82px; border-bottom: 1px solid #d9d7d0;
-      display: flex; align-items: center; justify-content: space-between;
-      position: relative;
-    }
-    .logo {
-      font-weight: 700; font-size: 1.2rem; letter-spacing: -0.04em; z-index: 100;
-      display: flex; align-items: center; gap: 4px;
-    }
-    .logo span { font-weight: 400; }
-    .logo-accent { color: #c8a96b; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    .navlinks {
-      display: flex; gap: 30px; align-items: center; font-size: .82rem; color: #4f4f4f;
-      list-style: none; margin: 0; padding: 0;
-    }
-    .navlinks li { display: inline-block; }
-    .navlinks a:hover { color: #101010; }
-    .navlinks a.active { border-bottom: 2px solid #c8a96b; padding-bottom: 4px; color: #101010; }
-    .navlinks .nav-cta {
-      display: inline-flex; align-items: center; gap: 12px;
-      border: 1px solid #101010; padding: 11px 16px; font-size: .78rem; font-weight: 600;
-      transition: .2s;
-    }
-    .navlinks .nav-cta:hover { background: #101010; color: #f5f4f0; }
-    .desktop-cta {
-      display: inline-flex; align-items: center; gap: 12px;
-      border: 1px solid #101010; padding: 11px 16px; font-size: .78rem; font-weight: 600;
-      transition: .2s;
-    }
-    .desktop-cta:hover { background: #101010; color: #f5f4f0; }
+<style>
+:root{
+  --ink:#101010;
+  --paper:#f5f4f0;
+  --white:#fff;
+  --muted:#676767;
+  --line:#d9d7d0;
+  --soft:#eceae4;
+  --accent:#c8a96b;
+  --max:1240px;
+  --serif:"Manrope",sans-serif;
+  --sans:"DM Sans",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.container{width:min(var(--max),calc(100% - 64px));margin:auto}
 
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px; cursor: pointer;
-      background: transparent; border: none; padding: 8px; z-index: 100;
-    }
-    .hamburger span {
-      display: block; width: 28px; height: 2px; background: #101010;
-      transition: all 0.3s ease; border-radius: 2px; transform-origin: center;
-    }
-    .hamburger.active span:nth-child(1){ transform: rotate(45deg) translate(5px,5px); }
-    .hamburger.active span:nth-child(2){ opacity: 0; }
-    .hamburger.active span:nth-child(3){ transform: rotate(-45deg) translate(5px,-5px); }
+/* ---- NAVIGATION ---- */
+.nav{
+  height:82px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;
+}
+.logo{font-weight:700;font-size:1.2rem;letter-spacing:-.04em;z-index:100}
+.logo span{font-weight:400}
 
-    .mobile-nav-overlay {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-      background: #f5f4f0; z-index: 90; padding: 100px 40px 40px;
-      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
-    }
-    .mobile-nav-overlay.open { display: flex; }
-    .mobile-nav-overlay a {
-      font-family: 'Manrope', sans-serif; font-size: 2.4rem; font-weight: 500;
-      letter-spacing: -0.04em; color: #101010; transition: .2s;
-    }
-    .mobile-nav-overlay a:hover { color: #777; }
-    .mobile-nav-overlay a.active { color: #c8a96b; }
-    .mobile-nav-overlay .mobile-cta {
-      margin-top: 16px; border: 1px solid #101010; padding: 16px 32px;
-      font-size: .82rem; font-weight: 600; transition: .2s;
-    }
-    .mobile-nav-overlay .mobile-cta:hover { background: #101010; color: #f5f4f0; }
+.navlinks{
+  display:flex;gap:30px;align-items:center;font-size:.82rem;color:#4f4f4f;
+  list-style:none;margin:0;padding:0;
+}
+.navlinks li{display:inline-block}
+.navlinks a:hover{color:var(--ink)}
+.navlinks a.active{border-bottom:2px solid var(--accent);padding-bottom:4px;color:var(--ink)}
+.navlinks .nav-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+  transition:.2s;
+}
+.navlinks .nav-cta:hover{background:var(--ink);color:var(--white)}
 
-    /* ---- shared ---- */
-    .kicker {
-      font-size: .68rem; text-transform: uppercase; letter-spacing: .18em;
-      font-weight: 700; color: #777; margin-bottom: 22px;
-    }
-    .section-title {
-      font-family: 'Manrope', sans-serif; font-size: clamp(2.4rem, 4.5vw, 4.5rem);
-      line-height: 1.02; letter-spacing: -0.065em; font-weight: 500;
-    }
-    .section-intro { max-width: 720px; font-size: 1.12rem; color: #555; line-height: 1.75; }
-    .link {
-      display: inline-flex; gap: 9px; margin-top: 30px; font-size: .78rem; font-weight: 700;
-      border-bottom: 1px solid #777; padding-bottom: 7px; transition: .2s;
-    }
-    .link:hover { border-color: #101010; color: #101010; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: 48px; padding: 0 20px; border: 1px solid #101010;
-      font-size: .78rem; font-weight: 700; transition: .2s; cursor: pointer;
-    }
-    .btn.primary { background: #101010; color: #f5f4f0; }
-    .btn.primary:hover { background: #292929; }
-    .btn.secondary:hover { background: #f5f4f0; }
-    section { padding: 105px 0; border-bottom: 1px solid #d9d7d0; }
-    .section-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 70px; }
+.desktop-cta{
+  display:inline-flex;align-items:center;gap:12px;
+  border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+  transition:.2s;
+}
+.desktop-cta:hover{background:var(--ink);color:var(--white)}
 
-    /* ---- hero ---- */
-    .hero { padding: 92px 0 74px; border-bottom: 1px solid #d9d7d0; }
-    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 82px; align-items: end; }
-    .hero h1 {
-      font-family: 'Manrope', sans-serif; font-size: clamp(3.6rem, 7.2vw, 6.8rem);
-      line-height: .98; letter-spacing: -0.075em; font-weight: 500; max-width: 850px;
-    }
-    .hero h1 em { font-style: normal; color: #777; }
-    .hero-copy { max-width: 480px; margin-left: auto; padding-bottom: 7px; }
-    .hero-copy p { font-size: 1.03rem; color: #4f4f4f; line-height: 1.75; }
-    .actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
-    .hero-note {
-      display: grid; grid-template-columns: repeat(4,1fr); margin-top: 78px;
-      border-top: 1px solid #d9d7d0; border-bottom: 1px solid #d9d7d0;
-    }
-    .metric { padding: 22px 18px 22px 0; border-right: 1px solid #d9d7d0; }
-    .metric:last-child { border-right: 0; padding-left: 18px; }
-    .metric strong { display: block; font-family: 'Manrope', sans-serif; font-size: 1.75rem; letter-spacing: -0.05em; font-weight: 500; }
-    .metric span { display: block; color: #777; font-size: .67rem; text-transform: uppercase; letter-spacing: .12em; margin-top: 5px; }
+/* Hamburger */
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  background:transparent;border:none;padding:8px;z-index:100;
+}
+.hamburger span{
+  display:block;width:28px;height:2px;background:var(--ink);
+  transition:all 0.3s ease;border-radius:2px;transform-origin:center;
+}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
-    /* ---- problem ---- */
-    .problem-grid { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 58px; border-top: 1px solid #d9d7d0; }
-    .problem { padding: 28px 30px 30px 0; border-right: 1px solid #d9d7d0; }
-    .problem:not(:first-child){ padding-left: 30px; }
-    .problem:last-child { border-right: 0; }
-    .number { font-size: .68rem; letter-spacing: .14em; color: #999; font-weight: 700; }
-    .problem h3 { font-family: 'Manrope', sans-serif; font-size: 1.55rem; font-weight: 500; letter-spacing: -0.04em; margin: 36px 0 12px; }
-    .problem p { font-size: .94rem; color: #626262; line-height: 1.7; }
+/* Mobile Overlay */
+.mobile-nav-overlay{
+  display:none;position:fixed;top:0;left:0;width:100%;height:100vh;
+  background:var(--paper);z-index:90;padding:100px 40px 40px;
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.mobile-nav-overlay.open{display:flex}
+.mobile-nav-overlay a{
+  font-family:var(--serif);font-size:2.4rem;font-weight:500;letter-spacing:-.04em;
+  color:var(--ink);transition:.2s;text-decoration:none;
+}
+.mobile-nav-overlay a:hover{color:#777}
+.mobile-nav-overlay a.active{color:var(--accent)}
+.mobile-nav-overlay .mobile-cta{
+  margin-top:16px;border:1px solid var(--ink);padding:16px 32px;
+  font-size:.82rem;font-weight:600;transition:.2s;
+}
+.mobile-nav-overlay .mobile-cta:hover{background:var(--ink);color:var(--white)}
 
-    /* ---- proof (dark) ---- */
-    .proof { background: #101010; color: #f5f4f0; padding: 0; }
-    .proof .section-grid { padding: 105px 0; }
-    .proof .kicker { color: #999; }
-    .proof .section-title { max-width: 460px; }
-    .proof-copy { max-width: 690px; }
-    .proof-copy .eyebrow { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: #999; }
-    .proof-copy h3 { font-family: 'Manrope', sans-serif; font-size: clamp(2rem,4vw,4rem); line-height: 1.02; letter-spacing: -0.06em; font-weight: 500; margin: 14px 0 24px; }
-    .proof-copy p { color: #bdbdbd; line-height: 1.75; max-width: 620px; }
-    .proof-stats { display: grid; grid-template-columns: repeat(2,1fr); margin-top: 40px; border-top: 1px solid #353535; }
-    .pstat { padding: 22px 24px 0 0; border-right: 1px solid #353535; }
-    .pstat:nth-child(even){ padding-left: 24px; border-right: 0; }
-    .pstat strong { font-family: 'Manrope', sans-serif; font-size: 2.4rem; font-weight: 500; letter-spacing: -0.06em; }
-    .pstat span { display: block; color: #999; font-size: .68rem; text-transform: uppercase; letter-spacing: .12em; margin-top: 4px; }
-    .proof .link { color: #fff; border-color: #555; }
-    .proof .link:hover { border-color: #fff; color: #fff; }
+/* ---- Shared Components ---- */
+.kicker{
+  font-size:.68rem;text-transform:uppercase;letter-spacing:.18em;
+  font-weight:700;color:#777;margin-bottom:22px;
+}
+.section-title{
+  font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,4.5rem);
+  line-height:1.02;letter-spacing:-.065em;font-weight:500;
+}
+.section-intro{
+  max-width:720px;font-size:1.12rem;color:#555;line-height:1.75;
+}
+.link{
+  display:inline-flex;gap:9px;margin-top:30px;font-size:.78rem;font-weight:700;
+  border-bottom:1px solid #777;padding-bottom:7px;transition:.2s;
+}
+.link:hover{border-color:var(--ink);color:var(--ink)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:0 20px;border:1px solid var(--ink);
+  font-size:.78rem;font-weight:700;transition:.2s;cursor:pointer;
+}
+.btn.primary{background:var(--ink);color:var(--white)}
+.btn.primary:hover{background:#292929}
+.btn.secondary:hover{background:var(--white)}
+section{padding:105px 0;border-bottom:1px solid var(--line)}
+.section-grid{display:grid;grid-template-columns:1fr 2fr;gap:70px}
 
-    /* ---- services ---- */
-    .services { background: #fff; }
-    .service-list { margin-top: 62px; border-top: 1px solid #101010; }
-    .service {
-      display: grid; grid-template-columns: 80px 1fr 1.1fr; gap: 30px;
-      padding: 30px 0; border-bottom: 1px solid #d9d7d0; align-items: start;
-    }
-    .service .num { font-size: .72rem; color: #999; letter-spacing: .12em; font-weight: 700; }
-    .service h3 { font-family: 'Manrope', sans-serif; font-size: 2rem; font-weight: 500; letter-spacing: -0.05em; }
-    .service p { color: #666; max-width: 560px; line-height: 1.7; }
+/* ---- HERO ---- */
+.hero{padding:92px 0 74px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:82px;align-items:end}
+.hero h1{
+  font-family:var(--serif);font-size:clamp(3.6rem,7.2vw,6.8rem);
+  line-height:.98;letter-spacing:-.075em;font-weight:500;max-width:850px;
+}
+.hero h1 em{font-style:normal;color:#777}
+.hero-copy{max-width:480px;margin-left:auto;padding-bottom:7px}
+.hero-copy p{font-size:1.03rem;color:#4f4f4f;line-height:1.75}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.hero-note{
+  display:grid;grid-template-columns:repeat(4,1fr);margin-top:78px;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.metric{padding:22px 18px 22px 0;border-right:1px solid var(--line)}
+.metric:last-child{border-right:0;padding-left:18px}
+.metric strong{display:block;font-family:var(--serif);font-size:1.75rem;letter-spacing:-.05em;font-weight:500}
+.metric span{display:block;color:#777;font-size:.67rem;text-transform:uppercase;letter-spacing:.12em;margin-top:5px}
 
-    /* ---- flow ---- */
-    .flow { background: #f5f4f0; }
-    .flow-panel { margin-top: 55px; border: 1px solid #d9d7d0; background: #fff; }
-    .flow-row { display: grid; grid-template-columns: 1fr 80px 1fr; align-items: stretch; }
-    .flow-col { padding: 34px; }
-    .flow-col:first-child { border-right: 1px solid #d9d7d0; }
-    .flow-col:last-child { border-left: 1px solid #d9d7d0; }
-    .flow-col h3 { font-family: 'Manrope', sans-serif; font-size: 1.55rem; font-weight: 500; letter-spacing: -0.04em; margin-bottom: 20px; }
-    .flow-list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .flow-list span { font-size: .76rem; color: #555; border: 1px solid #d9d7d0; padding: 8px 10px; background: #f5f4f0; }
-    .flow-middle { display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #999; }
-    .flow-center { padding: 27px 34px; border-top: 1px solid #d9d7d0; border-bottom: 1px solid #d9d7d0; text-align: center; }
-    .flow-center strong { font-family: 'Manrope', sans-serif; font-size: 1.7rem; font-weight: 500; letter-spacing: -0.05em; }
+/* ---- PROBLEM ---- */
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:58px;border-top:1px solid var(--line)}
+.problem{padding:28px 30px 30px 0;border-right:1px solid var(--line)}
+.problem:not(:first-child){padding-left:30px}
+.problem:last-child{border-right:0}
+.number{font-size:.68rem;letter-spacing:.14em;color:#999;font-weight:700}
+.problem h3{font-family:var(--serif);font-size:1.55rem;font-weight:500;letter-spacing:-.04em;margin:36px 0 12px}
+.problem p{font-size:.94rem;color:#626262;line-height:1.7}
 
-    /* ---- cases ---- */
-    .cases { background: #fff; }
-    .case-grid {
-      display: grid; grid-template-columns: 1.15fr .925fr .925fr; gap: 1px; background: #d9d7d0;
-      margin-top: 60px; border: 1px solid #d9d7d0;
-    }
-    .case { background: #fff; padding: 32px; min-height: 310px; display: flex; flex-direction: column; justify-content: space-between; }
-    .case.featured { background: #101010; color: #f5f4f0; }
-    .case-tag { font-size: .65rem; text-transform: uppercase; letter-spacing: .15em; color: #888; font-weight: 700; }
-    .case.featured .case-tag { color: #999; }
-    .case h3 { font-family: 'Manrope', sans-serif; font-size: clamp(1.65rem, 2.5vw, 2.45rem); font-weight: 500; line-height: 1.05; letter-spacing: -0.055em; margin: 25px 0; }
-    .case p { color: #777; font-size: .9rem; }
-    .case.featured p { color: #aaa; }
-    .case .arrow { font-size: 1.1rem; }
+/* ---- PROOF (dark) ---- */
+.proof{background:var(--ink);color:var(--white);padding:0}
+.proof .section-grid{padding:105px 0}
+.proof .kicker{color:#999}
+.proof .section-title{max-width:460px}
+.proof-copy{max-width:690px}
+.proof-copy .eyebrow{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#999}
+.proof-copy h3{font-family:var(--serif);font-size:clamp(2rem,4vw,4rem);line-height:1.02;letter-spacing:-.06em;font-weight:500;margin:14px 0 24px}
+.proof-copy p{color:#bdbdbd;line-height:1.75;max-width:620px}
+.proof-stats{display:grid;grid-template-columns:repeat(2,1fr);margin-top:40px;border-top:1px solid #353535}
+.pstat{padding:22px 24px 0 0;border-right:1px solid #353535}
+.pstat:nth-child(even){padding-left:24px;border-right:0}
+.pstat strong{font-family:var(--serif);font-size:2.4rem;font-weight:500;letter-spacing:-.06em}
+.pstat span{display:block;color:#999;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;margin-top:4px}
+.proof .link{color:#fff;border-color:#555}
+.proof .link:hover{border-color:#fff;color:#fff}
 
-    /* ---- method ---- */
-    .method { background: #f5f4f0; }
-    .method-grid { display: grid; grid-template-columns: repeat(5,1fr); margin-top: 58px; border-top: 1px solid #101010; border-bottom: 1px solid #d9d7d0; }
-    .step { padding: 28px 20px 32px 0; border-right: 1px solid #d9d7d0; }
-    .step:not(:first-child){ padding-left: 20px; }
-    .step:last-child { border-right: 0; }
-    .step-num { font-size: .65rem; color: #999; letter-spacing: .14em; font-weight: 700; }
-    .step h3 { font-family: 'Manrope', sans-serif; font-size: 1.35rem; font-weight: 500; margin: 38px 0 10px; letter-spacing: -0.04em; }
-    .step p { font-size: .82rem; color: #666; line-height: 1.65; }
+/* ---- SERVICES ---- */
+.services{background:var(--white)}
+.service-list{margin-top:62px;border-top:1px solid var(--ink)}
+.service{
+  display:grid;grid-template-columns:80px 1fr 1.1fr;gap:30px;
+  padding:30px 0;border-bottom:1px solid var(--line);align-items:start;
+}
+.service .num{font-size:.72rem;color:#999;letter-spacing:.12em;font-weight:700}
+.service h3{font-family:var(--serif);font-size:2rem;font-weight:500;letter-spacing:-.05em}
+.service p{color:#666;max-width:560px;line-height:1.7}
 
-    /* ---- who teaser ---- */
-    .who-teaser { background: #fff; }
-    .who-teaser .teaser-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 48px; }
-    .who-teaser .teaser-left p { color: #555; font-size: 1rem; line-height: 1.8; margin-bottom: 16px; }
-    .who-teaser .teaser-stats {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 32px;
-      padding-top: 28px; border-top: 1px solid #d9d7d0;
-    }
-    .who-teaser .teaser-stats strong { font-family: 'Manrope', sans-serif; font-size: 2rem; font-weight: 500; letter-spacing: -0.05em; display: block; }
-    .who-teaser .teaser-stats span { color: #777; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
-    .who-teaser .teaser-right { padding-top: 20px; }
-    .who-teaser .teaser-right .quote {
-      font-family: 'Manrope', sans-serif; font-size: 1.5rem; line-height: 1.4; font-weight: 500; letter-spacing: -0.03em;
-      border-left: 3px solid #c8a96b; padding-left: 28px; margin-bottom: 24px;
-    }
-    .who-teaser .teaser-right .quote em { font-style: italic; color: #999; }
+/* ---- FLOW ---- */
+.flow{background:var(--paper)}
+.flow-panel{margin-top:55px;border:1px solid var(--line);background:var(--white)}
+.flow-row{display:grid;grid-template-columns:1fr 80px 1fr;align-items:stretch}
+.flow-col{padding:34px}
+.flow-col:first-child{border-right:1px solid var(--line)}
+.flow-col:last-child{border-left:1px solid var(--line)}
+.flow-col h3{font-family:var(--serif);font-size:1.55rem;font-weight:500;letter-spacing:-.04em;margin-bottom:20px}
+.flow-list{display:flex;flex-wrap:wrap;gap:8px}
+.flow-list span{font-size:.76rem;color:#555;border:1px solid var(--line);padding:8px 10px;background:var(--paper)}
+.flow-middle{display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#999}
+.flow-center{padding:27px 34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+.flow-center strong{font-family:var(--serif);font-size:1.7rem;font-weight:500;letter-spacing:-.05em}
 
-    /* ---- manifesto teaser (expanded) ---- */
-    .manifesto-teaser {
-      background: #101010; color: #f5f4f0;
-    }
-    .manifesto-teaser .teaser-layout {
-      display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; padding: 105px 0;
-    }
-    .manifesto-teaser .kicker { color: #999; }
-    .manifesto-teaser .big-quote {
-      font-family: 'Manrope', sans-serif; font-size: clamp(2.8rem, 5.5vw, 5.6rem);
-      line-height: 1; letter-spacing: -0.075em; font-weight: 500;
-    }
-    .manifesto-teaser .big-quote em { font-style: normal; color: #858585; }
-    .manifesto-teaser .teaser-copy { color: #b7b7b7; font-size: 1rem; line-height: 1.8; margin-top: 24px; max-width: 540px; }
-    .manifesto-teaser .link { color: #fff; border-color: #555; }
-    .manifesto-teaser .link:hover { border-color: #fff; color: #fff; }
+/* ---- CASE STUDIES ---- */
+.cases{background:var(--white)}
+.case-grid{display:grid;grid-template-columns:1.15fr .925fr .925fr;gap:1px;background:var(--line);margin-top:60px;border:1px solid var(--line)}
+.case{background:var(--white);padding:32px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}
+.case.featured{background:var(--ink);color:var(--white)}
+.case-tag{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:#888;font-weight:700}
+.case.featured .case-tag{color:#999}
+.case h3{font-family:var(--serif);font-size:clamp(1.65rem,2.5vw,2.45rem);font-weight:500;line-height:1.05;letter-spacing:-.055em;margin:25px 0}
+.case p{color:#777;font-size:.9rem}
+.case.featured p{color:#aaa}
+.case .arrow{font-size:1.1rem}
 
-    /* manifesto full content (inline) */
-    .manifesto-full {
-      background: #101010; color: #f5f4f0; padding: 60px 0 80px; border-bottom: 1px solid #2a2a2a;
-    }
-    .manifesto-full .kicker { color: #999; }
-    .manifesto-full .manifesto-block {
-      max-width: 900px; margin-top: 40px;
-    }
-    .manifesto-full .manifesto-block h2 {
-      font-family: 'Manrope', sans-serif; font-size: 2.2rem; font-weight: 500;
-      letter-spacing: -0.04em; margin: 2.2rem 0 0.8rem; color: #f5f4f0;
-    }
-    .manifesto-full .manifesto-block h3 {
-      font-family: 'Manrope', sans-serif; font-size: 1.5rem; font-weight: 500;
-      letter-spacing: -0.03em; margin: 2rem 0 0.5rem; color: #e0e0e0;
-    }
-    .manifesto-full .manifesto-block p {
-      color: #b7b7b7; line-height: 1.8; margin-bottom: 1rem; font-size: 1rem;
-    }
-    .manifesto-full .manifesto-block ul, .manifesto-full .manifesto-block ol {
-      color: #b7b7b7; line-height: 1.8; margin: 0.8rem 0 1.5rem 1.5rem;
-    }
-    .manifesto-full .manifesto-block li { margin-bottom: 0.4rem; }
-    .manifesto-full .manifesto-block .highlight-box {
-      background: #1c1c1c; border-left: 4px solid #c8a96b; padding: 1.8rem 2rem;
-      margin: 1.8rem 0; border-radius: 0 8px 8px 0;
-    }
-    .manifesto-full .manifesto-block .highlight-box p { margin-bottom: 0.5rem; }
-    .manifesto-full .manifesto-block .flow-list-inline {
-      display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0 1.5rem;
-    }
-    .manifesto-full .manifesto-block .flow-list-inline span {
-      background: #1c1c1c; padding: 6px 14px; border-radius: 20px; font-size: .8rem;
-      color: #ccc; border: 1px solid #2a2a2a;
-    }
+/* ---- METHOD ---- */
+.method{background:var(--paper)}
+.method-grid{display:grid;grid-template-columns:repeat(5,1fr);margin-top:58px;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+.step{padding:28px 20px 32px 0;border-right:1px solid var(--line)}
+.step:not(:first-child){padding-left:20px}
+.step:last-child{border-right:0}
+.step-num{font-size:.65rem;color:#999;letter-spacing:.14em;font-weight:700}
+.step h3{font-family:var(--serif);font-size:1.35rem;font-weight:500;margin:38px 0 10px;letter-spacing:-.04em}
+.step p{font-size:.82rem;color:#666;line-height:1.65}
 
-    /* ---- cta ---- */
-    .cta-band { background: #101010; color: #f5f4f0; border-bottom: 0; padding: 0; }
-    .cta-band .cta-inner {
-      padding: 115px 0; display: grid; grid-template-columns: 1.2fr .8fr; gap: 80px; align-items: end;
-    }
-    .cta-band h2 {
-      font-family: 'Manrope', sans-serif; font-size: clamp(3rem, 6.5vw, 6.3rem);
-      line-height: .95; letter-spacing: -0.075em; font-weight: 500;
-    }
-    .cta-band p { color: #aaa; max-width: 440px; font-size: 1rem; line-height: 1.7; margin-bottom: 26px; }
-    .cta-band .btn.primary { background: #f5f4f0; color: #101010; border-color: #f5f4f0; }
-    .cta-band .btn.primary:hover { background: #ddd; }
+/* ---- WHO WE ARE TEASER ---- */
+.who-teaser{background:var(--white)}
+.who-teaser .teaser-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:48px;
+}
+.who-teaser .teaser-left p{color:#555;font-size:1rem;line-height:1.8;margin-bottom:16px}
+.who-teaser .teaser-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;
+  padding-top:28px;border-top:1px solid var(--line);
+}
+.who-teaser .teaser-stats strong{
+  font-family:var(--serif);font-size:2rem;font-weight:500;letter-spacing:-.05em;display:block;
+}
+.who-teaser .teaser-stats span{color:#777;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+.who-teaser .teaser-right{padding-top:20px}
+.who-teaser .teaser-right .quote{
+  font-family:var(--serif);font-size:1.5rem;line-height:1.4;font-weight:500;letter-spacing:-.03em;
+  border-left:3px solid var(--accent);padding-left:28px;margin-bottom:24px;
+}
+.who-teaser .teaser-right .quote em{font-style:italic;color:#999}
 
-    /* ---- footer ---- */
-    footer { background: #101010; color: #f5f4f0; padding: 35px 0 25px; border-top: 1px solid #292929; }
-    .footer-top { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-    .footer-brand p { color: #777; max-width: 310px; font-size: .8rem; margin-top: 8px; }
-    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; font-size: .75rem; color: #aaa; }
-    .footer-links a:hover { color: #fff; }
-    .footer-bottom { border-top: 1px solid #292929; margin-top: 35px; padding-top: 17px; color: #666; font-size: .68rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+/* ---- MANIFESTO TEASER ---- */
+.manifesto-teaser{background:var(--ink);color:var(--white)}
+.manifesto-teaser .teaser-layout{
+  display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;padding:105px 0;
+}
+.manifesto-teaser .kicker{color:#999}
+.manifesto-teaser .big-quote{
+  font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5.6rem);
+  line-height:1;letter-spacing:-.075em;font-weight:500;
+}
+.manifesto-teaser .big-quote em{font-style:normal;color:#858585}
+.manifesto-teaser .teaser-copy{color:#b7b7b7;font-size:1rem;line-height:1.8;margin-top:24px;max-width:540px}
+.manifesto-teaser .link{color:#fff;border-color:#555}
+.manifesto-teaser .link:hover{border-color:#fff;color:#fff}
 
-    /* ---- responsive ---- */
-    @media(max-width:1024px){
-      .hero-grid,.section-grid,.teaser-grid,.cta-band .cta-inner{ grid-template-columns:1fr; gap:38px; }
-      .hero-copy{ margin:0; }
-      .who-teaser .teaser-grid{ grid-template-columns:1fr; gap:40px; }
-      .manifesto-teaser .teaser-layout{ grid-template-columns:1fr; gap:40px; }
-    }
-    @media(max-width:900px){
-      .container{ width: min(1240px, calc(100% - 40px)); }
-      .navlinks{ display:none; }
-      .desktop-cta{ display:none; }
-      .hamburger{ display:flex; }
-      .hero-note{ grid-template-columns:repeat(2,1fr); }
-      .metric:nth-child(2){ border-right:0; }
-      .problem-grid{ grid-template-columns:1fr; }
-      .problem,.problem:not(:first-child){ padding:26px 0; border-right:0; border-bottom:1px solid #d9d7d0; }
-      .service{ grid-template-columns:55px 1fr; gap:18px; }
-      .service p{ grid-column:2; }
-      .case-grid,.insight-grid{ grid-template-columns:1fr; }
-      .method-grid{ grid-template-columns:1fr; }
-      .step,.step:not(:first-child){ padding:24px 0; border-right:0; border-bottom:1px solid #d9d7d0; }
-      .flow-row{ grid-template-columns:1fr; }
-      .flow-col{ border:0!important; }
-      .flow-middle{ padding:0 20px 20px; }
-      .flow-col:last-child{ border-top:1px solid #d9d7d0!important; }
-      .who-teaser .teaser-stats{ grid-template-columns:1fr; }
-      .manifesto-full .manifesto-block h2 { font-size: 1.8rem; }
-      .manifesto-full .manifesto-block h3 { font-size: 1.3rem; }
-    }
-    @media(max-width:600px){
-      .container{ width:calc(100% - 32px); }
-      .nav{ height:72px; }
-      .hero{ padding:65px 0 55px; }
-      .hero h1{ font-size:3.45rem; }
-      section{ padding:75px 0; }
-      .hero-note{ margin-top:55px; }
-      .metric{ padding:17px 10px 17px 0; }
-      .metric strong{ font-size:1.35rem; }
-      .metric span{ font-size:.58rem; }
-      .cta-band .cta-inner{ padding:80px 0; }
-      .manifesto-teaser .big-quote{ font-size:2.6rem; }
-      .mobile-nav-overlay a{ font-size:1.8rem; }
-    }
-  </style>
+/* ---- INSIGHTS TEASER ---- */
+.insights-teaser{background:var(--paper)}
+.insight-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  margin-top:48px;border:1px solid var(--line);
+}
+.insight{
+  background:var(--paper);padding:28px;min-height:200px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.insight small{font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:#999;font-weight:700}
+.insight h3{font-family:var(--serif);font-size:1.3rem;line-height:1.15;letter-spacing:-.045em;font-weight:500;margin:40px 0 10px}
+.insight p{color:#666;font-size:.85rem;line-height:1.65}
+.insight .insight-link{font-size:.7rem;font-weight:600;color:#777;margin-top:12px;display:inline-block}
+
+/* ---- CTA ---- */
+.cta-band{background:var(--ink);color:var(--white);border-bottom:0;padding:0}
+.cta-band .cta-inner{
+  padding:115px 0;display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:end;
+}
+.cta-band h2{
+  font-family:var(--serif);font-size:clamp(3rem,6.5vw,6.3rem);
+  line-height:.95;letter-spacing:-.075em;font-weight:500;
+}
+.cta-band p{color:#aaa;max-width:440px;font-size:1rem;line-height:1.7;margin-bottom:26px}
+.cta-band .btn.primary{background:var(--white);color:var(--ink);border-color:var(--white)}
+.cta-band .btn.primary:hover{background:#ddd}
+
+/* ---- FOOTER ---- */
+footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1px solid #292929}
+.footer-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.footer-brand p{color:#777;max-width:310px;font-size:.8rem;margin-top:8px}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap;font-size:.75rem;color:#aaa}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid #292929;margin-top:35px;padding-top:17px;color:#666;font-size:.68rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ---- RESPONSIVE ---- */
+@media(max-width:1024px){
+  .hero-grid,.section-grid,.teaser-grid,.cta-band .cta-inner{grid-template-columns:1fr;gap:38px}
+  .hero-copy{margin:0}
+  .who-teaser .teaser-grid{grid-template-columns:1fr;gap:40px}
+  .manifesto-teaser .teaser-layout{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:900px){
+  .container{width:min(var(--max),calc(100% - 40px))}
+  .navlinks{display:none}
+  .desktop-cta{display:none}
+  .hamburger{display:flex}
+  .hero-note{grid-template-columns:repeat(2,1fr)}
+  .metric:nth-child(2){border-right:0}
+  .problem-grid{grid-template-columns:1fr}
+  .problem,.problem:not(:first-child){padding:26px 0;border-right:0;border-bottom:1px solid var(--line)}
+  .service{grid-template-columns:55px 1fr;gap:18px}
+  .service p{grid-column:2}
+  .case-grid,.insight-grid{grid-template-columns:1fr}
+  .method-grid{grid-template-columns:1fr}
+  .step,.step:not(:first-child){padding:24px 0;border-right:0;border-bottom:1px solid var(--line)}
+  .flow-row{grid-template-columns:1fr}
+  .flow-col{border:0!important}
+  .flow-middle{padding:0 20px 20px}
+  .flow-col:last-child{border-top:1px solid var(--line)!important}
+  .who-teaser .teaser-stats{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .container{width:calc(100% - 32px)}
+  .nav{height:72px}
+  .hero{padding:65px 0 55px}
+  .hero h1{font-size:3.45rem}
+  section{padding:75px 0}
+  .hero-note{margin-top:55px}
+  .metric{padding:17px 10px 17px 0}
+  .metric strong{font-size:1.35rem}
+  .metric span{font-size:.58rem}
+  .cta-band .cta-inner{padding:80px 0}
+  .manifesto-teaser .big-quote{font-size:2.6rem}
+  .mobile-nav-overlay a{font-size:1.8rem}
+}
+</style>
 </head>
 <body>
 
-<!-- ===== NAV ===== -->
+<!-- ============================================================ -->
+<!-- NAVIGATION                                                    -->
+<!-- ============================================================ -->
 <div class="container">
-  <nav class="nav">
-    <a class="logo" href="index.html">Prime<span>Chain</span></a>
-    <ul class="navlinks" id="navLinks">
-      <li><a href="#solutions">What We Do</a></li>
-      <li><a href="#manifesto">Manifesto</a></li>
-      <li><a href="#method">Method</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-    <a class="desktop-cta" href="#contact">Talk to PrimeChain <span>↗</span></a>
-  </nav>
+<nav class="nav">
+  <a class="logo" href="index.html">Prime<span>Chain</span></a>
+  
+  <ul class="navlinks" id="navLinks">
+    <li><a href="#solutions">What We Do</a></li>
+    <li><a href="whoweare.html">Who We Are</a></li>
+    <li><a href="ourthinking.html">Our Thinking</a></li>
+  </ul>
+  
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  
+  <a class="desktop-cta" href="#contact">Talk to PrimeChain <span>↗</span></a>
+</nav>
 </div>
 
+<!-- Mobile Overlay -->
 <div class="mobile-nav-overlay" id="mobileOverlay">
   <a href="index.html" class="active">Home</a>
-  <a href="#solutions">What We Do</a>
-  <a href="#manifesto">Manifesto</a>
-  <a href="#method">Method</a>
-  <a href="#contact">Contact</a>
+  <a href="whoweare.html">Who We Are</a>
+  <a href="ourthinking.html">Our Thinking</a>
 </div>
 
 <main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="kicker">Operational Intelligence</div>
-      <div class="hero-grid">
-        <div><h1>Your business is already generating the answers.<br><em>You just can't see them.</em></h1></div>
-        <div class="hero-copy">
-          <p>Every delivery. Every truck. Every technician. Every invoice. Every operational decision leaves behind information. PrimeChain connects those signals into a complete picture—so leaders can stop guessing and start seeing.</p>
-          <div class="actions">
-            <a class="btn primary" href="#contact">Book an Operational Visibility Review</a>
-            <a class="btn secondary" href="#solutions">See how it works</a>
-          </div>
+
+<!-- ============================================================ -->
+<!-- HERO                                                          -->
+<!-- ============================================================ -->
+<section class="hero">
+<div class="container">
+  <div class="kicker">Operational Intelligence</div>
+  <div class="hero-grid">
+    <div>
+      <h1>Your business is already generating the answers.<br><em>You just can't see them.</em></h1>
+    </div>
+    <div class="hero-copy">
+      <p>Every delivery. Every truck. Every technician. Every invoice. Every operational decision leaves behind information. PrimeChain connects those signals into a complete picture—so leaders can stop guessing and start seeing.</p>
+      <div class="actions">
+        <a class="btn primary" href="#contact">Book an Operational Visibility Review</a>
+        <a class="btn secondary" href="#solutions">See how it works</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-note">
+    <div class="metric"><strong>Operational</strong><span>Visibility</span></div>
+    <div class="metric"><strong>Operational</strong><span>Systems</span></div>
+    <div class="metric"><strong>Decision</strong><span>Intelligence</span></div>
+    <div class="metric"><strong>One</strong><span>Connected View</span></div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- THE PROBLEM                                                   -->
+<!-- ============================================================ -->
+<section>
+<div class="container">
+  <div class="section-grid">
+    <div><div class="kicker">01 — The problem</div></div>
+    <div>
+      <h2 class="section-title">Complexity compounds quietly.</h2>
+      <p class="section-intro" style="margin-top:28px">The biggest operational problems rarely announce themselves. They quietly grow in the background—until the cost becomes impossible to ignore.</p>
+    </div>
+  </div>
+  <div class="problem-grid">
+    <article class="problem"><span class="number">01</span><h3>Manual Work</h3><p>Hours disappear into repetitive administration. Not because your team is inefficient. Because your systems never evolved.</p></article>
+    <article class="problem"><span class="number">02</span><h3>Invisible Leaks</h3><p>Fuel. Time. Inventory. Delays. Rework. Margins. Most businesses only discover losses after they've accumulated.</p></article>
+    <article class="problem"><span class="number">03</span><h3>Delayed Decisions</h3><p>By the time reports reach leadership, the opportunity has already passed.</p></article>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PROOF                                                         -->
+<!-- ============================================================ -->
+<section class="proof" id="solutions">
+<div class="container">
+  <div class="section-grid">
+    <div>
+      <div class="kicker">02 — What we've found</div>
+      <h2 class="section-title">The operation already contains the evidence.</h2>
+    </div>
+    <div class="proof-copy">
+      <div class="eyebrow">Featured case · Commodity Trader</div>
+      <h3>The R200,000 fuel leak nobody could see.</h3>
+      <p>The refill data existed. The load records existed. They lived in entirely separate places and were never brought together. Once connected, the losses became impossible to ignore.</p>
+      <div class="proof-stats">
+        <div class="pstat"><strong>R200k+</strong><span>Loss identified</span></div>
+        <div class="pstat"><strong>20–38</strong><span>Vehicles analysed</span></div>
+      </div>
+      <a class="link" href="ourthinking.html">Read the full case study →</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SERVICES                                                      -->
+<!-- ============================================================ -->
+<section class="services">
+<div class="container">
+  <div class="section-grid">
+    <div><div class="kicker">03 — What we do</div></div>
+    <div>
+      <h2 class="section-title">See. Connect. Act.</h2>
+      <p class="section-intro" style="margin-top:28px">Three connected capabilities turn fragmented operational information into visibility, systems and better decisions.</p>
+    </div>
+  </div>
+  <div class="service-list">
+    <article class="service"><span class="num">01</span><h3>Operational Visibility</h3><p>We uncover the operational signals hidden across your business and bring them together into one trusted source of truth.</p></article>
+    <article class="service"><span class="num">02</span><h3>Operational Systems</h3><p>We replace manual coordination with systems designed around the way your business actually works.</p></article>
+    <article class="service"><span class="num">03</span><h3>Decision Intelligence</h3><p>We transform operational activity into information leaders can use to improve performance every day.</p></article>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FLOW                                                          -->
+<!-- ============================================================ -->
+<section class="flow">
+<div class="container">
+  <div class="section-grid">
+    <div><div class="kicker">04 — The connected operation</div></div>
+    <div>
+      <h2 class="section-title">The operation already knows.</h2>
+      <p class="section-intro" style="margin-top:28px">The information is scattered across it. PrimeChain connects the signals so the picture becomes visible.</p>
+    </div>
+  </div>
+  <div class="flow-panel">
+    <div class="flow-row">
+      <div class="flow-col">
+        <h3>Information already being generated</h3>
+        <div class="flow-list">
+          <span>Excel</span><span>WhatsApp</span><span>Paper</span><span>Emails</span><span>Phone Calls</span><span>Fuel Slips</span><span>PODs</span><span>GPS</span><span>Accounting</span><span>Job Cards</span>
         </div>
       </div>
-      <div class="hero-note">
-        <div class="metric"><strong>Operational</strong><span>Visibility</span></div>
-        <div class="metric"><strong>Operational</strong><span>Systems</span></div>
-        <div class="metric"><strong>Decision</strong><span>Intelligence</span></div>
-        <div class="metric"><strong>One</strong><span>Connected View</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROBLEM -->
-  <section>
-    <div class="container">
-      <div class="section-grid">
-        <div><div class="kicker">01 — The problem</div></div>
-        <div>
-          <h2 class="section-title">Complexity compounds quietly.</h2>
-          <p class="section-intro" style="margin-top:28px">The biggest operational problems rarely announce themselves. They quietly grow in the background—until the cost becomes impossible to ignore.</p>
-        </div>
-      </div>
-      <div class="problem-grid">
-        <article class="problem"><span class="number">01</span><h3>Manual Work</h3><p>Hours disappear into repetitive administration. Not because your team is inefficient. Because your systems never evolved.</p></article>
-        <article class="problem"><span class="number">02</span><h3>Invisible Leaks</h3><p>Fuel. Time. Inventory. Delays. Rework. Margins. Most businesses only discover losses after they've accumulated.</p></article>
-        <article class="problem"><span class="number">03</span><h3>Delayed Decisions</h3><p>By the time reports reach leadership, the opportunity has already passed.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROOF -->
-  <section class="proof" id="solutions">
-    <div class="container">
-      <div class="section-grid">
-        <div><div class="kicker">02 — What we've found</div><h2 class="section-title">The operation already contains the evidence.</h2></div>
-        <div class="proof-copy">
-          <div class="eyebrow">Featured case · Commodity Trader</div>
-          <h3>The R200,000 fuel leak nobody could see.</h3>
-          <p>The refill data existed. The load records existed. They lived in entirely separate places and were never brought together. Once connected, the losses became impossible to ignore.</p>
-          <div class="proof-stats"><div class="pstat"><strong>R200k+</strong><span>Loss identified</span></div><div class="pstat"><strong>20–38</strong><span>Vehicles analysed</span></div></div>
-          <a class="link" href="#cases">Read the full case study →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services">
-    <div class="container">
-      <div class="section-grid">
-        <div><div class="kicker">03 — What we do</div></div>
-        <div><h2 class="section-title">See. Connect. Act.</h2><p class="section-intro" style="margin-top:28px">Three connected capabilities turn fragmented operational information into visibility, systems and better decisions.</p></div>
-      </div>
-      <div class="service-list">
-        <article class="service"><span class="num">01</span><h3>Operational Visibility</h3><p>We uncover the operational signals hidden across your business and bring them together into one trusted source of truth.</p></article>
-        <article class="service"><span class="num">02</span><h3>Operational Systems</h3><p>We replace manual coordination with systems designed around the way your business actually works.</p></article>
-        <article class="service"><span class="num">03</span><h3>Decision Intelligence</h3><p>We transform operational activity into information leaders can use to improve performance every day.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- FLOW -->
-  <section class="flow">
-    <div class="container">
-      <div class="section-grid">
-        <div><div class="kicker">04 — The connected operation</div></div>
-        <div><h2 class="section-title">The operation already knows.</h2><p class="section-intro" style="margin-top:28px">The information is scattered across it. PrimeChain connects the signals so the picture becomes visible.</p></div>
-      </div>
-      <div class="flow-panel">
-        <div class="flow-row">
-          <div class="flow-col"><h3>Information already being generated</h3><div class="flow-list"><span>Excel</span><span>WhatsApp</span><span>Paper</span><span>Emails</span><span>Phone Calls</span><span>Fuel Slips</span><span>PODs</span><span>GPS</span><span>Accounting</span><span>Job Cards</span></div></div>
-          <div class="flow-middle">→</div>
-          <div class="flow-col"><h3>What leaders can see</h3><div class="flow-list"><span>Performance</span><span>Exceptions</span><span>Leaks</span><span>Margins</span><span>KPIs</span><span>Forecasts</span><span>Decision Support</span></div></div>
-        </div>
-        <div class="flow-center"><strong>PrimeChain — connect · reconcile · analyse · surface</strong></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CASES -->
-  <section class="cases" id="cases">
-    <div class="container">
-      <div class="section-grid"><div><div class="kicker">05 — Real operations. Real outcomes.</div></div><div><h2 class="section-title">What happens when the operation becomes visible.</h2></div></div>
-      <div class="case-grid">
-        <article class="case featured"><div><span class="case-tag">Commodity Trader · Fleet Operations</span><h3>The R200,000 Fuel Leak Nobody Could See</h3><p>Fuel slips and operational records existed. Connecting them exposed the loss.</p></div><div class="arrow">↗</div></article>
-        <article class="case"><div><span class="case-tag">Fleet Operator · Transport</span><h3>The R600,000 Margin Leak Hidden Between Deliveries</h3><p>Transport &amp; distribution</p></div><div class="arrow">↗</div></article>
-        <article class="case"><div><span class="case-tag">Electrical Contractor · Field Service</span><h3>From Paper Job Cards to Live Operations</h3><p>Field service</p></div><div class="arrow">↗</div></article>
-      </div>
-      <div style="text-align:center;margin-top:40px;"><a class="link" href="#" style="margin-top:0;">View all case studies →</a></div>
-    </div>
-  </section>
-
-  <!-- METHOD -->
-  <section class="method" id="method">
-    <div class="container">
-      <div class="section-grid"><div><div class="kicker">06 — The PrimeChain method</div></div><div><h2 class="section-title">Technology comes last. Understanding comes first.</h2></div></div>
-      <div class="method-grid">
-        <article class="step"><span class="step-num">01</span><h3>Diagnose</h3><p>Understand how the operation actually works.</p></article>
-        <article class="step"><span class="step-num">02</span><h3>Reveal</h3><p>Identify blind spots, leakage and bottlenecks.</p></article>
-        <article class="step"><span class="step-num">03</span><h3>Design</h3><p>Design around the real workflow.</p></article>
-        <article class="step"><span class="step-num">04</span><h3>Build</h3><p>Deploy systems, automation and reporting.</p></article>
-        <article class="step"><span class="step-num">05</span><h3>Measure</h3><p>Track whether the intervention creates measurable value.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHO WE ARE TEASER -->
-  <section class="who-teaser">
-    <div class="container">
-      <div class="section-grid"><div><div class="kicker">07 — Who we are</div></div><div><h2 class="section-title">Here's what we believe.</h2></div></div>
-      <div class="teaser-grid">
-        <div class="teaser-left">
-          <p>PrimeChain was built by operators, not consultants. Our team comes from the industries we serve—transport, logistics, field services, and manufacturing. We've sat in the operational hot seat. We know what works because we've done it.</p>
-          <p><strong>Businesses don't have a data problem. They have a visibility problem.</strong> That's not a slogan—it's the principle that guides everything we do.</p>
-          <div class="teaser-stats"><div><strong>10+</strong><span>Years of operational experience</span></div><div><strong>4</strong><span>Industries served directly</span></div><div><strong>100+</strong><span>Operations improved</span></div></div>
-        </div>
-        <div class="teaser-right">
-          <div class="quote">"Technology is the enabler, not the product.<br><em>The outcome is a business that understands itself.</em>"</div>
-          <a class="link" href="#" style="margin-top:0;">Meet the team →</a>
-          <p style="color:#777;font-size:.82rem;margin-top:16px;line-height:1.6;">We combine operational understanding, supply chain thinking, process improvement, data and technology to build systems around the way your business actually works.</p>
+      <div class="flow-middle">→</div>
+      <div class="flow-col">
+        <h3>What leaders can see</h3>
+        <div class="flow-list">
+          <span>Performance</span><span>Exceptions</span><span>Leaks</span><span>Margins</span><span>KPIs</span><span>Forecasts</span><span>Decision Support</span>
         </div>
       </div>
     </div>
-  </section>
+    <div class="flow-center"><strong>PrimeChain — connect · reconcile · analyse · surface</strong></div>
+  </div>
+</div>
+</section>
 
-  <!-- ===== MANIFESTO FULL (expanded from attached document) ===== -->
-  <section class="manifesto-full" id="manifesto">
-    <div class="container">
+<!-- ============================================================ -->
+<!-- CASE STUDIES                                                  -->
+<!-- ============================================================ -->
+<section class="cases">
+<div class="container">
+  <div class="section-grid">
+    <div><div class="kicker">05 — Real operations. Real outcomes.</div></div>
+    <div><h2 class="section-title">What happens when the operation becomes visible.</h2></div>
+  </div>
+  <div class="case-grid">
+    <article class="case featured"><div><span class="case-tag">Commodity Trader · Fleet Operations</span><h3>The R200,000 Fuel Leak Nobody Could See</h3><p>Fuel slips and operational records existed. Connecting them exposed the loss.</p></div><div class="arrow">↗</div></article>
+    <article class="case"><div><span class="case-tag">Fleet Operator · Transport</span><h3>The R600,000 Margin Leak Hidden Between Deliveries</h3><p>Transport &amp; distribution</p></div><div class="arrow">↗</div></article>
+    <article class="case"><div><span class="case-tag">Electrical Contractor · Field Service</span><h3>From Paper Job Cards to Live Operations</h3><p>Field service</p></div><div class="arrow">↗</div></article>
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <a class="link" href="ourthinking.html" style="margin-top:0;">View all case studies →</a>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- METHOD                                                        -->
+<!-- ============================================================ -->
+<section class="method" id="method">
+<div class="container">
+  <div class="section-grid">
+    <div><div class="kicker">06 — The PrimeChain method</div></div>
+    <div>
+      <h2 class="section-title">Technology comes last. Understanding comes first.</h2>
+    </div>
+  </div>
+  <div class="method-grid">
+    <article class="step"><span class="step-num">01</span><h3>Diagnose</h3><p>Understand how the operation actually works.</p></article>
+    <article class="step"><span class="step-num">02</span><h3>Reveal</h3><p>Identify blind spots, leakage and bottlenecks.</p></article>
+    <article class="step"><span class="step-num">03</span><h3>Design</h3><p>Design around the real workflow.</p></article>
+    <article class="step"><span class="step-num">04</span><h3>Build</h3><p>Deploy systems, automation and reporting.</p></article>
+    <article class="step"><span class="step-num">05</span><h3>Measure</h3><p>Track whether the intervention creates measurable value.</p></article>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- WHO WE ARE TEASER                                             -->
+<!-- ============================================================ -->
+<section class="who-teaser">
+<div class="container">
+  <div class="section-grid">
+    <div><div class="kicker">07 — Who we are</div></div>
+    <div>
+      <h2 class="section-title">Here's what we believe.</h2>
+    </div>
+  </div>
+  <div class="teaser-grid">
+    <div class="teaser-left">
+      <p>PrimeChain was built by operators, not consultants. Our team comes from the industries we serve—transport, logistics, field services, and manufacturing. We've sat in the operational hot seat. We know what works because we've done it.</p>
+      <p><strong>Businesses don't have a data problem. They have a visibility problem.</strong> That's not a slogan—it's the principle that guides everything we do.</p>
+      <div class="teaser-stats">
+        <div><strong>10+</strong><span>Years of operational experience</span></div>
+        <div><strong>4</strong><span>Industries served directly</span></div>
+        <div><strong>100+</strong><span>Operations improved</span></div>
+      </div>
+    </div>
+    <div class="teaser-right">
+      <div class="quote">
+        "Technology is the enabler, not the product.<br><em>The outcome is a business that understands itself.</em>"
+      </div>
+      <a class="link" href="whoweare.html" style="margin-top:0;">Meet the team →</a>
+      <p style="color:#777;font-size:.82rem;margin-top:16px;line-height:1.6;">We combine operational understanding, supply chain thinking, process improvement, data and technology to build systems around the way your business actually works.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- MANIFESTO TEASER                                              -->
+<!-- ============================================================ -->
+<section class="manifesto-teaser" id="manifesto">
+<div class="container">
+  <div class="teaser-layout">
+    <div>
       <div class="kicker">08 — The PrimeChain Manifesto</div>
-      <h2 style="font-family:'Manrope',sans-serif;font-size:clamp(2.4rem,4.5vw,4.2rem);font-weight:500;letter-spacing:-0.06em;margin-top:12px;">Transforming Operational Complexity into Operational Intelligence</h2>
-      <div class="manifesto-block">
-        <h2>1. The PrimeChain Thesis</h2>
-        <p>Every business is already generating intelligence.</p>
-        <p>Every vehicle that leaves a depot. Every technician who completes a job. Every purchase order. Every delivery. Every fuel refill. Every stock movement. Every customer request. Every invoice. Every delay. Every exception.</p>
-        <p>These are not isolated events. They are connected pieces of the same operational story.</p>
-        <p>Yet most businesses never get to read that story. Not because the information doesn't exist. But because it remains trapped inside spreadsheets, paperwork, messaging applications, disconnected software, and the knowledge of individual employees.</p>
-        <p><strong>Businesses don't fail because they lack data. They struggle because operational knowledge never emerges from that data.</strong></p>
-        <p>PrimeChain Solutions exists to change that. We believe every operation can become understandable. Every decision can become evidence-based. Every process can become measurable. Every improvement can become continuous. Our purpose is to transform operational complexity into operational intelligence.</p>
-
-        <h2>2. The Problem We See</h2>
-        <p>As businesses grow, something predictable happens. More customers create more transactions. More employees create more communication. More vehicles create more paperwork. More suppliers create more systems.</p>
-        <p>Growth creates complexity. Complexity creates fragmentation. Eventually information begins living in separate places. Fuel transactions live in one spreadsheet. Invoices live inside accounting software. Proof of delivery arrives on WhatsApp. Maintenance records sit in filing cabinets. GPS information lives inside another platform.</p>
-        <p>Managers begin making decisions using fragments instead of the complete picture. Problems become visible only after the financial consequences have already occurred. Fuel losses appear at month-end. Cash flow suffers because paperwork arrives days late. Subcontractor performance becomes impossible to measure objectively. Administrative work expands faster than the business itself.</p>
-        <p><strong>These are not technology problems. They are operational visibility problems.</strong></p>
-
-        <h2>3. What We Believe</h2>
-        <p>PrimeChain was never founded to build software. Software is simply one of the tools we use. We believe that better technology without better operational thinking only digitizes inefficiency.</p>
-        <p>Before writing a single line of code we ask different questions: How does work move through the business? Where does information originate? Who makes decisions? What information should exist? Where are the bottlenecks? Where is value created? Where is value lost?</p>
-        <p><strong>Only after understanding the operation do we decide which technology should support it. Technology follows operations. Never the other way around.</strong></p>
-
-        <h2>4. Our Philosophy</h2>
-        <p>Every operation already contains intelligence. That intelligence follows a journey:</p>
-        <div style="background:#1c1c1c;padding:1.5rem 2rem;border-radius:12px;margin:1.2rem 0;font-family:'Manrope',sans-serif;font-weight:500;letter-spacing:-0.02em;line-height:2;">
-          Operational Events → Structured Data → Connected Information → Operational Knowledge → Operational Intelligence → Better Decisions → Continuous Improvement
-        </div>
-        <p>The objective is not dashboards. Dashboards are simply windows into operational reality. The objective is understanding. When understanding improves, decisions improve. When decisions improve, operations improve. When operations improve, businesses grow with confidence.</p>
-
-        <h2>5. The PrimeChain Method</h2>
-        <p>Every engagement follows the same philosophy:</p>
-        <ul>
-          <li><strong>Observe</strong> — Understand how work actually happens. Not how procedures describe it. How people really work.</li>
-          <li><strong>Map</strong> — Document processes. Information flows. Decision points. Business rules. Operational relationships.</li>
-          <li><strong>Capture</strong> — Ensure every operational event becomes structured data. Field work. Fuel. Inventory. Deliveries. Inspections. Maintenance. Every important activity should leave a digital trace.</li>
-          <li><strong>Connect</strong> — Bring together disconnected systems. Paperwork. ERP systems. Accounting platforms. GPS providers. Messaging applications. Spreadsheets. Information only becomes valuable when it converges.</li>
-          <li><strong>Structure</strong> — Organize information around operational entities. Vehicles. Customers. Drivers. Technicians. Assets. Projects. Purchase Orders. Jobs. Not around files. Not around departments. Around the operation itself.</li>
-          <li><strong>Automate</strong> — Remove repetitive administration. Generate documents automatically. Notify stakeholders automatically. Synchronize systems automatically. Allow people to spend more time solving problems than moving information.</li>
-          <li><strong>Analyze</strong> — Transform operational data into measurable insight. Identify trends. Detect anomalies. Understand relationships. Measure performance. Reveal hidden operational leakage.</li>
-          <li><strong>Optimize</strong> — Apply continuous improvement. Every month. Every quarter. Every project. Operations should never become static. They should continuously learn.</li>
-          <li><strong>Scale</strong> — Build operational systems that grow with the business instead of becoming constraints.</li>
-        </ul>
-
-        <h2>6. The Disciplines That Shape Our Thinking</h2>
-        <p>PrimeChain is built at the intersection of several disciplines: Logistics and Supply Chain, Business Analysis, Business Intelligence, Lean Six Sigma, Data Science, and Software Engineering. No single discipline is enough on its own. Operational Intelligence emerges when they work together.</p>
-
-        <h2>7. Technology Is Our Toolbox, Not Our Identity</h2>
-        <p>We use modern technologies because they allow us to deliver quickly, securely, and efficiently. GitHub, Supabase, React, Expo, Python, n8n, Vercel — these matter, but they are not the product. The product is better operational decision-making.</p>
-
-        <h2>8. Why PrimeChain Exists</h2>
-        <p>We exist because operational visibility should not be reserved for large enterprises. Growing businesses deserve the same ability to understand their operations without investing millions in enterprise software. We exist because people should spend less time searching for information and more time acting on it. We exist because businesses should discover problems while they can still solve them—not after month-end. We exist because every operation tells a story. And every business deserves the ability to read it.</p>
-
-        <h2>9. Our Vision</h2>
-        <p>We envision a future where every operational business has an intelligence layer sitting above its day-to-day activities. A layer that captures operational reality, connects fragmented information, learns continuously, explains what is happening, predicts what is likely to happen, and recommends what should happen next. PrimeChain Solutions is building that future. One operation at a time.</p>
-
-        <div class="highlight-box">
-          <p style="font-size:1.2rem;font-weight:600;color:#f5f4f0;">One Final Thought</p>
-          <p>I wouldn't treat this as a marketing document. I would treat it as your company's constitution. Every future service, product, case study, employee, and technology decision should be measurable against one question:</p>
-          <p style="font-weight:600;color:#c8a96b;font-size:1.1rem;">Does this help businesses transform operational complexity into operational intelligence?</p>
-          <p>If the answer is yes, it belongs in PrimeChain. If not, it doesn't. That's how great companies remain focused over decades.</p>
-        </div>
-      </div>
+      <div class="big-quote">Businesses don't have a data problem.<br><em>They have a visibility problem.</em></div>
     </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-band" id="contact">
-    <div class="container cta-inner">
-      <div><h2>Let's apply it to your business.</h2></div>
-      <div>
-        <p>The answers are already inside your operation. We'll help you connect them. Start with an Operational Visibility Review—no obligation, just a conversation.</p>
-        <a class="btn primary" href="mailto:info@primechainsolutions.co.za">Book an Operational Visibility Review ↗</a>
-      </div>
+    <div>
+      <p class="teaser-copy">Every organisation already generates the information it needs to improve. The challenge isn't collecting more. The challenge is connecting what already exists. That's why PrimeChain exists.</p>
+      <a class="link" href="manifesto.html">Read the full Manifesto →</a>
     </div>
-  </section>
+  </div>
+</div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- CTA                                                           -->
+<!-- ============================================================ -->
+<section class="cta-band" id="contact">
+<div class="container cta-inner">
+  <div><h2>Let's apply it to your business.</h2></div>
+  <div>
+    <p>The answers are already inside your operation. We'll help you connect them. Start with an Operational Visibility Review—no obligation, just a conversation.</p>
+    <a class="btn primary" href="mailto:info@primechainsolutions.co.za">Book an Operational Visibility Review ↗</a>
+  </div>
+</div>
+</section>
+
 </main>
 
-<!-- FOOTER -->
+<!-- ============================================================ -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================ -->
 <footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand"><strong>PrimeChain</strong><p>Operational Intelligence. Because every business deserves to understand itself.</p></div>
-      <div class="footer-links">
-        <a href="#solutions">What We Do</a>
-        <a href="#manifesto">Manifesto</a>
-        <a href="#method">Method</a>
-        <a href="#contact">Contact</a>
-      </div>
+<div class="container">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <strong>PrimeChain</strong>
+      <p>Operational Intelligence. Because every business deserves to understand itself.</p>
     </div>
-    <div class="footer-bottom"><span>© PrimeChain</span><span>Operational Intelligence</span></div>
+    <div class="footer-links">
+      <a href="#solutions">What We Do</a>
+      <a href="whoweare.html">Who We Are</a>
+      <a href="ourthinking.html">Our Thinking</a>
+      <a href="manifesto.html">Manifesto</a>
+      <a href="#contact">Contact</a>
+    </div>
   </div>
+  <div class="footer-bottom">
+    <span>© PrimeChain</span>
+    <span>Operational Intelligence</span>
+  </div>
+</div>
 </footer>
 
+<!-- ============================================================ -->
+<!-- JAVASCRIPT                                                    -->
+<!-- ============================================================ -->
 <script>
-  (function() {
-    const hamburger = document.getElementById('hamburger');
-    const overlay = document.getElementById('mobileOverlay');
-    if (hamburger && overlay) {
-      hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        overlay.classList.toggle('open');
-        document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+// Mobile Hamburger Menu
+(function() {
+  const hamburger = document.getElementById('hamburger');
+  const overlay = document.getElementById('mobileOverlay');
+  
+  if (hamburger && overlay) {
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      overlay.classList.toggle('open');
+      document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+    });
+    
+    overlay.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
       });
-      overlay.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          hamburger.classList.remove('active');
-          overlay.classList.remove('open');
-          document.body.style.overflow = '';
-        });
-      });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && overlay.classList.contains('open')) {
-          hamburger.classList.remove('active');
-          overlay.classList.remove('open');
-          document.body.style.overflow = '';
-        }
-      });
-    }
-  })();
+    });
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+})();
 </script>
+
 </body>
 </html>
