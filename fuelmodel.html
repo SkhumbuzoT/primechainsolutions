@@ -1,406 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Your business is already telling you how it operates. The evidence is everywhere. The problem is that it rarely exists in one place." />
-<title>Your Supply Chain Knows More Than You Think · PrimeChain</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A bulk logistics operator bled margin through fuel – until they connected the data. How a fuel-control system revealed R200,000+ in leakage." />
+  <title>The Fuel Was Accounted For. The Money Wasn't. · PrimeChain</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- ✅ FAVICON - Inline SVG, no files needed -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23101010'/%3E%3Ctext x='50' y='67' font-family='system-ui, sans-serif' font-size='48' font-weight='700' fill='%23c8a96b' text-anchor='middle' letter-spacing='-3'%3EP%3C/text%3E%3Ctext x='50' y='67' font-family='system-ui, sans-serif' font-size='24' font-weight='300' fill='%23c8a96b' text-anchor='middle' letter-spacing='-1' opacity='0.6'%3EC%3C/text%3E%3Ccircle cx='78' cy='24' r='3.5' fill='%23c8a96b' opacity='0.4'/%3E%3C/svg%3E">
+  <!-- inline favicon (same as template) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23101010'/%3E%3Ctext x='50' y='67' font-family='system-ui, sans-serif' font-size='48' font-weight='700' fill='%23c8a96b' text-anchor='middle' letter-spacing='-3'%3EP%3C/text%3E%3Ctext x='50' y='67' font-family='system-ui, sans-serif' font-size='24' font-weight='300' fill='%23c8a96b' text-anchor='middle' letter-spacing='-1' opacity='0.6'%3EC%3C/text%3E%3Ccircle cx='78' cy='24' r='3.5' fill='%23c8a96b' opacity='0.4'/%3E%3C/svg%3E">
 
-<style>
-:root {
-  --ink: #101010;
-  --paper: #f5f4f0;
-  --white: #fff;
-  --line: #d9d7d0;
-  --accent: #c8a96b;
-  --max: 1240px;
-  --serif: "Manrope", sans-serif;
-  --sans: "DM Sans", sans-serif;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--sans);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-a { color: inherit; text-decoration: none; }
-.container { width: min(var(--max), calc(100% - 64px)); margin: auto; }
+  <style>
+    /* ----- exact same styles as template, kept for consistency ----- */
+    :root{
+      --ink:#101010;
+      --paper:#f5f4f0;
+      --white:#fff;
+      --muted:#676767;
+      --line:#d9d7d0;
+      --soft:#eceae4;
+      --accent:#c8a96b;
+      --max:860px;
+      --serif:"Manrope",sans-serif;
+      --sans:"DM Sans",sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--paper);color:var(--ink);
+      font-family:var(--sans);line-height:1.7;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max),calc(100% - 64px));margin:auto}
 
-/* ---- NAV ---- */
-.nav {
-  height: 82px;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
-.logo { font-weight: 700; font-size: 1.2rem; letter-spacing: -.04em; z-index: 100; }
-.logo span { font-weight: 400; }
-.navlinks {
-  display: flex; gap: 30px; align-items: center; font-size: .82rem; color: #4f4f4f;
-  list-style: none; margin: 0; padding: 0;
-}
-.navlinks li { display: inline-block; }
-.navlinks a:hover { color: var(--ink); }
-.navlinks a.active { border-bottom: 2px solid var(--accent); padding-bottom: 4px; color: var(--ink); }
-.desktop-cta {
-  display: inline-flex; align-items: center; gap: 12px;
-  border: 1px solid var(--ink); padding: 11px 16px; font-size: .78rem; font-weight: 600;
-  transition: .2s;
-}
-.desktop-cta:hover { background: var(--ink); color: var(--white); }
+    /* ---- NAVIGATION ---- */
+    .nav{
+      height:82px;border-bottom:1px solid var(--line);
+      display:flex;align-items:center;justify-content:space-between;
+      position:relative;
+    }
+    .logo{font-weight:700;font-size:1.2rem;letter-spacing:-.04em;z-index:100}
+    .logo span{font-weight:400}
 
-.hamburger {
-  display: none; flex-direction: column; gap: 5px; cursor: pointer;
-  background: transparent; border: none; padding: 8px; z-index: 100;
-}
-.hamburger span {
-  display: block; width: 28px; height: 2px; background: var(--ink);
-  transition: all 0.3s ease; border-radius: 2px; transform-origin: center;
-}
-.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.hamburger.active span:nth-child(2) { opacity: 0; }
-.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .navlinks{
+      display:flex;gap:30px;align-items:center;font-size:.82rem;color:#4f4f4f;
+      list-style:none;margin:0;padding:0;
+    }
+    .navlinks li{display:inline-block}
+    .navlinks a:hover{color:var(--ink)}
+    .navlinks a.active{border-bottom:2px solid var(--accent);padding-bottom:4px;color:var(--ink)}
+    .navlinks .nav-cta{
+      display:inline-flex;align-items:center;gap:12px;
+      border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+      transition:.2s;
+    }
+    .navlinks .nav-cta:hover{background:var(--ink);color:var(--white)}
 
-.mobile-nav-overlay {
-  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-  background: var(--paper); z-index: 90; padding: 100px 40px 40px;
-  flex-direction: column; align-items: center; justify-content: center; gap: 32px;
-}
-.mobile-nav-overlay.open { display: flex; }
-.mobile-nav-overlay a {
-  font-family: var(--serif); font-size: 2.4rem; font-weight: 500; letter-spacing: -.04em;
-  color: var(--ink); transition: .2s;
-}
-.mobile-nav-overlay a:hover { color: #777; }
-.mobile-nav-overlay a.active { color: var(--accent); }
+    .desktop-cta{
+      display:inline-flex;align-items:center;gap:12px;
+      border:1px solid var(--ink);padding:11px 16px;font-size:.78rem;font-weight:600;
+      transition:.2s;
+    }
+    .desktop-cta:hover{background:var(--ink);color:var(--white)}
 
-/* ---- CASE STUDY / ARTICLE LAYOUT (matching fuel leak case) ---- */
-.article-hero {
-  padding: 64px 0 48px;
-  border-bottom: 1px solid var(--line);
-}
-.article-hero .meta {
-  display: flex; gap: 24px; flex-wrap: wrap;
-  font-size: .78rem; text-transform: uppercase; letter-spacing: .08em;
-  color: #777; font-weight: 600;
-  margin-bottom: 20px;
-}
-.article-hero .meta span { color: var(--accent); }
-.article-hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(2.8rem, 5.5vw, 5.2rem);
-  line-height: 1.02;
-  letter-spacing: -.065em;
-  font-weight: 500;
-  max-width: 900px;
-}
-.article-hero h1 em { font-style: italic; color: #777; }
-.article-hero .subtitle {
-  font-size: 1.2rem;
-  color: #555;
-  max-width: 720px;
-  margin-top: 20px;
-  line-height: 1.7;
-}
+    .hamburger{
+      display:none;flex-direction:column;gap:5px;cursor:pointer;
+      background:transparent;border:none;padding:8px;z-index:100;
+    }
+    .hamburger span{
+      display:block;width:28px;height:2px;background:var(--ink);
+      transition:all 0.3s ease;border-radius:2px;transform-origin:center;
+    }
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
-.article-body {
-  padding: 64px 0 80px;
-}
-.article-body .content {
-  max-width: 820px;
-}
-.article-body .content h2 {
-  font-family: var(--serif);
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  font-weight: 500;
-  letter-spacing: -.045em;
-  margin: 2.4rem 0 0.8rem;
-  line-height: 1.1;
-}
-.article-body .content h3 {
-  font-family: var(--serif);
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: -.03em;
-  margin: 2rem 0 0.6rem;
-  color: var(--ink);
-}
-.article-body .content p {
-  color: #3a3a3a;
-  font-size: 1.05rem;
-  line-height: 1.8;
-  margin-bottom: 1.2rem;
-}
-.article-body .content .pull-quote {
-  font-family: var(--serif);
-  font-size: 1.6rem;
-  line-height: 1.35;
-  font-weight: 500;
-  letter-spacing: -.03em;
-  border-left: 4px solid var(--accent);
-  padding-left: 28px;
-  margin: 2rem 0 2rem 0;
-  color: #222;
-}
-.article-body .content .pull-quote em {
-  font-style: italic;
-  color: #888;
-}
-.article-body .content .highlight-box {
-  background: var(--ink);
-  color: var(--white);
-  padding: 2rem 2.4rem;
-  border-radius: 8px;
-  margin: 2.2rem 0;
-}
-.article-body .content .highlight-box p {
-  color: #d0d0d0;
-  margin-bottom: 0.4rem;
-}
-.article-body .content .highlight-box strong {
-  color: var(--white);
-}
-.article-body .content ul {
-  margin: 1rem 0 1.5rem 1.8rem;
-  color: #3a3a3a;
-  font-size: 1.05rem;
-  line-height: 1.8;
-}
-.article-body .content ul li {
-  margin-bottom: 0.4rem;
-}
-.article-body .content hr {
-  border: none;
-  border-top: 1px solid var(--line);
-  margin: 2.5rem 0;
-}
+    .mobile-nav-overlay{
+      display:none;position:fixed;top:0;left:0;width:100%;height:100vh;
+      background:var(--paper);z-index:90;padding:100px 40px 40px;
+      flex-direction:column;align-items:center;justify-content:center;gap:32px;
+    }
+    .mobile-nav-overlay.open{display:flex}
+    .mobile-nav-overlay a{
+      font-family:var(--serif);font-size:2.4rem;font-weight:500;letter-spacing:-.04em;
+      color:var(--ink);transition:.2s;text-decoration:none;
+    }
+    .mobile-nav-overlay a:hover{color:#777}
+    .mobile-nav-overlay a.active{color:var(--accent)}
+    .mobile-nav-overlay .mobile-cta{
+      margin-top:16px;border:1px solid var(--ink);padding:16px 32px;
+      font-size:.82rem;font-weight:600;transition:.2s;
+    }
+    .mobile-nav-overlay .mobile-cta:hover{background:var(--ink);color:var(--white)}
 
-/* ---- PERSPECTIVE BOX (matching case study) ---- */
-.perspective-box {
-  background: #eceae4;
-  padding: 2.4rem 2.8rem;
-  border-radius: 8px;
-  margin: 2.8rem 0 1.5rem;
-  border-left: 4px solid var(--accent);
-}
-.perspective-box h3 {
-  font-family: var(--serif);
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: -.03em;
-  margin-bottom: 12px;
-}
-.perspective-box p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: #333;
-  margin-bottom: 0.8rem;
-}
-.perspective-box p:last-child {
-  margin-bottom: 0;
-}
+    /* ---- ARTICLE STYLES (same) ---- */
+    .article-hero{
+      padding:92px 0 48px;border-bottom:1px solid var(--line);
+    }
+    .article-hero .breadcrumb{
+      font-size:.72rem;color:#999;margin-bottom:24px;display:flex;align-items:center;gap:8px;
+    }
+    .article-hero .breadcrumb a{color:#777;transition:.2s}
+    .article-hero .breadcrumb a:hover{color:var(--ink)}
+    .article-hero .breadcrumb .sep{color:#ccc}
+    .article-hero .article-tag{
+      font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;
+      color:var(--accent);font-weight:700;display:inline-block;margin-bottom:16px;
+    }
+    .article-hero h1{
+      font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,4.8rem);
+      line-height:1.05;letter-spacing:-.055em;font-weight:500;max-width:780px;
+    }
+    .article-hero h1 em{font-style:italic;color:#777}
+    .article-hero .article-meta{
+      display:flex;gap:24px;margin-top:24px;font-size:.82rem;color:#777;
+      align-items:center;flex-wrap:wrap;
+    }
+    .article-hero .article-meta .divider{color:#ddd}
+    .article-hero .article-meta .author{font-weight:600;color:var(--ink)}
 
-/* ---- BACK LINK ---- */
-.back-link {
-  margin-top: 48px;
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
-}
-.back-link a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  font-size: .9rem;
-  color: #555;
-  transition: .2s;
-}
-.back-link a:hover {
-  color: var(--ink);
-}
+    .article-body{
+      padding:60px 0 80px;background:var(--white);
+    }
+    .article-body .content{
+      max-width:720px;margin:0 auto;
+    }
+    .article-body .content p{
+      font-size:1.05rem;color:#444;line-height:1.85;margin-bottom:1.5rem;
+    }
+    .article-body .content h2{
+      font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);
+      font-weight:500;letter-spacing:-.04em;margin:3rem 0 1.2rem;line-height:1.15;
+    }
+    .article-body .content h3{
+      font-family:var(--serif);font-size:1.4rem;font-weight:500;letter-spacing:-.03em;
+      margin:2.4rem 0 1rem;line-height:1.2;
+    }
+    .article-body .content blockquote{
+      border-left:4px solid var(--accent);padding:1.5rem 2rem;margin:2rem 0;
+      background:var(--paper);font-family:var(--serif);font-size:1.3rem;
+      font-weight:500;line-height:1.5;letter-spacing:-.02em;
+    }
+    .article-body .content blockquote em{font-style:italic;color:#999}
+    .article-body .content .pull-quote{
+      font-family:var(--serif);font-size:clamp(1.6rem,2.8vw,2.4rem);
+      font-weight:500;letter-spacing:-.04em;line-height:1.2;
+      padding:2rem 0;border-top:2px solid var(--line);border-bottom:2px solid var(--line);
+      margin:2.5rem 0;
+    }
+    .article-body .content .pull-quote em{font-style:italic;color:#999}
+    .article-body .content ul{
+      margin:1.2rem 0 1.8rem 1.5rem;list-style:none;
+    }
+    .article-body .content ul li{
+      padding-left:1.5rem;position:relative;margin-bottom:0.6rem;font-size:1.02rem;color:#444;
+    }
+    .article-body .content ul li::before{
+      content:"—";position:absolute;left:0;color:var(--accent);font-weight:600;
+    }
+    .article-body .content hr{
+      border:none;border-top:1px solid var(--line);margin:3rem 0;
+    }
+    .article-body .content .highlight-box{
+      background:var(--paper);padding:2rem 2.5rem;margin:2.5rem 0;border-left:4px solid var(--accent);
+    }
+    .article-body .content .highlight-box p:last-child{margin-bottom:0}
+    .article-body .content .highlight-box .label{
+      font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;
+      color:var(--accent);font-weight:700;display:block;margin-bottom:8px;
+    }
 
-/* ---- RELATED ARTICLES ---- */
-.related {
-  background: var(--paper);
-  padding: 60px 0 80px;
-  border-top: 1px solid var(--line);
-}
-.related .related-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--line);
-  max-width: 820px;
-  margin: 32px auto 0;
-  border: 1px solid var(--line);
-}
-.related .rel-card {
-  background: var(--white);
-  padding: 28px 24px;
-  min-height: 160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.related .rel-card small {
-  font-size: .6rem;
-  text-transform: uppercase;
-  letter-spacing: .14em;
-  color: #999;
-  font-weight: 700;
-}
-.related .rel-card h4 {
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  font-weight: 500;
-  letter-spacing: -.03em;
-  margin: 12px 0 8px;
-  line-height: 1.2;
-}
-.related .rel-card p {
-  color: #666;
-  font-size: .85rem;
-  line-height: 1.6;
-}
-.related .rel-card .rel-link {
-  font-size: .7rem;
-  font-weight: 600;
-  color: #777;
-  margin-top: 8px;
-  display: inline-block;
-}
-.related .rel-card .rel-link:hover {
-  color: var(--ink);
-}
+    /* ---- BACK TO THINKING ---- */
+    .back-link{
+      padding:40px 0 60px;background:var(--paper);
+    }
+    .back-link .back-inner{
+      max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px;
+      font-size:.82rem;color:#777;transition:.2s;
+    }
+    .back-link .back-inner:hover{color:var(--ink)}
+    .back-link .back-inner .arrow{font-size:1rem}
 
-/* ---- CTA ---- */
-.cta-band { background: var(--ink); color: var(--white); border-bottom: 0; padding: 0; }
-.cta-band .cta-inner {
-  padding: 115px 0;
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 80px;
-  align-items: end;
-}
-.cta-band h2 {
-  font-family: var(--serif);
-  font-size: clamp(3rem, 6.5vw, 6.3rem);
-  line-height: .95;
-  letter-spacing: -.075em;
-  font-weight: 500;
-}
-.cta-band p { color: #aaa; max-width: 440px; font-size: 1rem; line-height: 1.7; margin-bottom: 26px; }
-.cta-band .btn.primary { background: var(--white); color: var(--ink); border-color: var(--white); }
-.cta-band .btn.primary:hover { background: #ddd; }
+    /* ---- RELATED ARTICLES ---- */
+    .related{
+      background:var(--paper);padding:60px 0 80px;border-top:1px solid var(--line);
+    }
+    .related .related-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+      max-width:720px;margin:32px auto 0;border:1px solid var(--line);
+    }
+    .related .rel-card{
+      background:var(--paper);padding:28px 24px;min-height:160px;
+      display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .related .rel-card small{
+      font-size:.6rem;text-transform:uppercase;letter-spacing:.14em;color:#999;font-weight:700;
+    }
+    .related .rel-card h4{
+      font-family:var(--serif);font-size:1.1rem;font-weight:500;letter-spacing:-.03em;
+      margin:12px 0 8px;line-height:1.2;
+    }
+    .related .rel-card p{color:#666;font-size:.82rem;line-height:1.6}
+    .related .rel-card .rel-link{font-size:.7rem;font-weight:600;color:#777;margin-top:8px;display:inline-block}
+    .related .rel-card .rel-link:hover{color:var(--ink)}
 
-/* ---- FOOTER ---- */
-footer {
-  background: var(--ink);
-  color: var(--white);
-  padding: 35px 0 25px;
-  border-top: 1px solid #292929;
-}
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-.footer-brand p {
-  color: #777;
-  max-width: 310px;
-  font-size: .8rem;
-  margin-top: 8px;
-}
-.footer-links {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  font-size: .75rem;
-  color: #aaa;
-}
-.footer-links a:hover { color: #fff; }
-.footer-bottom {
-  border-top: 1px solid #292929;
-  margin-top: 35px;
-  padding-top: 17px;
-  color: #666;
-  font-size: .68rem;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
+    /* ---- CTA ---- */
+    .cta-band{background:var(--ink);color:var(--white);border-bottom:0;padding:0}
+    .cta-band .cta-inner{
+      padding:80px 0;display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:end;
+    }
+    .cta-band h2{
+      font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.8rem);
+      line-height:.95;letter-spacing:-.075em;font-weight:500;
+    }
+    .cta-band p{color:#aaa;max-width:440px;font-size:1rem;line-height:1.7;margin-bottom:26px}
+    .cta-band .btn.primary{background:var(--white);color:var(--ink);border-color:var(--white)}
+    .cta-band .btn.primary:hover{background:#ddd}
 
-/* ---- RESPONSIVE ---- */
-@media(max-width: 1024px) {
-  .cta-band .cta-inner { grid-template-columns: 1fr; gap: 40px; }
-}
-@media(max-width: 900px) {
-  .container { width: min(var(--max), calc(100% - 40px)); }
-  .navlinks { display: none; }
-  .desktop-cta { display: none; }
-  .hamburger { display: flex; }
-  .related .related-grid { grid-template-columns: 1fr; }
-}
-@media(max-width: 600px) {
-  .container { width: calc(100% - 32px); }
-  .nav { height: 72px; }
-  .article-hero { padding: 40px 0 32px; }
-  .article-hero h1 { font-size: 2.2rem; }
-  .article-body { padding: 40px 0 60px; }
-  .article-body .content p,
-  .article-body .content ul {
-    font-size: 0.98rem;
-  }
-  .article-body .content .pull-quote {
-    font-size: 1.3rem;
-    padding-left: 18px;
-  }
-  .article-body .content .highlight-box {
-    padding: 1.4rem;
-  }
-  .perspective-box {
-    padding: 1.6rem;
-  }
-  .cta-band .cta-inner { padding: 80px 0; }
-  .mobile-nav-overlay a { font-size: 1.8rem; }
-}
-</style>
+    /* ---- FOOTER ---- */
+    footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1px solid #292929}
+    .footer-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+    .footer-brand p{color:#777;max-width:310px;font-size:.8rem;margin-top:8px}
+    .footer-links{display:flex;gap:24px;flex-wrap:wrap;font-size:.75rem;color:#aaa}
+    .footer-links a:hover{color:#fff}
+    .footer-bottom{border-top:1px solid #292929;margin-top:35px;padding-top:17px;color:#666;font-size:.68rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+    /* ---- RESPONSIVE ---- */
+    @media(max-width:900px){
+      .container{width:min(var(--max),calc(100% - 40px))}
+      .navlinks{display:none}
+      .desktop-cta{display:none}
+      .hamburger{display:flex}
+      .cta-band .cta-inner{grid-template-columns:1fr;gap:40px}
+      .related .related-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      .container{width:calc(100% - 32px)}
+      .nav{height:72px}
+      .article-hero{padding:65px 0 32px}
+      .article-hero h1{font-size:2.6rem}
+      .article-body{padding:40px 0 60px}
+      .article-body .content p{font-size:.98rem}
+      .article-body .content blockquote{padding:1.2rem 1.5rem;font-size:1.1rem}
+      .article-body .content .pull-quote{font-size:1.4rem}
+      .article-body .content .highlight-box{padding:1.5rem}
+      .cta-band .cta-inner{padding:60px 0}
+      .mobile-nav-overlay a{font-size:1.8rem}
+    }
+  </style>
 </head>
 <body>
 
 <!-- ============================================================ -->
-<!-- NAVIGATION                                                    -->
+<!-- NAVIGATION (exact same as template)                          -->
 <!-- ============================================================ -->
 <div class="container">
-<nav class="nav">
-  <a class="logo" href="index.html">Prime<span>Chain</span></a>
-  
-  <ul class="navlinks" id="navLinks">
-    <li><a href="index.html#solutions">What We Do</a></li>
-    <li><a href="whoweare.html">Who We Are</a></li>
-    <li><a href="ourthinking.html" class="active">Our Thinking</a></li>
-  </ul>
-  
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
-  
-  <a class="desktop-cta" href="index.html#contact">Talk to PrimeChain <span>↗</span></a>
-</nav>
+  <nav class="nav">
+    <a class="logo" href="index.html">Prime<span>Chain</span></a>
+    
+    <ul class="navlinks" id="navLinks">
+      <li><a href="#solutions">What We Do</a></li>
+      <li><a href="whoweare.html">Who We Are</a></li>
+      <li><a href="ourthinking.html">Our Thinking</a></li>
+    </ul>
+    
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    
+    <a class="desktop-cta" href="#contact">Talk to PrimeChain <span>↗</span></a>
+  </nav>
 </div>
 
 <!-- Mobile Overlay -->
@@ -417,15 +290,20 @@ footer {
 <!-- ============================================================ -->
 <section class="article-hero">
 <div class="container">
-  <div class="meta">
-    <span>Article</span>
-    <span>·</span>
-    <span>Supply Chain</span>
+  <div class="breadcrumb">
+    <a href="ourthinking.html">Our Thinking</a>
+    <span class="sep">/</span>
+    <span>Fuel &amp; Logistics</span>
   </div>
-  <h1>Your Supply Chain Knows <em>More Than You Think</em></h1>
-  <p class="subtitle">
-    Your business is already telling you how it operates. The evidence is everywhere. The problem is that it rarely exists in one place.
-  </p>
+  <span class="article-tag">Case Study</span>
+  <h1>The Fuel Was Accounted For. The Money Wasn't. <em>Nobody Could See</em></h1>
+  <div class="article-meta">
+    <span class="author">PrimeChain</span>
+    <span class="divider">·</span>
+    <span>Fuel &amp; Logistics</span>
+    <span class="divider">·</span>
+    <span>5 min read</span>
+  </div>
 </div>
 </section>
 
@@ -436,321 +314,257 @@ footer {
 <div class="container">
   <div class="content">
 
-    <p>Your business is already telling you how it operates.</p>
+    <p>A bulk logistics operator had just secured its biggest contract to date. 20,000 tonnes of RB1 coal. Forty contracted trucks. Hundreds of loads moving from Mpumalanga to Durban.</p>
 
+    <p>On paper, it was the kind of contract that should have made the year. Instead, the operation was slowly bleeding margin through a cost everyone had learned to accept.</p>
+
+    <p><strong>Fuel.</strong></p>
+
+    <p>The numbers were getting bigger. The answers weren't.</p>
+    <p>Fuel invoices arrived every week. Large numbers. Sometimes larger than expected.</p>
+
+    <p>The team knew fuel was expensive. They knew prices were moving. They knew forty trucks doing hundreds of loads would consume a lot of diesel.</p>
+
+    <p>So the invoices were paid.</p>
+
+    <p>Fuel was treated as:</p>
     <ul>
-      <li>Every work order.</li>
-      <li>Every delivery note.</li>
-      <li>Every stock movement.</li>
-      <li>Every fuel slip.</li>
-      <li>Every job card.</li>
-      <li>Every WhatsApp message.</li>
-      <li>Every invoice.</li>
+      <li>"Just a cost of doing business."</li>
     </ul>
+    <p>But on a contract where margins were measured in single digits, that assumption was becoming dangerous.</p>
 
-    <p>The evidence is everywhere.</p>
-    <p>The problem is that it rarely exists in one place, in one format, or at the moment you need it.</p>
-    <p>So businesses make decisions from fragments. A spreadsheet here. A WhatsApp message there. A report at the end of the month. A stack of paperwork waiting to be reconciled.</p>
-
-    <div class="pull-quote">
-      The information exists.<br>The visibility does not.
-    </div>
-
-    <p>That matters because every business has a supply chain.</p>
-    <p>Not just the companies moving containers across oceans or managing enormous warehouses. Your supply chain is simply everything that has to happen — and everything that has to move — for you to deliver value to a customer.</p>
-    <p>And somewhere inside that chain, there is almost always more intelligence than the business is using.</p>
+    <p>The problem wasn't that the business couldn't see its fuel spend. It could.</p>
+    <p>The problem was that it couldn't see what was driving it.</p>
 
     <hr>
 
-    <h2>The Supply Chain You Already Have</h2>
-
-    <p>Take a technical contractor replacing municipal electricity meters.</p>
-    <p>On paper, it is a straightforward operation.</p>
-
+    <h2>The problem wasn't the invoice</h2>
+    <p>The operation could tell you:</p>
     <ul>
-      <li>Meters arrive from the municipality.</li>
-      <li>They are stored.</li>
-      <li>Technicians receive them.</li>
-      <li>Technicians travel to sites.</li>
-      <li>Old meters are removed.</li>
-      <li>New meters are installed.</li>
-      <li>Evidence is captured.</li>
-      <li>Old meters come back.</li>
-      <li>Work is verified.</li>
-      <li>The municipality is invoiced.</li>
+      <li>How much fuel was purchased.</li>
     </ul>
-
-    <p>But look closer. Every one of those activities creates information.</p>
-
+    <p>It couldn't reliably tell you:</p>
     <ul>
-      <li>A delivery note tells you what arrived.</li>
-      <li>A stock record tells you what was received and allocated.</li>
-      <li>A work order tells you what needs to happen.</li>
-      <li>A technician's field record tells you what actually happened.</li>
-      <li>A photograph proves the installation.</li>
-      <li>A meter serial number connects the physical asset to the job.</li>
-      <li>A returned old meter closes the loop.</li>
-      <li>An invoice tells you what the business is trying to get paid for.</li>
+      <li>Which truck consumed it.</li>
+      <li>Which loads it supported.</li>
+      <li>Which route it was associated with.</li>
+      <li>Whether the consumption was reasonable.</li>
+      <li>Which vehicles were consistently above expectation.</li>
+      <li>Whether a contractor's performance was deteriorating.</li>
     </ul>
+    <p>The fuel data and the operational data existed. They simply weren't connected.</p>
 
-    <div class="pull-quote">
-      None of these records, individually, tells you very much.<br>Together, they tell you how the operation actually works.
-    </div>
+    <p>So an invoice could be questioned at an accounting level, but not at an operational level.</p>
 
-    <p>That is where things become interesting.</p>
+    <p>There was no practical way to say:</p>
+    <ul>
+      <li>"This truck consumed more fuel than its operating pattern should require."</li>
+    </ul>
 
     <hr>
 
-    <h2>The Problem Isn't the Work. It's What Happens to the Evidence.</h2>
+    <h2>We started with the work, not the fuel</h2>
+    <p>Rather than building another report of fuel expenditure, we worked backwards from the operation.</p>
 
-    <p>Imagine 500 meters arrive at the contractor's yard.</p>
-    <p>There is a delivery note. Someone counts them. The meters go into storage.</p>
-    <p>Later, 100 are allocated to technicians. A technician installs 17. Another installs 21. A few jobs fail because customers are unavailable. Some meters remain in vehicles overnight. Old meters are returned to the yard. Job cards are completed. Photographs sit in WhatsApp conversations.</p>
-    <p>At month-end, somebody starts reconciling everything.</p>
+    <p>A truck performs a load. That load follows a route. The truck travels a known distance. The operation has an expected consumption profile. Fuel is purchased along the way.</p>
 
-    <p>This is where the business discovers that it does not actually have one version of what happened.</p>
+    <p>If those events can be connected, fuel stops being an invoice. It becomes an operational measurement.</p>
 
+    <p>The model became:</p>
     <ul>
-      <li>The stock register says one thing.</li>
-      <li>The work orders say another.</li>
-      <li>The technician's paperwork says something else.</li>
-      <li>The WhatsApp photographs are somewhere in between.</li>
-      <li>The returns register is incomplete.</li>
-      <li>And the invoice cannot be submitted until someone works out what is missing.</li>
+      <li>Truck → Load → Route → Distance → Expected Consumption → Actual Fuel → Variance</li>
     </ul>
+    <p>That changed the question completely.</p>
 
     <div class="pull-quote">
-      The work happened. The data was generated.<br>But the story was never connected.
+      Establishing what “normal” looks like
     </div>
 
-    <p>That is the real operational problem.</p>
+    <p>The first requirement was a baseline.</p>
+    <p>Not every truck should necessarily be judged against the same number. Vehicle type, operating conditions, route characteristics, load profile and historical performance all matter.</p>
+
+    <p>We therefore established an expected consumption profile against which actual fuel activity could be compared.</p>
+
+    <p>For each truck, the system could consider factors such as:</p>
+    <ul>
+      <li>Expected fuel consumption</li>
+      <li>Distance travelled</li>
+      <li>Route</li>
+      <li>Loads completed</li>
+      <li>Tonnes moved</li>
+      <li>Fuel issued</li>
+      <li>Fuel price</li>
+      <li>Operating period</li>
+    </ul>
+    <p>The objective was simple:</p>
+    <p><strong>Know what fuel consumption should reasonably look like before deciding that actual consumption is abnormal.</strong></p>
 
     <hr>
 
-    <h2>Every Operational Problem Leaves a Data Trail</h2>
+    <h2>Connecting fuel to the operation</h2>
+    <p>The breakthrough came from linking records that had previously been viewed separately.</p>
 
+    <p>Fuel transactions were associated with the trucks consuming the fuel. Operational records established loads and routes. Distance and trip information provided the context.</p>
+
+    <p>The system could then begin constructing a picture of actual consumption.</p>
+
+    <p>Instead of:</p>
     <ul>
-      <li>A missing meter leaves a trail.</li>
-      <li>A delayed job leaves a trail.</li>
-      <li>A technician who consistently completes fewer jobs leaves a trail.</li>
-      <li>A vehicle that spends too much time between jobs leaves a trail.</li>
-      <li>A stock discrepancy leaves a trail.</li>
-      <li>A recurring rework problem leaves a trail.</li>
-      <li>A late invoice leaves a trail.</li>
-      <li>A customer dispute leaves a trail.</li>
+      <li>R1.2 million fuel expense</li>
     </ul>
-
-    <p>The business usually has the evidence. What it does not have is the ability to connect the evidence quickly enough to understand what it means.</p>
-
-    <div class="pull-quote">
-      This is why we believe businesses don't have a data problem.<br><em>They have a visibility problem.</em>
-    </div>
-
-    <p>The information is already being generated by the operation. The opportunity is to turn that information into something the business can actually see.</p>
+    <p>management could see:</p>
+    <ul>
+      <li>Truck 17 — above expected</li>
+      <li>Truck 23 — within expected range</li>
+      <li>Truck 31 — repeated variance</li>
+      <li>Route B — elevated consumption across multiple vehicles</li>
+    </ul>
+    <p>That is a very different level of visibility.</p>
 
     <hr>
 
-    <h2>Look at the Chain Differently</h2>
+    <h2>From fuel spend to fuel variance</h2>
+    <p>A fuel invoice tells you what you paid. A fuel-control system asks:</p>
+    <p><strong>Was that consumption reasonable?</strong></p>
 
-    <p>Go back to our meter contractor.</p>
-    <p>Instead of looking at six separate administrative activities, look at the operation as one connected system.</p>
+    <div style="overflow-x:auto; margin: 1.5rem 0;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.9rem; background:var(--paper); border:1px solid var(--line);">
+        <thead>
+          <tr style="background:var(--soft); border-bottom:1px solid var(--line);">
+            <th style="padding:10px 12px; text-align:left; font-weight:600;">Fuel Performance</th>
+            <th style="padding:10px 12px; text-align:left; font-weight:600;">Expected</th>
+            <th style="padding:10px 12px; text-align:left; font-weight:600;">Actual</th>
+            <th style="padding:10px 12px; text-align:left; font-weight:600;">Variance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:8px 12px;">Distance</td><td style="padding:8px 12px;">12,000 km</td><td style="padding:8px 12px;">12,000 km</td><td style="padding:8px 12px;">—</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:8px 12px;">Expected consumption</td><td style="padding:8px 12px;">4,286 L</td><td style="padding:8px 12px;">—</td><td style="padding:8px 12px;">—</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:8px 12px;">Actual consumption</td><td style="padding:8px 12px;">—</td><td style="padding:8px 12px;">4,850 L</td><td style="padding:8px 12px;">+564 L</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 12px;">Expected fuel cost</td><td style="padding:8px 12px;">R93,000</td><td style="padding:8px 12px;">—</td><td style="padding:8px 12px;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:8px 12px;">Actual fuel cost</td><td style="padding:8px 12px;">—</td><td style="padding:8px 12px;">R105,200</td><td style="padding:8px 12px; font-weight:600;">+R12,200</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The important number is not simply the additional R12,200. It is the fact that the system can now ask:</p>
+    <p><strong>Why?</strong></p>
+    <ul>
+      <li>Is the truck genuinely working harder?</li>
+      <li>Is the route different?</li>
+      <li>Is there excessive idling?</li>
+      <li>Is the vehicle mechanically inefficient?</li>
+      <li>Are there unusually high fuel transactions?</li>
+      <li>Is the fuel being associated with the correct vehicle and activity?</li>
+      <li>Or is there another operational explanation?</li>
+    </ul>
 
     <div class="highlight-box">
-      <p style="font-weight: 600; font-size: 1.1rem; color: var(--accent);">The Connected Operation</p>
-      <p><strong>Meters received → meters allocated → jobs completed → evidence captured → old meters returned → work verified → invoice submitted → payment received.</strong></p>
+      <span class="label">The shift</span>
+      <p><strong>Before:</strong> "Fuel costs are too high." <br>
+      <strong>After:</strong> "Truck 17 has consumed 11% above its expected fuel profile across the last 18 loads. Let's understand why."</p>
     </div>
 
-    <p>Now the questions change.</p>
+    <hr>
 
+    <h2>The system started looking for patterns</h2>
+    <p>One abnormal transaction isn't necessarily a problem. Repeated abnormal behaviour is much more interesting.</p>
+
+    <p>So the analysis moved beyond individual fuel transactions. We looked for patterns across:</p>
     <ul>
-      <li>How many meters are actually available?</li>
-      <li>Where are they?</li>
-      <li>Which technician has which meters?</li>
-      <li>How many have been installed?</li>
-      <li>How many jobs are complete but not yet documented?</li>
-      <li>Which installations are missing evidence?</li>
-      <li>How many old meters should have been returned?</li>
-      <li>Which work has been completed but cannot yet be invoiced?</li>
-      <li>Where are jobs getting stuck?</li>
-      <li>And perhaps the most important question: <strong>Where is value entering the operation — and where is it getting lost?</strong></li>
+      <li><strong>Truck</strong> — Which vehicles consistently consumed above expectation?</li>
+      <li><strong>Route</strong> — Did certain routes produce higher-than-expected consumption?</li>
+      <li><strong>Load</strong> — Did fuel consumption make sense relative to loads completed?</li>
+      <li><strong>Time</strong> — Were there periods where fuel activity didn't align with operational activity?</li>
+      <li><strong>Contractor</strong> — Were certain contracted vehicles consistently outside the expected range?</li>
     </ul>
+    <p>The objective wasn't to accuse. It was to identify where investigation was warranted.</p>
 
-    <p>Those answers do not require the business to become a technology company. They require the business to understand its own operation.</p>
+    <p>That changed accountability.</p>
 
     <hr>
 
-    <h2>Visibility Is Not Another Dashboard</h2>
+    <h2>The first major leak became visible</h2>
+    <p>Once the fuel transactions were connected to the operational activity, the scale of the problem became difficult to ignore.</p>
 
-    <p>This distinction matters.</p>
-    <p>A dashboard by itself does not create visibility. Neither does moving a spreadsheet into an application. Neither does automating a process that nobody properly understood in the first place.</p>
-    <p>You can digitise a bad process and simply make the bad process faster.</p>
+    <div style="background:var(--paper); padding:2rem; border-left:4px solid var(--accent); margin:2rem 0;">
+      <p style="font-size:1.6rem; font-weight:600; margin:0; letter-spacing:-.02em; font-family:var(--serif);">R200,000+</p>
+      <p style="margin:0.2rem 0 0; color:#555;">Potential fuel leakage / exposure identified across the vehicles analysed.</p>
+    </div>
 
-    <p>Real visibility begins earlier. It begins with understanding how work actually moves through the business.</p>
+    <p>The significance wasn't simply the amount. It was the fact that the business had been paying for the fuel without having a reliable mechanism to determine where the excess consumption was occurring.</p>
 
-    <ul>
-      <li>Where does information originate?</li>
-      <li>Who touches it?</li>
-      <li>Where does it get recorded?</li>
-      <li>Where does it get duplicated?</li>
-      <li>Where does it disappear?</li>
-      <li>Which handoffs create delays?</li>
-      <li>Which activities create cost?</li>
-      <li>Which exceptions keep happening?</li>
-      <li>Which records should connect but don't?</li>
-    </ul>
-
-    <p>Once those questions are understood, technology becomes useful.</p>
-    <p>Not because software is the answer. Because the business finally knows <strong>what needs to be made visible.</strong></p>
+    <p>The leak wasn't hidden because the data didn't exist. It was hidden because the data wasn't connected.</p>
 
     <hr>
 
-    <h2>Your Paperwork Is Already an Operational Database</h2>
-
-    <p>This is true far beyond the meter contractor.</p>
-
+    <h2>From one investigation to a control system</h2>
+    <p>The goal wasn't to find one problem and produce one report. The system was designed so that the same analysis could continue as the operation moved.</p>
     <ul>
-      <li>A trucking company has delivery notes, weighbridge tickets, fuel slips, trip sheets and invoices.</li>
-      <li>A building contractor has purchase orders, delivery notes, site records, timesheets and variation orders.</li>
-      <li>A maintenance company has job cards, technician reports, parts issued and customer sign-offs.</li>
-      <li>A commodity trader has loading records, weighbridge tickets, transport records, delivery confirmations and invoices.</li>
-      <li>A distributor has purchase orders, stock movements, picking records, delivery notes and returns.</li>
+      <li>New fuel transactions could be compared against expected behaviour.</li>
+      <li>New loads could be linked to trucks and routes.</li>
+      <li>Exceptions could be surfaced.</li>
+      <li>Historical performance could be compared.</li>
+      <li>And management could monitor whether identified issues were isolated incidents or recurring patterns.</li>
     </ul>
+    <p>The solution therefore moved from:</p>
+    <p style="font-weight:600;">Investigation → Continuous control.</p>
 
-    <p>Different industries. Different documents. Different workflows.</p>
-    <p>But underneath them is the same thing:</p>
+    <div class="highlight-box">
+      <span class="label">Before &amp; After</span>
+      <p><strong>Before</strong><br>
+      Fuel invoices viewed in aggregate · Spend visible · No per-truck baseline · Problems discovered at month-end · Difficult to challenge contractors · Fuel treated as a fixed operating cost · Data existed in separate places · Leakage difficult to explain</p>
+      <p style="margin-top:1rem;"><strong>After</strong><br>
+      Fuel activity linked to operational activity · Consumption visible · Expected truck-level consumption · Exceptions surfaced through ongoing analysis · Evidence-based performance conversations · Fuel treated as a measurable operational variable · Data connected around the truck and load · Variance could be investigated</p>
+    </div>
+
+    <hr>
+
+    <h2>The outcome wasn't a fuel dashboard</h2>
+    <p>The dashboard was only the interface. The real solution was the control logic underneath it.</p>
+    <ul>
+      <li>Fuel transactions were connected to trucks.</li>
+      <li>Trucks were connected to operational activity.</li>
+      <li>Operational activity was connected to routes and loads.</li>
+      <li>Actual consumption was compared against expected behaviour.</li>
+      <li>And exceptions were surfaced for investigation.</li>
+    </ul>
+    <p>That created something the business didn't have before:</p>
+    <p><strong>A way to see where fuel performance was moving away from expectation while the operation was still running.</strong></p>
+
+    <hr>
+
+    <h2>PrimeChain Perspective</h2>
+    <p>Operational costs rarely announce themselves as problems. They arrive as invoices. They appear as small variances. They get absorbed into monthly totals.</p>
+
+    <p>And eventually someone says: <em>"That's just the cost of running the business."</em></p>
+
+    <p>But when margins are tight, "just a cost" can become the place where profitability disappears.</p>
+
+    <p>The answer isn't always more reporting. Sometimes the business already has all the data it needs. It just needs the right connections.</p>
+
+    <p>At PrimeChain, we connect operational records to the models and controls needed to understand what is actually happening.</p>
 
     <div class="pull-quote">
-      A business generating evidence as it works.
+      Because the question isn't: “How much fuel did we buy?”<br>
+      <em>It's: “Which trucks consumed it, what work did they perform, what should they have consumed, and where is the difference?”</em>
     </div>
 
-    <p>That evidence contains operational intelligence. Most businesses simply never connect it.</p>
+    <p>That is where operational data becomes operational intelligence.</p>
 
-    <hr>
-
-    <h2>The Cost of Not Seeing</h2>
-
-    <p>When visibility is poor, businesses compensate with people.</p>
-
-    <ul>
-      <li>Someone checks the spreadsheet.</li>
-      <li>Someone phones the driver.</li>
-      <li>Someone searches WhatsApp.</li>
-      <li>Someone asks the technician.</li>
-      <li>Someone counts the stock again.</li>
-      <li>Someone reconciles the paperwork at month-end.</li>
-      <li>Someone builds the report.</li>
-      <li>Someone explains why the numbers don't match.</li>
-    </ul>
-
-    <p>And because these activities happen manually, the business becomes dependent on individual memory and effort.</p>
-    <p>The operation may still function. But it becomes difficult to scale.</p>
-    <p>Every additional vehicle, technician, customer, job or transaction creates more administrative effort. More information. More reconciliation. More opportunities for something to fall between the cracks.</p>
-
-    <p>Eventually, the business reaches a point where growth does not simply mean more revenue. It means <strong>more complexity.</strong></p>
-    <p>And complexity without visibility becomes operational friction.</p>
-
-    <hr>
-
-    <h2>What Changes When You Can See?</h2>
-
-    <p>Imagine the same contractor six months later.</p>
-
-    <ul>
-      <li>Meters received are recorded immediately.</li>
-      <li>Every meter has an identity.</li>
-      <li>Allocations are visible.</li>
-      <li>Technicians capture work from the field.</li>
-      <li>Photographs and readings are attached to the job they belong to.</li>
-      <li>Completed work is visible before the paperwork reaches the office.</li>
-      <li>Exceptions surface early.</li>
-      <li>Returns are tracked.</li>
-      <li>Management can see today's production without waiting for a month-end report.</li>
-      <li>Invoices are built from verified work rather than reconstructed paperwork.</li>
-    </ul>
-
-    <p>The operation has not fundamentally changed. The technicians are still installing meters. The vehicles are still travelling to sites. The municipality is still issuing work orders.</p>
-
-    <div class="pull-quote">
-      What changed is the business's ability to see what is happening.
-    </div>
-
-    <p>And that changes the quality of the decisions the business can make.</p>
-
-    <hr>
-
-    <h2>This Is Operational Intelligence</h2>
-
-    <p>Operational intelligence is not about collecting more data. It is about making the information your operation already generates useful.</p>
-
-    <ul>
-      <li>Connecting the evidence.</li>
-      <li>Understanding the flow of work.</li>
-      <li>Seeing exceptions.</li>
-      <li>Measuring what matters.</li>
-      <li>Finding the bottlenecks.</li>
-      <li>Understanding where money, time and capacity are being lost.</li>
-      <li>And giving the people running the business enough clarity to act before a small problem becomes a large one.</li>
-    </ul>
-
-    <div class="pull-quote">
-      Because your operation is already producing the answers.<br><em>The question is whether you can see them.</em>
-    </div>
-
-    <hr>
-
-    <h2>Your Supply Chain Is Already Talking</h2>
-
-    <p>There is a version of every business where the owner knows what is happening. They know what came in. What went out. What is stuck. What has been completed. What is profitable. What needs attention.</p>
-
-    <p>And there is another version where the business is constantly asking:</p>
-
-    <ul>
-      <li><em>"Can you check?"</em></li>
-      <li><em>"Did that get delivered?"</em></li>
-      <li><em>"How many are left?"</em></li>
-      <li><em>"Why doesn't this number match?"</em></li>
-      <li><em>"Has that job been completed?"</em></li>
-      <li><em>"Where is the paperwork?"</em></li>
-      <li><em>"Can we invoice this yet?"</em></li>
-    </ul>
-
-    <p>That gap is not necessarily caused by bad people. It is not necessarily caused by a lack of effort. And it is certainly not always solved by buying bigger software.</p>
-    <p>It is caused by an operation that has outgrown the way its information is being managed.</p>
-
-    <div class="pull-quote">
-      Your supply chain already knows more than you think.
-    </div>
-
-    <p>The work is generating the evidence. The paperwork is generating the evidence. The people are generating the evidence. The transactions are generating the evidence.</p>
-
-    <div class="pull-quote">
-      The intelligence is already there.<br><em>What is missing is the connection between the pieces.</em>
-    </div>
-
-    <p>And once those pieces are connected, something changes.</p>
-
-    <ul>
-      <li>You stop managing the business from fragments.</li>
-      <li>You stop reconstructing yesterday.</li>
-      <li>You start seeing today.</li>
-      <li>And you can finally make decisions based on how the business <strong>actually operates</strong>.</li>
-    </ul>
-
-    <!-- PrimeChain Perspective -->
-    <div class="perspective-box">
-      <h3>PrimeChain Perspective</h3>
-      <p>Every business already generates the information it needs to improve. The challenge isn't collecting more. The challenge is connecting what already exists.</p>
-      <p>At PrimeChain, we connect operational records to the models and controls needed to understand what is actually happening.</p>
-      <p style="font-weight: 600; font-size: 1.1rem; margin-top: 12px;">
-        Because the question isn't: <em>"What data do we need to collect?"</em><br />
-        It's: <em>"What is our operation already telling us that we're not seeing?"</em>
-      </p>
-      <p>That is where operational data becomes <strong>operational intelligence.</strong></p>
-    </div>
-
-    <!-- Back link -->
-    <div class="back-link">
-      <a href="ourthinking.html">← Back to Our Thinking</a>
+    <div style="background:var(--paper);padding:2rem;border-left:4px solid var(--ink);margin-top:2.5rem;">
+      <p style="font-size:0.95rem;margin-bottom:0.5rem;font-weight:600;color:var(--ink);">Every business deserves to see how it really operates.</p>
+      <p style="font-size:0.95rem;color:#555;margin-bottom:0;">— PrimeChain</p>
     </div>
 
   </div>
@@ -758,20 +572,32 @@ footer {
 </section>
 
 <!-- ============================================================ -->
-<!-- RELATED ARTICLES                                              -->
+<!-- BACK TO THINKING                                              -->
+<!-- ============================================================ -->
+<section class="back-link">
+<div class="container">
+  <a href="ourthinking.html" class="back-inner">
+    <span class="arrow">←</span>
+    Back to Our Thinking
+  </a>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- RELATED ARTICLES (same as template, with adjusted links)      -->
 <!-- ============================================================ -->
 <section class="related">
 <div class="container">
-  <h3 style="font-family: var(--serif); font-size: 1.6rem; font-weight: 500; letter-spacing: -.04em; text-align: center; max-width: 720px; margin: 0 auto;">More from Our Thinking</h3>
+  <h3 style="font-family:var(--serif);font-size:1.6rem;font-weight:500;letter-spacing:-.04em;text-align:center;max-width:720px;margin:0 auto;">More from Our Thinking</h3>
   <div class="related-grid">
     
     <article class="rel-card">
       <div>
         <small>Field Note</small>
-        <h4>The Work Behind the Work</h4>
-        <p>Your business doesn't just perform the work. It spends hours documenting, reconciling and reporting it afterwards.</p>
+        <h4>Your Supply Chain Knows More Than You Think</h4>
+        <p>Your business generates evidence everywhere — but rarely connects it.</p>
       </div>
-      <a href="work-behind-the-work.html" class="rel-link">Read →</a>
+      <a href="supplychain.html" class="rel-link">Read →</a>
     </article>
     
     <article class="rel-card">
@@ -789,7 +615,7 @@ footer {
         <h4>The R600,000 Margin Leak Hidden Between Deliveries</h4>
         <p>Revenue was being generated. Trips were being completed. But margin was disappearing.</p>
       </div>
-      <a href="case-study-fuel-leak.html" class="rel-link">Read →</a>
+      <a href="#" class="rel-link">Read →</a>
     </article>
     
   </div>
@@ -837,7 +663,7 @@ footer {
 </footer>
 
 <!-- ============================================================ -->
-<!-- JAVASCRIPT                                                    -->
+<!-- JAVASCRIPT (same hamburger toggle)                           -->
 <!-- ============================================================ -->
 <script>
 (function() {
