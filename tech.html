@@ -1,278 +1,430 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="module" src="/@vite/client"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>PrimeChain Field</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef1f3;
+    --surface:#ffffff;
+    --surface-2:#f4f6f7;
+    --border:#dde3e8;
+    --text:#1a2027;
+    --text-dim:#667080;
+    --text-faint:#98a1ab;
+    --blue:#1f5fbf;
+    --blue-tint:#e7f0fd;
+    --amber:#c47b12;
+    --amber-tint:#fbf0dd;
+    --green:#0f9d68;
+    --green-tint:#e2f7ee;
+    --red:#d13d3d;
+    --red-tint:#fce9e9;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    background:#dfe4e8;
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+    display:flex;
+    justify-content:center;
+    min-height:100vh;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrimeChain Field Tech — Mobile App</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; color: #f8fafc; }
-    .mono { font-family: 'JetBrains Mono', monospace; }
-  </style>
-<script src="/_aistudio-iframe.js?v=2f1c016a"></script></head>
-<body class="min-h-screen bg-slate-950 flex justify-center items-center p-2 sm:p-6">
+  .phone{
+    width:390px;
+    min-height:100vh;
+    background:var(--bg);
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 0 0 1px rgba(0,0,0,.05);
+  }
+  .statusbar{
+    height:24px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 22px;font-size:11.5px;font-weight:600;color:var(--text);
+  }
 
-  <!-- Mobile Device Enclosure -->
-  <div class="w-full max-w-[400px] h-[820px] bg-slate-900 border-[8px] border-slate-800 rounded-[40px] shadow-2xl overflow-hidden flex flex-col relative">
-    
-    <!-- Phone Top Notch / Status Bar -->
-    <div class="bg-slate-950 px-6 py-2 flex justify-between items-center text-[10px] text-slate-400 font-mono select-none">
-      <span>09:41</span>
-      <div class="w-16 h-3 bg-slate-800 rounded-full"></div>
-      <div class="flex items-center gap-1">
-        <span>5G</span>
-        <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
-      </div>
+  .screen{
+    display:none;
+    min-height:calc(100vh - 24px);
+    flex-direction:column;
+    animation:fadein .18s ease;
+  }
+  .screen.active{display:flex;}
+  @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ---- Header ---- */
+  .header{
+    padding:18px 20px 16px 20px;
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+  }
+  .header-row{display:flex;align-items:center;gap:12px;}
+  .back-btn{
+    width:32px;height:32px;border-radius:9px;background:var(--surface-2);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;
+  }
+  .greeting{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;}
+  .greeting-sub{font-size:12px;color:var(--text-faint);margin-top:2px;}
+  .header-title{font-family:'Space Grotesk',sans-serif;font-size:16.5px;font-weight:700;}
+  .header-sub{font-size:11.5px;color:var(--text-faint);margin-top:1px;}
+
+  .badge{
+    display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:20px;
+    font-size:10.5px;font-weight:700;letter-spacing:.2px;
+  }
+  .badge::before{content:"";width:5px;height:5px;border-radius:50%;}
+  .badge.assigned{background:var(--amber-tint);color:var(--amber);}
+  .badge.assigned::before{background:var(--amber);}
+  .badge.progress{background:var(--blue-tint);color:var(--blue);}
+  .badge.progress::before{background:var(--blue);}
+  .badge.completed{background:var(--green-tint);color:var(--green);}
+  .badge.completed::before{background:var(--green);}
+
+  .body-scroll{flex:1;overflow-y:auto;padding:18px 20px 100px 20px;}
+
+  /* ---- Job list ---- */
+  .day-label{font-size:10.5px;font-weight:700;letter-spacing:1.4px;color:var(--text-faint);margin:18px 0 10px 0;text-transform:uppercase;}
+  .day-label:first-child{margin-top:0;}
+  .job-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:16px 16px;margin-bottom:12px;cursor:pointer;
+    transition:transform .1s ease;
+  }
+  .job-card:active{transform:scale(.985);}
+  .job-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+  .job-card-id{font-size:10.5px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;margin-bottom:3px;}
+  .job-card-name{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:700;}
+  .job-card-area{font-size:12px;color:var(--text-dim);margin-top:2px;display:flex;align-items:center;gap:4px;}
+  .job-card-type{
+    margin-top:10px;padding-top:10px;border-top:1px solid var(--border);
+    font-size:12px;color:var(--text-dim);display:flex;justify-content:space-between;align-items:center;
+  }
+  .chev{color:var(--text-faint);}
+
+  /* ---- Job detail ---- */
+  .info-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;}
+  .info-block h4{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--text-faint);margin-bottom:10px;font-weight:700;}
+  .info-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--surface-2);font-size:13px;}
+  .info-row:last-child{border-bottom:none;}
+  .info-row .l{color:var(--text-dim);}
+  .info-row .v{font-weight:600;text-align:right;}
+  .info-row .v.mono{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:12.5px;}
+
+  .customer-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;margin-bottom:14px;}
+  .customer-name{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;}
+  .customer-addr{font-size:13px;color:var(--text-dim);margin-top:4px;line-height:1.4;}
+
+  /* ---- Form ---- */
+  .form-group{margin-bottom:16px;}
+  .form-label{font-size:12px;font-weight:600;color:var(--text-dim);margin-bottom:7px;display:block;}
+  .form-input{
+    width:100%;padding:13px 14px;border-radius:11px;border:1.5px solid var(--border);
+    background:var(--surface);font-size:14.5px;font-family:'JetBrains Mono',monospace;color:var(--text);
+  }
+  .form-input:focus{outline:none;border-color:var(--blue);}
+  textarea.form-input{font-family:'Inter',sans-serif;resize:none;height:70px;}
+
+  .radio-group{display:flex;flex-direction:column;gap:9px;}
+  .radio-opt{
+    display:flex;align-items:center;gap:11px;padding:13px 14px;border-radius:11px;
+    border:1.5px solid var(--border);background:var(--surface);cursor:pointer;
+  }
+  .radio-opt.selected{border-color:var(--blue);background:var(--blue-tint);}
+  .radio-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;position:relative;}
+  .radio-opt.selected .radio-dot{border-color:var(--blue);}
+  .radio-opt.selected .radio-dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--blue);}
+  .radio-text{font-size:14px;font-weight:600;}
+
+  /* ---- Evidence ---- */
+  .evidence-title{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:4px;}
+  .evidence-sub{font-size:12.5px;color:var(--text-faint);margin-bottom:18px;}
+  .shot{
+    background:var(--surface);border:1.5px dashed var(--border);border-radius:var(--radius);
+    padding:26px 16px;text-align:center;margin-bottom:12px;cursor:pointer;transition:all .12s ease;
+  }
+  .shot.captured{border-style:solid;border-color:var(--green);background:var(--green-tint);}
+  .shot-label{font-size:13px;font-weight:700;margin-bottom:6px;}
+  .shot-state{font-size:12px;color:var(--text-faint);}
+  .shot.captured .shot-state{color:var(--green);font-weight:600;}
+  .shot-icon{font-size:22px;margin-bottom:8px;}
+
+  .progress-pill{
+    text-align:center;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-dim);
+    margin:14px 0 4px 0;
+  }
+
+  /* ---- Completion ---- */
+  .complete-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;}
+  .check-ring{
+    width:76px;height:76px;border-radius:50%;background:var(--green-tint);
+    display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+  }
+  .complete-title{font-family:'Space Grotesk',sans-serif;font-size:21px;font-weight:700;margin-bottom:4px;}
+  .complete-sub{font-size:13px;color:var(--text-dim);margin-bottom:26px;}
+  .complete-card{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:left;margin-bottom:24px;}
+
+  /* ---- Bottom bar ---- */
+  .bottom-bar{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:14px 20px 20px 20px;background:linear-gradient(to top, var(--bg) 60%, transparent);
+  }
+  .btn{
+    width:100%;padding:15px;border-radius:13px;font-size:14.5px;font-weight:700;
+    border:none;cursor:pointer;text-align:center;font-family:'Inter',sans-serif;
+  }
+  .btn-primary{background:var(--text);color:#fff;}
+  .btn-primary:active{opacity:.85;}
+  .btn-primary:disabled{background:var(--text-faint);}
+  .btn-secondary{background:var(--surface);color:var(--text);border:1.5px solid var(--border);margin-top:9px;}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar"><span>9:41</span><span>PrimeChain Field</span></div>
+
+  <!-- ===================== MY JOBS ===================== -->
+  <div class="screen active" id="screen-jobs">
+    <div class="header">
+      <div class="greeting">Good morning, Sipho</div>
+      <div class="greeting-sub">Friday, 12 June 2026 · Soweto route</div>
     </div>
+    <div class="body-scroll" id="jobs-list"></div>
+  </div>
 
-    <!-- VIEW 1: MY JOBS LIST -->
-    <div id="view-jobs" class="flex-1 overflow-y-auto p-4 space-y-4">
-      <div class="space-y-1">
-        <p class="text-xs font-semibold text-blue-400 uppercase tracking-wider">PrimeChain Field App</p>
-        <h1 class="text-xl font-extrabold text-white">Good morning, Sipho</h1>
-        <p class="text-xs text-slate-400">12 June 2026 · Soweto Dispatch</p>
-      </div>
-
-      <div class="pt-2">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-xs font-bold uppercase text-slate-400 tracking-wider">TODAY'S WORK QUEUE</span>
-          <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full font-mono">2 Jobs</span>
+  <!-- ===================== JOB DETAIL ===================== -->
+  <div class="screen" id="screen-detail">
+    <div class="header">
+      <div class="header-row">
+        <div class="back-btn" data-back="screen-jobs">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"/></svg>
         </div>
-
-        <!-- Job Card 1 -->
-        <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-4 space-y-3 shadow-lg">
-          <div class="flex justify-between items-start">
-            <div>
-              <span class="text-xs font-mono font-bold text-blue-400">JOB #10482</span>
-              <h3 class="text-base font-bold text-white mt-0.5">Mandla Dlamini</h3>
-              <p class="text-xs text-slate-300">12 Example Street, Soweto</p>
-            </div>
-            <span class="px-2.5 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-bold rounded-full">
-              ● Assigned
-            </span>
-          </div>
-          <div class="flex items-center justify-between text-xs border-t border-slate-700/60 pt-3">
-            <span class="text-slate-400">Work Type: <strong class="text-white">Meter Replacement</strong></span>
-          </div>
-          <button onclick="openJob('10482')" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl text-xs transition-colors shadow-md shadow-blue-600/30">
-            Open Job →
-          </button>
-        </div>
-
-        <!-- Job Card 2 -->
-        <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-4 space-y-3 shadow-lg mt-3">
-          <div class="flex justify-between items-start">
-            <div>
-              <span class="text-xs font-mono font-bold text-blue-400">JOB #10483</span>
-              <h3 class="text-base font-bold text-white mt-0.5">Thabo Mokoena</h3>
-              <p class="text-xs text-slate-300">45 Vilakazi Street, Soweto</p>
-            </div>
-            <span class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-bold rounded-full">
-              ● Assigned
-            </span>
-          </div>
-          <div class="flex items-center justify-between text-xs border-t border-slate-700/60 pt-3">
-            <span class="text-slate-400">Work Type: <strong class="text-white">Meter Replacement</strong></span>
-          </div>
-          <button onclick="openJob('10483')" class="w-full bg-slate-700 hover:bg-slate-600 text-slate-200 font-bold py-2.5 rounded-xl text-xs transition-colors">
-            Open Job
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- VIEW 2: JOB EXECUTION SCREEN -->
-    <div id="view-execution" class="hidden flex-1 overflow-y-auto p-4 space-y-4">
-      <button onclick="showJobsList()" class="text-xs text-blue-400 font-bold flex items-center gap-1">
-        ← Back to My Jobs
-      </button>
-
-      <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-        <div class="flex justify-between items-center">
-          <h2 class="text-sm font-mono font-bold text-blue-400" id="exec-job-id">JOB #10482</h2>
-          <span class="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded-full font-mono">Pre-populated</span>
-        </div>
-        <h1 class="text-lg font-extrabold text-white" id="exec-customer">MANDLA DLAMINI</h1>
-        <p class="text-xs text-slate-300" id="exec-address">12 Example Street, Soweto</p>
-        
-        <div class="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-slate-700/60">
-          <div>
-            <span class="text-slate-400 block text-[10px]">EXISTING METER</span>
-            <span class="font-mono text-amber-400 font-bold" id="exec-oldmeter">MTR-883421</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block text-[10px]">OLD READING</span>
-            <span class="font-mono text-slate-200" id="exec-oldreading">0028471</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Installation Form -->
-      <div class="bg-slate-800/50 border border-slate-800 rounded-2xl p-4 space-y-3 text-xs">
-        <p class="font-bold text-slate-200 uppercase tracking-wider text-[11px] border-b border-slate-800 pb-2">
-          INSTALLATION DETAILS
-        </p>
-
         <div>
-          <label class="text-slate-400 block mb-1">New Meter Number</label>
-          <input type="text" id="new-meter-num" value="MTR-927451" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white font-mono focus:border-blue-500 focus:outline-none">
+          <div class="header-title">Job #10482</div>
+          <div class="header-sub">Meter Replacement</div>
         </div>
-
-        <div>
-          <label class="text-slate-400 block mb-1">New Meter Reading</label>
-          <input type="text" id="new-meter-read" value="0000123" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-white font-mono focus:border-blue-500 focus:outline-none">
-        </div>
-
-        <div>
-          <label class="text-slate-400 block mb-1">Installation Status</label>
-          <div class="space-y-1.5 pt-1">
-            <label class="flex items-center gap-2 p-2 bg-slate-900 rounded-lg cursor-pointer">
-              <input type="radio" name="status" value="Installed" checked class="text-blue-600">
-              <span class="text-slate-200 font-medium">Installed</span>
-            </label>
-            <label class="flex items-center gap-2 p-2 bg-slate-900 rounded-lg cursor-pointer">
-              <input type="radio" name="status" value="Audit Required" class="text-blue-600">
-              <span class="text-slate-200 font-medium">Audit Required</span>
-            </label>
-            <label class="flex items-center gap-2 p-2 bg-slate-900 rounded-lg cursor-pointer">
-              <input type="radio" name="status" value="Cut-Off" class="text-blue-600">
-              <span class="text-slate-200 font-medium">Cut-Off</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Photo Evidence -->
-        <div class="pt-2 space-y-2">
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-slate-200 uppercase text-[11px]">PHOTOGRAPHS (3 Required)</span>
-            <span class="text-[10px] text-emerald-400 font-bold" id="photo-count">3 / 3 ✓</span>
-          </div>
-
-          <div class="grid grid-cols-3 gap-2">
-            <div onclick="capturePhoto(1)" class="aspect-square bg-slate-900 border border-emerald-500/50 rounded-xl flex flex-col items-center justify-center p-1 text-center cursor-pointer hover:bg-slate-800">
-              <span class="text-lg">📷</span>
-              <span class="text-[9px] text-emerald-400 font-bold mt-1">Old Meter</span>
-            </div>
-            <div onclick="capturePhoto(2)" class="aspect-square bg-slate-900 border border-emerald-500/50 rounded-xl flex flex-col items-center justify-center p-1 text-center cursor-pointer hover:bg-slate-800">
-              <span class="text-lg">📷</span>
-              <span class="text-[9px] text-emerald-400 font-bold mt-1">New Meter</span>
-            </div>
-            <div onclick="capturePhoto(3)" class="aspect-square bg-slate-900 border border-emerald-500/50 rounded-xl flex flex-col items-center justify-center p-1 text-center cursor-pointer hover:bg-slate-800">
-              <span class="text-lg">📷</span>
-              <span class="text-[9px] text-emerald-400 font-bold mt-1">Installation</span>
-            </div>
-          </div>
-        </div>
-
-        <button onclick="completeJob()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-wider transition-colors shadow-lg shadow-emerald-600/30 mt-4">
-          ✓ COMPLETE JOB
-        </button>
       </div>
     </div>
-
-    <!-- VIEW 3: COMPLETION SCREEN -->
-    <div id="view-complete" class="hidden flex-1 overflow-y-auto p-6 flex flex-col items-center justify-center text-center space-y-5">
-      <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-3xl border border-emerald-500/40">
-        ✓
+    <div class="body-scroll">
+      <div class="customer-block">
+        <div class="customer-name">Mandla Dlamini</div>
+        <div class="customer-addr">12 Example Street<br>Soweto, Gauteng</div>
       </div>
-      <div>
-        <h2 class="text-xl font-extrabold text-white">JOB COMPLETE</h2>
-        <p class="text-xs text-slate-400 mt-1">Operational record saved to PrimeChain core</p>
+      <div class="info-block">
+        <h4>Work Order</h4>
+        <div class="info-row"><span class="l">Work Type</span><span class="v">Meter Replacement</span></div>
+        <div class="info-row"><span class="l">Existing Meter</span><span class="v mono">MTR-883421</span></div>
+        <div class="info-row"><span class="l">Old Meter Reading</span><span class="v mono">0028471</span></div>
+        <div class="info-row"><span class="l">Work Order</span><span class="v mono">WO-2026-10482</span></div>
       </div>
-
-      <div class="w-full bg-slate-800/80 border border-slate-700 rounded-2xl p-4 text-left space-y-2 text-xs">
-        <div class="flex justify-between text-slate-400">
-          <span>Job Number:</span>
-          <span class="text-white font-mono font-bold" id="complete-job-id">10482</span>
-        </div>
-        <div class="flex justify-between text-slate-400">
-          <span>Customer:</span>
-          <span class="text-white font-bold" id="complete-customer">Mandla Dlamini</span>
-        </div>
-        <div class="flex justify-between text-slate-400">
-          <span>New Meter:</span>
-          <span class="text-emerald-400 font-mono font-bold" id="complete-newmeter">MTR-927451</span>
-        </div>
-        <div class="flex justify-between text-slate-400">
-          <span>Evidence:</span>
-          <span class="text-emerald-400 font-bold">3 / 3 Photographs ✓</span>
-        </div>
-        <div class="flex justify-between text-slate-400">
-          <span>Completed:</span>
-          <span class="text-slate-300 font-mono">12 Jun 2026 · 14:37</span>
-        </div>
+      <div style="font-size:11.5px;color:var(--text-faint);text-align:center;padding:6px 10px;">
+        Everything above is already on record. You only need to add what happens on site.
       </div>
-
-      <button onclick="showJobsList()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl text-xs transition-colors">
-        Back to My Jobs
-      </button>
     </div>
-
-    <!-- Bottom Navigation Bar -->
-    <div class="bg-slate-950 border-t border-slate-800 px-6 py-3 flex justify-around items-center text-xs text-slate-400">
-      <button onclick="showJobsList()" class="flex flex-col items-center text-blue-400">
-        <span>📋</span>
-        <span class="text-[9px] font-bold mt-0.5">My Jobs</span>
-      </button>
-      <button class="flex flex-col items-center text-slate-500 opacity-60">
-        <span>📍</span>
-        <span class="text-[9px] font-bold mt-0.5">Map</span>
-      </button>
-      <button class="flex flex-col items-center text-slate-500 opacity-60">
-        <span>👤</span>
-        <span class="text-[9px] font-bold mt-0.5">Profile</span>
-      </button>
+    <div class="bottom-bar">
+      <button class="btn btn-primary" data-nav="screen-install">Start Installation</button>
     </div>
   </div>
 
-  <script>
-    function showJobsList() {
-      document.getElementById('view-jobs').classList.remove('hidden');
-      document.getElementById('view-execution').classList.add('hidden');
-      document.getElementById('view-complete').classList.add('hidden');
-    }
+  <!-- ===================== INSTALLATION DETAILS ===================== -->
+  <div class="screen" id="screen-install">
+    <div class="header">
+      <div class="header-row">
+        <div class="back-btn" data-back="screen-detail">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"/></svg>
+        </div>
+        <div>
+          <div class="header-title">Installation Details</div>
+          <div class="header-sub">Job #10482 · Mandla Dlamini</div>
+        </div>
+      </div>
+    </div>
+    <div class="body-scroll">
+      <div class="form-group">
+        <label class="form-label">New Meter Number</label>
+        <input class="form-input" id="input-newmeter" placeholder="MTR-000000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">New Meter Reading</label>
+        <input class="form-input" id="input-newreading" placeholder="0000000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Installation Status</label>
+        <div class="radio-group" id="status-group">
+          <div class="radio-opt" data-value="Installed"><div class="radio-dot"></div><div class="radio-text">Installed</div></div>
+          <div class="radio-opt" data-value="Audit Required"><div class="radio-dot"></div><div class="radio-text">Audit Required</div></div>
+          <div class="radio-opt" data-value="Cut-Off"><div class="radio-dot"></div><div class="radio-text">Cut-Off</div></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notes</label>
+        <textarea class="form-input" id="input-notes" placeholder="Optional — anything the office should know"></textarea>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <button class="btn btn-primary" id="to-evidence" disabled>Continue to Photographs</button>
+    </div>
+  </div>
 
-    function openJob(id) {
-      document.getElementById('view-jobs').classList.add('hidden');
-      document.getElementById('view-execution').classList.remove('hidden');
-      document.getElementById('view-complete').classList.add('hidden');
-      if (id === '10483') {
-        document.getElementById('exec-job-id').innerText = 'JOB #10483';
-        document.getElementById('exec-customer').innerText = 'THABO MOKOENA';
-        document.getElementById('exec-address').innerText = '45 Vilakazi Street, Soweto';
-        document.getElementById('exec-oldmeter').innerText = 'MTR-772910';
-        document.getElementById('exec-oldreading').innerText = '0104820';
-        document.getElementById('new-meter-num').value = 'MTR-927488';
-      } else {
-        document.getElementById('exec-job-id').innerText = 'JOB #10482';
-        document.getElementById('exec-customer').innerText = 'MANDLA DLAMINI';
-        document.getElementById('exec-address').innerText = '12 Example Street, Soweto';
-        document.getElementById('exec-oldmeter').innerText = 'MTR-883421';
-        document.getElementById('exec-oldreading').innerText = '0028471';
-        document.getElementById('new-meter-num').value = 'MTR-927451';
-      }
-    }
+  <!-- ===================== EVIDENCE ===================== -->
+  <div class="screen" id="screen-evidence">
+    <div class="header">
+      <div class="header-row">
+        <div class="back-btn" data-back="screen-install">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 5l-7 7 7 7"/></svg>
+        </div>
+        <div>
+          <div class="header-title">Installation Evidence</div>
+          <div class="header-sub">Job #10482</div>
+        </div>
+      </div>
+    </div>
+    <div class="body-scroll">
+      <div class="shot" data-shot="old">
+        <div class="shot-icon">📷</div>
+        <div class="shot-label">Old Meter</div>
+        <div class="shot-state">Tap to capture</div>
+      </div>
+      <div class="shot" data-shot="new">
+        <div class="shot-icon">📷</div>
+        <div class="shot-label">New Meter</div>
+        <div class="shot-state">Tap to capture</div>
+      </div>
+      <div class="shot" data-shot="install">
+        <div class="shot-icon">📷</div>
+        <div class="shot-label">Meter Installation</div>
+        <div class="shot-state">Tap to capture</div>
+      </div>
+      <div class="progress-pill" id="shot-progress">0 / 3 captured</div>
+    </div>
+    <div class="bottom-bar">
+      <button class="btn btn-primary" id="to-complete" disabled>Complete Job</button>
+    </div>
+  </div>
 
-    function capturePhoto(index) {
-      alert('Photo ' + index + ' captured with timestamp & GPS coordinates!');
-    }
+  <!-- ===================== COMPLETE ===================== -->
+  <div class="screen" id="screen-complete">
+    <div class="complete-wrap">
+      <div class="check-ring">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0f9d68" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <div class="complete-title">Job Complete</div>
+      <div class="complete-sub">Job #10482 · Mandla Dlamini</div>
+      <div class="complete-card">
+        <div class="info-row"><span class="l">Installation</span><span class="v" id="sum-status">Installed</span></div>
+        <div class="info-row"><span class="l">New Meter</span><span class="v mono" id="sum-meter">—</span></div>
+        <div class="info-row"><span class="l">Evidence</span><span class="v">3 / 3 photographs ✓</span></div>
+        <div class="info-row"><span class="l">Technician</span><span class="v">Sipho Mkhize</span></div>
+        <div class="info-row"><span class="l">Completed</span><span class="v" id="sum-time">—</span></div>
+      </div>
+      <button class="btn btn-primary" style="width:100%;" data-nav="screen-jobs" id="back-to-jobs">Back to My Jobs</button>
+    </div>
+  </div>
 
-    function completeJob() {
-      const jobId = document.getElementById('exec-job-id').innerText.replace('JOB #', '');
-      const cust = document.getElementById('exec-customer').innerText;
-      const newMtr = document.getElementById('new-meter-num').value;
+</div>
 
-      document.getElementById('complete-job-id').innerText = jobId;
-      document.getElementById('complete-customer').innerText = cust;
-      document.getElementById('complete-newmeter').innerText = newMtr;
+<script>
+const jobsData = [
+  {id:10482, customer:"Mandla Dlamini", area:"Soweto", type:"Meter Replacement", status:"assigned"},
+  {id:10483, customer:"Thabo Mokoena", area:"Soweto", type:"Meter Replacement", status:"assigned"},
+  {id:10486, customer:"Nomvula Khumalo", area:"Soweto", type:"Audit", status:"assigned"},
+];
 
-      document.getElementById('view-execution').classList.add('hidden');
-      document.getElementById('view-complete').classList.remove('hidden');
-    }
-  </script>
+function badgeHTML(status){
+  const map = {assigned:["Assigned","assigned"], progress:["In Progress","progress"], completed:["Completed","completed"]};
+  const [label,cls] = map[status];
+  return `<span class="badge ${cls}">${label}</span>`;
+}
+
+function renderJobs(){
+  const list = document.getElementById('jobs-list');
+  list.innerHTML = `<div class="day-label">Today</div>` + jobsData.map(j => `
+    <div class="job-card" data-id="${j.id}">
+      <div class="job-card-top">
+        <div>
+          <div class="job-card-id">JOB #${j.id}</div>
+          <div class="job-card-name">${j.customer}</div>
+          <div class="job-card-area">📍 ${j.area}</div>
+        </div>
+        ${badgeHTML(j.status)}
+      </div>
+      <div class="job-card-type">
+        <span>${j.type}</span>
+        <span class="chev">›</span>
+      </div>
+    </div>`).join('');
+  list.querySelectorAll('.job-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = parseInt(card.dataset.id);
+      if(id === 10482){ goTo('screen-detail'); }
+      else { goTo('screen-detail'); } // demo focuses on job 10482's full flow
+    });
+  });
+}
+
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector('.phone').scrollTop = 0;
+}
+
+document.querySelectorAll('[data-back]').forEach(el => el.addEventListener('click', () => goTo(el.dataset.back)));
+document.querySelectorAll('[data-nav]').forEach(el => el.addEventListener('click', () => goTo(el.dataset.nav)));
+
+// ---- Installation form validation ----
+let selectedStatus = null;
+document.querySelectorAll('#status-group .radio-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('#status-group .radio-opt').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    selectedStatus = opt.dataset.value;
+    checkInstallForm();
+  });
+});
+const inputMeter = document.getElementById('input-newmeter');
+const inputReading = document.getElementById('input-newreading');
+const toEvidenceBtn = document.getElementById('to-evidence');
+function checkInstallForm(){
+  toEvidenceBtn.disabled = !(inputMeter.value.trim() && inputReading.value.trim() && selectedStatus);
+}
+inputMeter.addEventListener('input', checkInstallForm);
+inputReading.addEventListener('input', checkInstallForm);
+toEvidenceBtn.addEventListener('click', () => goTo('screen-evidence'));
+
+// ---- Evidence capture ----
+let capturedCount = 0;
+document.querySelectorAll('.shot').forEach(shot => {
+  shot.addEventListener('click', () => {
+    if(shot.classList.contains('captured')) return;
+    shot.classList.add('captured');
+    shot.querySelector('.shot-icon').textContent = '✅';
+    shot.querySelector('.shot-state').textContent = 'Photo captured';
+    capturedCount++;
+    document.getElementById('shot-progress').textContent = `${capturedCount} / 3 captured`;
+    document.getElementById('to-complete').disabled = capturedCount < 3;
+  });
+});
+
+// ---- Complete job ----
+document.getElementById('to-complete').addEventListener('click', () => {
+  document.getElementById('sum-status').textContent = selectedStatus || 'Installed';
+  document.getElementById('sum-meter').textContent = inputMeter.value || 'MTR-927451';
+  const now = new Date();
+  const timeStr = now.toLocaleDateString('en-ZA', {day:'2-digit', month:'short'}) + ' · ' + now.toLocaleTimeString('en-ZA', {hour:'2-digit', minute:'2-digit'});
+  document.getElementById('sum-time').textContent = timeStr;
+  jobsData[0].status = 'completed';
+  goTo('screen-complete');
+});
+
+document.getElementById('back-to-jobs').addEventListener('click', renderJobs);
+
+renderJobs();
+</script>
 </body>
 </html>
