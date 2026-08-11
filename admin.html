@@ -1,331 +1,695 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="module" src="/@vite/client"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PrimeChain Operations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12161a;
+    --surface:#191e23;
+    --surface-2:#1f252b;
+    --surface-3:#262d34;
+    --border:#2a3138;
+    --border-soft:#232a30;
+    --text:#e9ecef;
+    --text-dim:#8e97a2;
+    --text-faint:#5a6470;
+    --blue:#4c8dff;
+    --blue-dim:#294a80;
+    --amber:#f2a93b;
+    --amber-dim:#5c4a24;
+    --green:#34d399;
+    --green-dim:#1f4d3d;
+    --red:#fb5f5f;
+    --red-dim:#5c2c2c;
+    --radius:10px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    min-height:100vh;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .display{font-family:'Space Grotesk',sans-serif;}
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrimeChain Operations — Admin Control Room</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; color: #f8fafc; }
-    .mono { font-family: 'JetBrains Mono', monospace; }
-  </style>
-<script src="/_aistudio-iframe.js?v=2f1c016a"></script></head>
-<body class="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8">
-  <div class="max-w-7xl mx-auto space-y-6">
-    <!-- Header -->
-    <header class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-800 gap-4">
-      <div>
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-blue-500/20">
-            P
-          </div>
-          <div>
-            <h1 class="text-2xl font-bold tracking-tight text-white">PRIMECHAIN OPERATIONS</h1>
-            <p class="text-xs text-slate-400">Control Room & Field Execution Platform</p>
-          </div>
-        </div>
-      </div>
-      <div class="flex items-center gap-4">
-        <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs text-slate-300">
-          Today · 12 June 2026
-        </span>
-        <button onclick="window.print()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm rounded-lg shadow transition-colors">
-          Print Job Card
-        </button>
-      </div>
-    </header>
+  /* ---------- Sidebar ---------- */
+  .rail{
+    width:220px;
+    flex-shrink:0;
+    background:var(--surface);
+    border-right:1px solid var(--border-soft);
+    display:flex;
+    flex-direction:column;
+    padding:22px 14px;
+    position:sticky;
+    top:0;
+    height:100vh;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:0 8px 24px 8px;
+  }
+  .brand-mark{
+    width:30px;height:30px;
+    border-radius:7px;
+    background:linear-gradient(135deg,var(--blue),#2c5fc9);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .brand-mark svg{width:16px;height:16px;}
+  .brand-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14.5px;letter-spacing:.2px;line-height:1.15;}
+  .brand-sub{font-size:10.5px;color:var(--text-faint);letter-spacing:1.5px;text-transform:uppercase;}
 
-    <!-- Operational Lifecycle Stats -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-slate-800/80 border border-slate-700/60 p-5 rounded-xl">
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Jobs Today</p>
-        <p class="text-3xl font-extrabold text-white mt-1">87</p>
-        <p class="text-xs text-slate-400 mt-2">Total work order queue</p>
-      </div>
-      <div class="bg-slate-800/80 border border-slate-700/60 p-5 rounded-xl">
-        <p class="text-xs font-semibold text-blue-400 uppercase tracking-wider">Assigned</p>
-        <p class="text-3xl font-extrabold text-blue-400 mt-1">82</p>
-        <p class="text-xs text-slate-400 mt-2">Dispatched to technicians</p>
-      </div>
-      <div class="bg-slate-800/80 border border-slate-700/60 p-5 rounded-xl">
-        <p class="text-xs font-semibold text-amber-400 uppercase tracking-wider">In Progress</p>
-        <p class="text-3xl font-extrabold text-amber-400 mt-1">14</p>
-        <p class="text-xs text-slate-400 mt-2">Active on field</p>
-      </div>
-      <div class="bg-slate-800/80 border border-slate-700/60 p-5 rounded-xl">
-        <p class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Completed</p>
-        <p class="text-3xl font-extrabold text-emerald-400 mt-1">68</p>
-        <p class="text-xs text-slate-400 mt-2">Sign-offs captured</p>
-      </div>
+  .nav{display:flex;flex-direction:column;gap:2px;margin-top:6px;}
+  .nav-item{
+    display:flex;align-items:center;gap:10px;
+    padding:9px 10px;
+    border-radius:8px;
+    color:var(--text-dim);
+    font-size:13px;font-weight:500;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:background .12s ease, color .12s ease;
+  }
+  .nav-item svg{width:16px;height:16px;flex-shrink:0;opacity:.85;}
+  .nav-item:hover{background:var(--surface-2);color:var(--text);}
+  .nav-item.active{background:var(--surface-2);color:var(--text);border-color:var(--border-soft);}
+  .nav-item.active svg{color:var(--blue);opacity:1;}
+  .nav-count{
+    margin-left:auto;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--text-faint);
+    background:var(--surface-3);
+    padding:1px 6px;
+    border-radius:20px;
+  }
+  .nav-count.warn{color:var(--red);background:var(--red-dim);}
+
+  .rail-foot{
+    margin-top:auto;
+    padding-top:16px;
+    border-top:1px solid var(--border-soft);
+    display:flex;align-items:center;gap:9px;
+  }
+  .avatar{
+    width:28px;height:28px;border-radius:50%;
+    background:var(--surface-3);
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:600;color:var(--text-dim);
+    flex-shrink:0;
+  }
+  .rail-foot-name{font-size:12.5px;font-weight:600;}
+  .rail-foot-role{font-size:10.5px;color:var(--text-faint);}
+
+  /* ---------- Main ---------- */
+  .main{flex:1;min-width:0;display:flex;flex-direction:column;}
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .topbar h1{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;}
+  .topbar .date{color:var(--text-faint);font-size:12.5px;margin-top:3px;}
+  .live-pill{
+    display:flex;align-items:center;gap:7px;
+    padding:6px 12px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:20px;
+    font-size:12px;color:var(--text-dim);
+  }
+  .live-dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 0 0 rgba(52,211,153,.6);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(52,211,153,.45);}
+    70%{box-shadow:0 0 0 6px rgba(52,211,153,0);}
+    100%{box-shadow:0 0 0 0 rgba(52,211,153,0);}
+  }
+
+  .content{padding:26px 32px 60px 32px; overflow-y:auto;}
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* ---------- Gauges ---------- */
+  .gauge-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-bottom:28px;
+  }
+  .gauge-card{
+    background:var(--surface);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    display:flex;align-items:center;gap:16px;
+  }
+  .gauge-card svg{flex-shrink:0;}
+  .gauge-label{font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+  .gauge-value{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;line-height:1;}
+  .gauge-delta{font-size:11px;color:var(--text-faint);margin-top:5px;}
+
+  /* ---------- Panel / table ---------- */
+  .panel{
+    background:var(--surface);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .panel-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 20px;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .panel-head h2{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:600;}
+  .panel-head .hint{font-size:11.5px;color:var(--text-faint);margin-top:2px;}
+  .filters{display:flex;gap:8px;}
+  .chip{
+    padding:6px 12px;border-radius:7px;border:1px solid var(--border);
+    background:var(--surface-2);color:var(--text-dim);font-size:12px;
+    cursor:pointer;transition:all .12s ease;
+  }
+  .chip:hover{color:var(--text);}
+  .chip.active{background:var(--blue-dim);border-color:var(--blue);color:#cfe0ff;}
+
+  table{width:100%;border-collapse:collapse;}
+  thead th{
+    text-align:left;
+    font-size:10.5px;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    font-weight:600;
+    padding:10px 20px;
+    border-bottom:1px solid var(--border-soft);
+  }
+  tbody td{
+    padding:13px 20px;
+    border-bottom:1px solid var(--border-soft);
+    font-size:13px;
+  }
+  tbody tr{cursor:pointer;transition:background .1s ease;}
+  tbody tr:hover{background:var(--surface-2);}
+  tbody tr:last-child td{border-bottom:none;}
+  .job-id{font-family:'JetBrains Mono',monospace;color:var(--text-dim);font-size:12.5px;}
+  .cust{font-weight:600;}
+
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:4px 10px;border-radius:20px;font-size:11.5px;font-weight:600;
+  }
+  .badge::before{content:"";width:6px;height:6px;border-radius:50%;}
+  .badge.completed{background:var(--green-dim);color:#7de8c3;}
+  .badge.completed::before{background:var(--green);}
+  .badge.progress{background:var(--blue-dim);color:#a9c6ff;}
+  .badge.progress::before{background:var(--blue);}
+  .badge.assigned{background:var(--amber-dim);color:#f5cd8c;}
+  .badge.assigned::before{background:var(--amber);}
+  .badge.exception{background:var(--red-dim);color:#ffb0b0;}
+  .badge.exception::before{background:var(--red);}
+
+  /* ---------- Exceptions ---------- */
+  .ex-list{display:flex;flex-direction:column;}
+  .ex-item{
+    display:flex;align-items:flex-start;gap:14px;
+    padding:16px 20px;
+    border-bottom:1px solid var(--border-soft);
+    cursor:pointer;
+  }
+  .ex-item:last-child{border-bottom:none;}
+  .ex-item:hover{background:var(--surface-2);}
+  .ex-icon{
+    width:32px;height:32px;border-radius:8px;flex-shrink:0;
+    background:var(--red-dim);color:var(--red);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ex-title{font-weight:600;font-size:13.5px;}
+  .ex-sub{font-size:12px;color:var(--text-faint);margin-top:2px;}
+  .ex-meta{margin-left:auto;text-align:right;font-size:11.5px;color:var(--text-faint);flex-shrink:0;}
+
+  /* ---------- Section title ---------- */
+  .section-title{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin-bottom:4px;}
+  .section-sub{font-size:12.5px;color:var(--text-faint);margin-bottom:20px;}
+
+  /* ---------- Slide-over ---------- */
+  .scrim{
+    position:fixed;inset:0;background:rgba(6,8,10,.6);
+    opacity:0;pointer-events:none;transition:opacity .18s ease;
+    z-index:40;
+  }
+  .scrim.open{opacity:1;pointer-events:auto;}
+  .drawer{
+    position:fixed;top:0;right:0;height:100vh;width:440px;
+    background:var(--surface);
+    border-left:1px solid var(--border);
+    transform:translateX(100%);
+    transition:transform .22s cubic-bezier(.4,0,.2,1);
+    z-index:41;
+    display:flex;flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{
+    padding:20px 22px;border-bottom:1px solid var(--border-soft);
+    display:flex;align-items:flex-start;justify-content:space-between;
+  }
+  .drawer-close{
+    background:var(--surface-2);border:1px solid var(--border);color:var(--text-dim);
+    width:28px;height:28px;border-radius:7px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .drawer-body{padding:20px 22px;overflow-y:auto;flex:1;}
+  .field-group{margin-bottom:18px;}
+  .field-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border-soft);}
+  .field-row:last-child{border-bottom:none;}
+  .field-label{font-size:11.5px;color:var(--text-faint);}
+  .field-value{font-size:13px;font-weight:500;text-align:right;}
+  .field-value.mono{font-family:'JetBrains Mono',monospace;font-size:12.5px;}
+  .drawer-eyebrow{font-size:10.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;font-weight:600;}
+
+  select.tech-select{
+    width:100%;background:var(--surface-2);border:1px solid var(--border);
+    color:var(--text);padding:9px 12px;border-radius:8px;font-size:13px;
+    font-family:'Inter',sans-serif;
+  }
+
+  .checklist{display:flex;flex-direction:column;gap:9px;margin-top:14px;}
+  .check-item{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--text-dim);}
+  .check-item svg{width:15px;height:15px;flex-shrink:0;}
+  .check-item.done{color:var(--text);}
+  .check-item.pending svg{opacity:.3;}
+
+  .drawer-foot{padding:16px 22px;border-top:1px solid var(--border-soft);display:flex;gap:10px;}
+  .btn{
+    flex:1;padding:11px;border-radius:8px;font-size:13px;font-weight:600;
+    border:1px solid var(--border);cursor:pointer;transition:all .12s ease;
+    font-family:'Inter',sans-serif;
+  }
+  .btn-primary{background:var(--blue);border-color:var(--blue);color:#fff;}
+  .btn-primary:hover{background:#3b7ce8;}
+  .btn-ghost{background:var(--surface-2);color:var(--text-dim);}
+  .btn-ghost:hover{color:var(--text);}
+
+  /* ---------- Job card modal (generated PDF preview) ---------- */
+  .modal-scrim{
+    position:fixed;inset:0;background:rgba(6,8,10,.7);
+    display:none;align-items:center;justify-content:center;z-index:60;
+  }
+  .modal-scrim.open{display:flex;}
+  .jobcard{
+    width:400px;background:#f5f3ee;color:#1a1a1a;border-radius:4px;
+    padding:34px 30px;font-family:'JetBrains Mono',monospace;font-size:12px;
+    max-height:86vh;overflow-y:auto;
+  }
+  .jobcard h3{font-family:'Space Grotesk',sans-serif;text-align:center;font-size:15px;letter-spacing:1px;margin-bottom:2px;}
+  .jobcard .jc-sub{text-align:center;color:#666;font-size:10.5px;margin-bottom:16px;letter-spacing:2px;}
+  .jc-rule{border-top:1px dashed #999;margin:14px 0;}
+  .jc-row{display:flex;justify-content:space-between;padding:3px 0;}
+  .jc-label{color:#777;}
+  .jc-section{font-weight:700;letter-spacing:1px;margin-bottom:6px;color:#333;}
+  .jc-photos{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+  .jc-photo{background:#e2ded3;border:1px dashed #b5b0a1;border-radius:3px;padding:16px 4px;text-align:center;font-size:10px;color:#8a8574;}
+  .jc-close-row{margin-top:20px;display:flex;gap:10px;}
+  .jc-btn{flex:1;padding:9px;border-radius:5px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #ccc;background:#fff;}
+
+  /* ---------- Tech performance ---------- */
+  .perf-table td, .perf-table th{text-align:right;}
+  .perf-table td:first-child, .perf-table th:first-child{text-align:left;}
+  .bar-cell{display:flex;align-items:center;gap:8px;justify-content:flex-end;}
+  .bar-track{width:70px;height:5px;background:var(--surface-3);border-radius:3px;overflow:hidden;}
+  .bar-fill{height:100%;background:var(--green);}
+</style>
+</head>
+<body>
+
+<div class="rail">
+  <div class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.6"/><path d="M12 7v5l3.2 2" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
     </div>
-
-    <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      
-      <!-- Work Queue (2 Cols) -->
-      <div class="lg:col-span-2 bg-slate-800/50 border border-slate-800 rounded-xl overflow-hidden">
-        <div class="p-5 border-b border-slate-800 flex items-center justify-between">
-          <div>
-            <h2 class="text-lg font-bold text-white">WORK QUEUE</h2>
-            <p class="text-xs text-slate-400">Live operational dispatch status</p>
-          </div>
-          <span class="text-xs font-mono text-slate-400">4 active jobs shown</span>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-sm text-slate-300">
-            <thead class="bg-slate-900/60 text-xs uppercase text-slate-400 border-b border-slate-800">
-              <tr>
-                <th class="p-4">Job #</th>
-                <th class="p-4">Customer</th>
-                <th class="p-4">Area</th>
-                <th class="p-4">Technician</th>
-                <th class="p-4">Status</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-800">
-              <tr class="hover:bg-slate-800/40 cursor-pointer transition-colors" onclick="selectJob('10482')">
-                <td class="p-4 font-mono font-bold text-blue-400">10482</td>
-                <td class="p-4 font-medium text-white">M. Dlamini</td>
-                <td class="p-4 text-slate-400">Soweto</td>
-                <td class="p-4">Sipho Mkhize</td>
-                <td class="p-4">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    ● Completed ✓
-                  </span>
-                </td>
-              </tr>
-              <tr class="hover:bg-slate-800/40 cursor-pointer transition-colors" onclick="selectJob('10483')">
-                <td class="p-4 font-mono font-bold text-blue-400">10483</td>
-                <td class="p-4 font-medium text-white">T. Mokoena</td>
-                <td class="p-4 text-slate-400">Soweto</td>
-                <td class="p-4">Tebogo Mokoena</td>
-                <td class="p-4">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                    ● In Progress
-                  </span>
-                </td>
-              </tr>
-              <tr class="hover:bg-slate-800/40 cursor-pointer transition-colors" onclick="selectJob('10484')">
-                <td class="p-4 font-mono font-bold text-blue-400">10484</td>
-                <td class="p-4 font-medium text-white">S. Nkosi</td>
-                <td class="p-4 text-slate-400">Lenasia</td>
-                <td class="p-4">Siya Nkosi</td>
-                <td class="p-4">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                    ● Assigned
-                  </span>
-                </td>
-              </tr>
-              <tr class="hover:bg-slate-800/40 cursor-pointer transition-colors bg-rose-500/5" onclick="selectJob('10485')">
-                <td class="p-4 font-mono font-bold text-rose-400">10485</td>
-                <td class="p-4 font-medium text-white">J. Mthembu</td>
-                <td class="p-4 text-slate-400">Eldo's</td>
-                <td class="p-4">Marnus Botha</td>
-                <td class="p-4">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-rose-500/10 text-rose-400 border border-rose-500/20">
-                    ⚠ Exception
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Job Detail View (Pre-populated) -->
-      <div class="bg-slate-800/50 border border-slate-800 rounded-xl p-5 space-y-6">
-        <div class="border-b border-slate-800 pb-4">
-          <div class="flex items-center justify-between">
-            <h2 class="text-xl font-extrabold text-white mono" id="detail-job-id">JOB #10482</h2>
-            <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded-full border border-emerald-500/20" id="detail-status">
-              Completed ✓
-            </span>
-          </div>
-          <p class="text-xs text-slate-400 mt-1">Pre-populated Work Order Record</p>
-        </div>
-
-        <div class="space-y-4 text-sm">
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <p class="text-xs text-slate-500 uppercase font-semibold">Customer</p>
-              <p class="font-bold text-white mt-0.5" id="detail-customer">Mandla Dlamini</p>
-            </div>
-            <div>
-              <p class="text-xs text-slate-500 uppercase font-semibold">Account Number</p>
-              <p class="mono text-slate-300 mt-0.5" id="detail-account">ACC-004821</p>
-            </div>
-          </div>
-
-          <div>
-            <p class="text-xs text-slate-500 uppercase font-semibold">Address</p>
-            <p class="text-slate-300 mt-0.5" id="detail-address">12 Example Street, Soweto, Gauteng</p>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <p class="text-xs text-slate-500 uppercase font-semibold">Work Type</p>
-              <p class="text-slate-300 mt-0.5" id="detail-worktype">Meter Replacement</p>
-            </div>
-            <div>
-              <p class="text-xs text-slate-500 uppercase font-semibold">Work Order</p>
-              <p class="mono text-slate-300 mt-0.5" id="detail-wo">WO-2026-10482</p>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4 border-t border-slate-800 pt-4">
-            <div>
-              <p class="text-xs text-slate-500 uppercase font-semibold">Old Meter Number</p>
-              <p class="mono text-amber-400 font-bold mt-0.5" id="detail-oldmeter">MTR-883421</p>
-            </div>
-            <div>
-              <p class="text-xs text-slate-500 uppercase font-semibold">Old Meter Type</p>
-              <p class="text-slate-300 mt-0.5" id="detail-oldtype">Prepaid</p>
-            </div>
-          </div>
-
-          <div class="border-t border-slate-800 pt-4 space-y-3">
-            <p class="text-xs font-semibold uppercase text-blue-400 tracking-wider">Assignment Controls</p>
-            <div>
-              <label class="text-xs text-slate-400 block mb-1">Assigned Technician</label>
-              <select id="tech-select" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-blue-500">
-                <option value="Sipho Mkhize" selected>Sipho Mkhize (Soweto)</option>
-                <option value="Tebogo Mokoena">Tebogo Mokoena (Soweto)</option>
-                <option value="Siyabonga Nkosi">Siyabonga Nkosi (Lenasia)</option>
-                <option value="Marnus Botha">Marnus Botha (Eldo's)</option>
-              </select>
-            </div>
-            <div>
-              <label class="text-xs text-slate-400 block mb-1">Scheduled Date</label>
-              <input type="date" value="2026-06-12" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white">
-            </div>
-            <button onclick="alert('Assignment updated! Field dispatch synchronized.')" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2.5 rounded-lg text-sm transition-colors shadow-lg shadow-blue-600/20">
-              Update Assignment
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Exceptions & Performance Row -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-      <!-- Exceptions View -->
-      <div class="bg-slate-800/50 border border-slate-800 rounded-xl p-5 space-y-4">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-          <h3 class="text-base font-bold text-rose-400 flex items-center gap-2">
-            <span>⚠</span> EXCEPTIONS & AUDIT QUEUE
-          </h3>
-          <span class="text-xs bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded-full font-mono">3 Flagged</span>
-        </div>
-        <div class="space-y-3 text-sm">
-          <div class="p-3 bg-slate-900/80 border-l-4 border-rose-500 rounded-r-lg space-y-1">
-            <div class="flex justify-between items-start">
-              <span class="font-bold text-white">Job #10485 — Joseph Mthembu</span>
-              <span class="text-xs text-slate-500">Eldo's</span>
-            </div>
-            <p class="text-xs text-rose-400">Missing new meter photograph</p>
-            <p class="text-xs text-slate-400">Technician: Marnus Botha</p>
-          </div>
-
-          <div class="p-3 bg-slate-900/80 border-l-4 border-amber-500 rounded-r-lg space-y-1">
-            <div class="flex justify-between items-start">
-              <span class="font-bold text-white">Job #10491 — Lerato Moloi</span>
-              <span class="text-xs text-slate-500">Soweto</span>
-            </div>
-            <p class="text-xs text-amber-400">New meter reading missing</p>
-            <p class="text-xs text-slate-400">Technician: Siya Nkosi</p>
-          </div>
-
-          <div class="p-3 bg-slate-900/80 border-l-4 border-rose-500 rounded-r-lg space-y-1">
-            <div class="flex justify-between items-start">
-              <span class="font-bold text-white">Job #10502 — Khotso Ndlovu</span>
-              <span class="text-xs text-slate-500">Lenasia</span>
-            </div>
-            <p class="text-xs text-rose-400">Installation marked "Audit Required"</p>
-            <p class="text-xs text-slate-400">Technician: Tebogo Mokoena</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Technician Performance View -->
-      <div class="bg-slate-800/50 border border-slate-800 rounded-xl p-5 space-y-4">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-          <h3 class="text-base font-bold text-white">TECHNICIAN PERFORMANCE</h3>
-          <span class="text-xs text-slate-400">Daily Leaderboard</span>
-        </div>
-        <div class="overflow-x-auto text-xs">
-          <table class="w-full text-left text-slate-300">
-            <thead class="bg-slate-900/60 uppercase text-slate-400 border-b border-slate-800">
-              <tr>
-                <th class="p-2.5">Technician</th>
-                <th class="p-2.5 text-center">Assigned</th>
-                <th class="p-2.5 text-center">Complete</th>
-                <th class="p-2.5 text-center">Exceptions</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-800">
-              <tr>
-                <td class="p-2.5 font-bold text-white">Sipho Mkhize</td>
-                <td class="p-2.5 text-center font-mono">20</td>
-                <td class="p-2.5 text-center font-mono text-emerald-400 font-bold">19</td>
-                <td class="p-2.5 text-center font-mono text-slate-400">1</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold text-white">Tebogo Mokoena</td>
-                <td class="p-2.5 text-center font-mono">20</td>
-                <td class="p-2.5 text-center font-mono text-emerald-400 font-bold">18</td>
-                <td class="p-2.5 text-center font-mono text-amber-400 font-bold">2</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold text-white">Siya Nkosi</td>
-                <td class="p-2.5 text-center font-mono">20</td>
-                <td class="p-2.5 text-center font-mono text-emerald-400 font-bold">20</td>
-                <td class="p-2.5 text-center font-mono text-emerald-400 font-bold">0</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold text-white">Marnus Botha</td>
-                <td class="p-2.5 text-center font-mono">20</td>
-                <td class="p-2.5 text-center font-mono text-emerald-400 font-bold">17</td>
-                <td class="p-2.5 text-center font-mono text-rose-400 font-bold">3</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold text-white">Tinga Khumalo</td>
-                <td class="p-2.5 text-center font-mono">12</td>
-                <td class="p-2.5 text-center font-mono text-emerald-400 font-bold">11</td>
-                <td class="p-2.5 text-center font-mono text-slate-400">1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div>
+      <div class="brand-name">PrimeChain</div>
+      <div class="brand-sub">Operations</div>
     </div>
   </div>
 
-  <script>
-    const jobs = {
-      '10482': { customer: 'Mandla Dlamini', acc: 'ACC-004821', addr: '12 Example Street, Soweto', type: 'Meter Replacement', wo: 'WO-2026-10482', oldMtr: 'MTR-883421', status: 'Completed ✓', tech: 'Sipho Mkhize' },
-      '10483': { customer: 'Thabo Mokoena', acc: 'ACC-004822', addr: '45 Vilakazi Street, Soweto', type: 'Meter Replacement', wo: 'WO-2026-10483', oldMtr: 'MTR-772910', status: 'In Progress', tech: 'Tebogo Mokoena' },
-      '10484': { customer: 'Siyabonga Nkosi', acc: 'ACC-004823', addr: '88 Rose Avenue, Lenasia', type: 'Meter Replacement', wo: 'WO-2026-10484', oldMtr: 'MTR-664120', status: 'Assigned', tech: 'Siya Nkosi' },
-      '10485': { customer: 'Joseph Mthembu', acc: 'ACC-004824', addr: '104 Main Road, Eldo\'s', type: 'Meter Replacement', wo: 'WO-2026-10485', oldMtr: 'MTR-551029', status: 'Exception ⚠', tech: 'Marnus Botha' }
-    };
+  <div class="nav">
+    <div class="nav-item active" data-view="dashboard">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+      Dashboard
+      <span class="nav-count">87</span>
+    </div>
+    <div class="nav-item" data-view="exceptions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4" stroke-linecap="round"/><circle cx="12" cy="17" r=".6" fill="currentColor" stroke="none"/></svg>
+      Exceptions
+      <span class="nav-count warn">3</span>
+    </div>
+    <div class="nav-item" data-view="performance">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>
+      Technicians
+    </div>
+  </div>
 
-    function selectJob(id) {
-      const j = jobs[id];
-      if(!j) return;
-      document.getElementById('detail-job-id').innerText = 'JOB #' + id;
-      document.getElementById('detail-status').innerText = j.status;
-      document.getElementById('detail-customer').innerText = j.customer;
-      document.getElementById('detail-account').innerText = j.acc;
-      document.getElementById('detail-address').innerText = j.addr;
-      document.getElementById('detail-worktype').innerText = j.type;
-      document.getElementById('detail-wo').innerText = j.wo;
-      document.getElementById('detail-oldmeter').innerText = j.oldMtr;
-      document.getElementById('tech-select').value = j.tech;
-    }
-  </script>
+  <div class="rail-foot">
+    <div class="avatar">NM</div>
+    <div>
+      <div class="rail-foot-name">Naledi M.</div>
+      <div class="rail-foot-role">Control Room</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <div>
+      <h1 id="topbar-title">Operations</h1>
+      <div class="date">Friday, 12 June 2026</div>
+    </div>
+    <div class="live-pill"><span class="live-dot"></span> Live · syncing every 30s</div>
+  </div>
+
+  <div class="content">
+
+    <!-- ===================== DASHBOARD ===================== -->
+    <div class="view active" id="view-dashboard">
+      <div class="gauge-row">
+        <div class="gauge-card" id="gauge-total"></div>
+        <div class="gauge-card" id="gauge-assigned"></div>
+        <div class="gauge-card" id="gauge-progress"></div>
+        <div class="gauge-card" id="gauge-completed"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Work Queue</h2>
+            <div class="hint">Imported from work orders — click a job to open it</div>
+          </div>
+          <div class="filters" id="filters">
+            <div class="chip active" data-filter="all">All</div>
+            <div class="chip" data-filter="assigned">Assigned</div>
+            <div class="chip" data-filter="progress">In Progress</div>
+            <div class="chip" data-filter="completed">Completed</div>
+            <div class="chip" data-filter="exception">Exceptions</div>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Job #</th><th>Customer</th><th>Area</th><th>Technician</th><th>Status</th></tr>
+          </thead>
+          <tbody id="queue-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===================== EXCEPTIONS ===================== -->
+    <div class="view" id="view-exceptions">
+      <div class="section-title">Exceptions</div>
+      <div class="section-sub">Jobs that need a human to look at them, surfaced automatically.</div>
+      <div class="panel">
+        <div class="ex-list" id="ex-list"></div>
+      </div>
+    </div>
+
+    <!-- ===================== PERFORMANCE ===================== -->
+    <div class="view" id="view-performance">
+      <div class="section-title">Technician Performance</div>
+      <div class="section-sub">Derived from completed jobs — no manual reporting required.</div>
+      <div class="panel">
+        <table class="perf-table">
+          <thead>
+            <tr><th>Technician</th><th>Assigned</th><th>Completed</th><th>Exceptions</th><th>First-time-right</th></tr>
+          </thead>
+          <tbody id="perf-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Slide-over job drawer -->
+<div class="scrim" id="scrim"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div>
+      <div class="drawer-eyebrow" id="drawer-eyebrow">Job</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;" id="drawer-title">—</div>
+    </div>
+    <div class="drawer-close" id="drawer-close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </div>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+  <div class="drawer-foot">
+    <div class="btn btn-ghost" id="drawer-cancel">Close</div>
+    <div class="btn btn-primary" id="drawer-action">Generate Job Card</div>
+  </div>
+</div>
+
+<!-- Job card modal -->
+<div class="modal-scrim" id="jc-scrim">
+  <div class="jobcard" id="jc-content"></div>
+</div>
+
+<script>
+const jobs = [
+  {id:10482, customer:"Mandla Dlamini", account:"ACC-004821", address:"12 Example Street, Soweto, Gauteng", area:"Soweto", type:"Meter Replacement", oldMeter:"MTR-883421", oldMeterType:"Prepaid", oldReading:"0028471", wo:"WO-2026-10482", received:"10 Jun 2026", tech:"Sipho Mkhize", scheduled:"12 Jun 2026", status:"completed", newMeter:"MTR-927451", newReading:"0000123", photos:3, completedAt:"12 Jun 2026 · 14:37"},
+  {id:10483, customer:"Thabo Mokoena", account:"ACC-004822", address:"44 Vilakazi Street, Soweto, Gauteng", area:"Soweto", type:"Meter Replacement", oldMeter:"MTR-119820", oldMeterType:"Conventional", oldReading:"1124", wo:"WO-2026-10483", received:"10 Jun 2026", tech:"Tebogo Radebe", scheduled:"12 Jun 2026", status:"progress", newMeter:null, newReading:null, photos:1},
+  {id:10484, customer:"Sizwe Nkosi", account:"ACC-004823", address:"9 Protea Ave, Lenasia, Gauteng", area:"Lenasia", type:"New Connection", oldMeter:"—", oldMeterType:"—", oldReading:"—", wo:"WO-2026-10484", received:"11 Jun 2026", tech:"Siya Dube", scheduled:"12 Jun 2026", status:"assigned", newMeter:null, newReading:null, photos:0},
+  {id:10485, customer:"Jabulani Mthembu", account:"ACC-004824", address:"18 Lake Rd, Eldorado Park, Gauteng", area:"Eldorado Park", type:"Meter Replacement", oldMeter:"MTR-772093", oldMeterType:"Prepaid", oldReading:"5560", wo:"WO-2026-10485", received:"9 Jun 2026", tech:"Marnus Botha", scheduled:"11 Jun 2026", status:"exception", exception:"Missing new meter photograph", newMeter:"MTR-118820", newReading:"0000012", photos:2},
+  {id:10486, customer:"Nomvula Khumalo", account:"ACC-004825", address:"3 Chris Hani Rd, Soweto, Gauteng", area:"Soweto", type:"Audit", oldMeter:"MTR-330211", oldMeterType:"Prepaid", oldReading:"8820", wo:"WO-2026-10486", received:"11 Jun 2026", tech:"Sipho Mkhize", scheduled:"12 Jun 2026", status:"completed", newMeter:"—", newReading:"—", photos:3, completedAt:"12 Jun 2026 · 10:02"},
+  {id:10487, customer:"Palesa Sithole", account:"ACC-004826", address:"27 Rose St, Lenasia, Gauteng", area:"Lenasia", type:"Meter Replacement", oldMeter:"MTR-556231", oldMeterType:"Conventional", oldReading:"441", wo:"WO-2026-10487", received:"11 Jun 2026", tech:"Tinga Chauke", scheduled:"12 Jun 2026", status:"assigned", newMeter:null, newReading:null, photos:0},
+  {id:10488, customer:"Katlego Molefe", account:"ACC-004827", address:"61 Klipspruit Rd, Soweto, Gauteng", area:"Soweto", type:"Meter Replacement", oldMeter:"MTR-208774", oldMeterType:"Prepaid", oldReading:"1290", wo:"WO-2026-10488", received:"10 Jun 2026", tech:"Tebogo Radebe", scheduled:"12 Jun 2026", status:"completed", newMeter:"MTR-940213", newReading:"0000045", photos:3, completedAt:"12 Jun 2026 · 09:18"},
+  {id:10491, customer:"Refilwe Maluleke", account:"ACC-004830", address:"5 Dube Village, Lenasia, Gauteng", area:"Lenasia", type:"Meter Replacement", oldMeter:"MTR-664521", oldMeterType:"Prepaid", oldReading:"2201", wo:"WO-2026-10491", received:"10 Jun 2026", tech:"Siya Dube", scheduled:"11 Jun 2026", status:"exception", exception:"New meter reading missing", newMeter:"MTR-772110", newReading:null, photos:3},
+  {id:10502, customer:"Andile Zulu", account:"ACC-004841", address:"88 Freedom Sq, Eldorado Park, Gauteng", area:"Eldorado Park", type:"Meter Replacement", oldMeter:"MTR-118820", oldMeterType:"Conventional", oldReading:"77", wo:"WO-2026-10502", received:"9 Jun 2026", tech:"Tebogo Radebe", scheduled:"11 Jun 2026", status:"exception", exception:'Installation marked "Audit Required"', newMeter:"MTR-334410", newReading:"0000091", photos:3},
+];
+
+const perf = [
+  {name:"Sipho Mkhize", assigned:20, complete:19, exceptions:1},
+  {name:"Tebogo Radebe", assigned:20, complete:18, exceptions:2},
+  {name:"Siya Dube", assigned:20, complete:20, exceptions:0},
+  {name:"Marnus Botha", assigned:20, complete:17, exceptions:3},
+  {name:"Tinga Chauke", assigned:12, complete:11, exceptions:1},
+];
+
+const statusMeta = {
+  completed:{label:"Completed", cls:"completed"},
+  progress:{label:"In Progress", cls:"progress"},
+  assigned:{label:"Assigned", cls:"assigned"},
+  exception:{label:"Exception", cls:"exception"},
+};
+
+function gaugeSVG(value, total, color){
+  const r = 26, c = 2*Math.PI*r;
+  const pct = Math.min(value/total, 1);
+  const offset = c - pct*c;
+  return `<svg width="64" height="64" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="${r}" fill="none" stroke="var(--surface-3)" stroke-width="6"/>
+    <circle cx="32" cy="32" r="${r}" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round"
+      stroke-dasharray="${c}" stroke-dashoffset="${offset}" transform="rotate(-90 32 32)"/>
+  </svg>`;
+}
+
+function renderGauges(){
+  const total = jobs.length + 78; // scaled to match brief's "87 jobs today"
+  const assigned = 82, progress = 14, completed = 68;
+  document.getElementById('gauge-total').innerHTML = `
+    ${gaugeSVG(87,87,'var(--blue)')}
+    <div><div class="gauge-label">Jobs Today</div><div class="gauge-value">87</div><div class="gauge-delta">Imported from work orders</div></div>`;
+  document.getElementById('gauge-assigned').innerHTML = `
+    ${gaugeSVG(assigned,87,'var(--amber)')}
+    <div><div class="gauge-label">Assigned</div><div class="gauge-value">${assigned}</div><div class="gauge-delta">94% of today's load</div></div>`;
+  document.getElementById('gauge-progress').innerHTML = `
+    ${gaugeSVG(progress,87,'var(--blue)')}
+    <div><div class="gauge-label">In Progress</div><div class="gauge-value">${progress}</div><div class="gauge-delta">On site right now</div></div>`;
+  document.getElementById('gauge-completed').innerHTML = `
+    ${gaugeSVG(completed,87,'var(--green)')}
+    <div><div class="gauge-label">Completed</div><div class="gauge-value">${completed}</div><div class="gauge-delta">78% first-time-right</div></div>`;
+}
+
+let activeFilter = 'all';
+function renderQueue(){
+  const body = document.getElementById('queue-body');
+  const rows = jobs.filter(j => activeFilter==='all' ? true : j.status===activeFilter);
+  body.innerHTML = rows.map(j => `
+    <tr data-id="${j.id}">
+      <td class="job-id">#${j.id}</td>
+      <td class="cust">${j.customer}</td>
+      <td>${j.area}</td>
+      <td>${j.tech}</td>
+      <td><span class="badge ${statusMeta[j.status].cls}">${statusMeta[j.status].label}</span></td>
+    </tr>`).join('');
+  body.querySelectorAll('tr').forEach(tr => tr.addEventListener('click', () => openDrawer(parseInt(tr.dataset.id))));
+}
+
+function renderExceptions(){
+  const list = document.getElementById('ex-list');
+  const ex = jobs.filter(j => j.status==='exception');
+  list.innerHTML = ex.map(j => `
+    <div class="ex-item" data-id="${j.id}">
+      <div class="ex-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="ex-title">Job #${j.id} — ${j.customer}</div>
+        <div class="ex-sub">${j.exception}</div>
+      </div>
+      <div class="ex-meta">${j.tech}<br>${j.area}</div>
+    </div>`).join('');
+  list.querySelectorAll('.ex-item').forEach(el => el.addEventListener('click', () => openDrawer(parseInt(el.dataset.id))));
+}
+
+function renderPerf(){
+  const body = document.getElementById('perf-body');
+  body.innerHTML = perf.map(p => {
+    const ftr = Math.round((p.complete-p.exceptions)/p.complete*100);
+    return `<tr>
+      <td class="cust">${p.name}</td>
+      <td class="mono">${p.assigned}</td>
+      <td class="mono">${p.complete}</td>
+      <td class="mono" style="color:${p.exceptions>0?'var(--red)':'var(--text-faint)'}">${p.exceptions}</td>
+      <td><div class="bar-cell"><span class="mono">${ftr}%</span><div class="bar-track"><div class="bar-fill" style="width:${ftr}%"></div></div></div></td>
+    </tr>`;
+  }).join('');
+}
+
+// ---------- Drawer ----------
+const scrim = document.getElementById('scrim');
+const drawer = document.getElementById('drawer');
+let currentJob = null;
+
+function openDrawer(id){
+  currentJob = jobs.find(j => j.id===id);
+  document.getElementById('drawer-eyebrow').textContent = currentJob.type;
+  document.getElementById('drawer-title').textContent = `Job #${currentJob.id}`;
+
+  const checklist = [
+    {label:"Work order received", done:true},
+    {label:"Technician assigned", done: currentJob.status!=='assigned' || true},
+    {label:"Installation completed", done: ['completed','exception'].includes(currentJob.status)},
+    {label:"Meter details captured", done: !!currentJob.newMeter && currentJob.newMeter!=="—" ? !!currentJob.newReading : ['completed'].includes(currentJob.status)},
+    {label:"Photographs captured (3/3)", done: currentJob.photos===3},
+    {label:"Required information complete", done: currentJob.status==='completed'},
+  ];
+
+  document.getElementById('drawer-body').innerHTML = `
+    <div class="field-group">
+      <div class="field-row"><span class="field-label">Customer</span><span class="field-value">${currentJob.customer}</span></div>
+      <div class="field-row"><span class="field-label">Account Number</span><span class="field-value mono">${currentJob.account}</span></div>
+      <div class="field-row"><span class="field-label">Address</span><span class="field-value" style="max-width:220px;">${currentJob.address}</span></div>
+      <div class="field-row"><span class="field-label">Work Type</span><span class="field-value">${currentJob.type}</span></div>
+      <div class="field-row"><span class="field-label">Old Meter</span><span class="field-value mono">${currentJob.oldMeter}</span></div>
+      <div class="field-row"><span class="field-label">Old Meter Type</span><span class="field-value">${currentJob.oldMeterType}</span></div>
+      <div class="field-row"><span class="field-label">Work Order</span><span class="field-value mono">${currentJob.wo}</span></div>
+      <div class="field-row"><span class="field-label">Received</span><span class="field-value">${currentJob.received}</span></div>
+    </div>
+    <div class="drawer-eyebrow">Assignment</div>
+    <div class="field-group">
+      <label style="font-size:11.5px;color:var(--text-faint);display:block;margin-bottom:6px;">Technician</label>
+      <select class="tech-select" id="tech-select">
+        ${perf.map(p => `<option ${p.name===currentJob.tech?'selected':''}>${p.name}</option>`).join('')}
+      </select>
+      <div class="field-row" style="margin-top:10px;"><span class="field-label">Scheduled Date</span><span class="field-value">${currentJob.scheduled}</span></div>
+    </div>
+    <div class="drawer-eyebrow">Status</div>
+    <div class="checklist">
+      ${checklist.map(c => `
+        <div class="check-item ${c.done?'done':'pending'}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg>
+          ${c.label}
+        </div>`).join('')}
+    </div>
+    ${currentJob.exception ? `<div style="margin-top:16px;padding:11px 13px;background:var(--red-dim);border-radius:8px;font-size:12px;color:#ffb0b0;">⚠ ${currentJob.exception}</div>` : ''}
+  `;
+
+  const actionBtn = document.getElementById('drawer-action');
+  actionBtn.textContent = currentJob.status==='completed' ? 'Generate Job Card' : 'Save Assignment';
+  actionBtn.onclick = () => currentJob.status==='completed' ? openJobCard(currentJob) : (scrim.classList.remove('open'), drawer.classList.remove('open'));
+
+  scrim.classList.add('open');
+  drawer.classList.add('open');
+}
+document.getElementById('drawer-close').onclick = document.getElementById('drawer-cancel').onclick = () => {
+  scrim.classList.remove('open'); drawer.classList.remove('open');
+};
+scrim.onclick = () => { scrim.classList.remove('open'); drawer.classList.remove('open'); document.getElementById('jc-scrim').classList.remove('open'); };
+
+// ---------- Job card modal ----------
+function openJobCard(j){
+  document.getElementById('jc-content').innerHTML = `
+    <h3>METER JOB CARD</h3>
+    <div class="jc-sub">GENERATED FROM OPERATIONAL RECORD</div>
+    <div class="jc-row"><span class="jc-label">Job Number</span><span>${j.id}</span></div>
+    <div class="jc-row"><span class="jc-label">Work Order</span><span>${j.wo}</span></div>
+    <div class="jc-rule"></div>
+    <div class="jc-section">CUSTOMER</div>
+    <div>${j.customer}</div>
+    <div>${j.address}</div>
+    <div class="jc-rule"></div>
+    <div class="jc-section">METER DETAILS</div>
+    <div class="jc-row"><span class="jc-label">Old Meter</span><span>${j.oldMeter}</span></div>
+    <div class="jc-row"><span class="jc-label">Old Reading</span><span>${j.oldReading}</span></div>
+    <div class="jc-row"><span class="jc-label">New Meter</span><span>${j.newMeter||'—'}</span></div>
+    <div class="jc-row"><span class="jc-label">New Reading</span><span>${j.newReading||'—'}</span></div>
+    <div class="jc-rule"></div>
+    <div class="jc-section">INSTALLATION</div>
+    <div class="jc-row"><span class="jc-label">Technician</span><span>${j.tech}</span></div>
+    <div class="jc-row"><span class="jc-label">Completed</span><span>${j.completedAt||'—'}</span></div>
+    <div class="jc-photos">
+      <div class="jc-photo">OLD METER<br>PHOTO</div>
+      <div class="jc-photo">NEW METER<br>PHOTO</div>
+      <div class="jc-photo">INSTALLATION<br>PHOTO</div>
+      <div class="jc-photo" style="display:flex;align-items:center;justify-content:center;">✓ 3/3</div>
+    </div>
+    <div class="jc-close-row">
+      <button class="jc-btn" id="jc-close">Close</button>
+      <button class="jc-btn" style="background:#1a1a1a;color:#fff;border-color:#1a1a1a;">Download PDF</button>
+    </div>
+  `;
+  document.getElementById('jc-scrim').classList.add('open');
+  document.getElementById('jc-close').onclick = () => document.getElementById('jc-scrim').classList.remove('open');
+}
+
+// ---------- Nav ----------
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('view-'+item.dataset.view).classList.add('active');
+    const titles = {dashboard:'Operations', exceptions:'Exceptions', performance:'Technicians'};
+    document.getElementById('topbar-title').textContent = titles[item.dataset.view];
+  });
+});
+
+document.getElementById('filters').addEventListener('click', (e) => {
+  if(!e.target.classList.contains('chip')) return;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  e.target.classList.add('active');
+  activeFilter = e.target.dataset.filter;
+  renderQueue();
+});
+
+renderGauges();
+renderQueue();
+renderExceptions();
+renderPerf();
+</script>
 </body>
 </html>
