@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrimeChain — Fuel Control Tower</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --bg: #f5f6f8;
+      --surface: #ffffff;
+      --surface-2: #f8f9fb;
+      --border: #e5e7eb;
+      --text: #17191c;
+      --muted: #6b7280;
+      --dark: #17191c;
+      --green: #287a55;
+      --green-soft: #e8f4ee;
+      --amber: #b7791f;
+      --amber-soft: #fff5df;
+      --red: #c2413b;
+      --red-soft: #fdeceb;
+      --blue: #3568b8;
+      --blue-soft: #edf3fc;
+      --shadow: 0 8px 30px rgba(0,0,0,.04);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    button,
+    select {
+      font: inherit;
+    }
+
+    /* =========================
+       APP SHELL
+    ========================= */
+
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 240px;
+      background: #111315;
+      color: #fff;
+      padding: 25px 16px;
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 10;
+    }
+
+    .brand {
+      padding: 0 12px 30px;
+    }
+
+    .brand-name {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: #92969b;
+      margin-top: 3px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+    }
+
+    .nav-label {
+      color: #666b71;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      padding: 0 12px;
+      margin: 18px 0 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 11px 12px;
+      border-radius: 8px;
+      color: #a9adb2;
+      font-size: 13px;
+      margin-bottom: 3px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: #202327;
+      color: #fff;
+    }
+
+    .nav-icon {
+      width: 17px;
+      text-align: center;
+      opacity: .85;
+    }
+
+    .sidebar-bottom {
+      position: absolute;
+      bottom: 22px;
+      left: 16px;
+      right: 16px;
+      border-top: 1px solid #292c30;
+      padding: 17px 12px 0;
+    }
+
+    .system-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #9da2a8;
+      font-size: 11px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #43a66f;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    .main {
+      margin-left: 240px;
+      width: calc(100% - 240px);
+    }
+
+    .topbar {
+      height: 70px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+    }
+
+    .page-context {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .page-context h1 {
+      font-size: 18px;
+      letter-spacing: -.4px;
+    }
+
+    .live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 5px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .live::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .date-select {
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 7px;
+      color: var(--text);
+      font-size: 12px;
+    }
+
+    .user {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #202327;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .content {
+      padding: 30px 32px 50px;
+      max-width: 1600px;
+    }
+
+    .intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .intro h2 {
+      font-size: 27px;
+      letter-spacing: -1px;
+      font-weight: 650;
+    }
+
+    .intro p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .filter {
+      border: 1px solid var(--border);
+      background: white;
+      padding: 8px 11px;
+      border-radius: 7px;
+      font-size: 11px;
+      color: #444;
+    }
+
+    /* =========================
+       KPI CARDS
+    ========================= */
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .kpi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .kpi-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .kpi-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      background: var(--surface-2);
+    }
+
+    .kpi-value {
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-top: 10px;
+    }
+
+    .kpi-meta {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .positive {
+      color: var(--green);
+    }
+
+    .negative {
+      color: var(--red);
+    }
+
+    .warning {
+      color: var(--amber);
+    }
+
+    /* =========================
+       GRID
+    ========================= */
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 18px 20px 14px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .card-subtitle {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 2px;
+    }
+
+    .card-action {
+      border: none;
+      background: none;
+      color: var(--blue);
+      font-size: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .chart-wrap {
+      padding: 0 18px 18px;
+      height: 275px;
+    }
+
+    /* =========================
+       EXCEPTIONS
+    ========================= */
+
+    .exception-list {
+      padding: 0 20px 12px;
+    }
+
+    .exception {
+      display: grid;
+      grid-template-columns: 38px 1fr auto;
+      gap: 11px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f1f3;
+    }
+
+    .exception:last-child {
+      border-bottom: none;
+    }
+
+    .truck-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: var(--red-soft);
+      color: var(--red);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .exception-main strong {
+      font-size: 11px;
+      display: block;
+    }
+
+    .exception-main span {
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    .exception-value {
+      text-align: right;
+    }
+
+    .exception-value strong {
+      font-size: 11px;
+      display: block;
+      color: var(--red);
+    }
+
+    .exception-value span {
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       TABLE
+    ========================= */
+
+    .table-card {
+      margin-bottom: 18px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      text-align: left;
+      padding: 11px 18px;
+      font-size: 9px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      background: var(--surface-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 12px 18px;
+      border-bottom: 1px solid #f0f1f3;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr {
+      cursor: pointer;
+      transition: .15s;
+    }
+
+    tbody tr:hover {
+      background: #fafbfc;
+    }
+
+    .vehicle-name {
+      font-weight: 700;
+    }
+
+    .vehicle-id {
+      color: var(--muted);
+      font-size: 9px;
+      display: block;
+      margin-top: 1px;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 4px 7px;
+      border-radius: 5px;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .badge-normal {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+
+    .badge-watch {
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .badge-exception {
+      background: var(--red-soft);
+      color: var(--red);
+    }
+
+    .variance-bar {
+      width: 90px;
+      height: 5px;
+      background: #edf0f2;
+      border-radius: 4px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 7px;
+    }
+
+    .variance-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--red);
+    }
+
+    /* =========================
+       LOWER GRID
+    ========================= */
+
+    .lower-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+    }
+
+    .mini-table {
+      padding: 0 20px 15px;
+    }
+
+    .mini-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f1f3;
+    }
+
+    .mini-row:last-child {
+      border-bottom: none;
+    }
+
+    .mini-name {
+      font-size: 10px;
+      font-weight: 650;
+    }
+
+    .mini-sub {
+      font-size: 9px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .mini-number {
+      font-size: 10px;
+      font-weight: 650;
+      text-align: right;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,12,14,.55);
+      backdrop-filter: blur(3px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      width: 720px;
+      max-width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 25px 80px rgba(0,0,0,.2);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .modal-subtitle {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .close {
+      border: none;
+      background: var(--surface-2);
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 22px 24px;
+    }
+
+    .modal-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .modal-kpi {
+      padding: 12px;
+      background: var(--surface-2);
+      border-radius: 8px;
+    }
+
+    .modal-kpi-label {
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    .modal-kpi-value {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .investigation-box {
+      background: var(--red-soft);
+      border-radius: 9px;
+      padding: 15px;
+    }
+
+    .investigation-title {
+      font-size: 10px;
+      color: var(--red);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    .investigation-box p {
+      font-size: 11px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 1200px) {
+      .kpis {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .lower-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 65px;
+        padding: 20px 8px;
+      }
+
+      .brand-name,
+      .brand-sub,
+      .nav-label,
+      .nav-item span,
+      .sidebar-bottom {
+        display: none;
+      }
+
+      .brand {
+        padding: 0 10px 25px;
+      }
+
+      .nav-item {
+        justify-content: center;
+      }
+
+      .main {
+        margin-left: 65px;
+        width: calc(100% - 65px);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content {
+        padding: 22px 18px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .kpis {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .intro {
+        display: block;
+      }
+
+      .filter-row {
+        margin-top: 15px;
+      }
+
+      .topbar {
+        padding: 0 15px;
+      }
+
+      .date-select {
+        display: none;
+      }
+
+      .modal-kpis {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- =========================
+       SIDEBAR
+  ========================== -->
+
+  <aside class="sidebar">
+
+    <div class="brand">
+      <div class="brand-name">PrimeChain</div>
+      <div class="brand-sub">Operational Intelligence</div>
+    </div>
+
+    <div class="nav-label">Control</div>
+
+    <div class="nav-item active">
+      <div class="nav-icon">◉</div>
+      <span>Fuel Control</span>
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-icon">▦</div>
+      <span>Fleet</span>
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-icon">↗</div>
+      <span>Trips & Loads</span>
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-icon">!</div>
+      <span>Exceptions</span>
+    </div>
+
+    <div class="nav-label">Performance</div>
+
+    <div class="nav-item">
+      <div class="nav-icon">⌁</div>
+      <span>Routes</span>
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-icon">◫</div>
+      <span>Contractors</span>
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-icon">◴</div>
+      <span>History</span>
+    </div>
+
+    <div class="nav-label">System</div>
+
+    <div class="nav-item">
+      <div class="nav-icon">⚙</div>
+      <span>Settings</span>
+    </div>
+
+    <div class="sidebar-bottom">
+      <div class="system-status">
+        <div class="status-dot"></div>
+        Data updated 08:14
+      </div>
+    </div>
+
+  </aside>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div class="page-context">
+        <h1>Fuel Control Tower</h1>
+        <div class="live">Live monitoring</div>
+      </div>
+
+      <div class="top-actions">
+
+        <select class="date-select" id="periodFilter">
+          <option>Last 30 days</option>
+          <option>Last 7 days</option>
+          <option>This month</option>
+          <option>Previous month</option>
+        </select>
+
+        <div class="user">PC</div>
+
+      </div>
+
+    </header>
+
+
+    <section class="content">
+
+      <!-- INTRO -->
+
+      <div class="intro">
+
+        <div>
+          <div class="eyebrow">Fuel & Logistics</div>
+          <h2>Is the operation consuming what it should?</h2>
+          <p>
+            Expected consumption compared with actual operational behaviour.
+          </p>
+        </div>
+
+        <div class="filter-row">
+
+          <select class="filter" id="contractorFilter">
+            <option value="all">All contractors</option>
+            <option value="A">Contractor A</option>
+            <option value="B">Contractor B</option>
+            <option value="C">Contractor C</option>
+          </select>
+
+          <select class="filter" id="statusFilter">
+            <option value="all">All vehicles</option>
+            <option value="exception">Exceptions</option>
+            <option value="watch">Watch</option>
+            <option value="normal">Normal</option>
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           KPI CARDS
+      ========================== -->
+
+      <div class="kpis">
+
+        <div class="kpi">
+          <div class="kpi-top">
+            <div class="kpi-label">Fuel Spend</div>
+            <div class="kpi-icon">R</div>
+          </div>
+          <div class="kpi-value">R1.20m</div>
+          <div class="kpi-meta">Across 38 active vehicles</div>
+        </div>
+
+        <div class="kpi">
+          <div class="kpi-top">
+            <div class="kpi-label">Expected Fuel</div>
+            <div class="kpi-icon">◎</div>
+          </div>
+          <div class="kpi-value">1.08m L</div>
+          <div class="kpi-meta">Based on operating profile</div>
+        </div>
+
+        <div class="kpi">
+          <div class="kpi-top">
+            <div class="kpi-label">Actual Fuel</div>
+            <div class="kpi-icon">◉</div>
+          </div>
+          <div class="kpi-value">1.14m L</div>
+          <div class="kpi-meta">
+            <span class="negative">+56.4k L</span> vs expected
+          </div>
+        </div>
+
+        <div class="kpi">
+          <div class="kpi-top">
+            <div class="kpi-label">Financial Exposure</div>
+            <div class="kpi-icon">!</div>
+          </div>
+          <div class="kpi-value negative">R120k</div>
+          <div class="kpi-meta">Potential excess fuel cost</div>
+        </div>
+
+        <div class="kpi">
+          <div class="kpi-top">
+            <div class="kpi-label">Exceptions</div>
+            <div class="kpi-icon">⚠</div>
+          </div>
+          <div class="kpi-value warning">7</div>
+          <div class="kpi-meta">4 persistent exceptions</div>
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           CHART + EXCEPTIONS
+      ========================== -->
+
+      <div class="grid">
+
+        <div class="card">
+
+          <div class="card-header">
+
+            <div>
+              <div class="card-title">Expected vs Actual Fuel</div>
+              <div class="card-subtitle">
+                Daily consumption across the active fleet
+              </div>
+            </div>
+
+            <button class="card-action">View trend →</button>
+
+          </div>
+
+          <div class="chart-wrap">
+            <canvas id="fuelChart"></canvas>
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-header">
+
+            <div>
+              <div class="card-title">Priority Exceptions</div>
+              <div class="card-subtitle">
+                Vehicles requiring investigation
+              </div>
+            </div>
+
+            <button class="card-action">View all →</button>
+
+          </div>
+
+          <div class="exception-list">
+
+            <div class="exception">
+              <div class="truck-avatar">17</div>
+
+              <div class="exception-main">
+                <strong>Truck 17</strong>
+                <span>Contractor A · 18 loads</span>
+              </div>
+
+              <div class="exception-value">
+                <strong>+11.8%</strong>
+                <span>R12,200</span>
+              </div>
+            </div>
+
+
+            <div class="exception">
+              <div class="truck-avatar">31</div>
+
+              <div class="exception-main">
+                <strong>Truck 31</strong>
+                <span>Contractor C · 21 loads</span>
+              </div>
+
+              <div class="exception-value">
+                <strong>+9.4%</strong>
+                <span>R8,700</span>
+              </div>
+            </div>
+
+
+            <div class="exception">
+              <div class="truck-avatar">08</div>
+
+              <div class="exception-main">
+                <strong>Truck 08</strong>
+                <span>Contractor B · 17 loads</span>
+              </div>
+
+              <div class="exception-value">
+                <strong>+8.9%</strong>
+                <span>R7,900</span>
+              </div>
+            </div>
+
+
+            <div class="exception">
+              <div class="truck-avatar">14</div>
+
+              <div class="exception-main">
+                <strong>Truck 14</strong>
+                <span>Contractor A · 19 loads</span>
+              </div>
+
+              <div class="exception-value">
+                <strong>+7.6%</strong>
+                <span>R6,400</span>
+              </div>
+            </div>
+
+
+            <div class="exception">
+              <div class="truck-avatar">23</div>
+
+              <div class="exception-main">
+                <strong>Truck 23</strong>
+                <span>Contractor B · 16 loads</span>
+              </div>
+
+              <div class="exception-value">
+                <strong>+6.9%</strong>
+                <span>R5,100</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           FLEET PERFORMANCE
+      ========================== -->
+
+      <div class="card table-card">
+
+        <div class="card-header">
+
+          <div>
+            <div class="card-title">Fleet Performance</div>
+            <div class="card-subtitle">
+              Vehicle-level expected vs actual consumption
+            </div>
+          </div>
+
+          <button class="card-action" onclick="exportData()">
+            Export data ↓
+          </button>
+
+        </div>
+
+
+        <div class="table-container">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Vehicle</th>
+                <th>Contractor</th>
+                <th>Distance</th>
+                <th>Loads</th>
+                <th>Expected</th>
+                <th>Actual</th>
+                <th>Variance</th>
+                <th>Exposure</th>
+                <th>Status</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="fleetTable">
+
+              <tr data-status="exception" onclick="openVehicle('Truck 17','Contractor A','12,000','18','4,286','4,850','+11.8%','R12,200')">
+
+                <td>
+                  <span class="vehicle-name">Truck 17</span>
+                  <span class="vehicle-id">KZN-817-MP</span>
+                </td>
+
+                <td>Contractor A</td>
+
+                <td>12,000 km</td>
+
+                <td>18</td>
+
+                <td>4,286 L</td>
+
+                <td>4,850 L</td>
+
+                <td>
+                  <span class="variance-bar">
+                    <span class="variance-fill" style="width:88%"></span>
+                  </span>
+                  <span class="negative">+11.8%</span>
+                </td>
+
+                <td class="negative">R12,200</td>
+
+                <td>
+                  <span class="badge badge-exception">Exception</span>
+                </td>
+
+              </tr>
+
+
+              <tr data-status="normal" onclick="openVehicle('Truck 23','Contractor B','11,600','16','4,143','4,313','+4.1%','R1,900')">
+
+                <td>
+                  <span class="vehicle-name">Truck 23</span>
+                  <span class="vehicle-id">MP-423-DB</span>
+                </td>
+
+                <td>Contractor B</td>
+
+                <td>11,600 km</td>
+
+                <td>16</td>
+
+                <td>4,143 L</td>
+
+                <td>4,313 L</td>
+
+                <td>
+                  <span class="variance-bar">
+                    <span class="variance-fill" style="width:35%"></span>
+                  </span>
+                  <span class="warning">+4.1%</span>
+                </td>
+
+                <td>R1,900</td>
+
+                <td>
+                  <span class="badge badge-watch">Watch</span>
+                </td>
+
+              </tr>
+
+
+              <tr data-status="exception" onclick="openVehicle('Truck 31','Contractor C','13,100','21','4,678','5,118','+9.4%','R8,700')">
+
+                <td>
+                  <span class="vehicle-name">Truck 31</span>
+                  <span class="vehicle-id">MP-931-DB</span>
+                </td>
+
+                <td>Contractor C</td>
+
+                <td>13,100 km</td>
+
+                <td>21</td>
+
+                <td>4,678 L</td>
+
+                <td>5,118 L</td>
+
+                <td>
+                  <span class="variance-bar">
+                    <span class="variance-fill" style="width:74%"></span>
+                  </span>
+                  <span class="negative">+9.4%</span>
+                </td>
+
+                <td class="negative">R8,700</td>
+
+                <td>
+                  <span class="badge badge-exception">Exception</span>
+                </td>
+
+              </tr>
+
+
+              <tr data-status="normal" onclick="openVehicle('Truck 05','Contractor A','10,900','15','3,893','3,882','-0.3%','R0')">
+
+                <td>
+                  <span class="vehicle-name">Truck 05</span>
+                  <span class="vehicle-id">MP-105-DB</span>
+                </td>
+
+                <td>Contractor A</td>
+
+                <td>10,900 km</td>
+
+                <td>15</td>
+
+                <td>3,893 L</td>
+
+                <td>3,882 L</td>
+
+                <td>
+                  <span class="variance-bar">
+                    <span class="variance-fill" style="width:4%; background:var(--green)"></span>
+                  </span>
+                  <span class="positive">-0.3%</span>
+                </td>
+
+                <td class="positive">R0</td>
+
+                <td>
+                  <span class="badge badge-normal">Normal</span>
+                </td>
+
+              </tr>
+
+
+              <tr data-status="exception" onclick="openVehicle('Truck 08','Contractor B','11,400','17','4,071','4,433','+8.9%','R7,900')">
+
+                <td>
+                  <span class="vehicle-name">Truck 08</span>
+                  <span class="vehicle-id">MP-208-DB</span>
+                </td>
+
+                <td>Contractor B</td>
+
+                <td>11,400 km</td>
+
+                <td>17</td>
+
+                <td>4,071 L</td>
+
+                <td>4,433 L</td>
+
+                <td>
+                  <span class="variance-bar">
+                    <span class="variance-fill" style="width:71%"></span>
+                  </span>
+                  <span class="negative">+8.9%</span>
+                </td>
+
+                <td class="negative">R7,900</td>
+
+                <td>
+                  <span class="badge badge-exception">Exception</span>
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           LOWER PERFORMANCE
+      ========================== -->
+
+      <div class="lower-grid">
+
+
+        <!-- ROUTES -->
+
+        <div class="card">
+
+          <div class="card-header">
+
+            <div>
+              <div class="card-title">Route Performance</div>
+              <div class="card-subtitle">
+                Consumption by route family
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mini-table">
+
+            <div class="mini-row">
+
+              <div>
+                <div class="mini-name">Mpumalanga → Durban</div>
+                <div class="mini-sub">Primary RB1 route</div>
+              </div>
+
+              <div class="mini-number">2.78 km/L</div>
+
+              <span class="badge badge-normal">Normal</span>
+
+            </div>
+
+
+            <div class="mini-row">
+
+              <div>
+                <div class="mini-name">Route B</div>
+                <div class="mini-sub">High traffic exposure</div>
+              </div>
+
+              <div class="mini-number">2.52 km/L</div>
+
+              <span class="badge badge-exception">+9.8%</span>
+
+            </div>
+
+
+            <div class="mini-row">
+
+              <div>
+                <div class="mini-name">Route C</div>
+                <div class="mini-sub">Secondary route</div>
+              </div>
+
+              <div class="mini-number">2.69 km/L</div>
+
+              <span class="badge badge-normal">Normal</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CONTRACTORS -->
+
+        <div class="card">
+
+          <div class="card-header">
+
+            <div>
+              <div class="card-title">Contractor Performance</div>
+              <div class="card-subtitle">
+                Fleet-level performance
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mini-table">
+
+            <div class="mini-row">
+
+              <div>
+                <div class="mini-name">Contractor A</div>
+                <div class="mini-sub">14 vehicles</div>
+              </div>
+
+              <div class="mini-number">2.76 km/L</div>
+
+              <span class="badge badge-normal">Normal</span>
+
+            </div>
+
+
+            <div class="mini-row">
+
+              <div>
+                <div class="mini-name">Contractor B</div>
+                <div class="mini-sub">13 vehicles</div>
+              </div>
+
+              <div class="mini-number">2.61 km/L</div>
+
+              <span class="badge badge-watch">Watch</span>
+
+            </div>
+
+
+            <div class="mini-row">
+
+              <div>
+                <div class="mini-name">Contractor C</div>
+                <div class="mini-sub">11 vehicles</div>
+              </div>
+
+              <div class="mini-number">2.55 km/L</div>
+
+              <span class="badge badge-exception">Exception</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CONTROL HEALTH -->
+
+        <div class="card">
+
+          <div class="card-header">
+
+            <div>
+              <div class="card-title">Control Health</div>
+              <div class="card-subtitle">
+                Data & monitoring integrity
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mini-table">
+
+            <div class="mini-row">
+
+              <div>
+                <div class="mini-name">Fuel records</div>
+                <div class="mini-sub">Last 30 days</div>
+              </div>
+
+              <div class="mini-number">98.7%</div>
+
+              <span class="badge badge-normal">Healthy</span>
+
+            </div>
+
+
+            <div class="mini-row">
+
+              <div>
+                <div class="mini-name">Vehicle matching</div>
+                <div class="mini-sub">Fuel → vehicle</div>
+              </div>
+
+              <div class="mini-number">99.1%</div>
+
+              <span class="badge badge-normal">Healthy</span>
+
+            </div>
+
+
+            <div class="mini-row">
+
+              <div>
+                <div class="mini-name">Load reconciliation</div>
+                <div class="mini-sub">Fuel → operational work</div>
+              </div>
+
+              <div class="mini-number">94.8%</div>
+
+              <span class="badge badge-watch">Watch</span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- =========================
+     VEHICLE MODAL
+========================== -->
+
+<div class="modal-overlay" id="vehicleModal">
+
+  <div class="modal">
+
+    <div class="modal-header">
+
+      <div>
+        <div class="modal-title" id="modalTitle">Truck 17</div>
+        <div class="modal-subtitle" id="modalSubtitle">
+          Contractor A · Vehicle performance
+        </div>
+      </div>
+
+      <button class="close" onclick="closeModal()">×</button>
+
+    </div>
+
+
+    <div class="modal-body">
+
+      <div class="modal-kpis">
+
+        <div class="modal-kpi">
+          <div class="modal-kpi-label">Distance</div>
+          <div class="modal-kpi-value" id="mDistance">12,000 km</div>
+        </div>
+
+        <div class="modal-kpi">
+          <div class="modal-kpi-label">Loads</div>
+          <div class="modal-kpi-value" id="mLoads">18</div>
+        </div>
+
+        <div class="modal-kpi">
+          <div class="modal-kpi-label">Expected</div>
+          <div class="modal-kpi-value" id="mExpected">4,286 L</div>
+        </div>
+
+        <div class="modal-kpi">
+          <div class="modal-kpi-label">Actual</div>
+          <div class="modal-kpi-value" id="mActual">4,850 L</div>
+        </div>
+
+      </div>
+
+
+      <div class="investigation-box">
+
+        <div class="investigation-title">
+          Investigation required
+        </div>
+
+        <p id="investigationText">
+          This vehicle has consumed 11.8% above its expected fuel profile.
+          The system recommends reviewing route conditions, trip activity,
+          idling, fuel transactions and historical performance before
+          escalation.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* =========================
+     FUEL TREND CHART
+  ========================== */
+
+  const ctx = document.getElementById("fuelChart");
+
+  new Chart(ctx, {
+
+    type: "line",
+
+    data: {
+
+      labels: [
+        "01 Aug",
+        "03 Aug",
+        "05 Aug",
+        "07 Aug",
+        "09 Aug",
+        "11 Aug"
+      ],
+
+      datasets: [
+
+        {
+          label: "Expected",
+          data: [34, 36, 35, 38, 37, 39],
+          borderWidth: 2,
+          tension: .35,
+          borderDash: [5, 5],
+          pointRadius: 2
+        },
+
+        {
+          label: "Actual",
+          data: [35, 37, 39, 41, 40, 44],
+          borderWidth: 2.5,
+          tension: .35,
+          pointRadius: 3
+        }
+
+      ]
+
+    },
+
+    options: {
+
+      responsive: true,
+      maintainAspectRatio: false,
+
+      interaction: {
+        mode: "index",
+        intersect: false
+      },
+
+      plugins: {
+
+        legend: {
+          position: "bottom",
+          labels: {
+            boxWidth: 12,
+            font: {
+              size: 10
+            }
+          }
+        }
+
+      },
+
+      scales: {
+
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            font: {
+              size: 9
+            }
+          }
+        },
+
+        y: {
+          beginAtZero: false,
+          grid: {
+            color: "#eef0f2"
+          },
+          ticks: {
+            font: {
+              size: 9
+            }
+          }
+        }
+
+      }
+
+    }
+
+  });
+
+
+  /* =========================
+     VEHICLE MODAL
+  ========================== */
+
+  function openVehicle(
+    vehicle,
+    contractor,
+    distance,
+    loads,
+    expected,
+    actual,
+    variance,
+    exposure
+  ) {
+
+    document.getElementById("modalTitle").innerText = vehicle;
+
+    document.getElementById("modalSubtitle").innerText =
+      contractor + " · Vehicle performance";
+
+    document.getElementById("mDistance").innerText =
+      distance + " km";
+
+    document.getElementById("mLoads").innerText =
+      loads;
+
+    document.getElementById("mExpected").innerText =
+      expected + " L";
+
+    document.getElementById("mActual").innerText =
+      actual + " L";
+
+    document.getElementById("investigationText").innerText =
+      "This vehicle is operating at " +
+      variance +
+      " against its expected fuel profile, representing approximately " +
+      exposure +
+      " of potential excess fuel cost. Review route conditions, trip activity, idling, fuel transactions and historical performance before escalation.";
+
+    document
+      .getElementById("vehicleModal")
+      .classList
+      .add("active");
+
+  }
+
+
+  function closeModal() {
+
+    document
+      .getElementById("vehicleModal")
+      .classList
+      .remove("active");
+
+  }
+
+
+  document
+    .getElementById("vehicleModal")
+    .addEventListener("click", function(e) {
+
+      if (e.target === this) {
+        closeModal();
+      }
+
+    });
+
+
+  /* =========================
+     STATUS FILTER
+  ========================== */
+
+  document
+    .getElementById("statusFilter")
+    .addEventListener("change", function() {
+
+      const selected = this.value;
+
+      const rows = document.querySelectorAll("#fleetTable tr");
+
+      rows.forEach(row => {
+
+        if (selected === "all") {
+
+          row.style.display = "";
+
+        } else {
+
+          row.style.display =
+            row.dataset.status === selected
+              ? ""
+              : "none";
+
+        }
+
+      });
+
+    });
+
+
+  /* =========================
+     CONTRACTOR FILTER
+  ========================== */
+
+  document
+    .getElementById("contractorFilter")
+    .addEventListener("change", function() {
+
+      const selected = this.value;
+
+      const rows = document.querySelectorAll("#fleetTable tr");
+
+      rows.forEach(row => {
+
+        const contractor =
+          row.children[1].innerText.trim();
+
+        if (selected === "all") {
+
+          row.style.display = "";
+
+        } else {
+
+          row.style.display =
+            contractor.includes(selected === "A"
+              ? "Contractor A"
+              : selected === "B"
+                ? "Contractor B"
+                : "Contractor C")
+              ? ""
+              : "none";
+
+        }
+
+      });
+
+    });
+
+
+  /* =========================
+     EXPORT
+  ========================== */
+
+  function exportData() {
+
+    const rows = [
+      ["Vehicle","Contractor","Distance","Loads","Expected","Actual","Variance","Exposure"],
+      ["Truck 17","Contractor A","12000","18","4286","4850","11.8%","12200"],
+      ["Truck 23","Contractor B","11600","16","4143","4313","4.1%","1900"],
+      ["Truck 31","Contractor C","13100","21","4678","5118","9.4%","8700"],
+      ["Truck 05","Contractor A","10900","15","3893","3882","-0.3%","0"],
+      ["Truck 08","Contractor B","11400","17","4071","4433","8.9%","7900"]
+    ];
+
+    const csv =
+      rows
+        .map(row => row.join(","))
+        .join("\n");
+
+    const blob =
+      new Blob([csv], { type: "text/csv" });
+
+    const url =
+      URL.createObjectURL(blob);
+
+    const a =
+      document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+      "primechain-fuel-performance.csv";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+  }
+
+</script>
+
+</body>
+</html>
