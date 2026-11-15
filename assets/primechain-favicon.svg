@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 64 64">
+<rect width="64" height="64" rx="12" fill="#f5f4f0"/>
+<text x="8" y="45" fill="#171717"
+font-family="Arial,Helvetica,sans-serif"
+font-weight="800" font-size="38">P</text>
+<text x="32" y="45" fill="#c8a96b"
+font-family="Arial,Helvetica,sans-serif"
+font-weight="800" font-size="38">C</text>
+</svg>

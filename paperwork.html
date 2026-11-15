@@ -3,16 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Most businesses are sitting on months or years of operational intelligence — locked inside job cards, delivery notes, fuel slips, invoices and stock sheets." />
-<title>Your Paperwork Is Telling You More Than You Think · PrimeChain</title>
+<meta name="description" content="Learn how reliable operational records, reconciliations and connected information help businesses improve accountability and make better decisions.">
+<title>Your Paperwork Is Telling You How Your Business Runs · PrimeChain</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- ✅ FAVICON FIXED - Using inline SVG, no external files needed -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23101010'/%3E%3Ctext x='50' y='67' font-family='system-ui, sans-serif' font-size='48' font-weight='700' fill='%23c8a96b' text-anchor='middle' letter-spacing='-3'%3EP%3C/text%3E%3Ctext x='50' y='67' font-family='system-ui, sans-serif' font-size='24' font-weight='300' fill='%23c8a96b' text-anchor='middle' letter-spacing='-1' opacity='0.6'%3EC%3C/text%3E%3Ccircle cx='78' cy='24' r='3.5' fill='%23c8a96b' opacity='0.4'/%3E%3C/svg%3E">
-
 <style>
 :root{
   --ink:#101010;
@@ -114,6 +112,7 @@ a{color:inherit;text-decoration:none}
   font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,4.8rem);
   line-height:1.05;letter-spacing:-.055em;font-weight:500;max-width:780px;
 }
+.article-hero h1 em{font-style:italic;color:#777}
 .article-hero .article-meta{
   display:flex;gap:24px;margin-top:24px;font-size:.82rem;color:#777;
   align-items:center;flex-wrap:wrap;
@@ -249,8 +248,279 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
   .cta-band .cta-inner{padding:60px 0}
   .mobile-nav-overlay a{font-size:1.8rem}
 }
+/* PRIMECHAIN V2.0 — SHARED ARTICLE DESIGN */
+
+/* Match the company-wide page width */
+:root {
+  --max: 1240px;
+}
+
+/* Navigation */
+.nav {
+  height: 88px;
+}
+
+.logo {
+  font-size: 1.35rem;
+  letter-spacing: -.055em;
+}
+
+.desktop-cta {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.desktop-cta:hover {
+  background: #303030;
+  border-color: #303030;
+}
+
+/* Premium editorial hero */
+.article-hero {
+  background:
+    radial-gradient(
+      ellipse at 90% 0%,
+      rgba(200,169,107,.15),
+      transparent 48%
+    ),
+    linear-gradient(140deg,#20211f,#101010 78%);
+  color: #fff;
+  padding: 100px 0 85px;
+  border-bottom: 0;
+}
+
+.article-hero .breadcrumb {
+  color: #aaa;
+  margin-bottom: 38px;
+}
+
+.article-hero .breadcrumb a {
+  color: #d0d0cc;
+}
+
+.article-hero .breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.article-hero .breadcrumb .sep {
+  color: #777;
+}
+
+.article-hero .article-tag {
+  color: var(--accent);
+  font-size: .72rem;
+  letter-spacing: .18em;
+  margin-bottom: 24px;
+}
+
+.article-hero h1 {
+  font-size: clamp(3.1rem,5.4vw,5.3rem);
+  font-weight: 600;
+  letter-spacing: -.07em;
+  line-height: 1.08;
+  max-width: 1050px;
+}
+
+.article-hero .article-meta {
+  color: #bdbdb8;
+  margin-top: 30px;
+}
+
+.article-hero .article-meta .author {
+  color: #f5f5f1;
+}
+
+.article-hero .article-meta .divider {
+  color: #777;
+}
+
+/* Reading experience */
+.article-body {
+  background: #fff;
+  padding: 85px 0 100px;
+}
+
+.article-body .content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.article-body .content p {
+  color: #464646;
+  line-height: 1.85;
+}
+
+.article-body .content h2 {
+  font-weight: 600;
+  letter-spacing: -.05em;
+}
+
+.article-body .content h3 {
+  font-weight: 600;
+}
+
+.article-body .content .pull-quote {
+  color: #171717;
+  border-top-color: var(--accent);
+  border-bottom-color: var(--line);
+  font-weight: 600;
+}
+
+/* Related insights */
+.related {
+  background: #f5f4f0;
+  padding: 85px 0 100px;
+}
+
+.related .related-grid {
+  max-width: 1100px;
+  gap: 20px;
+  background: transparent;
+  border: 0;
+  margin-top: 45px;
+}
+
+.related .rel-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-radius: 5px;
+  min-height: 260px;
+  padding: 30px;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.related .rel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.06);
+}
+
+.related .rel-card h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.related .rel-card .rel-link {
+  color: #8c7140;
+  font-weight: 700;
+  margin-top: 24px;
+}
+
+/* Closing call to action */
+.cta-band {
+  background: #171717;
+}
+
+.cta-band h2 {
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.cta-band .btn.primary {
+  background: var(--accent);
+  color: #171717;
+  border-color: var(--accent);
+}
+
+.cta-band .btn.primary:hover {
+  background: #dbbf84;
+}
+
+/* Mobile refinements */
+@media(max-width:900px) {
+  .related .related-grid {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+  }
+}
+
+@media(max-width:768px) {
+  .nav {
+    height: 72px;
+  }
+
+  .article-hero {
+    padding: 70px 0 60px;
+  }
+
+  .article-hero h1 {
+    font-size: clamp(2.7rem,9vw,4rem);
+  }
+
+  .article-body {
+    padding: 55px 0 75px;
+  }
+
+  .related {
+    padding: 65px 0 75px;
+  }
+
+  .related .rel-card {
+    min-height: 220px;
+  }
+}
+
+
+
+/* PRIMECHAIN WORDMARK + FAVICON V2 */
+
+.nav a.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+  font-family: "Manrope", "DM Sans", sans-serif;
+  font-size: 1.32rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.055em;
+  white-space: nowrap;
+}
+
+.nav a.logo .pc-prime {
+  color: #171717;
+  font-weight: 700;
+}
+
+.nav a.logo .pc-chain {
+  color: #c8a96b;
+  font-weight: 700;
+}
+
+.footer-brand a.pc-footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  font-family: "Manrope", "DM Sans", sans-serif;
+  font-size: 1.32rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.055em;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.footer-brand .pc-footer-logo .pc-prime {
+  color: #f5f4f0;
+}
+
+.footer-brand .pc-footer-logo .pc-chain {
+  color: #c8a96b;
+}
+
+@media (max-width: 768px) {
+  .nav a.logo {
+    font-size: 1.12rem;
+  }
+
+  .footer-brand a.pc-footer-logo {
+    font-size: 1.18rem;
+  }
+}
+
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
+<link rel="icon" type="image/svg+xml" href="assets/primechain-favicon.svg">
 </head>
 <body>
 
@@ -259,27 +529,36 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 <!-- ============================================================ -->
 <div class="container">
 <nav class="nav">
-  <a class="logo" href="index.html">Prime<span>Chain</span></a>
-  
+  <a class="logo" href="index.html" aria-label="PrimeChain Home"><span class="pc-prime">Prime</span><span class="pc-chain">Chain</span></a>
+
   <ul class="navlinks" id="navLinks">
-    <li><a href="#solutions">What We Do</a></li>
+    <li><a href="index.html#services">What We Do</a></li>
+    <li><a href="index.html#solutions">Solutions</a></li>
     <li><a href="whoweare.html">Who We Are</a></li>
-    <li><a href="ourthinking.html">Our Thinking</a></li>
+    <li><a href="ourthinking.html" class="active" aria-current="page">Our Thinking</a></li>
   </ul>
-  
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+
+  <button class="hamburger" id="hamburger"
+          aria-label="Open menu" aria-expanded="false" aria-controls="mobileOverlay" type="button">
     <span></span><span></span><span></span>
   </button>
-  
-  <a class="desktop-cta" href="#contact">Talk to PrimeChain <span>↗</span></a>
+
+  <a class="desktop-cta" href="index.html#contact">
+    Talk to PrimeChain <span>↗</span>
+  </a>
 </nav>
 </div>
 
 <!-- Mobile Overlay -->
 <div class="mobile-nav-overlay" id="mobileOverlay">
-  <a href="index.html" class="active">Home</a>
+  <a href="index.html">Home</a>
+  <a href="index.html#services">What We Do</a>
+  <a href="index.html#solutions">Solutions</a>
   <a href="whoweare.html">Who We Are</a>
-  <a href="ourthinking.html">Our Thinking</a>
+  <a href="ourthinking.html" class="active" aria-current="page">Our Thinking</a>
+  <a href="index.html#contact" class="mobile-cta">
+    Talk to PrimeChain ↗
+  </a>
 </div>
 
 <main>
@@ -287,469 +566,541 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 <!-- ============================================================ -->
 <!-- ARTICLE HERO                                                  -->
 <!-- ============================================================ -->
+
+
 <section class="article-hero">
 <div class="container">
-  <div class="breadcrumb">
-    <a href="ourthinking.html">Our Thinking</a>
-    <span class="sep">/</span>
-    <span>Field Note</span>
-  </div>
-  <span class="article-tag">Data &amp; Insights</span>
-  <h1>Your Paperwork Is Telling You More Than You Think</h1>
-  <div class="article-meta">
-    <span class="author">PrimeChain</span>
-    <span class="divider">·</span>
-    <span>Data &amp; Insights</span>
-    <span class="divider">·</span>
-    <span>5 min read</span>
-  </div>
+
+<div class="breadcrumb">
+<a href="ourthinking.html">Our Thinking</a>
+<span class="sep">/</span>
+<span>Operational Intelligence</span>
+</div>
+
+<span class="article-tag">Operational Intelligence</span>
+
+<h1>Your Paperwork Is Telling You How Your Business Runs</h1>
+
+<div class="article-meta">
+<span class="author">PrimeChain</span>
+<span class="divider">·</span>
+<span>Information Management &amp; Operational Controls</span>
+</div>
+
 </div>
 </section>
+
+
 
 <!-- ============================================================ -->
 <!-- ARTICLE BODY                                                  -->
 <!-- ============================================================ -->
+
+
 <section class="article-body">
+<!-- PRIMECHAIN ARTICLE V2.0 — PAPERWORK -->
 <div class="container">
-  <div class="content">
-    
-    <p><strong>Most businesses are sitting on months or years of operational intelligence — locked inside job cards, delivery notes, fuel slips, invoices and stock sheets.</strong></p>
+<div class="content">
 
-    <p>There is a truck somewhere in South Africa right now that has been running for decades.</p>
+<p><strong>Every business creates a record of how it
+operates. The question is whether management can
+turn that record into information it can trust.</strong></p>
 
-    <p>Over its life, it has generated thousands of documents.</p>
+<p>Consider a truck that has worked for several
+years. Across its operating life, it may have
+generated thousands of records:</p>
 
-    <ul>
-      <li>Fuel slips.</li>
-      <li>Delivery notes.</li>
-      <li>Weighbridge tickets.</li>
-      <li>Service records.</li>
-      <li>Maintenance invoices.</li>
-      <li>Toll receipts.</li>
-      <li>Driver records.</li>
-      <li>Proofs of delivery.</li>
-    </ul>
+<ul>
+<li>Trip sheets and dispatch instructions.</li>
+<li>Fuel slips and fuel transactions.</li>
+<li>Weighbridge tickets and delivery notes.</li>
+<li>Proofs of delivery.</li>
+<li>Service records and maintenance invoices.</li>
+<li>Customer invoices and payment records.</li>
+</ul>
 
-    <p>Every document contains a small piece of the story.</p>
+<p>These records contain fragments of the vehicle's
+operational history.</p>
 
-    <ul>
-      <li>Where it went.</li>
-      <li>What it carried.</li>
-      <li>How much fuel it used.</li>
-      <li>How long the trip took.</li>
-      <li>What it cost to keep running.</li>
-      <li>What it earned.</li>
-      <li>What went wrong.</li>
-    </ul>
+<p>They tell us about movements, transactions,
+maintenance events and commercial activity.</p>
 
-    <p>And yet, in most businesses, those documents are simply filed.</p>
+<p>But having the documents does not automatically
+mean management understands the vehicle's
+performance.</p>
 
-    <p>The information is preserved.</p>
-    <p>But the intelligence is lost.</p>
-
-    <p>Because the real value isn't in any single document.</p>
-
-    <div class="pull-quote">
-      It is in the connections between them.
-    </div>
-
-    <hr>
-
-    <h2>Every Document Is a Memory</h2>
-
-    <p>Think about the paperwork your business generates every day.</p>
-
-    <ul>
-      <li>A job card records what was done.</li>
-      <li>A delivery note records what moved.</li>
-      <li>A fuel slip records what was consumed.</li>
-      <li>An invoice records what was charged.</li>
-      <li>A maintenance invoice records what was repaired.</li>
-      <li>A stock sheet records what came in and went out.</li>
-      <li>A timesheet records who performed the work and how long it took.</li>
-    </ul>
-
-    <p>Individually, these documents are administrative records.</p>
-    <p>Together, they are something much more valuable.</p>
-
-    <p><strong>They are a record of how your business actually operates.</strong></p>
-
-    <p>The problem is that businesses usually organise them by <strong>document type</strong>.</p>
-
-    <ul>
-      <li>Fuel slips go in one folder.</li>
-      <li>Invoices go somewhere else.</li>
-      <li>Delivery notes are filed separately.</li>
-      <li>Job cards live in another system.</li>
-    </ul>
-
-    <p>The documents are preserved.</p>
-    <p>But the relationships between them disappear.</p>
-    <p>And that is where the intelligence gets lost.</p>
-
-    <hr>
-
-    <h2>The Data Exists. It Just Doesn't Connect.</h2>
-
-    <p>Imagine a delivery business.</p>
-
-    <p>The delivery note tells you that a load was completed.</p>
-    <p>The fuel slip tells you what the vehicle consumed.</p>
-    <p>The driver's record tells you how long the trip took.</p>
-    <p>The invoice tells you what the customer paid.</p>
-    <p>The maintenance record tells you what the vehicle cost to keep on the road.</p>
-
-    <p>None of those documents, on their own, tells you whether the trip was profitable.</p>
-
-    <p>But connect them.</p>
-
-    <p>Suddenly you can ask:</p>
-
-    <ul>
-      <li><strong>What did this trip earn?</strong></li>
-      <li><strong>What did it cost?</strong></li>
-      <li><strong>How much fuel did it consume?</strong></li>
-      <li><strong>How long did it take?</strong></li>
-      <li><strong>Which vehicle performed it?</strong></li>
-      <li><strong>Which driver was operating it?</strong></li>
-      <li><strong>Which route was involved?</strong></li>
-    </ul>
-
-    <p>The paperwork hasn't changed.</p>
-    <p>No new operational event has occurred.</p>
-
-    <p>You've simply connected information that was already there.</p>
-    <p>And that connection creates a completely different level of understanding.</p>
-
-    <hr>
-
-    <h2>This Isn't Just a Fleet Problem</h2>
-
-    <p>The same pattern exists almost everywhere.</p>
-
-    <p><strong>A field-service business has:</strong></p>
-    <ul>
-      <li>work orders;</li>
-      <li>job cards;</li>
-      <li>technician records;</li>
-      <li>photographs;</li>
-      <li>parts issued;</li>
-      <li>invoices;</li>
-      <li>customer sign-offs.</li>
-    </ul>
-
-    <p><strong>A construction company has:</strong></p>
-    <ul>
-      <li>purchase orders;</li>
-      <li>delivery notes;</li>
-      <li>site records;</li>
-      <li>timesheets;</li>
-      <li>material issues;</li>
-      <li>subcontractor invoices;</li>
-      <li>progress certificates.</li>
-    </ul>
-
-    <p><strong>A distributor has:</strong></p>
-    <ul>
-      <li>sales orders;</li>
-      <li>picking records;</li>
-      <li>delivery notes;</li>
-      <li>stock movements;</li>
-      <li>invoices;</li>
-      <li>returns.</li>
-    </ul>
-
-    <p><strong>A maintenance business has:</strong></p>
-    <ul>
-      <li>service requests;</li>
-      <li>work orders;</li>
-      <li>technician reports;</li>
-      <li>parts usage;</li>
-      <li>labour hours;</li>
-      <li>invoices.</li>
-    </ul>
-
-    <p>Different industries.</p>
-    <p>Different documents.</p>
-
-    <div class="pull-quote">
-      The same underlying problem.
-    </div>
-
-    <p>The business is generating information at every step.</p>
-    <p>But the information often lives in separate places, owned by different people and used for different purposes.</p>
-
-    <p>So the business sees individual transactions.</p>
-    <p>It struggles to see the system.</p>
-
-    <hr>
-
-    <h2>The Document Is Not the Insight</h2>
-
-    <p>This distinction matters.</p>
-
-    <p>A fuel slip isn't intelligence.</p>
-    <p>It is evidence of a transaction.</p>
-
-    <p>A job card isn't intelligence.</p>
-    <p>It is evidence of work performed.</p>
-
-    <p>A delivery note isn't intelligence.</p>
-    <p>It is evidence that something moved.</p>
-
-    <p>The intelligence emerges when those records are connected to the other events around them.</p>
-
-    <ul>
-      <li>A fuel slip connected to a vehicle and a trip can tell you about fuel efficiency.</li>
-      <li>A job card connected to labour, parts and billing can tell you about job profitability.</li>
-      <li>A delivery note connected to loading time, travel time and offloading time can tell you where a route is losing capacity.</li>
-      <li>A stock movement connected to sales can reveal where inventory is accumulating or disappearing.</li>
-    </ul>
-
-    <div class="pull-quote">
-      The insight isn't inside the document.<br>
-      <em>It is in the relationship between documents.</em>
-    </div>
-
-    <hr>
-
-    <h2>The Hidden Key</h2>
-
-    <p>Usually, there is already something connecting the records.</p>
-
-    <p>It might be:</p>
-
-    <ul>
-      <li>A vehicle registration.</li>
-      <li>A work-order number.</li>
-      <li>A customer account.</li>
-      <li>An invoice number.</li>
-      <li>A delivery reference.</li>
-      <li>A purchase order.</li>
-      <li>A job number.</li>
-      <li>A stock code.</li>
-      <li>A date and location.</li>
-    </ul>
-
-    <p>These identifiers are easy to overlook because they were never designed as analytics tools.</p>
-    <p>But they can become the threads that connect the operation.</p>
-
-    <p>Take a vehicle registration.</p>
-    <p>It might appear on:</p>
-
-    <ul>
-      <li>Fuel slips.</li>
-      <li>Delivery records.</li>
-      <li>Maintenance records.</li>
-      <li>Driver logs.</li>
-      <li>Toll records.</li>
-      <li>Trip records.</li>
-      <li>Invoices.</li>
-    </ul>
+<p>That requires a further step: turning individual
+records into reliable, connected information.</p>
 
-    <p>The registration number is not just an identifier.</p>
+<div class="pull-quote">
+A document records an event. Operational
+intelligence helps management understand
+what that event means.
+</div>
 
-    <div class="pull-quote">
-      It can become the spine of the vehicle's operational history.
-    </div>
+<h2>Every document has a purpose</h2>
 
-    <p>The same principle applies to a job number, customer number or delivery reference.</p>
+<p>Paperwork is often described as an administrative
+burden. Some of it certainly becomes repetitive
+or unnecessary.</p>
 
-    <p>Once you recognise the common thread, the paperwork stops looking like separate documents.</p>
-    <p>It starts looking like a connected dataset.</p>
+<p>But many operational documents serve an
+important control function.</p>
 
-    <hr>
+<p>A purchase order records an authorised purchasing
+instruction. A goods-received record documents
+what was received. A stock movement records
+a change in inventory custody or location.</p>
 
-    <h2>What the Paperwork Can Tell You</h2>
+<p>A job card documents work performed.
+A delivery confirmation supports evidence of
+receipt. An invoice records an amount billed.</p>
 
-    <p>Once records are connected, questions that previously required guesswork become measurable.</p>
+<p>These are not interchangeable records.
+Each serves a different purpose.</p>
 
-    <ul>
-      <li>Which vehicles are actually profitable?</li>
-      <li>Which routes consistently consume more fuel?</li>
-      <li>Which customers create the longest delays?</li>
-      <li>Which jobs take longer than they should?</li>
-      <li>Which technicians are spending excessive time on administration?</li>
-      <li>Which products move quickly?</li>
-      <li>Where is stock sitting too long?</li>
-      <li>Which contracts generate revenue but little margin?</li>
-      <li>Which maintenance costs are increasing?</li>
-      <li>Where are operational exceptions occurring repeatedly?</li>
-    </ul>
+<p>The first step toward better information
+management is understanding what each document
+is intended to establish.</p>
 
-    <p>These aren't necessarily questions that require sophisticated artificial intelligence.</p>
+<h2>Evidence is not the same as a conclusion</h2>
 
-    <p>Often, the business already has enough information to answer them.</p>
-    <p>The challenge is that nobody has connected it.</p>
+<p>This distinction matters because businesses
+sometimes ask documents to prove more than
+they actually record.</p>
 
-    <hr>
+<h3>A fuel slip is not a fuel-efficiency report</h3>
 
-    <h2>From Records to Operational Intelligence</h2>
+<p>A fuel slip may confirm that fuel was purchased
+at a particular time and location.</p>
 
-    <p>There is a progression here.</p>
+<p>To evaluate fuel consumption meaningfully,
+management may also need the vehicle, quantity,
+odometer readings, travel distance, tank levels
+and the period being measured.</p>
 
-    <div class="highlight-box">
-      <span class="label">The Intelligence Progression</span>
-      <p><strong>Documents</strong><br>
-      ↓<br>
-      <strong>Structured records</strong><br>
-      ↓<br>
-      <strong>Connected information</strong><br>
-      ↓<br>
-      <strong>Patterns</strong><br>
-      ↓<br>
-      <strong>Insights</strong><br>
-      ↓<br>
-      <strong>Decisions</strong></p>
-    </div>
+<p>A single fuel purchase should not automatically
+be treated as the fuel consumed on one trip.</p>
 
-    <p>The first step isn't artificial intelligence.</p>
-    <p>It isn't a sophisticated dashboard.</p>
-    <p>It isn't even automation.</p>
+<h3>An invoice is not proof of profitability</h3>
 
-    <p>It is simply <strong>structure</strong>.</p>
+<p>An invoice shows what was billed.</p>
 
-    <p>Take the information you already generate and give it enough consistency that different records can be connected.</p>
+<p>To estimate the margin on a trip, job or contract,
+management also needs relevant costs and
+a consistent method for assigning shared costs.</p>
 
-    <p>Once you can connect the records, you can start asking better questions.</p>
-    <p>Once you can ask better questions, you can identify patterns.</p>
-    <p>And once patterns become visible, the business can make better decisions.</p>
+<p>Payment status is a separate question.</p>
 
-    <p>That is where paperwork becomes intelligence.</p>
+<h3>A completed job card is not always an approved job</h3>
 
-    <hr>
+<p>A technician may finish the physical work,
+but the business may still require photographs,
+asset serial numbers, readings, signatures
+or supervisor approval.</p>
 
-    <h2>The Cost of Not Looking</h2>
+<p>Operational completion and verified completion
+are distinct stages.</p>
 
-    <p>There is another side to this.</p>
+<p>Understanding these distinctions prevents
+misleading reporting.</p>
 
-    <p>When paperwork remains disconnected, businesses make decisions using incomplete information.</p>
+<hr>
 
-    <ul>
-      <li>A fleet manager knows fuel costs are rising, but doesn't know which routes are responsible.</li>
-      <li>An operations manager knows jobs are taking longer, but doesn't know where the time is going.</li>
-      <li>A business owner knows margins feel tighter, but cannot see which customers or contracts are causing it.</li>
-      <li>A warehouse manager knows stock is moving slowly, but cannot easily identify where capital is being trapped.</li>
-    </ul>
+<h2>The hidden connection between records</h2>
 
-    <p>The information exists.</p>
-    <p>But because it is fragmented, the business is forced to operate on experience, instinct and averages.</p>
+<p>Documents become more useful when we can
+identify the operational events they relate to.</p>
 
-    <p>Those things have value.</p>
-    <p>But they are not a substitute for evidence.</p>
+<p>A transport business might use a trip reference
+to connect dispatch instructions, vehicle
+allocations, loading evidence, delivery records,
+fuel transactions and invoices.</p>
 
-    <hr>
+<p>A field-services business might use a work-order
+number to connect customer information,
+technician assignments, issued equipment,
+installation evidence and approval records.</p>
 
-    <h2>You Don't Need to Digitise Everything</h2>
+<p>A warehouse might use purchase-order,
+receipt, product and stock-movement references
+to understand how inventory changed.</p>
 
-    <p>This is where businesses often overcomplicate the problem.</p>
+<p>The important concept is a shared identifier:
+a reliable way to connect records that belong
+to the same transaction, asset or process.</p>
 
-    <p>They assume they need a new ERP.</p>
-    <p>A massive data warehouse.</p>
-    <p>A sophisticated analytics platform.</p>
-    <p>A complete digital transformation programme.</p>
+<p>Vehicle registrations, account numbers and
+document references can help, but they must
+be used carefully. Names and registration details
+can change, and one vehicle may perform
+many separate trips.</p>
 
-    <p>Not necessarily.</p>
+<p>For this reason, a stable internal transaction
+or asset identifier is often more reliable than
+using a descriptive field on its own.</p>
 
-    <p>Start with one question.</p>
+<div class="pull-quote">
+The value lies not only in preserving
+records, but in preserving the relationships
+between them.
+</div>
 
-    <div class="pull-quote">
-      What do you wish you knew about your operation?
-    </div>
+<h2>Before connecting information, make sure it is reliable</h2>
 
-    <p>Then work backwards.</p>
+<p>There is a common misconception that once
+records have been digitised, a business
+automatically has accurate information.</p>
 
-    <ul>
-      <li>What information would answer that question?</li>
-      <li>Where does that information currently live?</li>
-      <li>What identifiers connect those records?</li>
-      <li>How consistently are they captured?</li>
-      <li>Can the records be brought together?</li>
-    </ul>
+<p>That is not necessarily true.</p>
 
-    <p>Start there.</p>
+<p>A digital record can contain the same errors,
+omissions and inconsistencies as a paper form.</p>
 
-    <p>You don't need to digitise the entire business to discover something valuable.</p>
-    <p>You need to connect enough of the right information to answer a meaningful question.</p>
+<p>Reliable management information depends
+on several fundamental controls.</p>
 
-    <hr>
+<h3>1. Completeness</h3>
 
-    <h2>Your Paperwork Has a Memory</h2>
+<p>Are the fields required to understand and
+verify the transaction actually populated?</p>
 
-    <p>Every business leaves a trail.</p>
+<p>A delivery record without an identifiable
+delivery reference may be difficult to reconcile.</p>
 
-    <ul>
-      <li>Every job.</li>
-      <li>Every delivery.</li>
-      <li>Every transaction.</li>
-      <li>Every repair.</li>
-      <li>Every payment.</li>
-      <li>Every movement.</li>
-      <li>Every exception.</li>
-    </ul>
+<h3>2. Accuracy</h3>
 
-    <p>Over time, that trail becomes a record of how the organisation actually behaves.</p>
+<p>Do quantities, dates, serial numbers,
+locations and other important details
+reflect the underlying activity?</p>
 
-    <p>Most businesses treat that record as paperwork.</p>
-    <p>The opportunity is to treat it as <strong>institutional memory</strong>.</p>
+<p>Some information may require validation
+against an independent source.</p>
 
-    <p>Because when the information is connected, the business can learn from what it has already experienced.</p>
+<h3>3. Timeliness</h3>
 
-    <ul>
-      <li>A vehicle can teach you which routes cost more.</li>
-      <li>A job can teach you where the process breaks down.</li>
-      <li>A customer can teach you where margin disappears.</li>
-      <li>A stock movement can teach you where capital is being trapped.</li>
-    </ul>
+<p>When was the information captured,
+and when did the actual event occur?</p>
 
-    <p>The business doesn't need to remember everything.</p>
+<p>A record entered days later may still be useful,
+but its capture time should not be confused
+with the event time.</p>
 
-    <div class="pull-quote">
-      The system can remember for it.
-    </div>
+<h3>4. Accountability</h3>
 
-    <hr>
+<p>Who created, checked, approved or corrected
+the record?</p>
 
-    <h2>Start Listening to What Your Business Already Knows</h2>
+<p>Clear responsibilities make it easier
+to resolve discrepancies and understand
+the history of a transaction.</p>
 
-    <p>Before buying another system, look at the information you already have.</p>
+<h3>5. Traceability</h3>
 
-    <p>Pick one process.</p>
-    <p>Pick one identifier.</p>
-    <p>Pick one question you want answered.</p>
+<p>Can management follow an operational record
+back to the supporting evidence?</p>
 
-    <p>Then connect the records.</p>
+<p>Corrections should not silently erase
+important parts of that history.</p>
 
-    <p>You may discover that the answer isn't somewhere outside your business.</p>
-    <p>It has been sitting in your paperwork all along.</p>
+<h3>6. Appropriate access</h3>
 
-    <ul>
-      <li>Waiting to be connected.</li>
-      <li>Waiting to be read.</li>
-      <li>Waiting to become useful.</li>
-    </ul>
+<p>Not everybody needs access to every
+operational document.</p>
 
-    <div class="pull-quote">
-      The data already exists.<br>
-      <em>The opportunity is to connect it.</em>
-    </div>
+<p>Customer details, employee information
+and financial records should be handled
+with appropriate access controls,
+security and retention practices.</p>
 
-    <p>And once you can connect it, your paperwork stops being a record of what happened.</p>
+<p>These principles create a stronger
+foundation for operational intelligence
+than simply collecting more data.</p>
 
-    <div class="pull-quote">
-      It becomes a source of intelligence about what to do next.
-    </div>
+<hr>
 
-    <hr>
+<h2>A practical example: twenty completed trips</h2>
 
-    <div style="background:var(--paper);padding:2rem;border-left:4px solid var(--ink);margin-top:2.5rem;">
-      <p style="font-size:0.95rem;margin-bottom:0.5rem;font-weight:600;color:var(--ink);">PrimeChain</p>
-      <p style="font-size:0.95rem;color:#555;margin-bottom:0;"><em>Operational Intelligence.</em><br>We help growing businesses turn the information already being generated across their operations into visibility, insight and better decisions.</p>
-    </div>
+<p>Consider an illustrative logistics operator
+reviewing twenty trips reported by its dispatch
+team as completed during a particular period.</p>
 
-  </div>
+<p>The operator checks the supporting records.</p>
+
+<ul>
+<li>Sixteen trips have delivery evidence that
+has been received and reconciled.</li>
+<li>Two trips are awaiting signed delivery
+confirmation.</li>
+<li>Two trips have quantity differences
+requiring investigation.</li>
+</ul>
+
+<p>On the available evidence, sixteen out of
+twenty trips are fully documented and
+reconciled under the operator's review criteria.</p>
+
+<div class="pull-quote">
+16 verified records / 20 reported trips
+= 80% documentation and reconciliation completion.
+</div>
+
+<p>That is not a measurement of on-time delivery
+or trip profitability. Nor does it prove
+that the remaining four loads were not delivered.</p>
+
+<p>It tells management that four reported trips
+require additional documentary attention.</p>
+
+<p>The operator can now ask better questions:</p>
+
+<ul>
+<li>Why are the two signed confirmations missing?</li>
+<li>What caused the two quantity differences?</li>
+<li>Who is responsible for investigating them?</li>
+<li>How long have the issues been outstanding?</li>
+<li>Are similar exceptions occurring repeatedly?</li>
+</ul>
+
+<p>Depending on contractual requirements,
+unresolved evidence may affect invoicing
+or acceptance of a delivery.</p>
+
+<p>Those consequences must be determined from
+the actual agreement, not assumed.</p>
+
+<p><em>This example is illustrative and does not
+represent a PrimeChain customer result.</em></p>
+
+<p>Notice what has changed.</p>
+
+<p>Management has moved from a general statement
+that twenty trips were completed to a more
+precise understanding of documentation status
+and unresolved exceptions.</p>
+
+<p>That is a practical form of operational
+intelligence.</p>
+
+<h2>The same thinking applies across operations</h2>
+
+<h3>In warehousing and inventory</h3>
+
+<p>A stock register may show a quantity received,
+but inspection records may identify damaged
+or quarantined items.</p>
+
+<p>Management needs to distinguish physical
+stock from stock available for use or sale.</p>
+
+<p>Stock adjustments should be supported
+by reasons and, where appropriate, approval.</p>
+
+<h3>In field services</h3>
+
+<p>A work order may be marked as finished,
+but equipment custody, field photographs,
+readings and supervisory approval may
+still need reconciliation.</p>
+
+<p>Connecting the records allows the business
+to distinguish work done from work that has
+been fully verified.</p>
+
+<h3>In production</h3>
+
+<p>Production reports may record output,
+while quality records show rejected or
+reworked quantities.</p>
+
+<p>Without connecting these records,
+management may overstate usable production.</p>
+
+<p>The principle is consistent:
+different records describe different
+aspects of the same operation.</p>
+
+<hr>
+
+<h2>From paperwork to management information</h2>
+
+<p>There is a practical progression from
+recordkeeping to informed management.</p>
+
+<h3>Record</h3>
+<p>Capture what happened, with enough
+detail to identify the event.</p>
+
+<h3>Verify</h3>
+<p>Check that the information is complete,
+plausible and supported where necessary.</p>
+
+<h3>Connect</h3>
+<p>Link records that relate to the same
+operational transaction or process.</p>
+
+<h3>Analyse</h3>
+<p>Identify patterns, exceptions, delays,
+costs and differences between planned
+and actual activity.</p>
+
+<h3>Act</h3>
+<p>Assign responsibility, make a decision
+and measure whether the action improved
+the operation.</p>
+
+<div class="pull-quote">
+Information becomes valuable when it
+changes what management can understand,
+control or improve.
+</div>
+
+<h2>What should management measure?</h2>
+
+<p>Metrics should be selected according
+to the decisions the business needs
+to make.</p>
+
+<p>Examples include:</p>
+
+<ul>
+<li><strong>Evidence completeness:</strong>
+The proportion of expected records
+that meet defined evidence requirements.</li>
+
+<li><strong>Reconciliation exceptions:</strong>
+The number and type of differences
+between related operational records.</li>
+
+<li><strong>Exception resolution time:</strong>
+How long outstanding discrepancies
+take to investigate and close.</li>
+
+<li><strong>Approval turnaround:</strong>
+The time between submission of work
+and its verification or approval.</li>
+
+<li><strong>Record accuracy:</strong>
+How consistently recorded information
+agrees with verified source evidence.</li>
+
+<li><strong>Operational cost visibility:</strong>
+The proportion of relevant costs
+that can be attributed to the correct
+asset, trip, job or contract under
+a defined costing method.</li>
+</ul>
+
+<p>These measures need consistent definitions.
+A number on a dashboard is only useful
+when people understand what it includes,
+what it excludes and how it was calculated.</p>
+
+<hr>
+
+<h2>Six steps to improve operational information</h2>
+
+<h3>1. Begin with a management question</h3>
+
+<p>Choose one issue that matters.</p>
+
+<p>For example: Why are completed jobs
+taking so long to reach approval?</p>
+
+<h3>2. Identify the records needed</h3>
+
+<p>Determine which documents and system
+entries could help answer the question.</p>
+
+<p>Avoid collecting information merely
+because it is available.</p>
+
+<h3>3. Establish reliable identifiers</h3>
+
+<p>Make sure related records can be
+connected to the correct job,
+trip, order or asset.</p>
+
+<h3>4. Test the quality of the information</h3>
+
+<p>Check for missing fields, duplicates,
+contradictions, incorrect dates
+and inconsistent classifications.</p>
+
+<h3>5. Reconcile and investigate exceptions</h3>
+
+<p>Compare relevant records, document
+unresolved differences and assign
+responsibility for follow-up.</p>
+
+<h3>6. Use the findings to improve the process</h3>
+
+<p>Identify whether the underlying
+issue involves training, unclear
+responsibility, process design,
+system limitations or another cause.</p>
+
+<p>Make a targeted improvement and
+measure the result.</p>
+
+<h2>You do not need to digitise everything at once</h2>
+
+<p>A business does not necessarily need
+a new enterprise platform to begin
+improving its operational information.</p>
+
+<p>It may be more useful to start with
+a single transaction type, define
+the required information and
+establish consistent reconciliation.</p>
+
+<p>However, technology can become increasingly
+valuable as transaction volumes, operational
+complexity and reporting requirements grow.</p>
+
+<p>The objective is not digitisation
+for its own sake.</p>
+
+<p>It is to establish reliable records,
+reduce avoidable information gaps
+and help management respond to
+what the evidence reveals.</p>
+
+<h2>Your business has an operational memory</h2>
+
+<p>Every delivery, stock movement,
+job completion, repair and transaction
+adds to the organisation's history.</p>
+
+<p>That history can help explain
+how the operation performs,
+where exceptions occur and
+which decisions produce better outcomes.</p>
+
+<p>But records must be trustworthy
+and sufficiently connected before
+those conclusions can be made
+with confidence.</p>
+
+<p>The next time you examine a document,
+ask more than whether it has been filed.</p>
+
+<p>Ask what it establishes,
+which other records it belongs with
+and what management could learn
+from the combined evidence.</p>
+
+<p><strong>Your paperwork is telling you
+how your business runs.
+The opportunity is to turn that evidence
+into understanding — and that understanding
+into better decisions.</strong></p>
+
+</div>
 </div>
 </section>
+
+
 
 <!-- ============================================================ -->
 <!-- BACK TO THINKING                                              -->
@@ -766,54 +1117,87 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 <!-- ============================================================ -->
 <!-- RELATED ARTICLES (same as template, with adjusted links)      -->
 <!-- ============================================================ -->
+
+
 <section class="related">
 <div class="container">
-  <h3 style="font-family:var(--serif);font-size:1.6rem;font-weight:500;letter-spacing:-.04em;text-align:center;max-width:720px;margin:0 auto;">More from Our Thinking</h3>
-  <div class="related-grid">
-    
-    <article class="rel-card">
-      <div>
-        <small>Field Note</small>
-        <h4>Your Supply Chain Is Already Telling You What's Wrong</h4>
-        <p>The data you need to make better operational decisions is already being generated. The problem isn't data—it's connecting the signals..</p>
-      </div>
-      <a href="supplychain.html" class="rel-link">Read →</a>
-    </article>
-    
-    <article class="rel-card">
-      <div>
-        <small>Data &amp; Insights</small>
-        <h4>Your Paperwork Is Telling You How Your Business Runs</h4>
-        <p>Not just administration. Not just paperwork. The information created by paperwork is part of the operating system—and it's talking to you..</p>
-      </div>
-      <a href="paperwork.html" class="rel-link">Read →</a>
-    </article>
-    
-    <article class="rel-card">
-      <div>
-        <small>Case Study</small>
-        <h4>Where Did the Margin Go?</h4>
-        <p>Revenue was being generated. Trips were being completed. But R600,000 leak hidden between deliveries. No centralised view meant nobody could see it.</p>
-      </div>
-      <a href="vehiclecostmodel.html" class="rel-link">Read →</a>
-    </article>
-    
-  </div>
+
+<h3 style="font-family:var(--serif);font-size:1.6rem;
+font-weight:600;letter-spacing:-.04em;text-align:center;
+max-width:720px;margin:0 auto;">
+Continue Exploring Our Thinking
+</h3>
+
+<div class="related-grid">
+
+<article class="rel-card">
+<div>
+<small>Process Improvement</small>
+<h4>The Work Behind the Work</h4>
+<p>Understand how businesses can identify
+and reduce avoidable administrative effort.</p>
+</div>
+<a class="rel-link" href="manualwork.html">
+Read &rarr;
+</a>
+</article>
+
+<article class="rel-card">
+<div>
+<small>Supply Chain Management</small>
+<h4>Your Supply Chain Knows More Than You Think</h4>
+<p>Explore the relationships between inventory,
+warehousing, production and distribution.</p>
+</div>
+<a class="rel-link" href="supplychain.html">
+Read &rarr;
+</a>
+</article>
+
+<article class="rel-card">
+<div>
+<small>PrimeChain Thinking</small>
+<h4>See. Connect. Act.</h4>
+<p>Discover our approach to operational visibility,
+connected information and better decisions.</p>
+</div>
+<a class="rel-link" href="ourthinking.html">
+Explore &rarr;
+</a>
+</article>
+
+</div>
 </div>
 </section>
+
+
 
 <!-- ============================================================ -->
 <!-- CTA                                                           -->
 <!-- ============================================================ -->
+
+
 <section class="cta-band">
 <div class="container cta-inner">
-  <div><h2>Ready to see what your operation could look like?</h2></div>
-  <div>
-    <p>The answers are already inside your operation. We'll help you connect them.</p>
-    <a class="btn primary" href="index.html#contact">Talk to us about your operation ↗</a>
-  </div>
+
+<div>
+<h2>What could your operational records reveal?</h2>
+</div>
+
+<div>
+<p>Better information begins with understanding
+your processes, verifying the evidence and
+connecting the records that matter.</p>
+
+<a class="btn primary" href="index.html#contact">
+Talk to PrimeChain &nearr;
+</a>
+</div>
+
 </div>
 </section>
+
+
 
 </main>
 
@@ -824,14 +1208,14 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 <div class="container">
   <div class="footer-top">
     <div class="footer-brand">
-      <strong>PrimeChain</strong>
+      <a class="pc-footer-logo" href="index.html" aria-label="PrimeChain home"><span class="pc-prime">Prime</span><span class="pc-chain">Chain</span></a>
       <p>Operational Intelligence. Because every business deserves to understand itself.</p>
     </div>
     <div class="footer-links">
-      <a href="index.html#solutions">What We Do</a>
+      <a href="index.html#services">What We Do</a>
       <a href="whoweare.html">Who We Are</a>
       <a href="ourthinking.html">Our Thinking</a>
-      <a href="manifesto.html">Manifesto</a>
+      
       <a href="index.html#contact">Contact</a>
     </div>
   </div>
@@ -855,12 +1239,23 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
     hamburger.addEventListener('click', function() {
       this.classList.toggle('active');
       overlay.classList.toggle('open');
+      this.setAttribute(
+        'aria-expanded',
+        String(overlay.classList.contains('open'))
+      );
+      this.setAttribute(
+        'aria-label',
+        overlay.classList.contains('open')
+          ? 'Close menu' : 'Open menu'
+      );
       document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
     });
     
     overlay.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', function() {
         hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open menu');
         overlay.classList.remove('open');
         document.body.style.overflow = '';
       });
@@ -869,6 +1264,8 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && overlay.classList.contains('open')) {
         hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open menu');
         overlay.classList.remove('open');
         document.body.style.overflow = '';
       }

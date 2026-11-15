@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="PrimeChain helps growing businesses turn fragmented operational data into visibility, control and better decisions." />
-<title>PrimeChain — Operational Intelligence</title>
+<meta name="description" content="PrimeChain combines operational expertise and purpose-built technology to help businesses improve visibility, strengthen control and make better decisions." />
+<title>PrimeChain — Operational Intelligence &amp; Technology</title>
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,8 +12,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- ✅ FAVICON FIXED - Using inline SVG, no external files needed -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23101010'/%3E%3Ctext x='50' y='67' font-family='system-ui, sans-serif' font-size='48' font-weight='700' fill='%23c8a96b' text-anchor='middle' letter-spacing='-3'%3EP%3C/text%3E%3Ctext x='50' y='67' font-family='system-ui, sans-serif' font-size='24' font-weight='300' fill='%23c8a96b' text-anchor='middle' letter-spacing='-1' opacity='0.6'%3EC%3C/text%3E%3Ccircle cx='78' cy='24' r='3.5' fill='%23c8a96b' opacity='0.4'/%3E%3C/svg%3E">
-
 <style>
 :root{
   --ink:#101010;
@@ -333,8 +331,420 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
   .manifesto-teaser .big-quote{font-size:2.6rem}
   .mobile-nav-overlay a{font-size:1.8rem}
 }
+
+/* PRIMECHAIN V1.1 — HERO DESIGN */
+
+/* Navigation refinement */
+.nav {
+  height: 88px;
+}
+
+.logo {
+  font-size: 1.35rem;
+  letter-spacing: -.055em;
+}
+
+.desktop-cta {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.desktop-cta:hover {
+  background: #303030;
+  border-color: #303030;
+}
+
+/* Premium hero */
+.hero {
+  background:
+    radial-gradient(ellipse at 85% 5%,
+      rgba(200,169,107,.15), transparent 42%),
+    linear-gradient(140deg,#20211f 0%,#101010 75%);
+  color: var(--white);
+  padding: 108px 0 0;
+  border-bottom: 0;
+}
+
+.hero .kicker {
+  color: var(--accent);
+  font-size: .72rem;
+  letter-spacing: .22em;
+  margin-bottom: 28px;
+}
+
+.hero-grid {
+  grid-template-columns: minmax(0,1fr);
+  gap: 36px;
+  align-items: start;
+}
+
+.hero h1 {
+  max-width: 1180px;
+  font-size: clamp(3rem,5.9vw,5.5rem);
+  font-weight: 600;
+  letter-spacing: -.07em;
+  line-height: 1.07;
+}
+
+.hero h1 em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.hero-copy {
+  max-width: 710px;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-copy p {
+  font-size: clamp(1rem,1.25vw,1.16rem);
+  line-height: 1.75;
+  color: #c8c8c3;
+}
+
+.hero .btn {
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 3px;
+}
+
+.hero .btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #141414;
+}
+
+.hero .btn.primary:hover {
+  background: #dbbf84;
+}
+
+.hero .btn.secondary {
+  color: #f3f0e8;
+  border-color: #777;
+}
+
+.hero .btn.secondary:hover {
+  background: rgba(255,255,255,.1);
+}
+
+/* Operational pillars */
+.hero-note {
+  margin-top: 74px;
+  border-top: 1px solid rgba(255,255,255,.2);
+  border-bottom: 0;
+}
+
+.hero-note .metric {
+  padding: 24px 24px 30px 0;
+  border-color: rgba(255,255,255,.16);
+}
+
+.hero-note .metric:not(:first-child) {
+  padding-left: 22px;
+}
+
+.hero-note .metric strong {
+  color: #f7f6f2;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.hero-note .metric span {
+  color: #b8b5ac;
+}
+
+/* Responsive refinements */
+@media(max-width:900px) {
+  .hero {
+    padding-top: 74px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.15rem,8vw,5rem);
+  }
+}
+
+@media(max-width:600px) {
+  .nav {
+    height: 72px;
+  }
+
+  .hero {
+    padding: 64px 0 0;
+  }
+
+  .hero-grid {
+    gap: 26px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.7rem,10.8vw,3.45rem);
+    line-height: 1.08;
+    letter-spacing: -.06em;
+  }
+
+  .hero-note {
+    margin-top: 58px;
+  }
+
+  .hero-note .metric:nth-child(odd) {
+    padding-left: 0;
+  }
+
+  .hero-note .metric:nth-child(even) {
+    padding-left: 14px;
+  }
+
+  .hero-note .metric strong {
+    font-size: 1.15rem;
+  }
+}
+
+
+/* PRIMECHAIN V1.1 — PRODUCT SHOWCASE */
+
+.product-showcase {
+  background: #f1efe9;
+  padding: 110px 0;
+}
+
+.product-heading {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 70px;
+  align-items: end;
+  margin-bottom: 46px;
+}
+
+.product-heading h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 4.5vw, 4.8rem);
+  font-weight: 600;
+  letter-spacing: -.06em;
+  line-height: 1.08;
+}
+
+.product-heading p {
+  color: #666;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  min-height: 510px;
+  padding: clamp(28px, 3.5vw, 52px);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.product-card.fleet {
+  background:
+    radial-gradient(circle at 95% 0%,
+    rgba(200,169,107,.16), transparent 48%),
+    #171717;
+  color: #fff;
+}
+
+.product-card.field {
+  background: #e5e1d8;
+  color: #171717;
+  border: 1px solid #d5d0c6;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.fleet .product-meta { color: #c8a96b; }
+.field .product-meta { color: #80683e; }
+
+.product-card h3 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.1vw, 3.3rem);
+  letter-spacing: -.06em;
+  line-height: 1.1;
+  margin-top: 64px;
+}
+
+.product-card h4 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 18px;
+}
+
+.product-card p {
+  margin-top: 18px;
+  line-height: 1.75;
+  max-width: 470px;
+  font-size: .94rem;
+}
+
+.fleet p { color: #bebebe; }
+.field p { color: #57534d; }
+
+.product-workflow {
+  margin-top: auto;
+  padding-top: 38px;
+}
+
+.product-workflow-label {
+  font-size: .64rem;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  margin-bottom: 13px;
+  opacity: .7;
+}
+
+.product-stages {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.product-stages span {
+  font-size: .72rem;
+  padding: 9px 11px;
+  border: 1px solid;
+  border-radius: 3px;
+}
+
+.fleet .product-stages span {
+  border-color: #555;
+  color: #e1e1e1;
+}
+
+.field .product-stages span {
+  border-color: #b8b1a5;
+}
+
+.product-link {
+  display: inline-block;
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: .83rem;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 7px;
+  align-self: flex-start;
+}
+
+.product-link:hover { opacity: .65; }
+
+@media(max-width:900px) {
+  .product-heading,
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-heading { gap: 22px; }
+  .product-card { min-height: 450px; }
+}
+
+@media(max-width:600px) {
+  .product-showcase { padding: 75px 0; }
+  .product-card { padding: 28px; min-height: 420px; }
+  .product-card h3 { margin-top: 42px; }
+}
+
+
+/* PRIMECHAIN V1.1 — HERO REFINEMENT */
+
+.hero h1 {
+  font-size: clamp(3rem, 5.2vw, 5rem);
+  max-width: 1100px;
+}
+
+.hero-copy {
+  max-width: 640px;
+}
+
+.hero-copy p {
+  font-size: clamp(1.01rem, 1.15vw, 1.1rem);
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: clamp(2.45rem, 9.4vw, 3.15rem);
+  }
+}
+
+
+/* PRIMECHAIN WORDMARK + FAVICON V2 */
+
+.nav a.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+  font-family: "Manrope", "DM Sans", sans-serif;
+  font-size: 1.32rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.055em;
+  white-space: nowrap;
+}
+
+.nav a.logo .pc-prime {
+  color: #171717;
+  font-weight: 700;
+}
+
+.nav a.logo .pc-chain {
+  color: #c8a96b;
+  font-weight: 700;
+}
+
+.footer-brand a.pc-footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  font-family: "Manrope", "DM Sans", sans-serif;
+  font-size: 1.32rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.055em;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.footer-brand .pc-footer-logo .pc-prime {
+  color: #f5f4f0;
+}
+
+.footer-brand .pc-footer-logo .pc-chain {
+  color: #c8a96b;
+}
+
+@media (max-width: 768px) {
+  .nav a.logo {
+    font-size: 1.12rem;
+  }
+
+  .footer-brand a.pc-footer-logo {
+    font-size: 1.18rem;
+  }
+}
+
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
+<link rel="icon" type="image/svg+xml" href="assets/primechain-favicon.svg">
 </head>
 <body>
 
@@ -343,261 +753,463 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 <!-- ============================================================ -->
 <div class="container">
 <nav class="nav">
-  <a class="logo" href="index.html">Prime<span>Chain</span></a>
-  
+  <a class="logo" href="index.html" aria-label="PrimeChain Home"><span class="pc-prime">Prime</span><span class="pc-chain">Chain</span></a>
+
   <ul class="navlinks" id="navLinks">
-    <li><a href="#solutions">What We Do</a></li>
+    <li><a href="index.html#services">What We Do</a></li>
+    <li><a href="index.html#solutions">Solutions</a></li>
     <li><a href="whoweare.html">Who We Are</a></li>
     <li><a href="ourthinking.html">Our Thinking</a></li>
   </ul>
-  
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+
+  <button class="hamburger" id="hamburger"
+          aria-label="Open menu" aria-expanded="false" aria-controls="mobileOverlay" type="button">
     <span></span><span></span><span></span>
   </button>
-  
-  <a class="desktop-cta" href="#contact">Talk to PrimeChain <span>↗</span></a>
+
+  <a class="desktop-cta" href="index.html#contact">
+    Talk to PrimeChain <span>↗</span>
+  </a>
 </nav>
 </div>
 
 <!-- Mobile Overlay -->
 <div class="mobile-nav-overlay" id="mobileOverlay">
-  <a href="index.html" class="active">Home</a>
+  <a href="index.html" class="active" aria-current="page">Home</a>
+  <a href="index.html#services">What We Do</a>
+  <a href="index.html#solutions">Solutions</a>
   <a href="whoweare.html">Who We Are</a>
   <a href="ourthinking.html">Our Thinking</a>
+  <a href="index.html#contact" class="mobile-cta">
+    Talk to PrimeChain ↗
+  </a>
 </div>
+
 
 <main>
+<!-- PRIMECHAIN HOMEPAGE V2.0 -->
 
-<!-- ============================================================ -->
-<!-- HERO                                                          -->
-<!-- ============================================================ -->
+<!-- HERO -->
 <section class="hero">
-<div class="container">
-  <div class="kicker">Operational Intelligence</div>
-  <div class="hero-grid">
-    <div>
-      <h1>Your business is already generating the answers.<br><em>You just can't see them.</em></h1>
-    </div>
-    <div class="hero-copy">
-      <p>Every delivery. Every truck. Every technician. Every invoice. Every operational decision leaves behind information. PrimeChain connects those signals into a complete picture—so leaders can stop guessing and start seeing.</p>
-      <div class="actions">
-        <a class="btn primary" href="#contact">Book an Operational Visibility Review</a>
-        <a class="btn secondary" href="#solutions">See how it works</a>
+  <div class="container">
+
+    <div class="kicker">Operational Intelligence &amp; Technology</div>
+
+    <div class="hero-grid">
+      <div>
+        <h1>Understand your operation.<br>
+        <em>Control your outcomes.</em></h1>
       </div>
-    </div>
-  </div>
-  <div class="hero-note">
-    <div class="metric"><strong>Operational</strong><span>Visibility</span></div>
-    <div class="metric"><strong>Operational</strong><span>Systems</span></div>
-    <div class="metric"><strong>Decision</strong><span>Intelligence</span></div>
-    <div class="metric"><strong>One</strong><span>Connected View</span></div>
-  </div>
-</div>
-</section>
 
-<!-- ============================================================ -->
-<!-- THE PROBLEM                                                   -->
-<!-- ============================================================ -->
-<section>
-<div class="container">
-  <div class="section-grid">
-    <div><div class="kicker">01 — The problem</div></div>
-    <div>
-      <h2 class="section-title">Complexity compounds quietly.</h2>
-      <p class="section-intro" style="margin-top:28px">The biggest operational problems rarely announce themselves. They quietly grow in the background—until the cost becomes impossible to ignore.</p>
-    </div>
-  </div>
-  <div class="problem-grid">
-    <article class="problem"><span class="number">01</span><h3>Manual Work</h3><p>Hours disappear into repetitive administration. Not because your team is inefficient. Because your systems never evolved.</p></article>
-    <article class="problem"><span class="number">02</span><h3>Invisible Leaks</h3><p>Fuel. Time. Inventory. Delays. Rework. Margins. Most businesses only discover losses after they've accumulated.</p></article>
-    <article class="problem"><span class="number">03</span><h3>Delayed Decisions</h3><p>By the time reports reach leadership, the opportunity has already passed.</p></article>
-  </div>
-</div>
-</section>
+      <div class="hero-copy">
+        <p>PrimeChain combines operational expertise with
+        purpose-built technology to connect people, processes
+        and information—helping businesses improve visibility,
+        strengthen control and make better decisions.</p>
 
-<!-- ============================================================ -->
-<!-- PROOF                                                         -->
-<!-- ============================================================ -->
-<section class="proof" id="solutions">
-<div class="container">
-  <div class="section-grid">
-    <div>
-      <div class="kicker">02 — What we've found</div>
-      <h2 class="section-title">The operation already contains the evidence.</h2>
-    </div>
-    <div class="proof-copy">
-      <div class="eyebrow">Featured case · Commodity Trader</div>
-      <h3>The Fuel Was Accounted For. The Money Wasn't.</h3>
-      <p>Fuel records existed. Load records existed. But they lived in separate systems, so nobody could see the relationship between what was issued, what was consumed and what was actually moved..</p>
-      <div class="proof-stats">
-        <div class="pstat"><strong>R1.2m+</strong><span>Pot Loss identified</span></div>
-        <div class="pstat"><strong>38</strong><span>Vehicles analysed</span></div>
-      </div>
-      <a class="link" href="ourthinking.html">Read the full case study →</a>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ============================================================ -->
-<!-- SERVICES                                                      -->
-<!-- ============================================================ -->
-<section class="services">
-<div class="container">
-  <div class="section-grid">
-    <div><div class="kicker">03 — What we do</div></div>
-    <div>
-      <h2 class="section-title">See. Connect. Act.</h2>
-      <p class="section-intro" style="margin-top:28px">Three connected capabilities turn fragmented operational information into visibility, systems and better decisions.</p>
-    </div>
-  </div>
-  <div class="service-list">
-    <article class="service"><span class="num">01</span><h3>Operational Visibility</h3><p>We uncover the operational signals hidden across your business and bring them together into one trusted source of truth.</p></article>
-    <article class="service"><span class="num">02</span><h3>Operational Systems</h3><p>We replace manual coordination with systems designed around the way your business actually works.</p></article>
-    <article class="service"><span class="num">03</span><h3>Decision Intelligence</h3><p>We transform operational activity into information leaders can use to improve performance every day.</p></article>
-  </div>
-</div>
-</section>
-
-<!-- ============================================================ -->
-<!-- FLOW                                                          -->
-<!-- ============================================================ -->
-<section class="flow">
-<div class="container">
-  <div class="section-grid">
-    <div><div class="kicker">04 — The connected operation</div></div>
-    <div>
-      <h2 class="section-title">The operation already knows.</h2>
-      <p class="section-intro" style="margin-top:28px">The information is scattered across it. PrimeChain connects the signals so the picture becomes visible.</p>
-    </div>
-  </div>
-  <div class="flow-panel">
-    <div class="flow-row">
-      <div class="flow-col">
-        <h3>Information already being generated</h3>
-        <div class="flow-list">
-          <span>Excel</span><span>WhatsApp</span><span>Paper</span><span>Emails</span><span>Phone Calls</span><span>Fuel Slips</span><span>PODs</span><span>GPS</span><span>Accounting</span><span>Job Cards</span>
-        </div>
-      </div>
-      <div class="flow-middle">→</div>
-      <div class="flow-col">
-        <h3>What leaders can see</h3>
-        <div class="flow-list">
-          <span>Performance</span><span>Exceptions</span><span>Leaks</span><span>Margins</span><span>KPIs</span><span>Forecasts</span><span>Decision Support</span>
+        <div class="actions">
+          <a class="btn primary" href="#solutions">
+            Explore Our Solutions
+          </a>
+          <a class="btn secondary" href="#contact">
+            Talk to PrimeChain
+          </a>
         </div>
       </div>
     </div>
-    <div class="flow-center"><strong>PrimeChain — connect · reconcile · analyse · surface</strong></div>
-  </div>
-</div>
-</section>
 
-<!-- ============================================================ -->
-<!-- CASE STUDIES                                                  -->
-<!-- ============================================================ -->
-<section class="cases">
-<div class="container">
-  <div class="section-grid">
-    <div><div class="kicker">05 — Real operations. Real outcomes.</div></div>
-    <div><h2 class="section-title">What happens when the operation becomes visible.</h2></div>
-  </div>
-  <div class="case-grid">
-    <article class="case featured"><div><span class="case-tag">Commodity Trader · Fleet Operations</span><h3>The Fuel Was Accounted For. The Money Wasn't.</h3><p>R1.2m+ potential fuel exposure identified and a mechanism to continuously detect exceptions..</p></div><div class="arrow">↗</div></article>
-    <article class="case"><div><span class="case-tag">Fleet Operator · Transport</span><h3>Where Did the Margin Go?</h3><p>A foundation for route, truck and contract-level profitability decisions.</p></div><div class="arrow">↗</div></article>
-    <article class="case"><div><span class="case-tag">Electrical Contractor · Field Service</span><h3>The Work Behind the Work Is Costing Yous</h3><p>Less manual administration. Faster job-card production. Better field visibility. A workflow capable of handling more volume without simply adding more admin.</p></div><div class="arrow">↗</div></article>
-  </div>
-  <div style="text-align:center;margin-top:40px;">
-    <a class="link" href="ourthinking.html" style="margin-top:0;">View all case studies →</a>
-  </div>
-</div>
-</section>
-
-<!-- ============================================================ -->
-<!-- METHOD                                                        -->
-<!-- ============================================================ -->
-<section class="method" id="method">
-<div class="container">
-  <div class="section-grid">
-    <div><div class="kicker">06 — The PrimeChain method</div></div>
-    <div>
-      <h2 class="section-title">Technology comes last. Understanding comes first.</h2>
-    </div>
-  </div>
-  <div class="method-grid">
-    <article class="step"><span class="step-num">01</span><h3>Diagnose</h3><p>Understand how the operation actually works.</p></article>
-    <article class="step"><span class="step-num">02</span><h3>Reveal</h3><p>Identify blind spots, leakage and bottlenecks.</p></article>
-    <article class="step"><span class="step-num">03</span><h3>Design</h3><p>Design around the real workflow.</p></article>
-    <article class="step"><span class="step-num">04</span><h3>Build</h3><p>Deploy systems, automation and reporting.</p></article>
-    <article class="step"><span class="step-num">05</span><h3>Measure</h3><p>Track whether the intervention creates measurable value.</p></article>
-  </div>
-</div>
-</section>
-
-<!-- ============================================================ -->
-<!-- WHO WE ARE TEASER                                             -->
-<!-- ============================================================ -->
-<section class="who-teaser">
-<div class="container">
-  <div class="section-grid">
-    <div><div class="kicker">07 — Who we are</div></div>
-    <div>
-      <h2 class="section-title">Here's what we believe.</h2>
-    </div>
-  </div>
-  <div class="teaser-grid">
-    <div class="teaser-left">
-      <p>PrimeChain was built by operators, not consultants. Our team comes from the industries we serve—transport, logistics, field services, and manufacturing. We've sat in the operational hot seat. We know what works because we've done it.</p>
-      <p><strong>Businesses don't have a data problem. They have a visibility problem.</strong> That's not a slogan—it's the principle that guides everything we do.</p>
-      <div class="teaser-stats">
-        <div><strong>10+</strong><span>Years of operational experience</span></div>
-        <div><strong>4</strong><span>Industries served directly</span></div>
-        <div><strong>100+</strong><span>Operations improved</span></div>
+    <div class="hero-note">
+      <div class="metric">
+        <strong>Operational</strong><span>Visibility</span>
+      </div>
+      <div class="metric">
+        <strong>Operational</strong><span>Systems</span>
+      </div>
+      <div class="metric">
+        <strong>Decision</strong><span>Intelligence</span>
+      </div>
+      <div class="metric">
+        <strong>One</strong><span>Connected Approach</span>
       </div>
     </div>
-    <div class="teaser-right">
-      <div class="quote">
-        "Technology is the enabler, not the product.<br><em>The outcome is a business that understands itself.</em>"
+
+  </div>
+</section>
+
+<!-- 01 THE CHALLENGE -->
+<section id="challenge">
+  <div class="container">
+
+    <div class="section-grid">
+      <div><div class="kicker">01 — The Challenge</div></div>
+      <div>
+        <h2 class="section-title">
+          When operations are disconnected,
+          performance becomes harder to control.
+        </h2>
+        <p class="section-intro" style="margin-top:28px">
+          Every business depends on the coordination of people,
+          processes, assets and information. Yet essential activities
+          are often managed across spreadsheets, paperwork,
+          messaging platforms and disconnected systems.
+          As operations grow, these gaps become increasingly
+          difficult to manage.
+        </p>
       </div>
-      <a class="link" href="whoweare.html" style="margin-top:0;">Meet the team →</a>
-      <p style="color:#777;font-size:.82rem;margin-top:16px;line-height:1.6;">We combine operational understanding, supply chain thinking, process improvement, data and technology to build systems around the way your business actually works.</p>
     </div>
+
+    <div class="problem-grid">
+      <article class="problem">
+        <span class="number">01</span>
+        <h3>Manual Processes</h3>
+        <p>Valuable time is spent coordinating tasks, capturing
+        information and reconciling records that could be managed
+        through connected workflows.</p>
+      </article>
+
+      <article class="problem">
+        <span class="number">02</span>
+        <h3>Limited Visibility</h3>
+        <p>Without reliable, connected information, businesses
+        struggle to identify inefficiencies, monitor costs
+        and maintain accountability.</p>
+      </article>
+
+      <article class="problem">
+        <span class="number">03</span>
+        <h3>Delayed Decisions</h3>
+        <p>When operational information arrives late or requires
+        extensive manual preparation, management is left reacting
+        to problems rather than anticipating them.</p>
+      </article>
+    </div>
+
   </div>
-</div>
 </section>
 
-<!-- ============================================================ -->
-<!-- MANIFESTO TEASER                                              -->
-<!-- ============================================================ -->
-<section class="manifesto-teaser" id="manifesto">
-<div class="container">
-  <div class="teaser-layout">
-    <div>
-      <div class="kicker">08 — The PrimeChain Manifesto</div>
-      <div class="big-quote">Businesses don't have a data problem.<br><em>They have a visibility problem.</em></div>
+<!-- 02 WHAT WE DO -->
+<section class="services" id="services">
+  <div class="container">
+
+    <div class="section-grid">
+      <div><div class="kicker">02 — What We Do</div></div>
+      <div>
+        <h2 class="section-title">See. Connect. Act.</h2>
+        <p class="section-intro" style="margin-top:28px">
+          Better operational performance begins with understanding
+          how work happens. PrimeChain combines three capabilities
+          to help businesses move from fragmented operations
+          toward greater control.
+        </p>
+      </div>
     </div>
-    <div>
-      <p class="teaser-copy">Every organisation already generates the information it needs to improve. The challenge isn't collecting more. The challenge is connecting what already exists. That's why PrimeChain exists.</p>
-      <a class="link" href="manifesto.html">Read the full Manifesto →</a>
+
+    <div class="service-list">
+
+      <article class="service">
+        <span class="num">01 / SEE</span>
+        <h3>Operational Visibility</h3>
+        <p>We examine how information, people and processes
+        interact across your operation, revealing gaps,
+        inefficiencies and opportunities for improvement.</p>
+      </article>
+
+      <article class="service">
+        <span class="num">02 / CONNECT</span>
+        <h3>Operational Systems</h3>
+        <p>We design and implement practical technology that
+        coordinates workflows, connects information and supports
+        accountability across daily activities.</p>
+      </article>
+
+      <article class="service">
+        <span class="num">03 / ACT</span>
+        <h3>Decision Intelligence</h3>
+        <p>We turn operational information into meaningful insights
+        that help businesses monitor performance, identify exceptions
+        and make informed decisions.</p>
+      </article>
+
     </div>
   </div>
-</div>
 </section>
 
+<!-- 03 OUR SOLUTIONS -->
+<section class="product-showcase" id="solutions">
+  <div class="container">
 
-<!-- ============================================================ -->
-<!-- CTA                                                           -->
-<!-- ============================================================ -->
+    <div class="product-heading">
+      <div>
+        <div class="kicker">03 — Our Solutions</div>
+        <h2>Built around the way your industry works.</h2>
+      </div>
+
+      <p>No two industries operate in exactly the same way.
+      That's why PrimeChain develops industry-specific technology
+      designed around real workflows and operational challenges.</p>
+    </div>
+
+    <div class="product-grid">
+
+      <article class="product-card fleet">
+        <div class="product-meta">
+          <span>01 / Transport &amp; Logistics</span>
+          <span>In pilot development</span>
+        </div>
+
+        <h3>PrimeChain Fleet</h3>
+        <h4>Know what's moving. Know what it costs.</h4>
+
+        <p>An operational management system for transport and
+        logistics businesses. Connect vehicle activity, trips,
+        loads, fuel transactions, operating expenses and delivery
+        documentation to support better coordination
+        and cost visibility.</p>
+
+        <div class="product-workflow">
+          <div class="product-workflow-label">
+            Connected operational workflow
+          </div>
+
+          <div class="product-stages">
+            <span>Trips</span>
+            <span>Loads</span>
+            <span>Fuel &amp; Costs</span>
+            <span>Reconciliation</span>
+          </div>
+
+          <a href="#contact" class="product-link">
+            Discuss a Fleet pilot &rarr;
+          </a>
+        </div>
+      </article>
+
+      <article class="product-card field">
+        <div class="product-meta">
+          <span>02 / Contractors &amp; Field Services</span>
+          <span>In pilot development</span>
+        </div>
+
+        <h3>PrimeChain Field</h3>
+        <h4>Every job accounted for. Every asset traceable.</h4>
+
+        <p>An operational management system for contractors
+        and field service businesses. Coordinate work orders,
+        technician assignments, inventory custody, site evidence
+        and job completion through connected workflows.</p>
+
+        <div class="product-workflow">
+          <div class="product-workflow-label">
+            Connected operational workflow
+          </div>
+
+          <div class="product-stages">
+            <span>Work Orders</span>
+            <span>Technicians</span>
+            <span>Evidence</span>
+            <span>Approvals</span>
+          </div>
+
+          <a href="#contact" class="product-link">
+            Discuss a Field pilot &rarr;
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- 04 OUR APPROACH -->
+<section class="method" id="approach">
+  <div class="container">
+
+    <div class="section-grid">
+      <div><div class="kicker">04 — Our Approach</div></div>
+      <div>
+        <h2 class="section-title">
+          Understanding first. Technology with purpose.
+        </h2>
+        <p class="section-intro" style="margin-top:28px">
+          We believe effective technology starts with a clear
+          understanding of the operation it is intended to support.
+          Our approach combines operational analysis, systems
+          design, implementation and continual improvement.
+        </p>
+      </div>
+    </div>
+
+    <div class="method-grid">
+
+      <div class="step">
+        <span class="step-num">01</span>
+        <h3>Diagnose</h3>
+        <p>Understand how the operation works, including the people,
+        processes and information involved.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-num">02</span>
+        <h3>Reveal</h3>
+        <p>Identify gaps, bottlenecks, risks and opportunities
+        for improvement.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-num">03</span>
+        <h3>Design</h3>
+        <p>Develop practical solutions around real
+        operational requirements.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-num">04</span>
+        <h3>Implement</h3>
+        <p>Introduce connected systems, workflows and
+        reporting capabilities.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-num">05</span>
+        <h3>Measure</h3>
+        <p>Evaluate results, identify improvements and refine
+        the solution as the operation evolves.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 05 OUR THINKING -->
+<section class="insights-teaser" id="thinking">
+  <div class="container">
+
+    <div class="section-grid">
+      <div><div class="kicker">05 — Our Thinking</div></div>
+      <div>
+        <h2 class="section-title">
+          Perspectives from the realities of business operations.
+        </h2>
+        <p class="section-intro" style="margin-top:28px">
+          Operational challenges are rarely isolated. They emerge
+          from the relationship between people, processes,
+          information and decisions. We explore these challenges
+          through practical insights into transport, logistics,
+          field services and operational technology.
+        </p>
+      </div>
+    </div>
+
+    <div class="insight-grid">
+
+      <article class="insight">
+        <div>
+          <small>Transport &amp; Logistics</small>
+          <h3>Why a Busy Trucking Business Can Still
+          Be Losing Money</h3>
+          <p>Understanding the relationship between revenue,
+          operating costs and transport profitability.</p>
+        </div>
+      </article>
+
+      <article class="insight">
+        <div>
+          <small>Field Service Operations</small>
+          <h3>The Technician Finished the Job.
+          Why Is the Office Still Working on It?</h3>
+          <p>Exploring how manual evidence processing and
+          administration affect job completion.</p>
+        </div>
+      </article>
+
+      <article class="insight">
+        <div>
+          <small>Operational Technology</small>
+          <h3>From Spreadsheets and WhatsApp
+          to a Connected Operation</h3>
+          <p>Connecting daily operational activity to
+          information that supports better decisions.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <a class="link" href="ourthinking.html">
+      Explore Our Thinking &rarr;
+    </a>
+
+  </div>
+</section>
+
+<!-- 06 ABOUT PRIMECHAIN -->
+<section class="who-teaser" id="about">
+  <div class="container">
+
+    <div class="section-grid">
+      <div><div class="kicker">06 — About PrimeChain</div></div>
+      <div>
+        <h2 class="section-title">
+          Built on operational understanding.
+          Driven by practical technology.
+        </h2>
+
+        <p class="section-intro" style="margin-top:28px">
+          PrimeChain is an operational intelligence and technology
+          company focused on helping businesses make their
+          operations more connected, visible and manageable.
+        </p>
+
+        <p class="section-intro" style="margin-top:20px">
+          We combine operational thinking, process improvement
+          and technology development to create practical solutions
+          that support the way businesses actually work.
+        </p>
+
+        <p class="section-intro" style="margin-top:20px">
+          Our ambition is to make operational intelligence more
+          accessible, actionable and valuable to the organisations
+          that depend on it.
+        </p>
+
+        <a class="link" href="whoweare.html">
+          Discover PrimeChain &rarr;
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 07 CONTACT -->
 <section class="cta-band" id="contact">
-<div class="container cta-inner">
-  <div><h2>Let's apply it to your business.</h2></div>
-  <div>
-    <p>The answers are already inside your operation. We'll help you connect them. Start with an Operational Visibility Review—no obligation, just a conversation.</p>
-    <a class="btn primary" href="mailto:info@primechainsolutions.co.za">Book an Operational Visibility Review ↗</a>
+  <div class="container">
+
+    <div class="cta-inner">
+      <div>
+        <div class="kicker" style="color:#c8a96b">
+          07 — Let's Connect
+        </div>
+        <h2>Better operations begin with better understanding.</h2>
+      </div>
+
+      <div>
+        <p>Whether you're looking to improve visibility across
+        your business, connect fragmented workflows or explore
+        one of our operational technology solutions,
+        we'd welcome a conversation.</p>
+
+        <a class="btn primary"
+           href="mailto:info@primechainsolutions.co.za">
+          Talk to PrimeChain &nearr;
+        </a>
+      </div>
+    </div>
+
   </div>
-</div>
 </section>
 
 </main>
+
 
 <!-- ============================================================ -->
 <!-- FOOTER                                                        -->
@@ -606,14 +1218,14 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
 <div class="container">
   <div class="footer-top">
     <div class="footer-brand">
-      <strong>PrimeChain</strong>
+      <a class="pc-footer-logo" href="index.html" aria-label="PrimeChain home"><span class="pc-prime">Prime</span><span class="pc-chain">Chain</span></a>
       <p>Operational Intelligence. Because every business deserves to understand itself.</p>
     </div>
     <div class="footer-links">
-      <a href="#solutions">What We Do</a>
+      <a href="#services">What We Do</a>
       <a href="whoweare.html">Who We Are</a>
       <a href="ourthinking.html">Our Thinking</a>
-      <a href="manifesto.html">Manifesto</a>
+      
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -637,12 +1249,23 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
     hamburger.addEventListener('click', function() {
       this.classList.toggle('active');
       overlay.classList.toggle('open');
+      this.setAttribute(
+        'aria-expanded',
+        String(overlay.classList.contains('open'))
+      );
+      this.setAttribute(
+        'aria-label',
+        overlay.classList.contains('open')
+          ? 'Close menu' : 'Open menu'
+      );
       document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
     });
     
     overlay.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', function() {
         hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open menu');
         overlay.classList.remove('open');
         document.body.style.overflow = '';
       });
@@ -651,6 +1274,8 @@ footer{background:var(--ink);color:var(--white);padding:35px 0 25px;border-top:1
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && overlay.classList.contains('open')) {
         hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open menu');
         overlay.classList.remove('open');
         document.body.style.overflow = '';
       }
